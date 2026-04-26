@@ -1,0 +1,7 @@
+{
+  "chart_type": "scatter",
+  "x_axis": "age",
+  "y_axis": "chol",
+  "title": "Age vs Cholesterol",
+  "correlation_score": 0.72
+}
