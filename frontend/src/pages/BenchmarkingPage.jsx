@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import LibrarySwitcher from './LibrarySwitcher';
-import ChartRenderer from './ChartRenderer';
-import ChartTypeSelector from './ChartTypeSelector';
-import DecisionMatrixPanel from './DecisionMatrixPanel';
+import LibrarySwitcher from '../components/ui/LibrarySwitcher';
+import ChartRenderer from '../components/charts/ChartRenderer';
+import ChartTypeSelector from '../components/ui/ChartTypeSelector';
+import DecisionMatrixPanel from '../components/ui/DecisionMatrixPanel';
 import useStore from '../store/useStore';
 import { ShieldCheck, Activity, Cpu, Code2, Table2, ArrowLeft } from 'lucide-react';
 

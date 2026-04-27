@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Activity, Zap, Users, TrendingUp } from 'lucide-react';
-import ChartToolbar from './ChartToolbar';
-import DrillDownRenderer from './DrillDownRenderer';
-import UploadCSV from './UploadCSV';
+import ChartToolbar from '../components/ui/ChartToolbar';
+import DrillDownRenderer from '../components/charts/DrillDownRenderer';
+import UploadCSV from '../components/ui/UploadCSV';
 import useStore from '../store/useStore';
 
 const DashboardPage = () => {

@@ -21,7 +21,7 @@ export function classifyColumns(dataset) {
 
     // ← KEY FIX: numeric columns with ≤10 unique values
     //   are coded/ordinal categoricals (e.g. sex=0/1, cp=1/2/3/4)
-    if (pctNumeric > 0.85 && uniqueVals.size <= 10) {
+    if (pctNumeric > 0.85 && uniqueVals.size <= 7) {
       result[key] = 'categorical';
     } else if (pctNumeric > 0.85) {
       result[key] = 'numeric';
@@ -53,8 +53,19 @@ export const filterByDrillPath = (dataset, drillPath) => {
   return dataset.filter(row => 
     drillPath.every(step => {
       const rowVal = row[step.column];
-      // Loose equality to handle potential type differences (e.g., "1" vs 1)
-      return String(rowVal) === String(step.value);
+      const stepVal = String(step.value);
+      
+      // Check if stepVal is a range (e.g., "10.0-20.0" or "10.0–20.0")
+      const rangeMatch = stepVal.match(/^([\d.]+)[-–]([\d.]+)$/);
+      if (rangeMatch && !isNaN(parseFloat(rowVal))) {
+        const val = parseFloat(rowVal);
+        const lo = parseFloat(rangeMatch[1]);
+        const hi = parseFloat(rangeMatch[2]);
+        return val >= lo && val <= hi;
+      }
+      
+      // Fallback to exact equality
+      return String(rowVal) === stepVal;
     })
   );
 };

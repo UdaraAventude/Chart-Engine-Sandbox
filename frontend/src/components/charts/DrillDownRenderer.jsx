@@ -1,8 +1,8 @@
 import React, { useState, useMemo, useEffect, useRef, useCallback } from 'react';
 import ReactECharts from 'echarts-for-react';
 import { Activity } from 'lucide-react';
-import '../DrillDown.css';
-import useStore from '../store/useStore';
+import '../../styles/DrillDown.css';
+import useStore from '../../store/useStore';
 import { 
   classifyColumns, 
   buildDrillHierarchy, 
@@ -14,7 +14,7 @@ import {
   drillBackTo, 
   isLeafLevel, 
   getCurrentGroupByColumn 
-} from '../utils/DrillDownManager';
+} from '../../utils/DrillDownManager';
 import { 
   buildDrillBar,
   buildDrillHeatmap,
@@ -26,139 +26,15 @@ import {
   buildDrillCorrelation,
   buildDrillHistogram,
   buildDrillLine
-} from '../utils/DrillDownCharts';
+} from '../../utils/DrillDownCharts';
+import {
+  getSubtreeForPath,
+  parseRangeLabel,
+  buildSunburstTreeFromDataset,
+  computeCorrelationFrontend,
+  computeHistogramFrontend
+} from '../../utils/analyticsHelpers';
 import DrillDownBreadcrumb from './DrillDownBreadcrumb';
-
-// ─────────────────────────────────────────────
-// Helper: navigate the pre-agg tree to a subtree
-// ─────────────────────────────────────────────
-function getSubtreeForPath(treeNodes, drillPath) {
-  let nodes = treeNodes;
-  for (const step of drillPath) {
-    const match = nodes.find(n => n.name === String(step.value));
-    if (!match) return nodes;
-    if (!match.children) {
-      // Leaf node reached — wrap it so the sunburst renders ONLY this node
-      return [{ ...match }];
-    }
-    nodes = match.children;
-  }
-  return nodes;
-}
-
-// ─────────────────────────────────────────────
-// Helper: parse a range label in ANY format into [min, max]
-//   Backend format : "(4.887, 23.833)"
-//   Frontend format: "4.9-23.8"
-// ─────────────────────────────────────────────
-function parseRangeLabel(label) {
-  if (!label) return null;
-  const nums = label.match(/\d+\.?\d*/g);
-  if (!nums || nums.length < 2) return null;
-  return [parseFloat(nums[0]), parseFloat(nums[1])];
-}
-
-// ─────────────────────────────────────────────
-// Build sunburst tree from raw dataset (fallback when no pre-agg)
-// ─────────────────────────────────────────────
-const buildSunburstTreeFromDataset = (filteredData, hierarchy, measureCol, drillPath, maxLevels = 4) => {
-  const remainingHierarchy = hierarchy.slice(drillPath.length);
-  const levels = remainingHierarchy.slice(0, maxLevels);
-
-  // Leaf fallback: when no levels remain, still render a single node so depth-N view is visible.
-  if (levels.length === 0) {
-    const total = Math.round(
-      filteredData.reduce((sum, r) => sum + (parseFloat(r[measureCol]) || 0), 0)
-    );
-    const leafName = drillPath[drillPath.length - 1]?.value || 'Current Level';
-    return [{ name: String(leafName), value: total, sum: total, count: filteredData.length }];
-  }
-
-  function buildNode(rows, levelIndex) {
-    if (levelIndex >= levels.length) return [];
-    const col = levels[levelIndex];
-    const groups = {};
-    for (const row of rows) {
-      const key = String(row[col] ?? 'Unknown');
-      if (!groups[key]) groups[key] = [];
-      groups[key].push(row);
-    }
-    return Object.entries(groups).map(([name, groupRows]) => {
-      const value = Math.round(
-        groupRows.reduce((sum, r) => sum + (parseFloat(r[measureCol]) || 0), 0)
-      );
-      const children = buildNode(groupRows, levelIndex + 1);
-      return {
-        name,
-        value: children.length ? undefined : value,
-        children: children.length ? children : undefined,
-      };
-    }).sort((a, b) => (b.value || 0) - (a.value || 0));
-  }
-
-  return buildNode(filteredData, 0);
-};
-
-// ─────────────────────────────────────────────
-// Frontend computation helpers for drill-down
-// ─────────────────────────────────────────────
-
-function _computeCorrelationFrontend(data, numericCols) {
-  const avail = numericCols.filter(col => data[0]?.[col] !== undefined).slice(0, 12);
-  const n = data.length;
-  
-  const colArrays = {};
-  avail.forEach(col => {
-    colArrays[col] = data.map(r => parseFloat(r[col])).filter(v => !isNaN(v));
-  });
-
-  const mean = arr => arr.reduce((a, b) => a + b, 0) / arr.length;
-  const pearson = (xs, ys) => {
-    const len = Math.min(xs.length, ys.length);
-    if (len < 2) return 0;
-    const mx = mean(xs), my = mean(ys);
-    let num = 0, dx = 0, dy = 0;
-    for (let i = 0; i < len; i++) {
-      const a = xs[i] - mx, b = ys[i] - my;
-      num += a * b; dx += a * a; dy += b * b;
-    }
-    const denom = Math.sqrt(dx * dy);
-    return denom === 0 ? 0 : parseFloat((num / denom).toFixed(3));
-  };
-
-  const matrix = [];
-  avail.forEach(c1 => {
-    avail.forEach(c2 => {
-      matrix.push({ x: c1, y: c2, value: pearson(colArrays[c1], colArrays[c2]) });
-    });
-  });
-
-  return { columns: avail, matrix };
-}
-
-function _computeHistogramFrontend(data, col, bins = 10) {
-  const values = data.map(r => parseFloat(r[col])).filter(v => !isNaN(v));
-  if (values.length === 0) return { labels: [], counts: [], col };
-  
-  const min = Math.min(...values);
-  const max = Math.max(...values);
-  const step = (max - min) / bins;
-
-  const counts = new Array(bins).fill(0);
-  values.forEach(v => {
-    let idx = Math.floor((v - min) / step);
-    if (idx >= bins) idx = bins - 1;
-    counts[idx]++;
-  });
-
-  const labels = Array.from({ length: bins }, (_, i) => {
-    const lo = min + i * step;
-    const hi = min + (i + 1) * step;
-    return `${lo.toFixed(1)}–${hi.toFixed(1)}`;
-  });
-
-  return { labels, counts, col };
-}
 
 // ─────────────────────────────────────────────
 // Main Component
@@ -172,7 +48,6 @@ const DrillDownRenderer = ({ onRenderTime }) => {
   const [activeMetric, setActiveMetric] = useState('Satisfaction');
 
   // Track whether the current line chart is showing the bar fallback
-  // so the click handler knows to use params.name instead of params.seriesName
   const [lineShowsBarFallback, setLineShowsBarFallback] = useState(false);
 
   const t0 = useRef(0);
@@ -208,7 +83,6 @@ const DrillDownRenderer = ({ onRenderTime }) => {
   const atLeaf           = isLeafLevel(drillPath, hierarchy);
   const currentGroupByCol = getCurrentGroupByColumn(drillPath, hierarchy);
 
-  // ── Row Count ──────────────────────────────
   const currentRowCount = useMemo(() => {
     if (!drillPath.length) return totalRows;
     const pathKey = drillPath.map(s => s.value).join('|');
@@ -218,10 +92,7 @@ const DrillDownRenderer = ({ onRenderTime }) => {
     return filteredData.length;
   }, [drillPath, aggregations, filteredData, totalRows]);
 
-  // ── Bar / Pie data getter ──────────────────
   const getBarDataForPath = useCallback((path, method) => {
-    // ── LEAF: drill_flat[leafKey] has NO children entries ──
-    // Look up the parent's flat list and find this leaf's own summary row
     if (isLeafLevel(path, hierarchy) && path.length > 0) {
       const parentKey  = path.slice(0, -1).map(s => s.value).join('|');
       const leafValue  = path[path.length - 1].value;
@@ -239,12 +110,10 @@ const DrillDownRenderer = ({ onRenderTime }) => {
           return [{ name: leafEntry.name, value: val, count: leafEntry.count }];
         }
       }
-      // Fallback: compute directly from filteredData
       const leafCol = hierarchy[path.length - 1];
       return aggregateForChart(filteredData, leafCol, measureCol, method);
     }
 
-    // ── NON-LEAF: use drill_flat children ──────────────────
     if (!hasAggregations || !aggregations.drill_flat) {
       return aggregateForChart(filteredData, currentGroupByCol, measureCol, method);
     }
@@ -262,7 +131,6 @@ const DrillDownRenderer = ({ onRenderTime }) => {
     }));
   }, [hasAggregations, aggregations, filteredData, currentGroupByCol, measureCol, hierarchy]);
 
-  // ── Sunburst data ──────────────────────────
   const sunburstData = useMemo(() => {
     if (hasAggregations && Array.isArray(aggregations.drill_tree) && aggregations.drill_tree.length > 0) {
       return getSubtreeForPath(aggregations.drill_tree, drillPath);
@@ -270,24 +138,19 @@ const DrillDownRenderer = ({ onRenderTime }) => {
     return buildSunburstTreeFromDataset(filteredData, hierarchy, measureCol, drillPath);
   }, [hasAggregations, aggregations, filteredData, hierarchy, measureCol, drillPath]);
 
-  // ── Heatmap data ───────────────────────────
   const getHeatmapData = useCallback(() => {
     const hX = dataset[0]?.commute_time_min !== undefined ? 'commute_time_min' : xCol;
     const hY = dataset[0]?.work_life_balance !== undefined ? 'work_life_balance' : yCol;
     const hV = dataset[0]?.overall_satisfaction !== undefined ? 'overall_satisfaction' : yCol;
 
-    // Use pre-aggregated heatmap ONLY at root (no drill)
     if (drillPath.length === 0 && hasAggregations && aggregations.heatmap && aggregations.heatmap.cells) {
       return aggregations.heatmap;
     }
 
-    // After drill: compute from filtered rows — pass a fixed bins number, NOT aggMethod
     const HEATMAP_BINS = 6;
     return aggregateForHeatmap(filteredData, hX, hY, hV, HEATMAP_BINS);
   }, [drillPath.length, hasAggregations, aggregations, filteredData, dataset, xCol, yCol]);
 
-  // ── Bubble data ─────────────────────────────
-  // ALWAYS use filteredData + currentGroupByCol so group names match the hierarchy
   const getBubbleData = useCallback(() => {
     const bX = dataset[0]?.monthly_salary        !== undefined ? 'monthly_salary'        : xCol;
     const bY = dataset[0]?.overall_satisfaction  !== undefined ? 'overall_satisfaction'  : yCol;
@@ -298,7 +161,6 @@ const DrillDownRenderer = ({ onRenderTime }) => {
     return aggregateForBubble(filteredData, groupCol, bX, bY, bS);
   }, [drillPath, filteredData, dataset, currentGroupByCol, hierarchy, xCol, yCol, sizeCol]);
 
-  // ── Chart option builder ───────────────────
   const option = useMemo(() => {
     t0.current = performance.now();
     const baseTitle = chartConfig?.title || 'Employee Satisfaction & Salary Analysis';
@@ -307,27 +169,22 @@ const DrillDownRenderer = ({ onRenderTime }) => {
       : '';
     const title = baseTitle + pathTitle;
 
-    // ── BAR ──────────────────────────────────
     if (drillChartType === 'drill-bar') {
       const aggregated = getBarDataForPath(drillPath, aggMethod);
       const groupCol   = currentGroupByCol || hierarchy[hierarchy.length - 1];
       return buildDrillBar(aggregated, groupCol, measureCol, title, atLeaf, aggMethod);
     }
 
-    // ── SUNBURST ──────────────────────────────
     if (drillChartType === 'drill-sunburst') {
       const opt = buildDrillSunburst(sunburstData, measureCol, title, drillPath, hierarchy.length, aggMethod);
-
-      // Add invisible clickable circle over the white center hole
-      // This gives the user a click target to go back
       if (drillPath.length > 0) {
         opt.graphic = [{
           type: 'circle',
           left: 'center',
           top: 'middle',
-          shape: { r: 48 },             // matches the inner radius of the sunburst
+          shape: { r: 48 },
           style: {
-            fill: 'rgba(0,0,0,0)',      // fully transparent — invisible
+            fill: 'rgba(0,0,0,0)',
             cursor: 'pointer',
           },
           onclick: () => {
@@ -335,28 +192,23 @@ const DrillDownRenderer = ({ onRenderTime }) => {
           }
         }];
       } else {
-        opt.graphic = [];               // no back target at root
+        opt.graphic = [];
       }
-
       return opt;
     }
 
-    // ── HEATMAP ───────────────────────────────
     if (drillChartType === 'drill-heatmap') {
       const heatmapData = getHeatmapData();
       return buildDrillHeatmap(heatmapData, xCol, yCol, measureCol, title, atLeaf);
     }
 
-    // ── SCATTER ───────────────────────────────
     if (drillChartType === 'drill-scatter') {
       return buildDrillScatter(filteredData, xCol, yCol, currentGroupByCol, title);
     }
 
-    // ── BUBBLE ────────────────────────────────
     if (drillChartType === 'drill-bubble') {
       const bubbleData = getBubbleData();
       if (!bubbleData || bubbleData.length === 0) {
-        // Fallback to count bar
         const groupCol = currentGroupByCol || hierarchy[hierarchy.length - 1];
         return buildDrillBar(getBarDataForPath(drillPath, 'count'), groupCol, 'count', title, atLeaf, 'count');
       }
@@ -364,15 +216,12 @@ const DrillDownRenderer = ({ onRenderTime }) => {
       return buildDrillBubble(bubbleData, xCol, yCol, sizeCol, groupCol, title, atLeaf);
     }
 
-    // ── PIE ────────────────────────────────────
     if (drillChartType === 'drill-pie') {
       const aggregated = getBarDataForPath(drillPath, aggMethod);
       return buildDrillPie(aggregated, measureCol, title, atLeaf);
     }
 
-    // ── LINE ───────────────────────────────────
     if (drillChartType === 'drill-line') {
-      // Check if timeseries data exists for this path
       if (hasAggregations && aggregations.drill_timeseries) {
         const pathKey = drillPath.map(s => s.value).join('|');
         const tsData  = aggregations.drill_timeseries.data?.[pathKey];
@@ -381,7 +230,6 @@ const DrillDownRenderer = ({ onRenderTime }) => {
         );
 
         if (hasUsableSeries) {
-          // ✓ Real timeseries available — clear fallback flag, show multiline
           setLineShowsBarFallback(false);
           return buildDrillMultiline(
             { quarters: aggregations.drill_timeseries.quarters, metrics: tsData },
@@ -390,7 +238,6 @@ const DrillDownRenderer = ({ onRenderTime }) => {
         }
       }
 
-      // Root fallback: use non-drill timeseries if available.
       if (drillPath.length === 0 && hasAggregations && aggregations.timeseries?.metrics) {
         const rootMetrics = {};
         Object.entries(aggregations.timeseries.metrics).forEach(([metricName, series]) => {
@@ -416,11 +263,7 @@ const DrillDownRenderer = ({ onRenderTime }) => {
         }
       }
 
-      // ✗ No timeseries for this path → show categorical line chart fallback
-      // Set flag so click handler knows to use params.name not params.seriesName
       setLineShowsBarFallback(true);
-
-      // Fix: use activeMetric if it exists, fallback to measureCol
       const metricCol = (activeMetric === 'Salary' ? 'monthly_salary' : 
                         (activeMetric === 'Satisfaction' ? 'overall_satisfaction' : measureCol));
       
@@ -431,29 +274,41 @@ const DrillDownRenderer = ({ onRenderTime }) => {
       return buildDrillLine(aggregated, groupCol, metricCol, fallbackTitle, atLeaf, aggMethod);
     }
 
-    // ── CORRELATION ────────────────────────────
     if (drillChartType === 'drill-correlation') {
       if (drillPath.length === 0 && hasAggregations && aggregations.correlation) {
         return buildDrillCorrelation(aggregations.correlation, title);
       }
       if (filteredData.length > 0) {
         const numCols = Object.keys(columnTypes).filter(c => columnTypes[c] === 'numeric');
-        const corrData = _computeCorrelationFrontend(filteredData, numCols);
+        const corrData = computeCorrelationFrontend(filteredData, numCols);
         return buildDrillCorrelation(corrData, title);
       }
       return {};
     }
 
-    // ── HISTOGRAM ─────────────────────────────
     if (drillChartType === 'drill-histogram') {
-      if (drillPath.length === 0 && hasAggregations && aggregations.histogram) {
+      const hasHistAgg = hasAggregations && aggregations.histogram && 
+                        Array.isArray(aggregations.histogram.labels) && 
+                        aggregations.histogram.labels.length > 0;
+
+      if (drillPath.length === 0 && hasHistAgg) {
         return buildDrillHistogram(aggregations.histogram, title);
       }
-      const histCol = filteredData[0]?.overall_satisfaction !== undefined
-        ? 'overall_satisfaction'
-        : Object.keys(columnTypes).find(c => columnTypes[c] === 'numeric') || '';
-      if (!histCol || filteredData.length === 0) return {};
-      const histData = _computeHistogramFrontend(filteredData, histCol);
+      
+      const numericCols = Object.keys(columnTypes).filter(c => columnTypes[c] === 'numeric');
+      let histCol = '';
+      
+      if (columnTypes[measureCol] === 'numeric') histCol = measureCol;
+      else if (filteredData?.[0]?.overall_satisfaction !== undefined) histCol = 'overall_satisfaction';
+      else if (numericCols.length > 0) histCol = numericCols[0];
+      else {
+        // Last resort: find any column that has numeric values in the first row
+        const firstRow = filteredData?.[0] || {};
+        histCol = Object.keys(firstRow).find(k => !isNaN(parseFloat(firstRow[k]))) || '';
+      }
+      
+      if (!histCol || !filteredData || filteredData.length === 0) return {};
+      const histData = computeHistogramFrontend(filteredData, histCol);
       return buildDrillHistogram(histData, title);
     }
 
@@ -465,7 +320,13 @@ const DrillDownRenderer = ({ onRenderTime }) => {
     getHeatmapData, getBubbleData, activeMetric, measureCol,
   ]);
 
-  // ── Table render ───────────────────────────
+  // Log the generated option and current state for debugging
+  React.useEffect(() => {
+    console.log(`[DrillDownRenderer] Active Chart Type:`, drillChartType);
+    console.log(`[DrillDownRenderer] Current Drill Path (Depth: ${drillPath.length}):`, drillPath);
+    console.log(`[DrillDownRenderer] Generated ECharts Option Payload:`, option);
+  }, [option, drillChartType, drillPath]);
+
   const renderTable = () => {
     const data = (drillChartType === 'drill-bar' || drillChartType === 'drill-pie')
       ? getBarDataForPath(drillPath, aggMethod)
@@ -487,32 +348,21 @@ const DrillDownRenderer = ({ onRenderTime }) => {
     );
   };
 
-  // ── Click handler ──────────────────────────
   const handleChartClick = useCallback((params) => {
-
-    // ── SUNBURST ───────────────────────────────────────────────────────────────
-    // Must handle BEFORE the atLeaf guard — center click = go back, even at leaf
     if (drillChartType === 'drill-sunburst') {
       const treeDepth = params.treePathInfo?.length ?? 0;
-
-      // Center node click (treeDepth 0 or 1) — goes back
-      // Note: the graphic overlay also handles center clicks directly
       if (treeDepth <= 1) {
         if (drillPath.length > 0) {
           setDrillPath(prev => prev.slice(0, -1));
         }
         return;
       }
-
-      // At leaf: any segment click goes back (leaf has no children to drill into)
       if (atLeaf) {
         if (drillPath.length > 0) {
           setDrillPath(prev => prev.slice(0, -1));
         }
         return;
       }
-
-      // Non-leaf segment click: drill one level using the first visible ring ancestor.
       const pathNames = (params.treePathInfo || []).map(p => p.name).filter(Boolean);
       const targetValue = pathNames[0] || params.data?.name;
       if (targetValue && currentGroupByCol) {
@@ -521,37 +371,24 @@ const DrillDownRenderer = ({ onRenderTime }) => {
       return;
     }
 
-    // ── Block all other drill-deeper actions when at leaf ──────────────────────
     if (atLeaf) return;
 
-    // ── HEATMAP ────────────────────────────────────────────────────────────────
     if (drillChartType === 'drill-heatmap') {
       if (!params.data) return;
-
       const hData = getHeatmapData();
       const xIdx  = params.data[0];
-
-      // cells array may be on hData directly or nested
       const cells = hData.cells || [];
       const cell  = cells.find(c => c.x === xIdx);
       if (!cell || !currentGroupByCol) return;
-
-      // Parse range from label — works for BOTH backend "(4.887, 23.833)"
-      // and frontend "4.9-23.8" formats
       const range = parseRangeLabel(cell.xLabel);
       if (!range) return;
-
       const [rangeMin, rangeMax] = range;
       const hX = dataset[0]?.commute_time_min !== undefined ? 'commute_time_min' : xCol;
-
-      // Find rows within this bin
       const binRows = filteredData.filter(row => {
         const v = parseFloat(row[hX]);
         return !isNaN(v) && v >= rangeMin && v <= rangeMax;
       });
       if (binRows.length === 0) return;
-
-      // Find the most common categorical value in this bin
       const freq = {};
       binRows.forEach(r => {
         const k = String(r[currentGroupByCol] ?? 'Unknown');
@@ -564,7 +401,6 @@ const DrillDownRenderer = ({ onRenderTime }) => {
       return;
     }
 
-    // ── BAR / PIE ──────────────────────────────────────────────────────────────
     if (drillChartType === 'drill-bar' || drillChartType === 'drill-pie') {
       if (params.name && currentGroupByCol) {
         setDrillPath(prev => drillInto(prev, currentGroupByCol, params.name));
@@ -572,10 +408,7 @@ const DrillDownRenderer = ({ onRenderTime }) => {
       return;
     }
 
-    // ── LINE ───────────────────────────────────────────────────────────────────
     if (drillChartType === 'drill-line') {
-      // When showing bar fallback (no timeseries), clicks deliver params.name (category label)
-      // When showing real multiline, clicks deliver params.seriesName (series name)
       const clickedValue = lineShowsBarFallback ? params.name : params.seriesName;
       if (clickedValue && currentGroupByCol) {
         setDrillPath(prev => drillInto(prev, currentGroupByCol, clickedValue));
@@ -583,7 +416,6 @@ const DrillDownRenderer = ({ onRenderTime }) => {
       return;
     }
 
-    // ── BUBBLE / SCATTER ───────────────────────────────────────────────────────
     if (drillChartType === 'drill-bubble' || drillChartType === 'drill-scatter') {
       const clickedValue = params.seriesName;
       if (clickedValue && currentGroupByCol) {
@@ -592,7 +424,6 @@ const DrillDownRenderer = ({ onRenderTime }) => {
       return;
     }
 
-    // ── CORRELATION ────────────────────────────────────────────────────────────
     if (drillChartType === 'drill-correlation') {
       if (params.data?.x && currentGroupByCol && !atLeaf) {
         const freq = {};
@@ -606,29 +437,27 @@ const DrillDownRenderer = ({ onRenderTime }) => {
       return;
     }
 
-    // ── HISTOGRAM ──────────────────────────────────────────────────────────────
     if (drillChartType === 'drill-histogram') {
       if (!atLeaf && params.name && currentGroupByCol) {
         const range = params.name.match(/[\d.]+/g);
         if (range && range.length >= 2) {
           const [lo, hi] = [parseFloat(range[0]), parseFloat(range[1])];
-          const histCol = filteredData[0]?.overall_satisfaction !== undefined
-            ? 'overall_satisfaction'
-            : Object.keys(columnTypes).find(c => columnTypes[c] === 'numeric') || '';
           
+          // Use the same detection logic as in the render option
+          const numericCols = Object.keys(columnTypes).filter(c => columnTypes[c] === 'numeric');
+          let histCol = '';
+          if (columnTypes[measureCol] === 'numeric') histCol = measureCol;
+          else if (filteredData?.[0]?.overall_satisfaction !== undefined) histCol = 'overall_satisfaction';
+          else if (numericCols.length > 0) histCol = numericCols[0];
+          
+          if (!histCol) return;
+
           const binRows = filteredData.filter(r => {
             const v = parseFloat(r[histCol]);
             return !isNaN(v) && v >= lo && v <= hi;
           });
-          if (binRows.length === 0) return;
-
-          const freq = {};
-          binRows.forEach(r => {
-            const k = String(r[currentGroupByCol] ?? 'Unknown');
-            freq[k] = (freq[k] || 0) + 1;
-          });
-          const top = Object.entries(freq).sort((a, b) => b[1] - a[1])[0]?.[0];
-          if (top) setDrillPath(prev => drillInto(prev, currentGroupByCol, top));
+          // Drill into the selected histogram bin by adding the range to the drill path
+          setDrillPath(prev => drillInto(prev, histCol, params.name));
         }
       }
       return;
@@ -636,6 +465,7 @@ const DrillDownRenderer = ({ onRenderTime }) => {
   }, [
     drillChartType, drillPath, atLeaf, hierarchy, currentGroupByCol,
     getHeatmapData, filteredData, dataset, xCol, lineShowsBarFallback,
+    columnTypes, measureCol
   ]);
 
   const onChartReady = () => {
@@ -643,7 +473,6 @@ const DrillDownRenderer = ({ onRenderTime }) => {
     if (onRenderTime) onRenderTime(elapsed.toFixed(1));
   };
 
-  // ── Empty state ────────────────────────────
   if (hierarchy.length === 0) {
     return (
       <div className="empty-state">
@@ -656,10 +485,8 @@ const DrillDownRenderer = ({ onRenderTime }) => {
     );
   }
 
-  // ── Render ─────────────────────────────────
   return (
     <div className="drill-container">
-
       {drillChartType !== 'drill-table' && (
         <div className="drill-toolbar">
           <div className="drill-engine-badge">

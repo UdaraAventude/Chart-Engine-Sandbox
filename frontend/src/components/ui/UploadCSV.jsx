@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { uploadCSV } from '../services/api';
-import useStore from '../store/useStore';
+import { uploadCSV } from '../../services/api';
+import useStore from '../../store/useStore';
 import { Upload, FileSpreadsheet, CheckCircle2, Loader2 } from 'lucide-react';
 
 const UploadCSV = () => {
