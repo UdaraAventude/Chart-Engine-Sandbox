@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import UploadCSV from './UploadCSV';
-import ChartToolbar from './ChartToolbar';
-import DrillDownRenderer from './DrillDownRenderer';
+import UploadCSV from '../components/ui/UploadCSV';
+import ChartToolbar from '../components/ui/ChartToolbar';
+import DrillDownRenderer from '../components/charts/DrillDownRenderer';
 import useStore from '../store/useStore';
-import { LayoutDashboard, ArrowRight } from 'lucide-react';
+import { LayoutDashboard, ArrowRight, Wand2 } from 'lucide-react';
 
 const MainPage = () => {
   const { 
@@ -61,6 +61,39 @@ const MainPage = () => {
                   <LayoutDashboard size={20} />
                   Explore Real-time Benchmarking
                   <ArrowRight size={20} />
+                </Link>
+                <Link to="/dashboard" className="matrix-toggle-btn" style={{ 
+                  textDecoration: 'none', 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  gap: '12px',
+                  padding: '16px 32px',
+                  background: 'white',
+                  color: 'var(--primary)',
+                  border: '1.5px solid var(--primary)',
+                  borderRadius: '16px',
+                  fontWeight: 700,
+                  fontSize: '16px',
+                  marginLeft: '12px'
+                }}>
+                  Dashboard View
+                </Link>
+                <Link to="/builder" className="matrix-toggle-btn" style={{ 
+                  textDecoration: 'none', 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  gap: '12px',
+                  padding: '16px 32px',
+                  background: 'white',
+                  color: '#9333ea',
+                  border: '1.5px solid #9333ea',
+                  borderRadius: '16px',
+                  fontWeight: 700,
+                  fontSize: '16px',
+                  marginLeft: '12px'
+                }}>
+                  <Wand2 size={20} />
+                  Chart Builder
                 </Link>
               </div>
             </>

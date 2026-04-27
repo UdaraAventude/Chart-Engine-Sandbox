@@ -1,6 +1,6 @@
 import React from 'react';
 import { ChevronRight, Undo2 } from 'lucide-react';
-import '../DrillDown.css';
+import '../../styles/DrillDown.css';
 
 const DrillDownBreadcrumb = ({ drillPath, onNavigate, rowCount, totalRows }) => {
   const atRoot = drillPath.length === 0;

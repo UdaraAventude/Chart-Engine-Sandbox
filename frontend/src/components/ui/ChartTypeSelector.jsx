@@ -1,4 +1,4 @@
-import useStore from '../store/useStore'
+import useStore from '../../store/useStore';
 
 const TYPES = [
   { key: 'scatter_enhanced', label: 'Scatter+' },

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Layers, BarChart3, ScatterChart, LayoutGrid, Info, PieChart, LineChart, Table2, CircleDot } from 'lucide-react';
-import '../DrillDown.css';
+import '../../styles/DrillDown.css';
 
 const DRILL_TYPES = [
   { 

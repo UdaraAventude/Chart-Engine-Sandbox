@@ -98,7 +98,8 @@ function sanitizeCell(value) {
 function sanitizeRow(row) {
   const clean = {};
   for (const [key, value] of Object.entries(row || {})) {
-    clean[String(key).trim()] = sanitizeCell(value);
+    // Lowercase and trim keys to avoid common CSV header issues
+    clean[String(key).trim().toLowerCase()] = sanitizeCell(value);
   }
   return clean;
 }
@@ -549,28 +550,41 @@ function computeHeatmap(rows) {
 }
 
 function computeHistogram(rows) {
-  const col = rows[0]?.overall_satisfaction !== undefined ? 'overall_satisfaction' : firstNumericColumn(rows);
+  if (!rows || rows.length === 0) return { labels: [], counts: [], col: '' };
+  
+  const col = rows[0]?.overall_satisfaction !== undefined ? 'overall_satisfaction' : (firstNumericColumn(rows) || '');
+  if (!col) return { labels: [], counts: [], col: '' };
+
   const values = rows.map((r) => toNumber(r[col])).filter((v) => v !== null);
   if (!values.length) return { labels: [], counts: [], col };
 
   const bins = 10;
   const min = Math.min(...values);
   const max = Math.max(...values);
-  const width = max === min ? 1 : (max - min) / bins;
-
+  
   const counts = new Array(bins).fill(0);
-  values.forEach((v) => {
-    const idx = max === min ? 0 : Math.min(bins - 1, Math.floor((v - min) / width));
-    counts[idx] += 1;
-  });
+  if (max === min) {
+    counts[0] = values.length;
+  } else {
+    const width = (max - min) / bins;
+    values.forEach((v) => {
+      const idx = Math.min(bins - 1, Math.floor((v - min) / width));
+      if (idx >= 0) counts[idx] += 1;
+    });
+  }
 
+  const width = max === min ? 0 : (max - min) / bins;
   const labels = Array.from({ length: bins }, (_, i) => {
     const lo = min + i * width;
     const hi = min + (i + 1) * width;
     return `${lo.toFixed(1)}-${hi.toFixed(1)}`;
   });
 
-  return { labels, counts, col };
+  return { 
+    labels, 
+    counts, 
+    col: (col || 'Value').replace(/_/g, ' ').toUpperCase() 
+  };
 }
 
 function computeTimeseries(rows) {

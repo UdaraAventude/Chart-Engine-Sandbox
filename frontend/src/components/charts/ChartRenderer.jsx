@@ -21,7 +21,7 @@ import {
   buildMultiLineFromAggregation, buildBubbleFromAggregation
 } from './ComplexCharts';
 import D3Renderer from './D3Renderer';
-import useStore from '../store/useStore';
+import useStore from '../../store/useStore';
 
 const ChartRenderer = () => {
   const { dataset, chartConfig, selectedLibrary, setRenderTime, chartTypeOverride, aggregations } = useStore();
