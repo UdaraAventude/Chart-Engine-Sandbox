@@ -24,7 +24,8 @@ import {
   buildDrillPie,
   buildDrillMultiline,
   buildDrillCorrelation,
-  buildDrillHistogram
+  buildDrillHistogram,
+  buildDrillLine
 } from '../utils/DrillDownCharts';
 import DrillDownBreadcrumb from './DrillDownBreadcrumb';
 
@@ -63,6 +64,15 @@ function parseRangeLabel(label) {
 const buildSunburstTreeFromDataset = (filteredData, hierarchy, measureCol, drillPath, maxLevels = 4) => {
   const remainingHierarchy = hierarchy.slice(drillPath.length);
   const levels = remainingHierarchy.slice(0, maxLevels);
+
+  // Leaf fallback: when no levels remain, still render a single node so depth-N view is visible.
+  if (levels.length === 0) {
+    const total = Math.round(
+      filteredData.reduce((sum, r) => sum + (parseFloat(r[measureCol]) || 0), 0)
+    );
+    const leafName = drillPath[drillPath.length - 1]?.value || 'Current Level';
+    return [{ name: String(leafName), value: total, sum: total, count: filteredData.length }];
+  }
 
   function buildNode(rows, levelIndex) {
     if (levelIndex >= levels.length) return [];
@@ -254,7 +264,7 @@ const DrillDownRenderer = ({ onRenderTime }) => {
 
   // ── Sunburst data ──────────────────────────
   const sunburstData = useMemo(() => {
-    if (hasAggregations && aggregations.drill_tree) {
+    if (hasAggregations && Array.isArray(aggregations.drill_tree) && aggregations.drill_tree.length > 0) {
       return getSubtreeForPath(aggregations.drill_tree, drillPath);
     }
     return buildSunburstTreeFromDataset(filteredData, hierarchy, measureCol, drillPath);
@@ -267,7 +277,7 @@ const DrillDownRenderer = ({ onRenderTime }) => {
     const hV = dataset[0]?.overall_satisfaction !== undefined ? 'overall_satisfaction' : yCol;
 
     // Use pre-aggregated heatmap ONLY at root (no drill)
-    if (drillPath.length === 0 && hasAggregations && aggregations.heatmap) {
+    if (drillPath.length === 0 && hasAggregations && aggregations.heatmap && aggregations.heatmap.cells) {
       return aggregations.heatmap;
     }
 
@@ -366,8 +376,11 @@ const DrillDownRenderer = ({ onRenderTime }) => {
       if (hasAggregations && aggregations.drill_timeseries) {
         const pathKey = drillPath.map(s => s.value).join('|');
         const tsData  = aggregations.drill_timeseries.data?.[pathKey];
+        const hasUsableSeries = tsData && Object.values(tsData).some(
+          (seriesArr) => Array.isArray(seriesArr) && seriesArr.length > 0
+        );
 
-        if (tsData) {
+        if (hasUsableSeries) {
           // ✓ Real timeseries available — clear fallback flag, show multiline
           setLineShowsBarFallback(false);
           return buildDrillMultiline(
@@ -377,13 +390,45 @@ const DrillDownRenderer = ({ onRenderTime }) => {
         }
       }
 
-      // ✗ No timeseries for this path → show bar fallback
+      // Root fallback: use non-drill timeseries if available.
+      if (drillPath.length === 0 && hasAggregations && aggregations.timeseries?.metrics) {
+        const rootMetrics = {};
+        Object.entries(aggregations.timeseries.metrics).forEach(([metricName, series]) => {
+          rootMetrics[metricName] = (series || []).map((s) => ({
+            name: s.name,
+            sum: (s.data || []).map((v) => (v == null ? 0 : v)),
+            count: (s.data || []).map((v) => (v == null ? 0 : 1)),
+          }));
+        });
+
+        const hasRootSeries = Object.values(rootMetrics).some(
+          (seriesArr) => Array.isArray(seriesArr) && seriesArr.length > 0
+        );
+
+        if (hasRootSeries) {
+          setLineShowsBarFallback(false);
+          return buildDrillMultiline(
+            { quarters: aggregations.timeseries.quarters || [], metrics: rootMetrics },
+            activeMetric,
+            title,
+            aggMethod
+          );
+        }
+      }
+
+      // ✗ No timeseries for this path → show categorical line chart fallback
       // Set flag so click handler knows to use params.name not params.seriesName
       setLineShowsBarFallback(true);
-      const aggregated = getBarDataForPath(drillPath, 'avg');
+
+      // Fix: use activeMetric if it exists, fallback to measureCol
+      const metricCol = (activeMetric === 'Salary' ? 'monthly_salary' : 
+                        (activeMetric === 'Satisfaction' ? 'overall_satisfaction' : measureCol));
+      
+      const aggregated = getBarDataForPath(drillPath, aggMethod);
       const groupCol   = currentGroupByCol || hierarchy[hierarchy.length - 1];
-      const fallbackTitle = title + ' (avg salary by ' + (groupCol || 'group') + ')';
-      return buildDrillBar(aggregated, groupCol, measureCol, fallbackTitle, atLeaf, 'avg');
+      const fallbackTitle = title + ' (' + aggMethod + ' ' + (activeMetric || 'metric') + ' by ' + (groupCol || 'group') + ')';
+      
+      return buildDrillLine(aggregated, groupCol, metricCol, fallbackTitle, atLeaf, aggMethod);
     }
 
     // ── CORRELATION ────────────────────────────
@@ -467,11 +512,11 @@ const DrillDownRenderer = ({ onRenderTime }) => {
         return;
       }
 
-      // Non-leaf segment click: drill deeper
-      if (params.data?.name) {
-        const colIndex = drillPath.length + (treeDepth - 2);
-        const col = hierarchy[colIndex];
-        if (col) setDrillPath(prev => drillInto(prev, col, params.data.name));
+      // Non-leaf segment click: drill one level using the first visible ring ancestor.
+      const pathNames = (params.treePathInfo || []).map(p => p.name).filter(Boolean);
+      const targetValue = pathNames[0] || params.data?.name;
+      if (targetValue && currentGroupByCol) {
+        setDrillPath(prev => drillInto(prev, currentGroupByCol, targetValue));
       }
       return;
     }

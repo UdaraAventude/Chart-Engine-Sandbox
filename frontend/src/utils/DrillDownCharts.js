@@ -22,6 +22,7 @@ const COMMON_THEME = {
 };
 
 export const buildDrillBar = (aggregated, groupByCol, measureCol, drillTitle, isLeaf, aggregationMethod) => {
+  if (!aggregated || !Array.isArray(aggregated)) return {};
   const names = aggregated.map(d => d.name);
   const values = aggregated.map(d => d.value);
 
@@ -136,7 +137,7 @@ export const buildDrillPie = (aggregated, measureCol, drillTitle, isLeaf) => {
         }
       },
       labelLine: { show: false },
-      data: aggregated.map((d, i) => ({
+      data: (aggregated || []).map((d, i) => ({
         name: d.name,
         value: d.value,
         itemStyle: { color: PALETTE[i % PALETTE.length] }
@@ -146,10 +147,11 @@ export const buildDrillPie = (aggregated, measureCol, drillTitle, isLeaf) => {
 };
 
 export const buildDrillMultiline = (timeseries, activeMetric, drillTitle, aggMethod) => {
+  if (!timeseries || !timeseries.metrics) return {};
   const { quarters, metrics } = timeseries;
   const rawSeries = metrics[activeMetric] || [];
 
-  const processedSeries = rawSeries.map(s => {
+  const processedSeries = (rawSeries || []).map(s => {
     let data = [];
     if (aggMethod === 'sum') data = s.sum;
     else if (aggMethod === 'count') data = s.count;
@@ -216,6 +218,7 @@ export const buildDrillMultiline = (timeseries, activeMetric, drillTitle, aggMet
 };
 
 export const buildDrillCorrelation = (correlation, drillTitle) => {
+  if (!correlation || !correlation.columns || !correlation.matrix) return {};
   const { columns, matrix } = correlation;
   
   return {
@@ -263,6 +266,7 @@ export const buildDrillCorrelation = (correlation, drillTitle) => {
 };
 
 export const buildDrillHistogram = (histogram, drillTitle) => {
+  if (!histogram || !histogram.labels) return {};
   const { labels, counts, col } = histogram;
 
   return {
@@ -308,9 +312,10 @@ export const buildDrillHistogram = (histogram, drillTitle) => {
 };
 
 export const buildDrillHeatmap = (heatmapData, xCol, yCol, measureCol, drillTitle, isLeaf) => {
+  if (!heatmapData || !heatmapData.cells) return {};
   const { xCategories, yCategories, cells } = heatmapData;
-  const values = cells.map(c => [c.x, c.y, c.value]);
-  const validValues = cells.map(c => c.value).filter(v => v !== 0);
+  const values = (cells || []).map(c => [c.x, c.y, c.value]);
+  const validValues = (cells || []).map(c => c.value).filter(v => v !== 0);
   const maxVal = validValues.length > 0 ? Math.max(...validValues) : 100;
 
   return {
@@ -376,6 +381,7 @@ export const buildDrillHeatmap = (heatmapData, xCol, yCol, measureCol, drillTitl
 };
 
 export const buildDrillBubble = (bubbleData, xCol, yCol, sizeCol, groupCol, drillTitle, isLeaf) => {
+  if (!bubbleData || !Array.isArray(bubbleData) || bubbleData.length === 0) return {};
   const maxSize = Math.max(...bubbleData.map(d => d.size)) || 1;
   
   const series = bubbleData.map((d, i) => ({
@@ -442,6 +448,7 @@ export const buildDrillBubble = (bubbleData, xCol, yCol, sizeCol, groupCol, dril
 };
 
 export const buildDrillScatter = (rawData, xCol, yCol, colorCol, drillTitle) => {
+  if (!rawData || !Array.isArray(rawData)) return {};
   const limitedData = rawData.slice(0, 5000);
   let series = [];
 
@@ -525,16 +532,112 @@ export const buildDrillScatter = (rawData, xCol, yCol, colorCol, drillTitle) => 
   };
 };
 
+export const buildDrillLine = (aggregated, groupByCol, measureCol, drillTitle, isLeaf, aggregationMethod) => {
+  if (!aggregated || !Array.isArray(aggregated)) return {};
+  const names = aggregated.map(d => d.name);
+  const values = aggregated.map(d => d.value);
+
+  return {
+    ...COMMON_THEME,
+    title: { ...COMMON_THEME.title, text: drillTitle, left: 'center', top: 12 },
+    tooltip: {
+      ...COMMON_THEME.tooltip,
+      trigger: 'axis',
+      formatter: (params) => {
+        const idx = params[0].dataIndex;
+        const d = aggregated[idx];
+        return `
+          <div style="font-weight: bold; margin-bottom: 4px; color: #111827; border-bottom: 1px solid #e5e7eb; padding-bottom: 4px;">${d.name}</div>
+          <div style="color: #374151">${aggregationMethod}: <span style="color: #185FA5; font-weight: bold;">${d.value.toLocaleString()}</span></div>
+          <div style="color: #374151">Records: <span style="color: #7c3aed">${d.count}</span></div>
+          ${!isLeaf ? '<div style="margin-top: 8px; color: #059669; font-size: 11px; font-style: italic;">▲ Click to drill into that group</div>' : ''}
+        `;
+      }
+    },
+    grid: { top: 60, bottom: 80, left: 80, right: 40, containLabel: true },
+    xAxis: {
+      type: 'category',
+      data: names,
+      name: (groupByCol || 'Group').replace(/_/g, ' ').toUpperCase(),
+      nameLocation: 'middle',
+      nameGap: names.length > 8 ? 50 : 35,
+      nameTextStyle: { fontWeight: 'bold', color: '#64748b', fontSize: 12 },
+      axisLabel: { ...COMMON_THEME.axisLabels, rotate: names.length > 8 ? 30 : 0 },
+      axisLine: COMMON_THEME.axisLines
+    },
+    yAxis: {
+      type: 'value',
+      name: (aggregationMethod + ' of ' + measureCol).replace(/_/g, ' ').toUpperCase(),
+      nameLocation: 'middle',
+      nameGap: 60,
+      nameTextStyle: { fontWeight: 'bold', color: '#64748b', fontSize: 12 },
+      axisLabel: { ...COMMON_THEME.axisLabels, formatter: (v) => v >= 1000000 ? (v/1000000).toFixed(1) + 'M' : v >= 1000 ? (v/1000).toFixed(1) + 'k' : v },
+      splitLine: COMMON_THEME.splitLines
+    },
+    series: [{
+      data: values,
+      type: 'line',
+      smooth: true,
+      symbolSize: 8,
+      itemStyle: {
+        color: '#185FA5',
+        borderColor: isLeaf ? '#d97706' : '#185FA5',
+        borderWidth: isLeaf ? 2 : 0
+      },
+      lineStyle: { width: 3, color: '#185FA5' },
+      areaStyle: {
+        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+          { offset: 0, color: 'rgba(24,95,165,0.3)' },
+          { offset: 1, color: 'rgba(24,95,165,0)' }
+        ])
+      },
+      label: {
+        show: aggregated.length <= 12,
+        position: 'top',
+        color: '#6b7280',
+        fontSize: 10,
+        formatter: (params) => params.value >= 1000 ? (params.value/1000).toFixed(1) + 'k' : params.value
+      }
+    }],
+    dataZoom: names.length > 15 ? [
+      { 
+        type: 'slider', 
+        bottom: 5, 
+        height: 20, 
+        backgroundColor: '#f9fafb', 
+        borderColor: '#e5e7eb',
+        fillerColor: 'rgba(24,95,165,0.12)',
+        textStyle: { color: '#6b7280' }
+      }
+    ] : [],
+    animationDuration: 1000,
+    animationEasing: 'cubicOut'
+  };
+};
+
 export const buildDrillSunburst = (sunburstData, measureCol, drillTitle, drillPath, maxDepth, aggMethod) => {
   // Recursively update node values based on aggMethod
   const updateNodes = (nodes) => {
     return nodes.map(node => {
-      let val = node.sum;
-      if (aggMethod === 'mean') val = node.count > 0 ? node.sum / node.count : 0;
-      else if (aggMethod === 'count') val = node.count;
-      
-      const newNode = { ...node, value: val };
-      if (node.children) newNode.children = updateNodes(node.children);
+      const baseSum = typeof node.sum === 'number' ? node.sum : (typeof node.value === 'number' ? node.value : 0);
+      const baseCount = typeof node.count === 'number' ? node.count : 0;
+
+      let val = baseSum;
+      if (aggMethod === 'avg' || aggMethod === 'mean') val = baseCount > 0 ? baseSum / baseCount : 0;
+      else if (aggMethod === 'count') val = baseCount;
+
+      const hasChildren = Array.isArray(node.children) && node.children.length > 0;
+      const newNode = { ...node };
+
+      if (hasChildren) {
+        // Keep parent nodes as structural containers so nested rings render.
+        // ECharts computes parent spans from children when parent value is omitted.
+        newNode.children = updateNodes(node.children);
+        delete newNode.value;
+      } else {
+        newNode.value = val;
+      }
+
       return newNode;
     });
   };
@@ -576,7 +679,7 @@ export const buildDrillSunburst = (sunburstData, measureCol, drillTitle, drillPa
       levels: [
         {},
         {
-          r0: '15%', r: '35%',
+          r0: '15%', r: (processedData.length === 1 && drillPath.length >= maxDepth - 1) ? '80%' : '35%',
           label: { rotate: 'radial', fontSize: 12, fontWeight: '600', color: '#111827' },
           itemStyle: { borderWidth: 2, borderColor: '#ffffff' }
         },
