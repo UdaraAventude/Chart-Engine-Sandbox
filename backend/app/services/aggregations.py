@@ -211,10 +211,15 @@ def _build_drill_timeseries(df: pd.DataFrame, hierarchy: list) -> dict:
     if len(hierarchy) >= 2:
         for v0, sub0 in df.groupby(hierarchy[0]):
             ts_drill[str(v0)] = _get_ts(sub0, hierarchy[1])
+
             if len(hierarchy) >= 3:
                 for v1, sub1 in sub0.groupby(hierarchy[1]):
                     ts_drill[f"{v0}|{v1}"] = _get_ts(sub1, hierarchy[2])
-            
+
+                    if len(hierarchy) >= 4:
+                        for v2, sub2 in sub1.groupby(hierarchy[2]):
+                            ts_drill[f"{v0}|{v1}|{v2}"] = _get_ts(sub2, hierarchy[3])
+
     return {'quarters': quarters, 'data': ts_drill}
 
 

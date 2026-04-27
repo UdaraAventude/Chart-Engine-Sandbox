@@ -2,6 +2,12 @@
 
 This project lets you upload CSV-style datasets and compare chart rendering behavior across multiple frontend chart libraries.
 
+## Technical Deep-Dive
+
+For a senior-engineering deep-dive into the ECharts drill-down architecture (animation lifecycle, traversal logic, and UX internals), see:
+
+- `DRILLDOWN_ANALYSIS.md`
+
 ## Project Structure
 
 - `backend/`: FastAPI API for file upload and chart config generation

@@ -42,15 +42,23 @@ export const buildDrillBar = (aggregated, groupByCol, measureCol, drillTitle, is
         `;
       }
     },
-    grid: { top: 60, bottom: 60, left: 60, right: 40, containLabel: true },
+    grid: { top: 60, bottom: 80, left: 80, right: 40, containLabel: true },
     xAxis: {
       type: 'category',
       data: names,
+      name: groupByCol.replace(/_/g, ' ').toUpperCase(),
+      nameLocation: 'middle',
+      nameGap: names.length > 8 ? 50 : 35,
+      nameTextStyle: { fontWeight: 'bold', color: '#64748b', fontSize: 12 },
       axisLabel: { ...COMMON_THEME.axisLabels, rotate: names.length > 8 ? 30 : 0 },
       axisLine: COMMON_THEME.axisLines
     },
     yAxis: {
       type: 'value',
+      name: (aggregationMethod + ' of ' + measureCol).replace(/_/g, ' ').toUpperCase(),
+      nameLocation: 'middle',
+      nameGap: 60,
+      nameTextStyle: { fontWeight: 'bold', color: '#64748b', fontSize: 12 },
       axisLabel: { ...COMMON_THEME.axisLabels, formatter: (v) => v >= 1000000 ? (v/1000000).toFixed(1) + 'M' : v >= 1000 ? (v/1000).toFixed(1) + 'k' : v },
       splitLine: COMMON_THEME.splitLines
     },
@@ -247,7 +255,7 @@ export const buildDrillCorrelation = (correlation, drillTitle) => {
         y: m.y
       })),
       label: {
-        show: columns.length <= 10,
+        show: columns.length <= 15,
         formatter: (p) => p.data.value
       }
     }]
@@ -268,11 +276,19 @@ export const buildDrillHistogram = (histogram, drillTitle) => {
     xAxis: {
       type: 'category',
       data: labels,
+      name: (col || 'VALUE').replace(/_/g, ' ').toUpperCase(),
+      nameLocation: 'middle',
+      nameGap: 40,
+      nameTextStyle: { fontWeight: 'bold', color: '#64748b', fontSize: 12 },
       axisLabel: { ...COMMON_THEME.axisLabels, rotate: 20 },
       axisLine: COMMON_THEME.axisLines
     },
     yAxis: {
       type: 'value',
+      name: 'FREQUENCY',
+      nameLocation: 'middle',
+      nameGap: 50,
+      nameTextStyle: { fontWeight: 'bold', color: '#64748b', fontSize: 12 },
       axisLabel: COMMON_THEME.axisLabels,
       splitLine: COMMON_THEME.splitLines
     },
@@ -318,12 +334,20 @@ export const buildDrillHeatmap = (heatmapData, xCol, yCol, measureCol, drillTitl
     xAxis: {
       type: 'category',
       data: xCategories,
+      name: xCol.replace(/_/g, ' ').toUpperCase(),
+      nameLocation: 'middle',
+      nameGap: 50,
+      nameTextStyle: { fontWeight: 'bold', color: '#64748b', fontSize: 12 },
       axisLabel: { ...COMMON_THEME.axisLabels, rotate: 30 },
       splitArea: { show: true, areaStyle: { color: ['rgba(0,0,0,0.02)', 'rgba(0,0,0,0)'] } }
     },
     yAxis: {
       type: 'category',
       data: yCategories,
+      name: measureCol.replace(/_/g, ' ').toUpperCase(),
+      nameLocation: 'middle',
+      nameGap: 60,
+      nameTextStyle: { fontWeight: 'bold', color: '#64748b', fontSize: 12 },
       axisLabel: COMMON_THEME.axisLabels,
       splitArea: { show: true, areaStyle: { color: ['rgba(0,0,0,0.02)', 'rgba(0,0,0,0)'] } }
     },
@@ -334,7 +358,7 @@ export const buildDrillHeatmap = (heatmapData, xCol, yCol, measureCol, drillTitl
       orient: 'horizontal',
       left: 'center',
       bottom: 10,
-      inRange: { color: ['#dbeafe', '#93c5fd', '#3b82f6', '#1d4ed8', '#1e40af'] },
+      inRange: { color: ['#FCEBEB', '#F09595', '#E24B4A', '#A32D2D', '#501313'] },
       textStyle: { color: '#374151' }
     },
     series: [{
@@ -344,7 +368,7 @@ export const buildDrillHeatmap = (heatmapData, xCol, yCol, measureCol, drillTitl
       label: {
         show: cells.length <= 64,
         formatter: (params) => params.data[2] > 0 ? params.data[2].toFixed(1) : '',
-        color: '#1e40af',
+        color: '#ffffff',
         fontSize: 10
       }
     }]
@@ -395,12 +419,20 @@ export const buildDrillBubble = (bubbleData, xCol, yCol, sizeCol, groupCol, dril
     grid: { top: 60, bottom: 60, left: 60, right: 40, containLabel: true },
     xAxis: {
       type: 'value',
+      name: xCol.replace(/_/g, ' ').toUpperCase(),
+      nameLocation: 'middle',
+      nameGap: 35,
+      nameTextStyle: { fontWeight: 'bold', color: '#64748b', fontSize: 12 },
       axisLabel: COMMON_THEME.axisLabels,
       axisLine: COMMON_THEME.axisLines,
       splitLine: COMMON_THEME.splitLines
     },
     yAxis: {
       type: 'value',
+      name: yCol.replace(/_/g, ' ').toUpperCase(),
+      nameLocation: 'middle',
+      nameGap: 50,
+      nameTextStyle: { fontWeight: 'bold', color: '#64748b', fontSize: 12 },
       axisLabel: COMMON_THEME.axisLabels,
       axisLine: COMMON_THEME.axisLines,
       splitLine: COMMON_THEME.splitLines
@@ -473,11 +505,19 @@ export const buildDrillScatter = (rawData, xCol, yCol, colorCol, drillTitle) => 
     grid: { top: 60, bottom: 60, left: 60, right: 40, containLabel: true },
     xAxis: {
       type: 'value',
+      name: xCol.replace(/_/g, ' ').toUpperCase(),
+      nameLocation: 'middle',
+      nameGap: 35,
+      nameTextStyle: { fontWeight: 'bold', color: '#64748b', fontSize: 12 },
       axisLabel: COMMON_THEME.axisLabels,
       splitLine: COMMON_THEME.splitLines
     },
     yAxis: {
       type: 'value',
+      name: yCol.replace(/_/g, ' ').toUpperCase(),
+      nameLocation: 'middle',
+      nameGap: 50,
+      nameTextStyle: { fontWeight: 'bold', color: '#64748b', fontSize: 12 },
       axisLabel: COMMON_THEME.axisLabels,
       splitLine: COMMON_THEME.splitLines
     },
