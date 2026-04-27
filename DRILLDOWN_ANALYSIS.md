@@ -10,7 +10,7 @@ Primary implementation files:
 - `frontend/src/utils/DrillDownCharts.js`
 - `frontend/src/utils/DrillDownManager.js`
 - `frontend/src/DrillDown.css`
-- `backend/app/services/aggregations.py`
+- `frontend/src/services/localAnalytics.js`
 
 ## AREA 1 - ANIMATIONS: THE ENGINE OF FLUIDITY
 

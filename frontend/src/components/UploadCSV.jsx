@@ -24,7 +24,7 @@ const UploadCSV = () => {
     try {
       await uploadCSV(file, (pct) => store.setUploadProgress(pct));
     } catch (err) {
-      setError(err.response?.data?.detail || 'System error during CSV processing.');
+      setError(err?.message || err.response?.data?.detail || 'System error during CSV processing.');
     } finally {
       setLoading(false);
     }
@@ -74,7 +74,7 @@ const UploadCSV = () => {
       {isLoading && (
         <div className="upload-progress-container" style={{ padding: '0 4px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', color: '#64748b', marginBottom: '4px' }}>
-            <span>{uploadProgress < 100 ? 'Uploading...' : 'Computing aggregations...'}</span>
+            <span>{uploadProgress < 60 ? 'Parsing CSV locally...' : 'Computing aggregations...'}</span>
             <span>{uploadProgress}%</span>
           </div>
           <div style={{ height: '4px', background: '#e2e8f0', borderRadius: '2px', overflow: 'hidden' }}>

@@ -1,21 +1,8 @@
-import axios from 'axios';
 import useStore from '../store/useStore';
-
-const API_BASE = 'http://localhost:8000';
+import { processCsvFile } from './localAnalytics';
 
 export async function uploadCSV(file, onProgress) {
-  const formData = new FormData();
-  formData.append('file', file);
-
-  const response = await axios.post(`${API_BASE}/upload`, formData, {
-    headers: { 'Content-Type': 'multipart/form-data' },
-    onUploadProgress: (e) => {
-      const pct = Math.round((e.loaded / e.total) * 80); // 0–80%
-      onProgress?.(pct);
-    },
-  });
-
-  const data = response.data;
+  const data = await processCsvFile(file, onProgress);
   const store = useStore.getState();
 
   store.setDataset(data.rows);
