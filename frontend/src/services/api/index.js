@@ -1,4 +1,4 @@
-import { parseCSV } from '../localAnalytics';
+import { parseCSV } from '../local-analytics';
 import { formatCSV } from '../global-formatter';
 import useStore from '../../store';
 
