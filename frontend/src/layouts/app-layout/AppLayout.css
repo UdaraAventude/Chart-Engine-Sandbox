@@ -1,0 +1,61 @@
+/* ─────────────────────────────────────────────
+   AppLayout component styles
+   Extracted from inline styles in index.jsx.
+   NavLink active/inactive states are driven by
+   the .nav-link--active modifier class applied
+   via className={({ isActive }) => …}.
+───────────────────────────────────────────── */
+
+/* Root page shell */
+.app-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Sticky top navigation bar */
+.app-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-bottom: 1px solid #e2e8f0;
+  background-color: white;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* Page content area */
+.app-main {
+  flex: 1;
+}
+
+/* Footer */
+.app-footer {
+  padding-bottom: 40px;
+}
+
+/* ── NavLink base style ── */
+.nav-link {
+  padding: 6px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  color: #64748b;
+  background: transparent;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+
+/* ── Default active state (blue – Drill-Down & Dashboard) ── */
+.nav-link--active {
+  color: #2563eb;
+  background: #eff6ff;
+}
+
+/* ── Builder active state override (purple) ── */
+.nav-link--builder.nav-link--active {
+  color: #9333ea;
+  background: #faf5ff;
+}

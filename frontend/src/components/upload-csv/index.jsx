@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { uploadCSV } from '../../services/api';
 import useStore from '../../store';
 import { Upload, FileSpreadsheet, CheckCircle2, Loader2 } from 'lucide-react';
+import './UploadCSV.css';
 
 const UploadCSV = () => {
   const { setLoading, setError, isLoading, uploadProgress, totalRows } =
@@ -44,10 +45,7 @@ const UploadCSV = () => {
   };
 
   return (
-    <div
-      className='upload-wrapper'
-      style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}
-    >
+    <div className='upload-wrapper'>
       <div
         className={`upload-zone ${isDragging ? 'dragging' : ''} ${fileName ? 'has-file' : ''}`}
         onDragOver={(e) => {
@@ -87,49 +85,28 @@ const UploadCSV = () => {
             type='file'
             accept='.csv,.data,.txt'
             onChange={(e) => processFile(e.target.files[0])}
-            style={{ display: 'none' }}
+            className='upload-file-input'
             disabled={isLoading}
           />
         </label>
       </div>
 
       {isLoading && (
-        <div className='upload-progress-container' style={{ padding: '0 4px' }}>
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              fontSize: '11px',
-              color: '#64748b',
-              marginBottom: '4px',
-            }}
-          >
+        <div className='upload-progress-container'>
+          <div className='upload-progress-header'>
             <span>
               {uploadProgress < 60 ? 'Parsing CSV...' : 'Building data tree...'}
             </span>
             <span>{uploadProgress}%</span>
           </div>
-          <div
-            style={{
-              height: '4px',
-              background: '#e2e8f0',
-              borderRadius: '2px',
-              overflow: 'hidden',
-            }}
-          >
+          <div className='upload-progress-track'>
             <div
-              style={{
-                height: '100%',
-                background: '#2563eb',
-                width: `${uploadProgress}%`,
-                transition: 'width 0.3s ease',
-              }}
+              className='upload-progress-fill'
+              style={{ width: `${uploadProgress}%` }}
             />
           </div>
           {totalRows > 0 && (
-            <div
-              style={{ fontSize: '10px', color: '#94a3b8', marginTop: '4px' }}
-            >
+            <div className='upload-row-count'>
               {totalRows?.toLocaleString()} rows
             </div>
           )}
