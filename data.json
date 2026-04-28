@@ -1,0 +1,97 @@
+[
+  {
+    "chartName": "Bar Chart",
+    "structure": {
+      "data": [
+        { "name": "Engineering", "value": 62500, "count": 1 },
+        { "name": "Finance", "value": 68000, "count": 1 }
+      ]
+    }
+  },
+  {
+    "chartName": "Line Chart",
+    "structure": {
+      "data": [
+        { "name": "Q1", "value": 6.8, "count": 1 },
+        { "name": "Q2", "value": 7.1, "count": 1 },
+        { "name": "Q3", "value": 6.9, "count": 1 }
+      ]
+    }
+  },
+  {
+    "chartName": "Pie Chart",
+    "structure": {
+      "data": [
+        { "name": "Engineering", "value": 62500 },
+        { "name": "Finance", "value": 68000 },
+        { "name": "Sales", "value": 55200 }
+      ]
+    }
+  },
+  {
+    "chartName": "Scatter Chart",
+    "structure": {
+      "data": [
+        {
+          "name": "Bachelor",
+          "value": [
+            [25, 35000],
+            [28, 42000],
+            [32, 55000]
+          ]
+        },
+        {
+          "name": "Master",
+          "value": [
+            [27, 48000],
+            [31, 62000]
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chartName": "Bubble Chart",
+    "structure": {
+      "data": [
+        { "x": 30, "y": 62500, "size": 8.5, "name": "Engineering", "count": 1 },
+        { "x": 35, "y": 68000, "size": 9.2, "name": "Finance", "count": 1 },
+        { "x": 28, "y": 42000, "size": 7.1, "name": "Sales", "count": 1 }
+      ]
+    }
+  },
+  {
+    "chartName": "Histogram Chart",
+    "structure": {
+      "data": [
+        { "name": "22-29", "value": 28500, "count": 28500 },
+        { "name": "30-39", "value": 45200, "count": 45200 },
+        { "name": "40-49", "value": 68900, "count": 68900 },
+        { "name": "50-59", "value": 42100, "count": 42100 },
+        { "name": "60+", "value": 12300, "count": 12300 }
+      ]
+    }
+  },
+  {
+    "chartName": "Multiline Chart",
+    "structure": {
+      "data": [
+        {
+          "name": "Engineering",
+          "value": [60500, 62100, 61200, 63800],
+          "count": 4
+        },
+        {
+          "name": "Finance",
+          "value": [55200, 57400, 56800, 59100],
+          "count": 4
+        },
+        {
+          "name": "Customer Success",
+          "value": [38900, 39600, 40200, 41500],
+          "count": 4
+        }
+      ]
+    }
+  }
+]
