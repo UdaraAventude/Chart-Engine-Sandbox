@@ -17,6 +17,8 @@ const BarChart = ({
   onBarClick,
   onChartReady,
 }) => {
+  console.log(data, 'bar');
+
   const option = useMemo(() => {
     if (!data?.length) return {};
     const names = data.map((d) => d.name);
