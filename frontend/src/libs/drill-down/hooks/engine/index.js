@@ -1,3 +1,5 @@
+const CHART_TOP_N = 50;
+
 export function getNodeAtPath(tree, drillPath) {
   if (!tree || !drillPath.length) return tree;
   let node = tree;
@@ -13,7 +15,14 @@ export function isLeaf(node) {
   return !node || !node.children || node.children.length === 0;
 }
 
-export function formatForChart(node, chartType, rows, drillPath, metrics) {
+export function formatForChart(
+  node,
+  chartType,
+  rows,
+  drillPath,
+  metrics,
+  limit = CHART_TOP_N,
+) {
   if (!node) return [];
 
   if (chartType === 'scatter') {
@@ -23,11 +32,17 @@ export function formatForChart(node, chartType, rows, drillPath, metrics) {
     return { rawData: filtered, xCol, yCol };
   }
 
-  return (node.children || []).map((c) => ({
+  const children = (node.children || []).map((c) => ({
     name: c.name,
     value: c.value,
     count: c.count,
   }));
+
+  if (limit !== null && children.length > limit) {
+    return children.sort((a, b) => b.value - a.value).slice(0, limit);
+  }
+
+  return children;
 }
 
 function filterRows(rows, drillPath) {

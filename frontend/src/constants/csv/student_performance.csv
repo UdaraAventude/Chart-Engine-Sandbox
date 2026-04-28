@@ -1,0 +1,4001 @@
+school_type,grade_level,subject,gender,score,study_hours,pass_rate
+Private,Grade 7,PE,Male,65.28,6.18,0.636
+Charter,Grade 7,Math,Female,96.5,7.9,0.984
+Private,Grade 11,Music,Female,90.26,1.72,0.921
+Public,Grade 9,Art,Male,82.82,5.51,0.768
+Private,Grade 11,PE,Female,69.31,4.36,0.615
+Charter,Grade 7,PE,Female,70.74,1.57,0.699
+Private,Grade 10,English,Female,40.9,4.62,0.466
+Charter,Grade 7,Science,Female,59.64,5.67,0.667
+Private,Grade 9,Music,Female,45,2.1,0.417
+Public,Grade 6,Science,Male,76.87,0.54,0.826
+Charter,Grade 10,Math,Female,60.53,5.94,0.655
+Charter,Grade 8,History,Female,67.19,1.51,0.749
+Charter,Grade 6,History,Female,64.52,7.78,0.557
+Charter,Grade 11,Science,Male,86.41,2.65,0.889
+Private,Grade 8,Art,Female,73.73,7.54,0.66
+Charter,Grade 6,History,Female,94.6,1.6,0.903
+Private,Grade 6,Music,Female,58.85,7.97,0.549
+Charter,Grade 9,Science,Female,70.28,4.06,0.699
+Private,Grade 9,Music,Male,68.17,4.45,0.611
+Public,Grade 8,History,Male,55.83,0.78,0.515
+Public,Grade 10,Art,Female,72.44,3.94,0.656
+Private,Grade 6,Computer Science,Male,40.83,1.69,0.462
+Public,Grade 10,PE,Male,90.55,2.23,0.903
+Charter,Grade 11,Computer Science,Male,51.78,4.07,0.464
+Charter,Grade 6,Computer Science,Female,83.93,1.13,0.842
+Public,Grade 9,History,Female,69.29,3.59,0.776
+Private,Grade 10,Music,Male,74.55,5.44,0.738
+Charter,Grade 11,PE,Male,77.9,1.89,0.878
+Charter,Grade 6,Art,Female,65.06,4.96,0.6
+Private,Grade 9,Computer Science,Female,60.36,7.7,0.576
+Charter,Grade 7,Computer Science,Male,67.65,2.37,0.76
+Public,Grade 6,English,Male,65.3,5.49,0.61
+Private,Grade 7,Art,Male,94.56,3.74,1
+Private,Grade 7,English,Female,49.55,4.13,0.437
+Public,Grade 8,Music,Male,59.46,2.71,0.629
+Charter,Grade 7,Computer Science,Female,53.44,5.34,0.543
+Private,Grade 7,Math,Male,95.29,2.54,1
+Public,Grade 10,History,Male,60.33,3.89,0.647
+Private,Grade 10,Art,Female,46.21,1.26,0.413
+Charter,Grade 10,English,Male,59.52,2.15,0.562
+Public,Grade 8,PE,Male,86.58,3.56,0.91
+Charter,Grade 6,Math,Female,86.51,3.95,0.888
+Private,Grade 8,Math,Female,69.93,1.28,0.747
+Public,Grade 9,Computer Science,Female,82.8,0.84,0.734
+Charter,Grade 9,Math,Male,49.98,2.27,0.435
+Private,Grade 7,Math,Male,99.4,2.62,1
+Public,Grade 10,Computer Science,Female,64.8,2.5,0.601
+Charter,Grade 8,Art,Male,69.15,3.95,0.616
+Charter,Grade 11,English,Male,83.54,4.36,0.924
+Public,Grade 7,Computer Science,Male,50.52,3.03,0.489
+Charter,Grade 9,Art,Male,50.45,5.09,0.45
+Private,Grade 11,PE,Female,74.71,3.95,0.816
+Charter,Grade 6,English,Male,41.41,6.82,0.331
+Charter,Grade 10,Art,Female,46.99,7.38,0.414
+Charter,Grade 6,Computer Science,Female,56.28,7.48,0.538
+Charter,Grade 6,Math,Female,45.41,2.27,0.521
+Private,Grade 8,Science,Female,47.95,4.38,0.554
+Public,Grade 11,Science,Male,63.56,4.69,0.642
+Private,Grade 7,History,Female,97.49,3.92,1
+Charter,Grade 10,Science,Female,74.46,7.94,0.662
+Charter,Grade 7,History,Female,40.51,4,0.475
+Public,Grade 10,PE,Male,80.39,2.7,0.856
+Public,Grade 6,Art,Male,76.74,1.88,0.831
+Charter,Grade 9,Science,Male,74.53,1.64,0.797
+Public,Grade 7,PE,Male,53.78,2.41,0.619
+Private,Grade 11,History,Male,83.06,6.79,0.788
+Public,Grade 9,History,Male,72.53,7.87,0.702
+Public,Grade 6,English,Male,44.92,4.1,0.452
+Charter,Grade 6,Computer Science,Female,41.17,3.38,0.404
+Charter,Grade 8,Art,Female,41.07,6.58,0.348
+Charter,Grade 10,Math,Male,92.6,0.86,0.903
+Public,Grade 8,Computer Science,Male,54.41,7.95,0.536
+Public,Grade 11,PE,Male,77.44,6.2,0.73
+Public,Grade 9,Math,Male,92.5,1.49,0.958
+Charter,Grade 10,English,Male,87.63,6.66,0.873
+Charter,Grade 9,Science,Female,69.04,0.87,0.775
+Public,Grade 7,PE,Male,40.01,3.02,0.432
+Charter,Grade 11,Computer Science,Female,68.88,7.4,0.621
+Private,Grade 6,History,Male,49.09,5.21,0.443
+Public,Grade 7,Math,Female,52.53,4.51,0.526
+Charter,Grade 10,PE,Male,55.16,7.16,0.453
+Charter,Grade 7,Music,Male,60.21,7.83,0.661
+Public,Grade 11,Music,Female,93,7.21,0.937
+Charter,Grade 7,Math,Female,49.42,3.19,0.524
+Public,Grade 6,English,Male,98.27,6.12,0.957
+Public,Grade 8,Computer Science,Female,76.86,6.27,0.796
+Charter,Grade 8,Computer Science,Male,92.8,3.61,0.868
+Public,Grade 7,Music,Male,41.97,2.61,0.417
+Public,Grade 6,Music,Female,91.67,4.28,0.945
+Public,Grade 10,English,Female,46.2,0.53,0.417
+Charter,Grade 7,History,Male,42.13,3.54,0.362
+Private,Grade 10,Math,Female,97.75,6.39,1
+Charter,Grade 8,Music,Male,96.08,0.53,0.997
+Public,Grade 9,Computer Science,Female,98.24,3.1,1
+Charter,Grade 8,Computer Science,Male,54.34,2.33,0.642
+Public,Grade 7,Science,Female,45.93,7.67,0.522
+Charter,Grade 9,Music,Male,68.99,5.52,0.679
+Public,Grade 9,Music,Male,49.01,2.33,0.564
+Public,Grade 10,Science,Male,85.76,3.97,0.802
+Private,Grade 7,English,Female,57.28,7.55,0.665
+Charter,Grade 11,Music,Male,83.64,5,0.931
+Public,Grade 8,Art,Male,49.24,5.98,0.481
+Private,Grade 9,English,Male,58.24,3.12,0.563
+Charter,Grade 7,English,Male,46.47,2.66,0.365
+Private,Grade 11,English,Male,65.99,6.2,0.673
+Private,Grade 7,Math,Male,53.31,7.7,0.434
+Charter,Grade 10,Art,Male,61.64,6.25,0.602
+Private,Grade 9,Math,Male,98.44,4.4,0.905
+Public,Grade 11,English,Female,62.99,3.65,0.707
+Charter,Grade 7,Art,Female,54.67,4.94,0.629
+Private,Grade 8,History,Female,96.65,2.33,0.955
+Private,Grade 11,Art,Female,50.36,5.72,0.412
+Private,Grade 7,English,Male,86.82,3.39,0.951
+Private,Grade 11,English,Female,42.52,1.56,0.506
+Private,Grade 10,Art,Female,80.64,6.76,0.88
+Public,Grade 7,Science,Female,91.83,6.12,0.845
+Public,Grade 6,Science,Female,70.65,3.09,0.707
+Charter,Grade 6,History,Male,42.93,5.1,0.455
+Private,Grade 6,Music,Female,89.81,3.46,0.994
+Public,Grade 11,PE,Male,51.41,4.64,0.531
+Private,Grade 11,Math,Female,73.79,2.84,0.656
+Public,Grade 9,PE,Female,94.06,5.35,0.958
+Public,Grade 10,Computer Science,Female,50.93,4.55,0.524
+Private,Grade 6,Music,Female,43.8,6.98,0.359
+Private,Grade 6,History,Female,97.79,3.25,1
+Public,Grade 8,History,Female,90.34,4.96,0.933
+Private,Grade 7,Computer Science,Female,50.23,1.01,0.489
+Charter,Grade 11,History,Male,92.25,4.63,0.889
+Private,Grade 8,Science,Male,86.22,5.91,0.827
+Public,Grade 7,Math,Male,60.75,7.06,0.58
+Charter,Grade 6,Science,Male,85.17,0.72,0.84
+Public,Grade 6,Science,Male,63.75,2.77,0.546
+Public,Grade 9,PE,Male,53.53,6.48,0.631
+Private,Grade 6,Art,Male,96.23,7.31,0.872
+Charter,Grade 11,Computer Science,Female,77.81,6.16,0.692
+Public,Grade 11,Science,Male,65.98,6.45,0.699
+Public,Grade 8,History,Male,89.11,2.27,0.848
+Private,Grade 6,Science,Female,95.56,3.49,0.872
+Private,Grade 11,PE,Female,86.06,7.84,0.8
+Charter,Grade 10,History,Female,81.09,4.67,0.784
+Charter,Grade 10,Math,Male,96.82,2.54,0.959
+Public,Grade 10,Music,Male,53.8,2.71,0.566
+Public,Grade 10,Music,Female,86.99,5.04,0.816
+Charter,Grade 6,Art,Female,45.51,3.37,0.508
+Private,Grade 9,History,Male,64.39,7.95,0.65
+Private,Grade 8,PE,Female,76.59,7.82,0.749
+Private,Grade 10,Art,Male,58.28,6.98,0.569
+Public,Grade 6,PE,Female,41.39,6.05,0.379
+Public,Grade 8,Music,Female,43.36,1.46,0.346
+Public,Grade 8,Computer Science,Male,61.98,1.27,0.668
+Charter,Grade 10,Computer Science,Female,53.58,6.64,0.445
+Private,Grade 8,Math,Female,95.98,4.27,1
+Private,Grade 10,History,Male,85.22,4.54,0.852
+Private,Grade 7,English,Male,87.73,0.72,0.857
+Public,Grade 7,Science,Male,54.96,5.1,0.565
+Charter,Grade 11,English,Male,58.62,6.22,0.571
+Charter,Grade 10,History,Male,76.45,7.67,0.686
+Private,Grade 9,History,Male,80.51,2.73,0.732
+Private,Grade 6,Music,Female,93.12,6.01,0.898
+Private,Grade 9,Music,Female,74,1.71,0.769
+Public,Grade 7,Art,Male,56.39,3.47,0.54
+Charter,Grade 11,Math,Male,59.51,7.54,0.592
+Charter,Grade 8,Music,Male,41.04,5.25,0.473
+Charter,Grade 11,Music,Male,44.77,5.46,0.377
+Private,Grade 11,Science,Female,55.24,5.61,0.607
+Charter,Grade 10,Music,Male,95.33,7.93,1
+Public,Grade 7,PE,Male,67.47,2.1,0.728
+Public,Grade 10,PE,Female,58.55,5.96,0.601
+Charter,Grade 10,Math,Male,61.56,0.99,0.712
+Public,Grade 11,Music,Male,91.61,1.59,0.951
+Private,Grade 7,Art,Female,74.01,4.96,0.794
+Public,Grade 11,History,Male,85.1,6.66,0.792
+Public,Grade 10,Math,Male,79.86,4.47,0.77
+Charter,Grade 8,Art,Female,76.24,3.3,0.719
+Private,Grade 9,PE,Male,72.78,5.39,0.758
+Private,Grade 6,Math,Male,98.9,0.9,1
+Public,Grade 9,PE,Male,94.43,6.08,0.923
+Charter,Grade 9,History,Female,73.12,6.59,0.699
+Charter,Grade 10,PE,Female,68,3.04,0.754
+Public,Grade 8,Math,Male,65.08,2.42,0.574
+Public,Grade 10,Music,Female,81.57,5.03,0.756
+Private,Grade 8,Math,Male,88.55,7.28,0.802
+Charter,Grade 10,Math,Male,41.63,1.07,0.377
+Public,Grade 10,Art,Male,53.74,4.45,0.544
+Private,Grade 7,History,Female,72.06,5.83,0.701
+Charter,Grade 7,Math,Female,72.46,5.96,0.815
+Private,Grade 10,Math,Female,70.76,6.02,0.658
+Public,Grade 10,English,Female,52.94,6.63,0.595
+Public,Grade 7,Computer Science,Female,50.18,4.55,0.522
+Charter,Grade 9,Science,Male,45.72,4.38,0.495
+Public,Grade 9,English,Male,91.67,4.79,0.967
+Private,Grade 7,Art,Male,91.33,1,0.883
+Public,Grade 6,Science,Male,42.74,1.56,0.389
+Charter,Grade 10,Computer Science,Male,80.55,3.25,0.836
+Public,Grade 11,Math,Female,67.87,2.85,0.6
+Charter,Grade 8,English,Male,83.09,0.62,0.842
+Private,Grade 10,Computer Science,Female,51.38,7.69,0.485
+Private,Grade 11,Music,Male,95.89,4.06,0.889
+Private,Grade 9,Music,Male,46.38,7.86,0.453
+Public,Grade 8,Math,Male,77.73,4.36,0.739
+Private,Grade 11,History,Male,69,5.03,0.722
+Public,Grade 10,Music,Male,94.69,5.01,0.876
+Charter,Grade 8,Science,Male,94.08,6.72,0.914
+Public,Grade 9,Science,Female,81.81,3.08,0.843
+Private,Grade 7,Computer Science,Male,40.05,7.95,0.372
+Private,Grade 6,Math,Male,95.89,2.71,0.982
+Private,Grade 6,History,Male,51.75,6.96,0.577
+Charter,Grade 10,Math,Female,65.94,2.19,0.653
+Public,Grade 9,English,Male,74.84,7.81,0.77
+Private,Grade 7,PE,Male,90.18,2.09,0.86
+Public,Grade 8,PE,Male,72.88,3.64,0.709
+Public,Grade 9,Science,Male,98.43,6.97,0.96
+Private,Grade 8,PE,Female,51.16,0.81,0.451
+Private,Grade 10,Music,Male,51.85,7.61,0.593
+Charter,Grade 6,Science,Female,72.84,1.17,0.674
+Public,Grade 9,History,Female,59.79,7.73,0.687
+Public,Grade 11,PE,Female,81.95,6.08,0.78
+Charter,Grade 11,Music,Female,46.08,7.09,0.533
+Charter,Grade 10,Math,Male,85.93,2.54,0.826
+Private,Grade 8,Music,Female,45.12,5.35,0.448
+Private,Grade 9,Art,Female,87.67,1.62,0.931
+Private,Grade 11,Art,Female,54.21,6.96,0.481
+Public,Grade 8,English,Female,72.9,5.88,0.675
+Public,Grade 8,Computer Science,Female,98.73,7.87,0.992
+Public,Grade 7,Science,Female,83.1,4.44,0.804
+Public,Grade 7,Math,Male,76.12,4.67,0.779
+Private,Grade 10,English,Male,58.31,1.04,0.581
+Charter,Grade 7,History,Male,42.33,3.24,0.504
+Charter,Grade 6,Computer Science,Female,58.58,5.55,0.617
+Charter,Grade 9,Science,Male,82.3,3.25,0.808
+Public,Grade 7,English,Male,56.91,0.88,0.481
+Charter,Grade 11,Art,Female,67.62,3.37,0.622
+Charter,Grade 7,Science,Male,73.58,2.17,0.73
+Private,Grade 6,Art,Male,96.7,6.27,0.9
+Private,Grade 9,History,Female,43.86,6.98,0.403
+Charter,Grade 8,Math,Female,96.42,2.57,1
+Charter,Grade 8,Math,Male,50.78,7.29,0.517
+Charter,Grade 6,Music,Female,47.2,7.72,0.503
+Private,Grade 7,Art,Female,55.78,3.69,0.518
+Charter,Grade 9,Art,Male,93.4,4.43,0.866
+Charter,Grade 7,English,Male,96.6,5.58,0.961
+Charter,Grade 7,Music,Male,70.67,7.82,0.754
+Private,Grade 7,Science,Male,52.28,6.14,0.523
+Public,Grade 7,Art,Female,89.73,2.24,0.912
+Charter,Grade 11,Music,Female,93.22,5.14,0.988
+Charter,Grade 8,PE,Male,45.06,0.93,0.471
+Public,Grade 7,Music,Female,69.32,1.09,0.666
+Private,Grade 10,Art,Female,81.12,6.78,0.75
+Public,Grade 11,PE,Male,83.75,3.87,0.749
+Public,Grade 6,English,Male,74.73,6.43,0.691
+Public,Grade 7,Computer Science,Male,84.11,2.34,0.941
+Charter,Grade 6,English,Male,74.52,2.85,0.795
+Private,Grade 10,Science,Male,90.89,4.48,0.825
+Private,Grade 10,PE,Female,44.35,6.41,0.478
+Public,Grade 11,English,Female,49.55,1.6,0.399
+Charter,Grade 8,Science,Female,42.23,2.56,0.322
+Public,Grade 8,Music,Female,60.28,5.77,0.675
+Public,Grade 9,PE,Female,55.59,0.83,0.504
+Public,Grade 6,PE,Female,95.61,7.63,0.983
+Charter,Grade 10,English,Male,59.34,6.54,0.498
+Public,Grade 9,PE,Female,71,2.39,0.642
+Charter,Grade 6,Music,Female,62.57,4.69,0.651
+Private,Grade 10,Music,Male,97.18,0.75,0.995
+Public,Grade 10,Math,Female,86.64,1.25,0.936
+Public,Grade 11,Music,Female,56.83,6.33,0.658
+Charter,Grade 10,Science,Female,47.27,0.91,0.49
+Private,Grade 11,History,Female,74.31,6.49,0.753
+Public,Grade 11,Math,Female,71.1,7.66,0.694
+Private,Grade 11,Computer Science,Female,69.37,2.6,0.702
+Private,Grade 6,Computer Science,Female,44.57,3.88,0.545
+Charter,Grade 7,Science,Male,46.76,5.55,0.44
+Charter,Grade 6,Math,Female,49.49,5.67,0.534
+Charter,Grade 10,Computer Science,Female,46.33,4.5,0.404
+Public,Grade 10,Math,Female,89.64,2.47,0.936
+Private,Grade 6,Computer Science,Female,73.57,1.74,0.74
+Private,Grade 10,History,Female,75.62,4.76,0.729
+Charter,Grade 8,Music,Female,69.36,5.89,0.728
+Charter,Grade 6,History,Male,65.7,7.49,0.597
+Private,Grade 11,Science,Male,61.75,2.16,0.64
+Private,Grade 6,PE,Female,97.23,4.91,1
+Public,Grade 11,Math,Male,46.88,1.71,0.497
+Public,Grade 6,PE,Female,52.9,4.47,0.579
+Public,Grade 6,English,Male,71.51,4.81,0.64
+Charter,Grade 9,Art,Female,49.13,4.87,0.416
+Public,Grade 11,English,Male,72.97,5.21,0.701
+Public,Grade 11,Science,Male,96.32,7.81,0.889
+Charter,Grade 9,History,Male,84.89,2.28,0.848
+Public,Grade 8,Science,Male,44.8,4.37,0.451
+Public,Grade 7,Computer Science,Male,60.83,4.61,0.652
+Private,Grade 8,Math,Female,60.63,3.32,0.69
+Private,Grade 6,English,Male,54.09,1.21,0.522
+Public,Grade 11,PE,Male,63.56,1.21,0.701
+Public,Grade 6,Math,Female,90.86,6.02,1
+Public,Grade 8,English,Female,68.09,7.99,0.66
+Private,Grade 7,Math,Female,76.36,3.38,0.7
+Public,Grade 11,English,Female,99.77,7.09,0.973
+Private,Grade 10,Computer Science,Female,47.34,6.13,0.54
+Private,Grade 8,Art,Male,97.71,7.24,0.97
+Charter,Grade 10,History,Male,61.86,0.63,0.631
+Charter,Grade 10,History,Male,62.91,7.88,0.693
+Public,Grade 8,Art,Male,65.14,2.19,0.61
+Public,Grade 7,PE,Male,59.79,0.55,0.599
+Private,Grade 10,Math,Female,84.43,5.32,0.792
+Charter,Grade 7,Computer Science,Male,64.1,6.52,0.634
+Charter,Grade 9,History,Female,60.26,1.87,0.662
+Public,Grade 8,Music,Male,43.3,1.16,0.421
+Private,Grade 6,English,Male,60.55,3.29,0.526
+Charter,Grade 9,English,Female,95.9,3.41,0.994
+Charter,Grade 10,English,Female,55.73,6.22,0.586
+Charter,Grade 6,English,Male,47.91,6.52,0.57
+Charter,Grade 9,Math,Male,70.72,6.14,0.63
+Charter,Grade 9,PE,Female,76.85,7.98,0.72
+Public,Grade 6,Music,Female,85.99,7.09,0.834
+Public,Grade 6,PE,Female,92.73,2.96,0.857
+Private,Grade 9,Math,Male,86.89,7.51,0.894
+Charter,Grade 10,Science,Male,90.03,3.75,0.973
+Private,Grade 7,English,Female,99.89,5.76,0.927
+Private,Grade 10,Art,Male,62.72,2.73,0.643
+Private,Grade 7,PE,Male,53.4,0.99,0.52
+Public,Grade 11,Math,Male,73.54,7.34,0.771
+Charter,Grade 8,PE,Male,63.61,2.14,0.597
+Charter,Grade 8,History,Male,45.16,3.8,0.498
+Public,Grade 11,English,Male,73.4,0.74,0.724
+Public,Grade 9,Art,Female,93.61,6.32,1
+Private,Grade 8,Math,Male,51.85,7.71,0.547
+Private,Grade 8,English,Female,58.38,2.4,0.5
+Charter,Grade 10,Science,Female,85.75,1.32,0.948
+Charter,Grade 9,History,Female,68.29,2.13,0.682
+Private,Grade 8,English,Male,77.86,1.9,0.87
+Charter,Grade 11,Music,Female,97.68,6.53,0.897
+Private,Grade 10,Art,Female,91.18,7.35,0.897
+Public,Grade 8,Math,Male,64.11,4.34,0.725
+Private,Grade 11,History,Male,91.51,6.58,0.975
+Charter,Grade 7,Science,Male,85.02,1.14,0.881
+Public,Grade 10,Computer Science,Female,55.24,6.66,0.588
+Private,Grade 7,Math,Female,87.75,5.97,0.843
+Public,Grade 6,PE,Male,79.26,5.23,0.837
+Public,Grade 7,Computer Science,Male,80.63,7.36,0.712
+Public,Grade 8,History,Female,58.97,5.78,0.525
+Public,Grade 6,Art,Female,61.54,7.28,0.617
+Public,Grade 10,Art,Female,42.05,4.27,0.364
+Private,Grade 7,Science,Male,46.92,0.84,0.537
+Private,Grade 7,Science,Male,97.29,1.8,0.953
+Private,Grade 7,Music,Male,55.06,5.07,0.545
+Charter,Grade 6,PE,Male,75.84,1.1,0.718
+Charter,Grade 6,Math,Female,76.11,5.98,0.716
+Public,Grade 7,Math,Female,50.19,6.24,0.455
+Public,Grade 10,Computer Science,Male,54.91,2.23,0.529
+Public,Grade 11,History,Female,93.79,4.69,0.918
+Private,Grade 7,PE,Female,43.7,1.44,0.41
+Public,Grade 8,PE,Female,48.38,6.06,0.578
+Charter,Grade 6,Music,Male,81.48,7.14,0.808
+Charter,Grade 8,History,Female,44.83,1.28,0.547
+Charter,Grade 6,Music,Male,84.24,5.05,0.801
+Public,Grade 11,Computer Science,Male,85.07,3.09,0.781
+Public,Grade 9,English,Female,44.77,1.38,0.371
+Charter,Grade 11,Art,Female,81.13,1.56,0.802
+Private,Grade 11,History,Female,88.54,4.88,0.876
+Charter,Grade 11,Art,Female,70.27,7.11,0.771
+Public,Grade 7,Math,Female,61.3,5.75,0.625
+Charter,Grade 8,Music,Female,59.71,6.67,0.607
+Private,Grade 6,History,Female,53.78,0.6,0.479
+Charter,Grade 9,Art,Male,85.63,3.98,0.896
+Public,Grade 8,Computer Science,Male,77.72,6.07,0.809
+Private,Grade 8,PE,Female,68.31,6.75,0.758
+Charter,Grade 8,Art,Male,67.96,5.41,0.705
+Charter,Grade 10,Music,Female,95.83,2.57,1
+Charter,Grade 8,History,Male,71.93,2.17,0.733
+Charter,Grade 11,Science,Male,47.49,4.31,0.38
+Private,Grade 11,History,Female,81.45,4.44,0.866
+Public,Grade 7,PE,Male,55.38,5.23,0.53
+Charter,Grade 6,Music,Female,59.61,2.11,0.499
+Public,Grade 7,English,Female,50.54,5.57,0.464
+Charter,Grade 11,Computer Science,Female,49.64,5.27,0.516
+Public,Grade 8,Music,Male,48.91,5.7,0.563
+Private,Grade 9,Math,Male,65,3.96,0.58
+Charter,Grade 10,Music,Male,66.79,3.29,0.712
+Public,Grade 10,Music,Female,44.65,3.26,0.491
+Charter,Grade 11,Math,Female,84.03,6.23,0.836
+Public,Grade 6,English,Male,90.06,7.38,0.831
+Public,Grade 10,Art,Female,89.01,2.29,0.948
+Public,Grade 9,Music,Female,84.5,5.57,0.918
+Private,Grade 10,English,Male,87.46,3.76,0.892
+Charter,Grade 7,Computer Science,Male,46.82,4.55,0.553
+Charter,Grade 6,Art,Male,50.03,2.05,0.401
+Public,Grade 7,Music,Female,94.92,6.75,0.891
+Charter,Grade 7,Science,Female,95.97,5.98,1
+Charter,Grade 10,PE,Male,96.48,2.72,0.974
+Public,Grade 11,History,Male,90.56,1.13,0.959
+Charter,Grade 7,Science,Female,56.18,2.29,0.638
+Charter,Grade 7,Music,Female,46.48,1.21,0.391
+Public,Grade 9,Math,Female,87.12,6.29,0.809
+Public,Grade 6,PE,Male,76.59,4.5,0.834
+Private,Grade 6,Art,Female,91.14,7.98,0.973
+Charter,Grade 6,Math,Male,90.06,0.92,0.822
+Public,Grade 7,PE,Female,84.2,0.88,0.905
+Charter,Grade 9,Math,Female,75.04,0.76,0.659
+Private,Grade 7,History,Female,68.57,7.52,0.696
+Charter,Grade 9,History,Male,93.86,7.47,0.92
+Private,Grade 7,History,Female,93.27,1.43,1
+Public,Grade 11,History,Female,75.34,5.58,0.728
+Charter,Grade 9,Math,Female,54.54,3.82,0.488
+Public,Grade 7,Math,Male,84.82,6.25,0.759
+Private,Grade 10,English,Female,94.99,2.53,0.887
+Private,Grade 11,Math,Male,96.38,6.39,0.988
+Private,Grade 10,Computer Science,Female,50.28,5.51,0.404
+Public,Grade 8,PE,Male,45.6,6.18,0.363
+Private,Grade 7,Art,Female,59.32,1.93,0.686
+Private,Grade 7,Math,Female,96.89,1.91,0.962
+Charter,Grade 9,Music,Male,99.95,4.54,1
+Charter,Grade 11,Music,Male,96.1,7.09,0.945
+Private,Grade 7,Music,Male,95.78,5.59,0.877
+Charter,Grade 7,PE,Female,44.26,4.64,0.466
+Public,Grade 11,Music,Female,71.44,5.69,0.771
+Private,Grade 7,Art,Female,65.65,7.87,0.601
+Charter,Grade 11,History,Male,93.17,3.01,0.859
+Private,Grade 11,Computer Science,Female,50.41,6.28,0.419
+Public,Grade 8,PE,Female,97.69,7.56,1
+Public,Grade 9,Computer Science,Male,62.05,2.6,0.54
+Charter,Grade 10,English,Male,87.81,6.85,0.83
+Public,Grade 9,English,Male,89.83,4.15,0.957
+Charter,Grade 11,Music,Female,86.2,4.24,0.931
+Public,Grade 11,English,Male,67.67,7.35,0.707
+Private,Grade 8,Computer Science,Female,71.8,0.96,0.663
+Public,Grade 8,Art,Female,46.8,0.53,0.451
+Private,Grade 11,History,Female,46.64,4.67,0.531
+Charter,Grade 6,Music,Male,42.56,6.4,0.475
+Public,Grade 7,PE,Female,57.73,2.69,0.492
+Public,Grade 10,Art,Male,61.09,0.55,0.642
+Charter,Grade 9,Science,Female,86.85,5.04,0.931
+Charter,Grade 11,English,Female,59.39,7.77,0.621
+Charter,Grade 6,Science,Male,98.92,0.93,1
+Charter,Grade 8,Math,Female,76.7,3.01,0.712
+Public,Grade 7,English,Female,62.93,4.52,0.636
+Public,Grade 6,Music,Female,63.11,3.94,0.697
+Charter,Grade 7,Art,Male,76.07,6.59,0.789
+Private,Grade 11,Art,Male,43.57,0.87,0.362
+Charter,Grade 10,History,Male,44.19,1.58,0.408
+Charter,Grade 6,PE,Male,58.8,1.27,0.524
+Public,Grade 11,Art,Female,47.69,6.02,0.497
+Charter,Grade 6,PE,Male,67.81,6.29,0.773
+Public,Grade 6,History,Female,84.98,3.23,0.827
+Charter,Grade 6,History,Male,72.84,1.42,0.679
+Public,Grade 9,PE,Female,62.46,5.34,0.584
+Public,Grade 10,English,Male,65.4,4.84,0.716
+Public,Grade 9,English,Male,87.43,4.38,0.782
+Public,Grade 9,Computer Science,Male,42.85,7.66,0.419
+Public,Grade 7,History,Male,71.28,3.98,0.796
+Private,Grade 7,Computer Science,Male,58.87,0.89,0.507
+Private,Grade 10,PE,Male,43.74,3.78,0.422
+Charter,Grade 7,History,Female,43.51,2.31,0.425
+Private,Grade 6,Art,Male,93.53,3.15,0.93
+Private,Grade 6,Computer Science,Male,60.54,5.91,0.682
+Private,Grade 10,English,Male,77.12,5.65,0.7
+Private,Grade 6,Music,Male,71.62,1.02,0.736
+Private,Grade 8,Music,Male,42.13,2.09,0.414
+Public,Grade 11,Music,Male,86.39,5.14,0.952
+Private,Grade 11,Music,Female,45.8,6.06,0.374
+Private,Grade 8,Math,Female,77.33,6.98,0.801
+Private,Grade 11,Art,Female,49.09,2.29,0.427
+Public,Grade 9,English,Male,93.82,6.47,0.876
+Charter,Grade 11,PE,Male,89.07,2.31,0.944
+Public,Grade 8,English,Female,45.73,2.98,0.425
+Private,Grade 11,Math,Female,41.74,5.53,0.483
+Public,Grade 11,History,Female,67.54,1.05,0.697
+Public,Grade 6,Music,Female,67.31,6.42,0.636
+Private,Grade 6,Art,Male,67.36,7.95,0.679
+Charter,Grade 11,Art,Female,77.17,5.16,0.783
+Charter,Grade 10,History,Female,84.83,2.34,0.841
+Public,Grade 10,English,Female,71.94,2.05,0.78
+Charter,Grade 9,Art,Female,83.34,6.96,0.896
+Public,Grade 9,Music,Male,59.32,2.32,0.536
+Charter,Grade 11,Music,Female,66.73,4.35,0.609
+Public,Grade 9,English,Female,44.22,7.75,0.403
+Charter,Grade 10,Music,Female,90.68,5.06,0.966
+Charter,Grade 8,History,Male,93.28,1.35,0.996
+Charter,Grade 11,Science,Female,84.26,6.03,0.866
+Private,Grade 7,English,Female,74.47,6.86,0.685
+Private,Grade 9,Computer Science,Male,98.88,7.53,0.927
+Public,Grade 11,Music,Female,62.32,3.31,0.599
+Public,Grade 11,Art,Male,99.39,7.94,1
+Charter,Grade 8,Computer Science,Female,80.67,2.99,0.769
+Charter,Grade 11,Art,Male,75.51,3.81,0.811
+Public,Grade 7,Math,Male,45.18,0.84,0.397
+Private,Grade 9,Art,Male,55.18,3.96,0.534
+Charter,Grade 10,Computer Science,Male,57.82,5.79,0.629
+Private,Grade 7,History,Female,75.61,6.91,0.778
+Charter,Grade 9,Science,Male,46.25,7.83,0.516
+Private,Grade 6,Math,Male,73.65,3.29,0.658
+Private,Grade 7,Art,Male,47.56,7.99,0.551
+Charter,Grade 10,Math,Male,46.6,6.77,0.485
+Charter,Grade 11,Music,Female,43.74,7.55,0.492
+Private,Grade 8,Computer Science,Female,51.26,7.56,0.542
+Private,Grade 11,Science,Female,98.87,2.14,1
+Private,Grade 10,History,Male,51.4,1.12,0.479
+Private,Grade 7,Computer Science,Female,45.61,7.17,0.529
+Private,Grade 8,History,Female,60.41,3.42,0.522
+Public,Grade 8,English,Female,88.27,0.98,0.857
+Public,Grade 8,Music,Female,54,3.96,0.56
+Private,Grade 9,History,Female,47.2,4.78,0.376
+Private,Grade 7,PE,Female,57.23,0.99,0.505
+Charter,Grade 9,Math,Female,40.39,7.97,0.491
+Charter,Grade 7,Computer Science,Male,57.28,7.53,0.61
+Private,Grade 8,History,Male,52.59,5.18,0.518
+Charter,Grade 6,English,Female,80.9,4.65,0.847
+Private,Grade 9,Music,Female,42.33,4.38,0.406
+Charter,Grade 10,History,Female,85.77,4.59,0.758
+Private,Grade 11,Math,Female,89.26,3.66,0.897
+Public,Grade 9,PE,Female,62.51,4.97,0.587
+Charter,Grade 10,History,Female,97.78,1.03,0.878
+Charter,Grade 6,PE,Male,97.58,3.68,0.885
+Private,Grade 11,Art,Male,49.94,3.27,0.513
+Private,Grade 7,Science,Female,75.7,6.21,0.856
+Public,Grade 8,Art,Male,44.1,1.92,0.378
+Private,Grade 6,Art,Male,44.75,7.52,0.491
+Charter,Grade 9,PE,Female,84.67,7.55,0.937
+Private,Grade 9,History,Female,94.97,7.11,0.9
+Charter,Grade 9,History,Female,42.73,4.19,0.379
+Private,Grade 8,Math,Female,74.48,0.85,0.707
+Private,Grade 7,History,Male,53.5,0.57,0.539
+Private,Grade 6,History,Male,53.04,3.71,0.447
+Private,Grade 7,Music,Female,98.54,3.63,0.979
+Public,Grade 11,Math,Male,42.46,5.63,0.459
+Charter,Grade 9,Art,Female,54.25,3.97,0.45
+Public,Grade 10,History,Male,66.33,6.85,0.71
+Private,Grade 11,Computer Science,Male,43.1,2.54,0.493
+Public,Grade 7,History,Male,69.51,7.22,0.749
+Public,Grade 6,History,Female,53.53,1.32,0.609
+Charter,Grade 8,History,Male,43.77,2.49,0.497
+Charter,Grade 10,Art,Female,43.28,3.45,0.532
+Charter,Grade 11,English,Male,42.77,4.41,0.511
+Private,Grade 9,English,Female,48.27,3.95,0.409
+Public,Grade 11,Art,Male,98.83,1.52,0.958
+Private,Grade 11,English,Female,72.43,5.79,0.686
+Private,Grade 10,Art,Female,54.58,7.59,0.451
+Charter,Grade 9,Math,Female,87.3,1,0.823
+Charter,Grade 9,Music,Female,97.82,3.91,1
+Private,Grade 6,History,Female,84.41,5.93,0.828
+Public,Grade 10,Science,Male,84.69,6.71,0.795
+Public,Grade 7,Computer Science,Male,98.88,1.08,1
+Public,Grade 11,English,Female,77.97,0.74,0.854
+Charter,Grade 8,History,Female,46.7,1.88,0.56
+Charter,Grade 8,Music,Female,87.53,6.29,0.801
+Private,Grade 6,English,Female,77.64,4.9,0.706
+Charter,Grade 9,History,Male,96.43,3.75,1
+Private,Grade 9,Art,Female,58.52,1.8,0.658
+Private,Grade 10,Science,Female,66.03,5.9,0.727
+Private,Grade 7,Math,Male,85.32,5.4,0.766
+Charter,Grade 9,PE,Male,85.46,7.76,0.935
+Public,Grade 10,History,Male,80.33,1.91,0.851
+Public,Grade 8,PE,Female,65.25,1.25,0.74
+Charter,Grade 6,Computer Science,Male,96.06,1.68,1
+Private,Grade 11,Music,Male,41.39,6.53,0.473
+Public,Grade 10,History,Female,89.2,3.76,0.869
+Private,Grade 11,History,Female,44.98,0.62,0.407
+Public,Grade 8,PE,Female,99.74,7.04,0.911
+Private,Grade 10,PE,Female,92.85,2.9,0.93
+Charter,Grade 10,English,Male,41.99,5.68,0.328
+Private,Grade 7,Art,Male,69.56,4.64,0.761
+Private,Grade 6,Computer Science,Female,73.05,6.55,0.761
+Private,Grade 10,Computer Science,Male,95.69,0.66,0.908
+Charter,Grade 6,PE,Female,42.88,4.88,0.4
+Public,Grade 9,History,Female,59.22,3.51,0.526
+Private,Grade 8,Art,Female,55.92,2.28,0.552
+Charter,Grade 6,PE,Female,77.95,7.42,0.694
+Public,Grade 10,History,Female,49,3.93,0.522
+Private,Grade 9,Computer Science,Female,71.09,2.72,0.685
+Private,Grade 11,History,Female,42.27,6.84,0.486
+Public,Grade 8,Science,Male,82.09,1.14,0.847
+Public,Grade 11,Music,Female,94.45,3.89,0.875
+Charter,Grade 11,Art,Female,53.66,6.02,0.577
+Public,Grade 7,English,Male,51.6,7.67,0.451
+Charter,Grade 11,English,Male,79.38,6.8,0.852
+Charter,Grade 8,Music,Female,51.17,0.87,0.587
+Private,Grade 11,English,Female,72.1,0.58,0.722
+Charter,Grade 7,Art,Male,43.99,2.16,0.459
+Charter,Grade 11,Art,Male,84.21,4.45,0.837
+Charter,Grade 6,Art,Male,83.97,3.39,0.788
+Charter,Grade 8,Computer Science,Male,82.6,2.64,0.839
+Charter,Grade 10,Music,Male,92.9,0.56,0.991
+Public,Grade 8,Computer Science,Female,92.46,3.52,0.927
+Private,Grade 7,Music,Male,74.61,4.47,0.821
+Public,Grade 11,English,Male,50.28,7.35,0.596
+Public,Grade 10,Computer Science,Male,91.99,2.61,0.825
+Charter,Grade 6,PE,Female,71.8,6.72,0.731
+Charter,Grade 8,Art,Male,82.34,3.32,0.914
+Public,Grade 8,Computer Science,Male,91.14,7.48,0.872
+Charter,Grade 10,Science,Male,80.42,4.28,0.788
+Private,Grade 6,Science,Male,85.57,4.51,0.868
+Charter,Grade 7,Art,Male,50.89,5.74,0.572
+Charter,Grade 7,History,Male,96.32,7.14,1
+Charter,Grade 11,Math,Male,77.46,4.29,0.71
+Charter,Grade 8,History,Male,81.15,6.06,0.863
+Public,Grade 11,PE,Female,96.19,4.7,0.889
+Private,Grade 11,History,Female,99.3,5.23,1
+Private,Grade 6,PE,Female,84.03,4.1,0.772
+Public,Grade 8,Art,Male,55.18,7.9,0.636
+Public,Grade 7,PE,Male,80.63,3.55,0.774
+Public,Grade 6,PE,Female,93.49,3.55,0.957
+Public,Grade 11,English,Female,80.47,4.15,0.822
+Charter,Grade 6,Art,Female,82.4,1.03,0.806
+Private,Grade 9,Math,Male,88.67,4.76,0.961
+Private,Grade 6,Science,Female,80.01,0.65,0.764
+Public,Grade 8,Art,Female,94.47,0.86,0.916
+Public,Grade 9,History,Male,43.17,3.24,0.393
+Private,Grade 7,Music,Female,85.49,1.27,0.899
+Public,Grade 9,English,Female,63.95,2.49,0.707
+Public,Grade 11,Art,Female,88.46,2.91,0.94
+Private,Grade 10,Computer Science,Female,88.56,6.98,0.857
+Public,Grade 7,History,Female,47.63,5.76,0.536
+Public,Grade 10,History,Female,41.09,7.71,0.37
+Public,Grade 6,PE,Male,69.86,5.35,0.7
+Public,Grade 11,History,Female,48.71,0.55,0.394
+Charter,Grade 9,Science,Female,52.61,7.61,0.428
+Charter,Grade 8,PE,Female,65.93,1.95,0.612
+Private,Grade 6,Music,Female,59.77,6.3,0.544
+Charter,Grade 6,Science,Female,94.91,7.35,0.993
+Private,Grade 6,Computer Science,Female,52.29,6.18,0.581
+Public,Grade 8,History,Male,91.39,3.58,0.893
+Private,Grade 8,PE,Male,68.85,5.79,0.632
+Public,Grade 6,Music,Female,51.67,1.48,0.472
+Charter,Grade 7,Science,Female,55.04,6.13,0.459
+Public,Grade 6,Science,Male,69.73,2.55,0.783
+Public,Grade 9,History,Male,95.62,2.56,0.952
+Public,Grade 8,History,Male,86.09,1.09,0.917
+Private,Grade 7,Math,Female,74.38,3.08,0.797
+Charter,Grade 10,Art,Male,56.63,0.68,0.521
+Charter,Grade 11,Computer Science,Female,46.1,0.52,0.555
+Charter,Grade 8,Math,Female,54.23,1.67,0.572
+Private,Grade 11,Math,Male,81.65,0.96,0.882
+Public,Grade 11,Science,Female,65.9,4.42,0.589
+Private,Grade 11,Science,Male,46.29,1.37,0.54
+Private,Grade 8,History,Female,49.8,6.91,0.425
+Public,Grade 7,English,Female,46.61,4.36,0.395
+Private,Grade 9,History,Male,89.99,7.49,0.84
+Public,Grade 11,English,Female,87.12,1.05,0.904
+Charter,Grade 8,Computer Science,Male,80.67,5.86,0.711
+Public,Grade 8,English,Male,58.67,1.58,0.594
+Private,Grade 11,Science,Female,43.17,6.9,0.381
+Private,Grade 6,Science,Male,50.71,5.89,0.477
+Private,Grade 10,Music,Female,51.11,7.93,0.505
+Private,Grade 9,Art,Male,71.85,3.93,0.755
+Private,Grade 7,PE,Female,60.05,7.64,0.659
+Private,Grade 11,History,Female,61.69,4.5,0.672
+Charter,Grade 11,Music,Male,75.37,5.31,0.718
+Charter,Grade 8,Music,Female,82.88,3.79,0.776
+Public,Grade 11,Computer Science,Male,60.07,1.05,0.535
+Charter,Grade 11,Music,Female,56.5,5.67,0.51
+Private,Grade 9,Math,Male,85.29,2.72,0.952
+Public,Grade 11,Music,Male,87.46,1.64,0.861
+Public,Grade 6,Computer Science,Female,72.52,7.36,0.793
+Public,Grade 10,History,Male,85.49,7.63,0.879
+Charter,Grade 8,Math,Female,52.31,6.5,0.549
+Private,Grade 10,Science,Female,89.86,3.64,0.988
+Private,Grade 6,Music,Female,97.79,7.66,0.898
+Public,Grade 9,Art,Female,60.88,6.81,0.705
+Public,Grade 8,Computer Science,Female,47.07,3.92,0.502
+Charter,Grade 6,Art,Female,62.94,2.49,0.719
+Charter,Grade 11,Science,Female,91.98,1.01,0.966
+Charter,Grade 9,History,Male,75.85,7.89,0.824
+Private,Grade 9,Art,Female,66.5,6.13,0.661
+Charter,Grade 11,Art,Male,91.1,3.74,0.921
+Public,Grade 11,Music,Male,93.18,1.19,0.845
+Charter,Grade 9,Computer Science,Female,80.42,0.84,0.788
+Public,Grade 7,English,Female,95.3,2,0.921
+Charter,Grade 8,Art,Female,43.21,3.8,0.355
+Charter,Grade 6,Computer Science,Male,93.41,7.51,0.997
+Public,Grade 6,Music,Female,86.65,4.67,0.937
+Public,Grade 7,Art,Female,93.69,4.54,1
+Charter,Grade 11,History,Female,49.53,0.63,0.429
+Private,Grade 6,Art,Male,71,3.13,0.734
+Charter,Grade 6,Computer Science,Male,86.81,3.04,0.915
+Public,Grade 7,English,Female,61.84,7.46,0.638
+Public,Grade 7,Art,Male,92.26,7.17,0.883
+Private,Grade 11,Computer Science,Female,59.7,1.66,0.513
+Charter,Grade 8,Math,Male,54.19,4.66,0.613
+Charter,Grade 7,Science,Male,51.86,1.8,0.588
+Public,Grade 7,Art,Male,73.86,7.32,0.737
+Charter,Grade 8,Science,Male,87.13,7.98,0.94
+Private,Grade 11,English,Female,59.78,1.19,0.522
+Charter,Grade 8,PE,Female,88.27,0.59,0.859
+Charter,Grade 7,History,Female,72.27,3.5,0.709
+Public,Grade 9,PE,Female,77.33,1.31,0.858
+Charter,Grade 7,Computer Science,Male,54.5,1.66,0.562
+Charter,Grade 8,Computer Science,Female,52.85,5.28,0.54
+Private,Grade 9,History,Female,87.41,3.18,0.821
+Private,Grade 11,Math,Female,87.16,4.38,0.795
+Public,Grade 8,Math,Male,62.79,6.99,0.621
+Charter,Grade 11,History,Male,68.9,4.16,0.714
+Public,Grade 9,English,Male,88.28,2.63,0.808
+Public,Grade 11,PE,Female,95.19,4.29,1
+Charter,Grade 6,English,Male,95.43,4.64,0.868
+Public,Grade 9,Music,Female,62.54,7.05,0.666
+Charter,Grade 11,Math,Female,47.57,2.93,0.573
+Charter,Grade 11,Music,Male,87.17,7.67,0.824
+Private,Grade 11,Science,Female,45.97,0.55,0.39
+Charter,Grade 11,Computer Science,Male,56.99,4.02,0.523
+Public,Grade 11,Computer Science,Female,56.84,0.94,0.622
+Private,Grade 8,PE,Female,73.92,3.23,0.734
+Public,Grade 8,English,Male,83.21,5.55,0.835
+Public,Grade 7,PE,Male,42.01,6.99,0.422
+Charter,Grade 7,Math,Female,80.1,2.01,0.712
+Charter,Grade 6,English,Female,71.83,1.07,0.818
+Public,Grade 7,PE,Male,52.59,6.85,0.47
+Charter,Grade 10,English,Male,59.17,3.16,0.553
+Charter,Grade 7,Math,Female,94.98,3.55,0.946
+Private,Grade 7,Music,Female,65.59,7.36,0.686
+Private,Grade 10,Computer Science,Female,78.57,7.2,0.847
+Private,Grade 7,Science,Female,99.86,6.34,0.966
+Private,Grade 9,Math,Female,89.77,3.6,0.968
+Public,Grade 6,Art,Male,70.8,1.75,0.752
+Public,Grade 11,Science,Male,45.23,5.69,0.552
+Charter,Grade 7,PE,Female,54.29,1.79,0.553
+Charter,Grade 6,History,Female,74.64,6.9,0.808
+Private,Grade 10,Math,Male,47.76,5.17,0.463
+Public,Grade 11,PE,Male,56.57,0.88,0.491
+Charter,Grade 9,Computer Science,Female,92.19,6.9,0.86
+Charter,Grade 7,Math,Female,92.94,6.86,0.886
+Public,Grade 7,English,Male,79.82,1.3,0.698
+Charter,Grade 8,Computer Science,Male,72.92,5.84,0.656
+Charter,Grade 10,Music,Male,66.03,6.75,0.665
+Charter,Grade 7,PE,Male,95.29,1.52,0.95
+Charter,Grade 9,History,Female,83.58,1.26,0.858
+Charter,Grade 10,Math,Female,95.13,1.89,0.954
+Charter,Grade 10,English,Female,67.3,7.72,0.741
+Public,Grade 11,Math,Male,54.49,0.51,0.601
+Public,Grade 11,Art,Male,65.25,6.43,0.557
+Public,Grade 8,Music,Female,52.47,5.9,0.497
+Public,Grade 7,Art,Female,64.71,4.65,0.729
+Public,Grade 6,Math,Female,61.62,3.97,0.559
+Private,Grade 7,Computer Science,Male,86.44,3.76,0.924
+Charter,Grade 6,Computer Science,Female,81.93,7.34,0.757
+Public,Grade 6,Science,Male,57.46,4.14,0.475
+Private,Grade 10,Computer Science,Male,53.62,3.34,0.611
+Public,Grade 11,History,Male,57.27,6.94,0.481
+Charter,Grade 6,English,Male,84.04,4.35,0.823
+Private,Grade 6,Art,Female,44.44,3.3,0.41
+Charter,Grade 11,Music,Female,71.74,2.67,0.816
+Private,Grade 6,Computer Science,Male,95.89,5.25,1
+Private,Grade 9,Computer Science,Male,42.55,2.48,0.421
+Private,Grade 10,PE,Male,94.35,7,0.941
+Public,Grade 9,Computer Science,Male,88.47,6.21,0.89
+Public,Grade 8,PE,Female,86.5,7.32,0.869
+Charter,Grade 7,English,Female,41.68,2.95,0.462
+Private,Grade 6,Science,Male,97.93,7.25,0.94
+Public,Grade 8,PE,Male,47.63,2.83,0.543
+Charter,Grade 8,Math,Female,50.62,5.74,0.558
+Charter,Grade 9,Art,Female,90.21,5.53,0.984
+Charter,Grade 7,English,Female,47.41,3.31,0.481
+Public,Grade 8,Science,Female,98.87,4.63,1
+Public,Grade 11,Math,Female,55.43,7.06,0.48
+Private,Grade 10,Art,Male,56.92,2.08,0.513
+Public,Grade 8,Art,Female,58.55,3.14,0.53
+Charter,Grade 8,History,Male,54.36,2.78,0.603
+Charter,Grade 9,English,Female,67.6,6.03,0.577
+Public,Grade 6,Math,Female,79.86,3.47,0.838
+Private,Grade 11,Math,Male,48.74,2.74,0.388
+Charter,Grade 11,Science,Female,83.06,5.64,0.779
+Public,Grade 9,Art,Male,96.04,7.82,0.993
+Public,Grade 7,Computer Science,Male,77.98,7.7,0.803
+Public,Grade 7,Computer Science,Male,66.59,1.38,0.632
+Charter,Grade 7,PE,Female,41.62,7.4,0.348
+Charter,Grade 7,Computer Science,Female,88.77,7.41,0.869
+Charter,Grade 9,Science,Female,76.72,4.26,0.83
+Private,Grade 7,Art,Male,56.23,6.14,0.53
+Public,Grade 8,Music,Male,74.27,3.01,0.84
+Charter,Grade 6,Math,Male,53.59,5.17,0.552
+Private,Grade 9,PE,Female,85.36,5.6,0.857
+Public,Grade 10,Music,Female,45.22,4.19,0.37
+Private,Grade 10,Music,Female,99.9,5.39,0.998
+Public,Grade 11,History,Male,51.26,6.04,0.465
+Public,Grade 7,Computer Science,Female,60.12,0.99,0.571
+Public,Grade 10,Math,Male,46.26,1.15,0.478
+Public,Grade 6,English,Female,97.16,4.71,1
+Charter,Grade 10,Computer Science,Male,98.31,7.18,1
+Charter,Grade 8,English,Female,61.41,4.61,0.568
+Public,Grade 7,History,Male,96.65,5.49,1
+Charter,Grade 9,PE,Female,42.34,7,0.347
+Private,Grade 8,Science,Female,91.24,3.45,0.871
+Private,Grade 11,Art,Male,77.98,6.08,0.796
+Private,Grade 11,Math,Male,96.34,1.09,1
+Charter,Grade 10,Music,Male,94.38,2.48,0.915
+Charter,Grade 10,Science,Female,95.11,5.6,1
+Private,Grade 10,Music,Male,67.01,3.35,0.714
+Public,Grade 9,Science,Female,65.7,5.05,0.659
+Private,Grade 11,Computer Science,Female,90.73,6.58,0.858
+Private,Grade 11,Math,Male,68.55,4.49,0.664
+Private,Grade 10,History,Male,82.58,7.84,0.822
+Private,Grade 10,Science,Male,70.41,6.97,0.667
+Private,Grade 10,PE,Female,99.01,2.46,0.904
+Private,Grade 7,History,Male,54.89,4.19,0.554
+Private,Grade 8,English,Female,64.37,5.09,0.642
+Private,Grade 8,English,Female,58.71,3.91,0.555
+Private,Grade 8,Math,Male,85.65,6.82,0.796
+Private,Grade 9,Art,Male,92.36,3.08,0.931
+Charter,Grade 6,English,Male,63.82,3.33,0.565
+Public,Grade 7,Computer Science,Male,98.98,6.58,1
+Private,Grade 7,PE,Female,72.14,5.41,0.758
+Charter,Grade 10,Math,Male,73.9,2.37,0.7
+Public,Grade 10,Math,Male,57.81,6.8,0.565
+Public,Grade 7,PE,Female,67.48,3.74,0.772
+Charter,Grade 7,History,Female,61.14,7.79,0.689
+Charter,Grade 10,Music,Female,52.17,7.39,0.478
+Private,Grade 8,History,Male,83.02,0.66,0.899
+Public,Grade 8,Computer Science,Male,47.05,1.61,0.382
+Public,Grade 11,Art,Male,99.1,1.99,0.972
+Charter,Grade 11,English,Female,56.33,0.74,0.641
+Private,Grade 10,Computer Science,Male,55.55,4.22,0.587
+Private,Grade 10,Science,Male,82.45,4.44,0.826
+Public,Grade 9,Science,Female,54.06,4.03,0.598
+Public,Grade 8,PE,Male,55.07,3.99,0.593
+Private,Grade 9,History,Female,74.92,2.01,0.842
+Public,Grade 10,Science,Male,58.87,0.95,0.655
+Public,Grade 10,History,Male,65.77,6.21,0.739
+Public,Grade 7,Math,Female,88.87,2.52,0.811
+Charter,Grade 8,English,Female,45.52,1.71,0.447
+Public,Grade 6,History,Female,63.71,3.4,0.685
+Private,Grade 10,English,Female,76.3,2.86,0.843
+Private,Grade 11,Art,Male,64.66,0.98,0.552
+Charter,Grade 8,History,Female,49.09,1.13,0.397
+Private,Grade 9,Music,Male,85.16,7.54,0.86
+Private,Grade 10,Music,Female,74.35,2.24,0.653
+Charter,Grade 6,Math,Male,78.9,7.1,0.823
+Private,Grade 7,History,Female,62.31,2.58,0.559
+Charter,Grade 7,Computer Science,Female,40.06,2.58,0.474
+Public,Grade 6,PE,Male,67.42,1.92,0.596
+Public,Grade 8,Science,Female,51.7,3.81,0.554
+Private,Grade 10,Art,Male,47.69,4.86,0.398
+Private,Grade 11,Math,Female,89.48,4.21,0.836
+Public,Grade 9,PE,Male,58.75,0.68,0.548
+Public,Grade 9,Science,Male,47.72,4.21,0.512
+Public,Grade 6,Computer Science,Male,78.67,2.78,0.862
+Charter,Grade 9,Computer Science,Female,69.7,2.17,0.716
+Charter,Grade 6,PE,Male,93.93,5.59,0.98
+Charter,Grade 10,History,Female,94.17,6.91,0.933
+Private,Grade 10,PE,Male,85.78,5.84,0.806
+Public,Grade 7,Art,Male,75.9,2.29,0.784
+Private,Grade 8,Science,Female,97.67,5.16,0.976
+Public,Grade 7,Computer Science,Male,85.91,2.53,0.886
+Charter,Grade 10,English,Female,92.08,0.57,0.85
+Public,Grade 10,English,Male,62.39,1.87,0.539
+Private,Grade 6,Music,Female,90.78,6.69,0.966
+Charter,Grade 9,History,Male,98.52,5.51,0.925
+Charter,Grade 7,Science,Female,61.18,0.69,0.621
+Private,Grade 10,Computer Science,Male,76.13,7.58,0.819
+Public,Grade 9,Music,Female,70.54,6.49,0.757
+Private,Grade 9,History,Female,90.23,4.09,0.985
+Charter,Grade 10,Computer Science,Female,94.94,2.75,0.955
+Public,Grade 10,Math,Female,63.8,2.78,0.624
+Private,Grade 10,Art,Male,74.75,3.25,0.681
+Private,Grade 10,History,Female,79.99,3.5,0.716
+Private,Grade 8,Music,Female,40.36,3.45,0.421
+Private,Grade 6,English,Female,77.49,4.76,0.759
+Public,Grade 10,Music,Male,83.2,5.25,0.825
+Charter,Grade 6,Art,Male,43.28,2.8,0.404
+Public,Grade 7,English,Female,67.75,4.91,0.77
+Private,Grade 9,Math,Female,80.59,2.6,0.744
+Public,Grade 7,History,Male,69.34,5.04,0.702
+Private,Grade 9,Music,Male,86.65,2.94,0.774
+Public,Grade 6,History,Female,43.87,3.64,0.395
+Public,Grade 10,Math,Male,99.26,7.57,0.985
+Private,Grade 8,Science,Male,42.9,7.82,0.507
+Public,Grade 8,Computer Science,Male,42.37,0.79,0.518
+Public,Grade 11,Computer Science,Female,69.89,6.54,0.669
+Public,Grade 8,History,Female,59.59,0.78,0.502
+Public,Grade 6,PE,Male,56.05,5.81,0.659
+Public,Grade 11,English,Female,43.99,5.22,0.35
+Charter,Grade 6,Music,Male,54.89,7.41,0.511
+Public,Grade 6,Science,Male,77.6,7.2,0.76
+Private,Grade 8,History,Male,81.81,3.56,0.795
+Private,Grade 7,Computer Science,Male,94.97,6.84,0.936
+Private,Grade 9,Science,Female,91.8,7.55,0.841
+Charter,Grade 9,Art,Female,54.67,1.73,0.503
+Charter,Grade 8,Science,Female,88.87,2.61,0.918
+Public,Grade 11,Art,Female,81.15,2.3,0.768
+Charter,Grade 8,English,Male,40.37,1.18,0.397
+Public,Grade 8,English,Male,63.05,1.78,0.61
+Private,Grade 9,PE,Female,82.56,2.72,0.869
+Public,Grade 6,Science,Female,97.68,3.04,0.941
+Charter,Grade 7,Art,Male,98.96,4.31,0.893
+Charter,Grade 7,Music,Male,84.33,3.08,0.941
+Charter,Grade 10,Math,Male,97.77,2.19,1
+Charter,Grade 6,Music,Male,74.98,0.7,0.7
+Charter,Grade 7,Computer Science,Female,79.68,2.2,0.723
+Public,Grade 11,Math,Female,90.19,3.67,0.98
+Private,Grade 11,Computer Science,Female,41.07,1.88,0.361
+Public,Grade 9,Art,Female,47.41,2.69,0.545
+Private,Grade 7,PE,Female,88.71,4.81,0.962
+Charter,Grade 10,English,Male,51.06,7.7,0.46
+Charter,Grade 9,Computer Science,Male,97.77,7.69,0.926
+Public,Grade 6,Music,Male,52.42,1.71,0.541
+Public,Grade 6,English,Male,55.43,0.64,0.517
+Private,Grade 9,PE,Male,53.3,6.6,0.624
+Private,Grade 6,Math,Female,84.03,5.71,0.845
+Charter,Grade 7,Computer Science,Female,53.32,2.19,0.583
+Public,Grade 9,Art,Female,55.16,1.14,0.578
+Charter,Grade 9,History,Female,69.94,2.2,0.604
+Private,Grade 10,Computer Science,Female,48.59,1.93,0.553
+Private,Grade 8,Math,Male,71.64,2.17,0.684
+Public,Grade 9,Math,Male,94.35,2.79,0.981
+Public,Grade 10,Music,Male,87.42,4.29,0.815
+Charter,Grade 9,Art,Male,68.35,7.03,0.782
+Public,Grade 10,Computer Science,Female,88.06,5.77,0.905
+Charter,Grade 9,English,Female,68.59,7.78,0.67
+Public,Grade 11,PE,Male,65.71,6.2,0.652
+Private,Grade 9,Computer Science,Male,81.06,6.01,0.904
+Private,Grade 9,English,Male,97.89,7.52,1
+Charter,Grade 7,Science,Male,44.24,3.33,0.431
+Public,Grade 6,Math,Male,41.73,3.65,0.456
+Charter,Grade 9,PE,Male,89.59,1.43,0.866
+Public,Grade 10,Art,Male,78.95,6.29,0.824
+Private,Grade 8,History,Male,96.05,2.37,0.919
+Public,Grade 10,Math,Male,69.18,0.75,0.792
+Charter,Grade 8,Science,Female,64.77,2.07,0.668
+Charter,Grade 10,Computer Science,Male,41.21,4.61,0.422
+Private,Grade 11,History,Female,50.18,7.42,0.531
+Private,Grade 7,English,Male,78.77,4.07,0.817
+Private,Grade 10,English,Female,58.54,6.78,0.616
+Charter,Grade 6,Computer Science,Male,94.25,7.14,0.908
+Private,Grade 6,PE,Female,54.79,5.24,0.537
+Charter,Grade 8,Computer Science,Male,45.02,3.14,0.541
+Charter,Grade 6,Music,Male,78.84,1.04,0.876
+Charter,Grade 11,Music,Female,78.38,5.52,0.78
+Private,Grade 11,Art,Female,86.93,6.29,0.868
+Public,Grade 10,English,Female,45.02,7.27,0.384
+Private,Grade 7,Science,Male,69.09,6.29,0.682
+Public,Grade 10,Music,Female,69.4,7.69,0.744
+Charter,Grade 10,PE,Female,66.25,5.05,0.675
+Charter,Grade 7,English,Female,87.52,4.62,0.957
+Private,Grade 11,Science,Male,71.18,3.36,0.682
+Public,Grade 6,English,Female,80.34,4.14,0.754
+Private,Grade 8,Computer Science,Male,79.92,3.29,0.708
+Private,Grade 7,Music,Female,74.89,4.9,0.673
+Private,Grade 10,English,Male,91.08,0.83,0.831
+Public,Grade 6,Art,Male,83.63,7.4,0.814
+Charter,Grade 6,English,Female,48.8,7.26,0.462
+Charter,Grade 9,History,Male,81.37,1.53,0.726
+Private,Grade 7,Computer Science,Female,71.95,2.64,0.715
+Charter,Grade 11,Computer Science,Male,87.1,4.61,0.94
+Charter,Grade 7,English,Male,81.72,2.78,0.847
+Charter,Grade 8,Computer Science,Female,57.46,7.92,0.567
+Charter,Grade 10,PE,Female,82.39,6.59,0.734
+Private,Grade 11,Computer Science,Male,78.92,3.55,0.789
+Private,Grade 9,History,Male,62.57,7.37,0.61
+Charter,Grade 8,Music,Male,44.13,4.48,0.477
+Charter,Grade 11,Math,Female,47.98,3.65,0.56
+Private,Grade 6,English,Male,96.97,5.52,0.963
+Private,Grade 7,Art,Male,62.63,0.91,0.592
+Charter,Grade 6,Science,Female,74.97,6.87,0.758
+Private,Grade 8,English,Female,89.19,7.44,0.856
+Charter,Grade 9,Art,Female,49.26,7.8,0.531
+Private,Grade 6,Science,Female,63.39,3.25,0.553
+Charter,Grade 8,Music,Male,71.02,0.54,0.73
+Private,Grade 7,PE,Female,80.9,3.56,0.886
+Private,Grade 10,English,Female,66.69,2.76,0.67
+Private,Grade 6,PE,Female,79.1,2.74,0.838
+Public,Grade 7,Science,Male,97.32,1.09,0.977
+Charter,Grade 10,PE,Female,97.33,2.3,1
+Charter,Grade 7,English,Male,82.85,1.34,0.898
+Private,Grade 8,Art,Male,93.28,5.46,0.963
+Charter,Grade 8,History,Male,50.25,1,0.488
+Charter,Grade 8,History,Female,99.13,2.5,0.992
+Public,Grade 9,Computer Science,Male,72.98,0.55,0.79
+Charter,Grade 8,History,Female,69.32,1,0.767
+Charter,Grade 7,Science,Female,84.31,4.24,0.919
+Charter,Grade 8,English,Male,86.66,7.02,0.865
+Public,Grade 8,Music,Female,92.58,5.91,1
+Public,Grade 11,Music,Male,71.04,5.63,0.756
+Private,Grade 10,PE,Male,56.82,6.8,0.644
+Public,Grade 7,Music,Female,45.64,5.91,0.44
+Public,Grade 8,English,Male,76.62,7.09,0.727
+Private,Grade 10,Science,Male,86.53,4.27,0.832
+Private,Grade 9,Computer Science,Female,75.86,3.7,0.674
+Public,Grade 11,Science,Male,91.61,1.99,0.903
+Private,Grade 8,Art,Female,54.27,1.15,0.608
+Private,Grade 10,Science,Male,59.09,6.35,0.519
+Public,Grade 10,PE,Female,61.82,3.07,0.555
+Charter,Grade 7,PE,Female,41.42,4.2,0.51
+Private,Grade 10,PE,Female,85.46,6.25,0.93
+Private,Grade 10,Science,Female,45.61,7.43,0.459
+Charter,Grade 8,PE,Female,87.34,2.48,0.786
+Public,Grade 9,Math,Male,74.28,1.72,0.829
+Public,Grade 6,English,Female,52.26,6.74,0.587
+Charter,Grade 11,Music,Male,53.03,1.4,0.456
+Public,Grade 11,English,Female,48.95,7.46,0.574
+Public,Grade 11,Art,Male,76.65,2.99,0.704
+Private,Grade 10,Science,Female,91.09,0.98,0.879
+Public,Grade 10,Math,Female,60.58,4.16,0.606
+Private,Grade 10,Science,Female,57.18,6.11,0.552
+Public,Grade 6,English,Male,45.26,2.42,0.492
+Private,Grade 8,Math,Male,83.26,2.49,0.914
+Charter,Grade 9,Computer Science,Male,52.32,7.38,0.458
+Public,Grade 10,Math,Male,80.76,2.49,0.805
+Charter,Grade 7,Computer Science,Female,94.88,6.42,1
+Public,Grade 9,History,Female,44.35,5.8,0.46
+Charter,Grade 7,Music,Male,95.95,0.68,0.989
+Public,Grade 9,Music,Male,58.67,3.69,0.597
+Private,Grade 11,Computer Science,Male,68.46,6.66,0.667
+Charter,Grade 6,Science,Female,96.88,7.61,0.965
+Charter,Grade 7,English,Male,57.97,2.71,0.598
+Private,Grade 7,Math,Female,45.92,1.45,0.398
+Charter,Grade 7,Math,Female,52.94,4.34,0.433
+Private,Grade 9,Math,Female,60.02,5.86,0.636
+Private,Grade 7,English,Male,71.05,6.39,0.763
+Charter,Grade 9,Math,Female,57.51,1.23,0.572
+Charter,Grade 7,History,Male,46.23,1.48,0.371
+Public,Grade 9,Art,Female,87.45,6.56,0.966
+Charter,Grade 6,Science,Female,67.35,7.18,0.727
+Charter,Grade 9,Computer Science,Female,51.62,5.93,0.549
+Charter,Grade 8,Computer Science,Male,63.89,1.92,0.68
+Public,Grade 10,Music,Female,66.42,2.6,0.627
+Public,Grade 6,Art,Male,94.92,5.98,0.901
+Private,Grade 11,History,Female,61.95,4.99,0.644
+Public,Grade 6,Music,Male,74.84,2.5,0.82
+Public,Grade 10,Computer Science,Male,89.46,7.77,0.962
+Charter,Grade 7,Math,Male,85.1,0.76,0.862
+Public,Grade 8,Art,Male,45.59,7.41,0.481
+Public,Grade 6,Math,Female,99.4,4.78,1
+Private,Grade 9,History,Male,69.42,1.1,0.671
+Charter,Grade 10,English,Male,91.03,2.32,0.877
+Public,Grade 9,Computer Science,Male,54.36,1.11,0.5
+Private,Grade 9,PE,Male,49.21,0.53,0.49
+Private,Grade 8,English,Male,76,5.35,0.741
+Charter,Grade 9,History,Female,54.03,0.76,0.584
+Charter,Grade 10,Music,Female,64.17,3.68,0.565
+Charter,Grade 11,Computer Science,Male,79.88,5.25,0.776
+Charter,Grade 10,PE,Male,90.23,6.46,0.902
+Public,Grade 11,English,Female,62.96,6.48,0.647
+Public,Grade 9,Computer Science,Female,47.58,1.43,0.536
+Private,Grade 11,Science,Female,44.26,3.74,0.463
+Public,Grade 10,Computer Science,Male,91.88,7.19,0.933
+Public,Grade 7,Math,Female,81.68,3.21,0.899
+Charter,Grade 7,Math,Female,73.16,7.64,0.722
+Charter,Grade 10,Music,Female,88.99,1.34,0.817
+Charter,Grade 6,History,Male,90.78,1.03,0.936
+Private,Grade 7,Science,Male,53.05,4.42,0.433
+Public,Grade 11,History,Male,83.9,7.85,0.763
+Public,Grade 11,Math,Male,50.65,7.39,0.588
+Public,Grade 7,Art,Male,69.51,6.76,0.718
+Charter,Grade 9,Music,Female,55.33,1.74,0.48
+Charter,Grade 11,Computer Science,Male,74.4,1.32,0.705
+Public,Grade 11,Music,Female,76.58,4.75,0.848
+Public,Grade 11,Math,Male,99.02,3.02,0.981
+Private,Grade 9,English,Female,88.63,5.72,0.944
+Charter,Grade 11,Computer Science,Male,98.53,3.47,1
+Public,Grade 8,Art,Female,52.94,7.55,0.616
+Charter,Grade 6,Math,Male,58.09,3.06,0.659
+Charter,Grade 7,Science,Female,91.45,5.23,0.834
+Charter,Grade 8,English,Female,87.01,0.62,0.87
+Charter,Grade 11,PE,Male,82.48,2.55,0.914
+Private,Grade 10,Math,Female,92.51,3.1,0.913
+Private,Grade 6,Computer Science,Male,86.04,3.07,0.77
+Charter,Grade 6,English,Male,78.42,2.08,0.686
+Charter,Grade 6,Computer Science,Female,63.79,1.61,0.688
+Charter,Grade 7,Science,Female,45.5,4.13,0.392
+Public,Grade 9,Music,Male,90.95,5.48,0.953
+Private,Grade 9,Music,Female,98,3.38,0.92
+Public,Grade 6,PE,Female,50.5,1.3,0.492
+Public,Grade 9,English,Male,61.29,2.26,0.62
+Charter,Grade 11,History,Male,65.34,2.13,0.644
+Public,Grade 8,Art,Female,72.86,1.74,0.655
+Private,Grade 8,PE,Female,82.96,4.81,0.761
+Private,Grade 9,Music,Female,76.31,3.29,0.826
+Public,Grade 6,Music,Male,63.02,5.16,0.544
+Public,Grade 9,Art,Male,68.74,5.89,0.706
+Public,Grade 7,Computer Science,Male,41.17,7.49,0.478
+Private,Grade 7,Math,Male,94.99,6.57,0.965
+Charter,Grade 9,PE,Male,40.68,1.24,0.385
+Private,Grade 7,Math,Male,93.02,3.84,0.869
+Public,Grade 8,PE,Male,93.49,4.11,0.858
+Public,Grade 7,English,Female,93.43,1.94,0.85
+Private,Grade 8,Art,Male,60.73,7.18,0.675
+Public,Grade 9,Music,Male,78.01,0.65,0.683
+Private,Grade 7,History,Male,58.2,7.97,0.482
+Private,Grade 6,Science,Female,85.3,3.51,0.899
+Charter,Grade 6,Computer Science,Female,60.51,7.9,0.697
+Private,Grade 6,Math,Female,44.81,2.72,0.531
+Public,Grade 6,PE,Male,41.38,4.17,0.377
+Public,Grade 7,English,Female,40.93,7.7,0.345
+Public,Grade 6,English,Male,88.25,1.11,0.904
+Private,Grade 7,PE,Male,96.78,1.85,0.954
+Public,Grade 10,History,Female,41.05,2.93,0.382
+Private,Grade 7,Science,Female,47,0.55,0.525
+Charter,Grade 9,Art,Male,56.11,5.75,0.602
+Private,Grade 6,PE,Female,85.17,4.32,0.764
+Public,Grade 11,Math,Male,80.35,4.57,0.887
+Private,Grade 8,Math,Female,99.25,2.24,0.96
+Private,Grade 11,Music,Female,46.82,3.91,0.55
+Public,Grade 9,Science,Male,78.12,6.23,0.852
+Private,Grade 11,Computer Science,Male,87.21,4.68,0.872
+Charter,Grade 6,Art,Male,45.46,3.1,0.535
+Charter,Grade 11,English,Female,82.52,5.13,0.887
+Private,Grade 10,Music,Female,47.53,6.05,0.428
+Charter,Grade 8,English,Male,72.07,6.68,0.708
+Private,Grade 8,Science,Male,52.74,4.7,0.578
+Private,Grade 10,PE,Female,46.01,5.85,0.402
+Charter,Grade 6,PE,Male,69.77,4.1,0.599
+Public,Grade 8,English,Female,47.37,6.69,0.535
+Private,Grade 6,Computer Science,Male,99,1.91,1
+Public,Grade 11,Computer Science,Male,51.05,7.53,0.577
+Private,Grade 11,Science,Male,48.23,2.39,0.455
+Public,Grade 11,Music,Female,71.82,1.87,0.673
+Charter,Grade 10,PE,Male,88.64,6.94,0.972
+Public,Grade 6,Computer Science,Male,98.06,2.05,1
+Public,Grade 11,Music,Male,82.64,1.87,0.766
+Public,Grade 9,Computer Science,Male,79.84,1.3,0.851
+Charter,Grade 6,Computer Science,Female,41.54,0.74,0.455
+Public,Grade 7,History,Female,69.13,6.26,0.781
+Public,Grade 10,Science,Female,92.96,3.52,0.898
+Private,Grade 8,English,Male,77.3,1.02,0.742
+Private,Grade 6,Music,Female,41.43,1.24,0.494
+Private,Grade 7,Science,Female,42.85,7.78,0.521
+Private,Grade 9,Computer Science,Male,80.72,3.69,0.818
+Private,Grade 10,History,Male,79.84,3.69,0.79
+Charter,Grade 6,Science,Female,49.53,3.6,0.412
+Charter,Grade 9,Music,Female,83.76,0.58,0.813
+Public,Grade 10,PE,Female,89.9,6.25,0.834
+Private,Grade 6,English,Female,49.39,4.91,0.553
+Private,Grade 7,Art,Female,72.87,7.5,0.772
+Public,Grade 9,Math,Female,56.65,5.22,0.583
+Private,Grade 7,PE,Male,96.57,1.78,0.98
+Public,Grade 9,Art,Female,81.04,5.93,0.797
+Private,Grade 11,Science,Male,59.32,1.4,0.504
+Private,Grade 9,Music,Male,65.24,0.76,0.617
+Private,Grade 7,English,Male,71.54,4.25,0.781
+Private,Grade 11,English,Male,59.77,7.28,0.637
+Charter,Grade 10,Music,Female,46.63,4.15,0.429
+Public,Grade 9,History,Male,94.19,1.64,0.902
+Private,Grade 6,Computer Science,Male,73.34,3.72,0.724
+Private,Grade 7,History,Male,56.65,4.28,0.538
+Charter,Grade 7,Computer Science,Female,59.82,3.02,0.675
+Public,Grade 8,Computer Science,Female,82.5,2.74,0.789
+Charter,Grade 6,PE,Female,59.36,0.9,0.628
+Public,Grade 8,English,Female,63.93,2.35,0.619
+Charter,Grade 11,Math,Male,99.18,6.85,0.985
+Private,Grade 8,Computer Science,Female,72.2,5.59,0.673
+Charter,Grade 7,History,Male,78.52,4.8,0.864
+Charter,Grade 6,Science,Male,65.64,1.15,0.702
+Private,Grade 7,Music,Female,90.53,3.86,0.959
+Public,Grade 7,PE,Male,54.62,2.97,0.527
+Private,Grade 9,Art,Male,66.99,3.26,0.722
+Charter,Grade 6,Math,Female,46.16,3.69,0.479
+Public,Grade 9,PE,Female,74.13,7.57,0.82
+Private,Grade 8,Computer Science,Female,87.55,1.67,0.791
+Public,Grade 11,Computer Science,Female,63.09,3.08,0.544
+Charter,Grade 9,History,Female,41.9,1.02,0.411
+Private,Grade 9,Art,Female,93.35,2.04,0.857
+Charter,Grade 9,English,Female,98.47,5.92,0.946
+Private,Grade 9,PE,Female,62.43,4.89,0.622
+Public,Grade 8,PE,Male,91.32,1.34,0.881
+Public,Grade 8,PE,Male,42.56,0.53,0.506
+Charter,Grade 7,Math,Male,99.35,0.69,0.896
+Public,Grade 10,Music,Male,70.56,1.98,0.615
+Charter,Grade 7,Science,Male,62,2.11,0.602
+Public,Grade 8,History,Male,98.98,1.24,1
+Public,Grade 6,Science,Male,89.6,6.9,0.827
+Public,Grade 11,Computer Science,Male,72.35,7.44,0.702
+Public,Grade 10,Science,Male,75.79,5.16,0.691
+Public,Grade 9,Music,Male,99.29,4.8,1
+Private,Grade 8,PE,Male,71.38,7.68,0.647
+Public,Grade 10,Math,Female,80.93,2.51,0.865
+Private,Grade 9,Music,Male,74.03,6.07,0.701
+Public,Grade 10,English,Female,98.16,1.18,1
+Public,Grade 11,Math,Male,74.46,0.61,0.762
+Private,Grade 9,Science,Female,65.17,1.84,0.603
+Private,Grade 7,Art,Male,71.74,2.24,0.777
+Private,Grade 7,Computer Science,Female,63.57,4.82,0.667
+Public,Grade 8,PE,Female,58.6,7.69,0.63
+Public,Grade 11,History,Male,46.61,6.58,0.551
+Charter,Grade 10,Computer Science,Male,89.94,6.62,0.923
+Private,Grade 11,Computer Science,Male,94.27,5.85,0.844
+Private,Grade 9,Science,Female,65.97,3.34,0.613
+Charter,Grade 6,PE,Female,81.7,3.12,0.776
+Private,Grade 7,Art,Female,75.16,2.84,0.747
+Private,Grade 10,English,Female,62.56,4.84,0.715
+Charter,Grade 11,Music,Female,47.13,0.79,0.429
+Charter,Grade 7,Music,Female,82.99,6.38,0.789
+Private,Grade 7,English,Female,98.32,3.5,1
+Private,Grade 6,English,Female,48.44,2.53,0.508
+Public,Grade 11,Art,Male,52.03,5.88,0.435
+Charter,Grade 6,History,Male,60.87,2.16,0.621
+Charter,Grade 6,PE,Male,82.1,4.44,0.818
+Charter,Grade 8,History,Male,47.03,0.61,0.554
+Charter,Grade 8,Science,Male,80.4,1.8,0.866
+Private,Grade 9,Computer Science,Female,60.34,6.89,0.666
+Charter,Grade 6,PE,Male,69.9,5.7,0.767
+Private,Grade 8,Music,Female,56.3,7.46,0.505
+Public,Grade 6,Science,Female,42.07,0.74,0.49
+Private,Grade 6,History,Female,84.08,0.84,0.82
+Charter,Grade 6,Computer Science,Male,95.45,5.51,1
+Charter,Grade 10,Music,Female,49.82,4.27,0.55
+Charter,Grade 8,Computer Science,Male,87.29,6.81,0.824
+Public,Grade 9,Computer Science,Male,70.46,6.81,0.746
+Private,Grade 7,Art,Male,81.04,6.96,0.854
+Public,Grade 7,Computer Science,Female,70.01,4.7,0.748
+Charter,Grade 7,English,Male,63.89,5.94,0.557
+Public,Grade 9,Art,Female,88.87,1.48,0.815
+Public,Grade 8,Math,Male,85.83,2.87,0.838
+Private,Grade 10,PE,Female,74.99,3.25,0.811
+Public,Grade 10,English,Female,86.32,5.73,0.816
+Private,Grade 7,Science,Female,85.02,4.44,0.88
+Charter,Grade 10,Math,Male,48.7,7.07,0.467
+Charter,Grade 7,Math,Male,76.23,4.85,0.8
+Public,Grade 8,Math,Male,81.53,6.03,0.818
+Charter,Grade 11,Music,Female,68.34,3.91,0.593
+Private,Grade 8,PE,Male,74.99,2.25,0.674
+Private,Grade 6,Computer Science,Male,69.12,2.23,0.749
+Public,Grade 7,PE,Male,69.24,4.67,0.719
+Charter,Grade 7,PE,Male,90.57,4.94,0.862
+Public,Grade 10,Computer Science,Female,82.06,4.76,0.725
+Private,Grade 8,Computer Science,Male,57.29,3.76,0.551
+Private,Grade 10,Computer Science,Female,45.42,3.35,0.358
+Charter,Grade 6,Math,Male,54.88,4.22,0.575
+Public,Grade 10,Math,Female,64.2,0.72,0.591
+Private,Grade 10,Math,Male,73.59,3.53,0.651
+Public,Grade 9,Computer Science,Male,89.94,3.81,0.916
+Charter,Grade 11,Music,Female,43.49,7.65,0.482
+Private,Grade 6,English,Male,57.33,5.47,0.57
+Public,Grade 8,English,Female,68.02,2.83,0.625
+Charter,Grade 10,Math,Male,42.21,7.25,0.33
+Public,Grade 9,Math,Male,92.39,7.94,0.981
+Private,Grade 9,Music,Male,81.17,7.96,0.769
+Private,Grade 9,History,Male,70.07,5.73,0.704
+Private,Grade 11,Computer Science,Male,90.95,2.82,0.975
+Charter,Grade 11,Music,Male,46.14,0.99,0.499
+Charter,Grade 11,Art,Male,66.52,5.48,0.735
+Public,Grade 7,Music,Male,97.59,1.74,0.897
+Public,Grade 6,Science,Female,82.11,3.15,0.835
+Charter,Grade 7,Science,Male,50.09,4.16,0.581
+Charter,Grade 8,Science,Male,80.43,7.13,0.874
+Public,Grade 7,Music,Female,90.22,7.84,0.85
+Public,Grade 6,Art,Male,49.05,2.22,0.475
+Charter,Grade 6,Music,Female,60.88,6.31,0.6
+Public,Grade 11,Science,Female,87.66,1.7,0.896
+Charter,Grade 9,Music,Female,98.13,4.56,0.936
+Public,Grade 7,Science,Male,69.69,2.16,0.601
+Private,Grade 8,PE,Male,44.82,3.46,0.463
+Private,Grade 11,Math,Female,64,2.76,0.576
+Charter,Grade 11,Music,Female,48.01,7.57,0.402
+Public,Grade 7,Music,Male,71.19,6.38,0.646
+Charter,Grade 7,History,Female,47.52,3.43,0.448
+Private,Grade 9,Computer Science,Female,53.23,6.69,0.433
+Private,Grade 8,Science,Female,94.41,6.44,0.959
+Charter,Grade 6,Math,Male,94.97,7.06,0.878
+Charter,Grade 8,English,Male,61.77,5.82,0.68
+Charter,Grade 7,Art,Male,71.83,7.48,0.63
+Public,Grade 10,PE,Male,70.56,4.45,0.64
+Private,Grade 9,Computer Science,Male,53.7,4.54,0.566
+Charter,Grade 7,Math,Female,97.71,5.91,0.9
+Private,Grade 7,History,Male,50.9,2.91,0.483
+Public,Grade 11,Science,Male,95.41,4.41,1
+Public,Grade 9,English,Male,52.59,3.91,0.444
+Public,Grade 7,Computer Science,Male,73.72,6.18,0.77
+Public,Grade 8,Math,Male,48.41,0.83,0.552
+Public,Grade 11,English,Female,87.15,3.29,0.868
+Charter,Grade 11,Math,Male,41.29,3.47,0.365
+Private,Grade 10,Music,Female,61.23,1.67,0.67
+Private,Grade 8,Music,Female,52.01,3.48,0.62
+Public,Grade 11,Computer Science,Female,59.22,7.34,0.652
+Charter,Grade 9,Music,Female,64.88,2.16,0.739
+Public,Grade 10,History,Female,97.25,5.35,0.987
+Private,Grade 7,English,Male,51.73,1.5,0.53
+Public,Grade 6,Science,Male,96.27,3.86,0.864
+Public,Grade 10,Music,Male,71.76,4.3,0.663
+Private,Grade 9,Math,Male,45.43,5.26,0.392
+Charter,Grade 7,Science,Female,69.62,6.3,0.784
+Private,Grade 9,Music,Male,75.06,2.41,0.807
+Public,Grade 11,PE,Male,77.88,6.41,0.79
+Private,Grade 10,Computer Science,Female,82.32,6.16,0.83
+Private,Grade 6,PE,Male,84.14,6.16,0.742
+Charter,Grade 11,Science,Female,97.62,5.4,1
+Public,Grade 9,Science,Female,69.6,5.55,0.758
+Charter,Grade 7,Music,Male,75.08,1.69,0.763
+Private,Grade 7,Math,Male,44.45,5.39,0.534
+Charter,Grade 8,Computer Science,Male,68.98,1.3,0.633
+Public,Grade 8,English,Female,81.05,4.05,0.834
+Charter,Grade 9,Math,Female,72.45,2.56,0.725
+Charter,Grade 6,History,Male,42.23,5.7,0.338
+Charter,Grade 9,Computer Science,Male,84.76,3.24,0.879
+Private,Grade 10,PE,Male,84.1,5.55,0.933
+Public,Grade 9,Music,Female,95.27,4.68,1
+Private,Grade 11,Music,Female,66.34,4.22,0.718
+Public,Grade 9,Science,Male,85.81,2.38,0.923
+Charter,Grade 6,Science,Male,66.04,5.77,0.741
+Public,Grade 6,Science,Female,78.03,6.73,0.773
+Private,Grade 10,Science,Male,51.81,4.5,0.457
+Charter,Grade 8,Math,Female,76.88,4.66,0.863
+Charter,Grade 10,Computer Science,Female,95.83,7.67,0.904
+Charter,Grade 9,English,Female,79.49,6.63,0.866
+Private,Grade 9,PE,Male,79.03,6.2,0.725
+Public,Grade 10,English,Male,62.84,3.27,0.682
+Private,Grade 7,PE,Male,46.22,0.93,0.45
+Charter,Grade 11,Math,Female,89.19,6.6,0.961
+Public,Grade 11,Art,Male,94.28,0.9,0.999
+Charter,Grade 9,Computer Science,Male,53.2,5.57,0.451
+Private,Grade 9,Music,Male,99.14,2.68,0.929
+Public,Grade 7,Art,Female,92.34,3.91,0.865
+Charter,Grade 10,History,Male,64.22,3.09,0.58
+Private,Grade 7,PE,Male,78.61,2.17,0.708
+Charter,Grade 11,Computer Science,Male,87.88,0.76,0.964
+Private,Grade 7,English,Male,54.93,6.9,0.585
+Charter,Grade 10,Computer Science,Male,99.13,2.39,1
+Charter,Grade 10,PE,Male,97.71,5.86,0.951
+Charter,Grade 7,History,Male,84.47,3.18,0.802
+Private,Grade 9,Science,Male,62.21,1.62,0.604
+Private,Grade 10,PE,Male,65.65,4.86,0.705
+Private,Grade 6,Math,Female,73.34,1.87,0.655
+Private,Grade 6,English,Female,87.04,1.65,0.861
+Public,Grade 7,Math,Male,98.4,3.04,0.907
+Public,Grade 11,PE,Female,45.1,1.03,0.466
+Private,Grade 8,English,Male,63.71,5.99,0.613
+Public,Grade 11,Science,Male,90.66,5.64,0.873
+Public,Grade 11,English,Female,44.57,3.81,0.403
+Private,Grade 7,Computer Science,Male,64.03,1.52,0.624
+Public,Grade 9,Science,Female,84.75,5.38,0.874
+Public,Grade 6,History,Male,78.03,5.89,0.862
+Public,Grade 7,Art,Male,60.03,4.3,0.69
+Charter,Grade 8,Music,Female,74.51,3.56,0.753
+Charter,Grade 8,English,Male,70.67,6.21,0.753
+Charter,Grade 10,History,Female,93.12,2.12,1
+Public,Grade 10,Science,Male,43.83,7.91,0.402
+Public,Grade 11,Science,Male,45.23,0.78,0.429
+Private,Grade 6,English,Female,86.77,2.64,0.952
+Public,Grade 11,Computer Science,Male,91.43,6.66,1
+Public,Grade 6,History,Male,88.89,7.49,0.943
+Charter,Grade 9,Art,Male,73.95,7.84,0.78
+Public,Grade 8,History,Female,78.35,2.81,0.728
+Public,Grade 10,PE,Male,65.4,7.73,0.711
+Public,Grade 7,Math,Male,74.71,6.4,0.75
+Public,Grade 10,PE,Male,46.72,5.46,0.516
+Public,Grade 9,History,Male,53.65,6.01,0.484
+Private,Grade 10,Math,Male,54.56,5.59,0.633
+Charter,Grade 9,English,Male,98.25,5.89,0.944
+Public,Grade 8,Science,Male,72.63,2.41,0.767
+Charter,Grade 10,PE,Female,46.09,5.09,0.438
+Public,Grade 10,Music,Female,47.39,4.84,0.41
+Charter,Grade 10,Science,Male,80.64,6.07,0.776
+Private,Grade 8,Math,Female,90.49,7.3,0.834
+Charter,Grade 10,Math,Male,45.22,4.49,0.359
+Charter,Grade 7,History,Female,56.99,4.77,0.644
+Public,Grade 11,English,Male,83.09,7,0.758
+Public,Grade 8,Math,Female,48.41,1.55,0.418
+Private,Grade 7,Art,Male,99.22,1.53,0.924
+Private,Grade 11,Science,Female,56.76,6.53,0.477
+Charter,Grade 7,Science,Female,83.48,5.28,0.741
+Public,Grade 10,Art,Male,60.42,2.33,0.512
+Public,Grade 10,Art,Female,50.58,6.23,0.54
+Public,Grade 11,Art,Female,74.66,6.4,0.653
+Charter,Grade 10,Science,Male,46.39,1.18,0.478
+Private,Grade 6,PE,Female,75.62,5.1,0.783
+Private,Grade 8,Art,Female,89.89,5.15,0.921
+Public,Grade 8,Math,Male,43.66,0.88,0.525
+Public,Grade 11,Music,Male,62.1,0.65,0.554
+Private,Grade 10,Computer Science,Female,66.15,5.81,0.583
+Charter,Grade 10,Math,Male,67.5,5.18,0.697
+Private,Grade 11,Music,Female,55.38,5.27,0.522
+Public,Grade 6,PE,Male,55.26,3.83,0.482
+Charter,Grade 10,English,Male,62.66,4.03,0.631
+Private,Grade 7,Music,Female,65.6,5.85,0.687
+Charter,Grade 7,Computer Science,Male,63.94,3.52,0.564
+Public,Grade 7,English,Female,97.18,6.49,0.984
+Public,Grade 9,PE,Female,87.29,3.68,0.945
+Private,Grade 10,History,Male,80.15,4.08,0.855
+Public,Grade 11,Computer Science,Male,58.73,4.92,0.662
+Public,Grade 8,Science,Male,97.92,6.82,0.946
+Charter,Grade 9,PE,Male,77.88,5.33,0.687
+Public,Grade 11,Computer Science,Male,65.86,7.35,0.638
+Private,Grade 11,Computer Science,Female,84.05,1.78,0.752
+Charter,Grade 11,Music,Female,57.43,4.77,0.594
+Private,Grade 11,Science,Female,70.39,0.86,0.788
+Public,Grade 11,English,Male,96.19,6.3,0.969
+Public,Grade 10,English,Male,63.34,2.28,0.561
+Charter,Grade 9,Computer Science,Female,76.57,5.74,0.702
+Charter,Grade 7,PE,Male,46.75,4.96,0.403
+Charter,Grade 7,Math,Female,40.07,3.88,0.385
+Public,Grade 6,English,Female,82.21,4.31,0.758
+Public,Grade 6,Science,Male,78.35,1.51,0.835
+Private,Grade 6,Science,Male,52.99,7.79,0.582
+Private,Grade 6,Science,Female,91.96,1.74,1
+Public,Grade 11,English,Male,71.82,1.18,0.707
+Private,Grade 8,Computer Science,Male,98.51,3.82,0.977
+Charter,Grade 6,PE,Female,60.57,6.12,0.596
+Private,Grade 8,Art,Female,46.46,1.44,0.55
+Private,Grade 10,Art,Female,68.88,2.72,0.681
+Private,Grade 11,Science,Male,82.59,6.62,0.897
+Private,Grade 6,PE,Female,71.76,7.86,0.777
+Private,Grade 8,Music,Male,75.7,4.79,0.682
+Public,Grade 7,PE,Female,84.2,5.13,0.857
+Private,Grade 9,Computer Science,Female,81.52,3.13,0.914
+Private,Grade 8,Computer Science,Male,93.35,4.99,1
+Charter,Grade 10,History,Male,92.8,4.72,0.865
+Charter,Grade 6,Math,Female,91.07,6.91,0.878
+Private,Grade 8,English,Female,93.08,3.75,0.951
+Public,Grade 10,Art,Male,57.64,0.65,0.656
+Private,Grade 9,Computer Science,Female,42.3,3.92,0.401
+Private,Grade 8,PE,Male,81.93,1.21,0.773
+Private,Grade 8,English,Female,64.02,0.63,0.661
+Private,Grade 7,PE,Male,99.02,3.55,0.945
+Private,Grade 9,Science,Male,53.33,6.16,0.489
+Public,Grade 6,PE,Female,99.03,2.71,1
+Private,Grade 8,Computer Science,Male,94.93,5.81,0.867
+Charter,Grade 6,Music,Female,74.08,7.36,0.75
+Charter,Grade 6,English,Male,76.11,3.03,0.755
+Public,Grade 7,History,Male,63.61,7.58,0.646
+Charter,Grade 8,Music,Female,80.97,5.26,0.865
+Private,Grade 11,Computer Science,Female,96.75,2.32,1
+Public,Grade 11,Science,Male,60.91,6.29,0.549
+Charter,Grade 9,Science,Male,86.15,6.44,0.794
+Charter,Grade 9,Music,Female,67.17,5.06,0.68
+Private,Grade 10,Computer Science,Male,91.34,2.44,0.997
+Public,Grade 9,Math,Male,59.57,3.54,0.686
+Private,Grade 6,Computer Science,Female,41.08,2.44,0.374
+Public,Grade 10,Science,Male,93.13,5.68,1
+Charter,Grade 6,Science,Female,64.95,4.99,0.611
+Private,Grade 9,Science,Male,83.39,1.1,0.917
+Charter,Grade 8,PE,Female,93.86,1.53,0.909
+Charter,Grade 7,History,Female,67.95,7.61,0.668
+Private,Grade 9,History,Female,75.04,2.35,0.746
+Private,Grade 8,Art,Female,76.44,0.98,0.857
+Private,Grade 6,PE,Male,83.79,4.24,0.802
+Charter,Grade 7,Math,Male,50.2,0.82,0.487
+Public,Grade 7,English,Female,55.03,6.39,0.595
+Private,Grade 6,PE,Female,69.28,3.62,0.779
+Charter,Grade 6,English,Female,89.75,2.1,0.961
+Private,Grade 9,Music,Female,95.53,2.76,1
+Charter,Grade 10,Science,Male,86.52,3.12,0.855
+Private,Grade 6,Computer Science,Male,72.21,4.91,0.793
+Public,Grade 10,History,Male,64.75,4.96,0.601
+Private,Grade 11,English,Female,95.17,4.63,0.916
+Charter,Grade 7,PE,Male,88.32,0.9,0.947
+Charter,Grade 7,Science,Female,54.47,3.37,0.607
+Charter,Grade 10,History,Female,94.51,5,1
+Public,Grade 8,Math,Male,86.18,3.76,0.827
+Private,Grade 8,English,Female,80.05,7.95,0.889
+Public,Grade 8,Computer Science,Male,82.16,1.72,0.9
+Charter,Grade 10,Math,Female,44.2,5.02,0.487
+Private,Grade 7,History,Male,99.64,4.8,1
+Private,Grade 8,English,Male,95.18,3.99,0.892
+Charter,Grade 8,Art,Male,88.81,6.19,0.85
+Charter,Grade 8,Music,Female,59.97,3.4,0.594
+Private,Grade 10,Science,Male,46.69,2.16,0.504
+Private,Grade 8,Science,Male,46.74,4.45,0.381
+Charter,Grade 8,Music,Female,99.09,3.02,0.907
+Public,Grade 9,Math,Male,84.65,2.78,0.873
+Private,Grade 11,PE,Female,70.06,2.14,0.601
+Private,Grade 8,Math,Female,42.23,3.23,0.496
+Charter,Grade 9,Music,Male,62.47,2.06,0.609
+Private,Grade 8,History,Female,84.22,6.23,0.844
+Charter,Grade 9,Music,Male,45.68,1.15,0.513
+Private,Grade 9,History,Female,93.08,5.57,1
+Public,Grade 7,Music,Male,51.14,3.45,0.49
+Charter,Grade 7,English,Male,53.28,1.37,0.538
+Private,Grade 11,Science,Female,70.46,3.82,0.737
+Charter,Grade 8,Music,Female,87.84,2.58,0.967
+Public,Grade 8,English,Male,85.56,5.52,0.771
+Public,Grade 11,Computer Science,Male,67.21,1.4,0.635
+Private,Grade 8,Science,Female,72.15,7.01,0.798
+Private,Grade 6,Art,Male,61.31,1.84,0.575
+Charter,Grade 10,Art,Female,41.37,3.59,0.407
+Private,Grade 10,PE,Female,67.29,0.7,0.727
+Charter,Grade 8,Music,Female,69.79,6.66,0.776
+Public,Grade 10,Music,Female,94.14,6.67,0.859
+Charter,Grade 10,History,Female,47.96,4.01,0.553
+Public,Grade 8,English,Female,69.59,6.04,0.717
+Charter,Grade 8,History,Male,98.19,4.37,1
+Private,Grade 6,English,Male,57.11,4.25,0.5
+Public,Grade 8,Music,Female,77.7,0.65,0.856
+Private,Grade 6,Computer Science,Male,45.62,3.15,0.519
+Public,Grade 8,Music,Male,93.91,6.02,0.883
+Private,Grade 7,PE,Male,62.62,3.9,0.636
+Charter,Grade 11,Science,Female,77.5,0.9,0.867
+Public,Grade 7,History,Female,48.72,2.14,0.418
+Private,Grade 9,Computer Science,Female,70.18,0.85,0.683
+Public,Grade 10,Science,Female,93.42,3.01,0.888
+Public,Grade 11,Science,Female,59.89,1.33,0.576
+Public,Grade 8,Math,Male,98.02,7.36,0.905
+Private,Grade 7,English,Male,92.37,3.2,0.957
+Charter,Grade 11,Art,Female,50.26,7.9,0.48
+Private,Grade 6,Math,Female,60.55,0.65,0.628
+Private,Grade 11,Art,Female,96.54,5.53,1
+Public,Grade 10,Computer Science,Male,67.1,0.88,0.703
+Public,Grade 10,Math,Male,73.34,2.14,0.679
+Private,Grade 8,Math,Male,65.33,6.63,0.613
+Charter,Grade 9,Music,Female,68.64,5.51,0.597
+Public,Grade 9,Art,Female,82.58,4,0.813
+Public,Grade 7,Math,Male,48.21,6.67,0.454
+Public,Grade 6,History,Female,72.94,2.2,0.74
+Private,Grade 6,Science,Female,61.92,6.44,0.552
+Private,Grade 8,Science,Female,44.86,2.81,0.471
+Private,Grade 7,History,Female,62.09,1.89,0.599
+Public,Grade 8,Math,Male,65.48,5.39,0.746
+Charter,Grade 7,Science,Male,42.71,6.27,0.456
+Private,Grade 9,Art,Female,41.28,2.72,0.51
+Private,Grade 9,English,Female,88.85,5.65,0.983
+Public,Grade 10,Math,Female,63.09,2.37,0.56
+Public,Grade 6,Science,Female,47.85,2.3,0.401
+Charter,Grade 10,Math,Male,94.26,5.06,1
+Charter,Grade 10,Math,Male,67.17,2.44,0.753
+Charter,Grade 11,Music,Female,66.33,3.76,0.678
+Private,Grade 10,PE,Male,63.9,3.18,0.561
+Public,Grade 7,Computer Science,Female,50.54,4.58,0.464
+Public,Grade 7,Art,Male,59.07,3.51,0.521
+Public,Grade 11,Music,Male,65.03,2.25,0.588
+Public,Grade 10,Math,Male,56.56,2.82,0.512
+Private,Grade 10,Math,Female,74.77,1.49,0.697
+Private,Grade 6,English,Female,77.35,2.46,0.708
+Private,Grade 10,English,Female,70.72,7.58,0.651
+Charter,Grade 10,PE,Female,60.9,1.31,0.672
+Private,Grade 8,Computer Science,Female,73.62,3.9,0.701
+Charter,Grade 10,Computer Science,Female,42.36,4.03,0.37
+Private,Grade 8,Music,Male,92.6,0.86,0.877
+Private,Grade 6,Computer Science,Female,75.56,0.61,0.695
+Private,Grade 11,English,Female,69.41,5.09,0.754
+Private,Grade 10,History,Male,55.8,2.11,0.611
+Private,Grade 9,Music,Male,68.53,3.75,0.701
+Private,Grade 7,English,Male,42.97,7.5,0.409
+Private,Grade 8,Science,Female,49.21,4.18,0.48
+Public,Grade 11,History,Male,71.42,2.49,0.663
+Public,Grade 7,Math,Female,75.62,4.32,0.669
+Public,Grade 7,English,Female,73.46,6.45,0.737
+Public,Grade 8,PE,Male,63.35,4.85,0.657
+Private,Grade 7,History,Male,83.49,4.52,0.863
+Private,Grade 8,Science,Male,82.84,7.59,0.878
+Private,Grade 9,Computer Science,Female,78.21,2.67,0.846
+Private,Grade 6,PE,Male,97.6,4.91,0.966
+Charter,Grade 6,Computer Science,Female,81.68,3.31,0.852
+Charter,Grade 9,English,Female,61.34,3.02,0.567
+Public,Grade 6,Art,Male,64.99,5.24,0.685
+Private,Grade 9,English,Male,78.8,3.69,0.861
+Charter,Grade 9,English,Male,53.33,5.58,0.518
+Public,Grade 11,Computer Science,Male,76.44,6.08,0.676
+Charter,Grade 9,Computer Science,Male,54.41,7.94,0.504
+Private,Grade 9,PE,Female,91.24,7.69,0.817
+Charter,Grade 6,English,Female,56.14,2.11,0.543
+Public,Grade 6,PE,Male,86.05,7.07,0.893
+Public,Grade 9,Science,Female,54.46,3.4,0.503
+Public,Grade 8,PE,Female,91.32,4.44,0.995
+Charter,Grade 7,Art,Male,89.4,1.71,0.964
+Public,Grade 8,PE,Female,45.5,7.8,0.369
+Private,Grade 6,Art,Female,41.57,7.84,0.342
+Private,Grade 8,History,Male,87.53,7.34,0.917
+Charter,Grade 10,English,Male,62.3,4.72,0.664
+Charter,Grade 9,Music,Male,69.24,6.09,0.647
+Charter,Grade 8,Music,Female,73.75,6.45,0.685
+Charter,Grade 8,PE,Female,91.67,2.62,0.881
+Charter,Grade 11,English,Female,46.43,4.81,0.48
+Public,Grade 6,PE,Female,63.74,1.33,0.576
+Private,Grade 9,Music,Female,42.89,1.29,0.346
+Charter,Grade 6,History,Male,94.48,1.94,0.857
+Public,Grade 9,Science,Female,45.82,1.63,0.494
+Public,Grade 8,Music,Female,95.38,5.31,0.858
+Public,Grade 6,Math,Female,74.04,5.68,0.663
+Private,Grade 11,Art,Female,95.45,3.36,1
+Charter,Grade 10,Computer Science,Male,64.81,6.59,0.593
+Private,Grade 10,Science,Male,63.65,7.99,0.684
+Public,Grade 7,Science,Female,47.04,7.02,0.435
+Public,Grade 11,PE,Female,63.43,7.52,0.604
+Private,Grade 10,Computer Science,Female,84.04,2.26,0.933
+Charter,Grade 8,Art,Female,83.03,7.65,0.876
+Private,Grade 11,Music,Female,98.35,7.29,1
+Private,Grade 8,Computer Science,Female,62.03,5.55,0.695
+Private,Grade 8,Art,Male,79.48,2.25,0.729
+Private,Grade 9,English,Female,95.13,2.98,1
+Charter,Grade 11,Science,Male,51.69,4.39,0.544
+Private,Grade 9,PE,Female,81.33,2.01,0.761
+Charter,Grade 7,English,Female,88.8,4.13,0.816
+Charter,Grade 11,History,Male,48.42,7.78,0.448
+Charter,Grade 11,Computer Science,Male,44.34,6.53,0.4
+Private,Grade 6,English,Male,65.41,1.23,0.746
+Private,Grade 8,PE,Female,81.65,0.54,0.789
+Public,Grade 6,Math,Male,40.03,6.4,0.343
+Private,Grade 11,English,Male,67.23,7.09,0.675
+Public,Grade 10,Music,Male,64.62,1.91,0.628
+Private,Grade 10,English,Male,85.09,7.67,0.874
+Public,Grade 10,Art,Female,67.69,6.43,0.764
+Private,Grade 6,English,Male,82.6,1.03,0.911
+Private,Grade 7,Math,Male,87.24,5.77,0.881
+Charter,Grade 11,Science,Male,59.26,2.61,0.67
+Public,Grade 10,Math,Male,75.46,2.41,0.662
+Public,Grade 10,Science,Female,50.27,4.92,0.589
+Public,Grade 7,PE,Male,99.51,5.88,1
+Public,Grade 6,Music,Female,62.47,3.16,0.552
+Public,Grade 9,Art,Female,81.66,3.38,0.727
+Private,Grade 8,Art,Female,41.14,7.41,0.321
+Public,Grade 9,Math,Male,56.14,2.13,0.478
+Private,Grade 9,English,Male,66.55,1.94,0.713
+Private,Grade 7,PE,Male,40.7,7.61,0.487
+Private,Grade 11,English,Male,53.12,2.42,0.448
+Private,Grade 10,English,Female,43.15,6.34,0.428
+Private,Grade 11,English,Male,53.83,3.39,0.503
+Public,Grade 11,English,Female,85.08,7.14,0.828
+Public,Grade 9,Science,Female,53.36,4.2,0.527
+Charter,Grade 7,Math,Female,79.12,1.85,0.825
+Charter,Grade 10,Computer Science,Male,62.66,5.72,0.683
+Private,Grade 11,Math,Male,74.87,6.37,0.732
+Private,Grade 11,Science,Female,53.15,3.73,0.474
+Charter,Grade 11,History,Female,54.74,7.96,0.451
+Private,Grade 9,History,Female,54.14,3.05,0.507
+Public,Grade 6,Computer Science,Female,57.91,7.85,0.673
+Charter,Grade 8,Art,Female,47.29,6.82,0.409
+Public,Grade 8,Computer Science,Female,56.61,5.68,0.622
+Public,Grade 10,Music,Female,57.07,4.48,0.543
+Private,Grade 8,History,Male,47.93,7.56,0.515
+Private,Grade 11,Science,Female,40.92,4.17,0.386
+Public,Grade 9,Music,Female,75.84,6.59,0.755
+Private,Grade 10,PE,Male,88.51,3.94,0.857
+Public,Grade 10,PE,Male,88,6.92,0.826
+Private,Grade 10,Science,Female,85.1,5.65,0.797
+Public,Grade 9,Math,Male,74.3,7.51,0.764
+Public,Grade 10,Computer Science,Male,56.04,3.04,0.591
+Public,Grade 11,Art,Female,50.64,5.47,0.46
+Public,Grade 10,Science,Female,67.28,1.55,0.651
+Charter,Grade 10,Science,Female,68.83,1.57,0.741
+Private,Grade 10,Math,Male,80.96,6.1,0.84
+Charter,Grade 8,Computer Science,Female,61.2,6.89,0.681
+Charter,Grade 9,Art,Male,77.3,6.53,0.798
+Private,Grade 9,PE,Male,88.27,5.54,0.808
+Charter,Grade 10,PE,Male,74.16,2.3,0.692
+Public,Grade 11,Math,Female,92.23,3.86,0.914
+Public,Grade 6,Science,Female,95.18,3.83,1
+Charter,Grade 10,English,Female,49.69,4.37,0.431
+Private,Grade 10,Music,Male,85.68,2.8,0.916
+Charter,Grade 11,PE,Male,74.79,1.24,0.747
+Private,Grade 8,PE,Female,85.11,7.93,0.899
+Charter,Grade 10,Math,Female,73.69,4.91,0.802
+Charter,Grade 8,Science,Male,54.4,6.23,0.524
+Private,Grade 10,Computer Science,Female,41.06,5.26,0.415
+Public,Grade 10,Art,Female,77.66,5.46,0.772
+Public,Grade 9,English,Female,40.13,4.16,0.392
+Private,Grade 11,History,Male,50.6,1.31,0.586
+Public,Grade 10,Science,Female,43.76,4.17,0.418
+Private,Grade 9,Math,Female,75.42,0.67,0.845
+Public,Grade 6,History,Female,48.78,3.57,0.497
+Private,Grade 7,PE,Female,99.97,4.81,0.998
+Charter,Grade 7,Computer Science,Male,74.77,1.57,0.81
+Public,Grade 10,Science,Male,61.67,5.14,0.636
+Private,Grade 10,English,Female,51.76,6.02,0.471
+Charter,Grade 6,PE,Female,86.99,3.65,0.883
+Private,Grade 10,History,Male,66.68,3.29,0.707
+Private,Grade 7,PE,Male,76.86,2.8,0.671
+Charter,Grade 7,Computer Science,Female,71.51,4.79,0.752
+Public,Grade 7,Science,Female,84.33,1.31,0.797
+Private,Grade 10,Science,Female,51.64,4.36,0.561
+Charter,Grade 9,Math,Male,73.39,3.78,0.699
+Public,Grade 11,Computer Science,Male,49.46,3.49,0.418
+Private,Grade 8,History,Male,87.7,7.06,0.819
+Private,Grade 11,Computer Science,Male,81.18,6.36,0.894
+Charter,Grade 6,History,Male,88.14,2.64,0.935
+Public,Grade 10,Art,Female,48.53,0.52,0.428
+Private,Grade 8,Art,Female,51.37,7.13,0.6
+Public,Grade 7,Computer Science,Female,44.1,2.66,0.352
+Public,Grade 8,Music,Male,50.51,6.41,0.493
+Public,Grade 6,Computer Science,Male,75.44,7.8,0.853
+Public,Grade 11,History,Female,49.28,3.46,0.5
+Public,Grade 10,Art,Female,56.94,1.87,0.65
+Public,Grade 9,History,Female,47.79,5.56,0.513
+Private,Grade 7,PE,Male,68.87,0.93,0.698
+Public,Grade 7,Music,Female,91.34,7.55,0.843
+Private,Grade 9,Science,Female,58.91,1.35,0.629
+Private,Grade 11,English,Female,98.78,1.53,0.892
+Charter,Grade 8,Science,Male,71.73,7.42,0.784
+Private,Grade 6,Math,Male,65.29,5.32,0.63
+Public,Grade 8,Computer Science,Female,73.13,3.16,0.727
+Private,Grade 10,PE,Male,74.97,3.93,0.727
+Charter,Grade 10,History,Male,66.17,7.49,0.633
+Charter,Grade 7,Computer Science,Female,44.87,6.43,0.436
+Public,Grade 11,Art,Female,69.41,0.65,0.759
+Charter,Grade 7,English,Male,54.66,1.31,0.454
+Charter,Grade 9,Music,Male,41.57,2.54,0.367
+Private,Grade 10,Computer Science,Female,83.23,1.88,0.809
+Charter,Grade 6,Math,Female,91.57,2.7,0.879
+Charter,Grade 8,Science,Female,55.7,6.97,0.492
+Private,Grade 11,English,Male,65.28,6.63,0.63
+Private,Grade 9,English,Female,71.21,3.68,0.766
+Public,Grade 8,Music,Male,42.7,1.36,0.462
+Public,Grade 10,PE,Male,42.18,3.31,0.322
+Private,Grade 11,PE,Female,91.77,3.85,0.94
+Private,Grade 9,Science,Male,96.59,1.52,0.895
+Public,Grade 10,History,Male,68.78,5.29,0.692
+Charter,Grade 11,Science,Male,77.64,6.92,0.858
+Charter,Grade 11,Art,Male,48.95,0.67,0.56
+Charter,Grade 7,History,Male,78.31,1.81,0.812
+Public,Grade 10,Art,Female,80.39,3.47,0.715
+Charter,Grade 10,History,Female,45.35,3.55,0.476
+Charter,Grade 8,Art,Male,85.56,2.36,0.925
+Private,Grade 8,Math,Female,44.55,1.28,0.542
+Public,Grade 11,Science,Male,95.65,0.93,1
+Charter,Grade 6,Computer Science,Male,42.5,4.35,0.395
+Private,Grade 6,History,Female,62.09,5.99,0.531
+Public,Grade 11,History,Female,52,2.09,0.576
+Private,Grade 6,PE,Male,78.83,1.37,0.847
+Private,Grade 10,Math,Male,63.36,7.98,0.538
+Charter,Grade 9,History,Male,85.26,5.45,0.772
+Private,Grade 11,Computer Science,Male,76.72,1.68,0.781
+Charter,Grade 8,English,Female,52.33,4.59,0.547
+Private,Grade 9,Art,Male,87.27,5.45,0.827
+Public,Grade 10,Science,Male,59.34,4.65,0.548
+Private,Grade 8,Math,Female,65.31,0.96,0.654
+Public,Grade 9,Art,Female,69.99,2.09,0.773
+Charter,Grade 8,Science,Male,98.37,0.54,0.956
+Charter,Grade 6,Science,Female,98.41,0.82,0.95
+Public,Grade 10,Computer Science,Female,70.94,4.33,0.661
+Private,Grade 7,English,Male,91.4,4.33,0.842
+Public,Grade 10,Art,Female,62.83,3.14,0.531
+Public,Grade 8,Music,Male,75.32,0.77,0.717
+Charter,Grade 9,Music,Male,62.94,6.05,0.558
+Charter,Grade 9,Art,Male,55.97,6.97,0.595
+Charter,Grade 6,Math,Male,50.95,0.88,0.551
+Charter,Grade 10,PE,Female,85.73,7.19,0.885
+Private,Grade 11,English,Male,58.96,7.52,0.681
+Private,Grade 6,History,Female,97.6,3.2,1
+Charter,Grade 6,PE,Female,79.23,6.87,0.865
+Public,Grade 6,History,Male,99.13,5.56,0.989
+Public,Grade 6,History,Female,93.45,1.52,0.875
+Public,Grade 6,Music,Female,75.15,0.53,0.81
+Public,Grade 9,History,Female,94.74,2.29,1
+Charter,Grade 8,History,Female,98.56,7.73,0.901
+Charter,Grade 7,PE,Female,56.42,6.81,0.649
+Public,Grade 6,Music,Female,72,0.87,0.683
+Public,Grade 11,History,Male,95.78,7.44,0.958
+Public,Grade 8,PE,Male,91.26,4.37,0.953
+Private,Grade 8,Science,Female,65.53,3.27,0.62
+Charter,Grade 10,Science,Male,47.3,6.74,0.424
+Charter,Grade 9,PE,Female,81.7,6.62,0.81
+Public,Grade 10,Art,Female,40.18,3.48,0.387
+Charter,Grade 10,Math,Female,88.88,1.64,0.793
+Charter,Grade 7,Science,Female,93.01,6.3,0.971
+Public,Grade 10,Music,Male,56.94,6.45,0.606
+Private,Grade 7,English,Male,66.86,2.18,0.72
+Private,Grade 8,English,Female,82.59,1.11,0.888
+Charter,Grade 11,English,Male,44.91,4.67,0.506
+Public,Grade 8,Art,Female,86.49,7.05,0.834
+Charter,Grade 8,Computer Science,Female,41.51,5.55,0.5
+Private,Grade 7,History,Female,58.82,3.25,0.674
+Public,Grade 8,Science,Female,75.52,1.53,0.823
+Private,Grade 7,English,Male,57.7,6.6,0.673
+Public,Grade 8,History,Female,93.85,7.33,1
+Private,Grade 8,Math,Male,67.75,7.59,0.701
+Public,Grade 10,Science,Male,68.66,3.77,0.682
+Charter,Grade 8,Science,Female,69.08,6.99,0.672
+Public,Grade 7,Art,Male,94.93,4.16,0.888
+Charter,Grade 10,History,Female,73.29,7.88,0.659
+Private,Grade 10,Computer Science,Female,51.08,6.53,0.577
+Private,Grade 10,Science,Male,62.97,0.77,0.604
+Public,Grade 6,English,Male,87.95,3.33,0.816
+Private,Grade 8,PE,Female,69.61,6.47,0.706
+Charter,Grade 10,English,Female,58.38,5.79,0.564
+Private,Grade 6,Math,Male,65.46,2.96,0.662
+Private,Grade 11,Math,Female,66.66,6.84,0.748
+Public,Grade 9,Art,Female,90.88,5.9,0.941
+Public,Grade 10,Music,Male,98.94,6.04,0.991
+Public,Grade 9,Computer Science,Female,71.96,2.76,0.805
+Private,Grade 11,English,Female,82.8,5.71,0.817
+Charter,Grade 11,Science,Male,76.26,4.59,0.793
+Private,Grade 10,Art,Female,54.74,6.33,0.476
+Public,Grade 7,History,Male,89.22,3.42,0.889
+Public,Grade 10,PE,Female,86.08,7.98,0.933
+Charter,Grade 8,PE,Male,88.35,1.04,0.804
+Private,Grade 8,PE,Male,53.44,4.17,0.608
+Public,Grade 9,History,Female,81.92,1.16,0.872
+Private,Grade 6,History,Male,99.17,2.88,1
+Public,Grade 8,Computer Science,Female,69.6,4.25,0.773
+Public,Grade 7,Math,Male,60.98,4.27,0.62
+Charter,Grade 8,Science,Male,83.94,5.94,0.749
+Public,Grade 8,PE,Male,52.88,3.33,0.508
+Public,Grade 8,Computer Science,Female,59.35,1.6,0.517
+Public,Grade 8,Math,Female,41.81,3.39,0.461
+Public,Grade 10,Computer Science,Male,69.93,3.89,0.647
+Charter,Grade 8,PE,Male,77.6,1.05,0.698
+Private,Grade 10,Math,Male,66.52,1.1,0.691
+Public,Grade 9,English,Female,94.27,1.65,0.847
+Charter,Grade 7,History,Female,70.05,5.35,0.63
+Public,Grade 7,Computer Science,Male,60.14,0.68,0.524
+Public,Grade 10,Art,Female,86.93,6.48,0.81
+Private,Grade 9,Math,Male,70.47,4.69,0.778
+Private,Grade 8,PE,Female,82.46,4.72,0.777
+Charter,Grade 9,History,Male,86.02,5.99,0.769
+Public,Grade 9,History,Female,44.59,0.72,0.406
+Private,Grade 7,Music,Male,91.33,6.3,0.866
+Charter,Grade 7,History,Male,58.1,4.98,0.672
+Charter,Grade 9,History,Female,97.13,3.69,0.99
+Charter,Grade 11,English,Male,57.86,0.74,0.585
+Private,Grade 7,Math,Female,42.11,6.66,0.396
+Private,Grade 10,History,Male,43.13,5.8,0.512
+Private,Grade 11,Math,Female,76.28,0.91,0.711
+Private,Grade 6,Art,Female,55.79,4.56,0.567
+Private,Grade 7,Music,Female,91.81,1.58,0.892
+Charter,Grade 8,Music,Female,84.51,7.8,0.897
+Charter,Grade 11,Music,Female,82.2,2.85,0.906
+Private,Grade 10,Computer Science,Female,57.73,5.85,0.517
+Private,Grade 6,History,Male,58.36,6.57,0.531
+Private,Grade 7,Math,Female,44.58,7.65,0.412
+Private,Grade 6,History,Male,93.72,4.86,0.911
+Public,Grade 8,Computer Science,Female,59.21,4.45,0.539
+Charter,Grade 8,History,Female,98.69,6.2,1
+Charter,Grade 6,Computer Science,Male,93.13,4.67,0.924
+Private,Grade 8,Math,Female,53.34,5.75,0.6
+Charter,Grade 6,Art,Male,78.5,1.3,0.709
+Charter,Grade 9,Art,Male,89.09,1.31,0.924
+Private,Grade 9,Art,Female,62.03,1.36,0.612
+Charter,Grade 9,English,Female,75.52,6.28,0.779
+Public,Grade 6,History,Male,47.24,7.03,0.489
+Public,Grade 11,Art,Female,47.01,4.08,0.535
+Charter,Grade 8,PE,Male,51.06,5.95,0.447
+Public,Grade 6,Music,Female,47.59,2.01,0.485
+Private,Grade 7,Science,Female,87.07,7.47,0.931
+Charter,Grade 9,Science,Male,73.79,3.08,0.695
+Public,Grade 9,Science,Female,48.43,3.68,0.404
+Public,Grade 8,Math,Female,55.15,6.28,0.62
+Private,Grade 11,English,Male,77.03,7.71,0.813
+Private,Grade 10,Math,Female,89.55,6.57,0.941
+Private,Grade 6,English,Male,90.77,4.51,0.81
+Private,Grade 11,English,Male,57.1,6.87,0.471
+Charter,Grade 11,Math,Male,84.36,7.07,0.764
+Charter,Grade 11,Math,Male,96.66,7.11,0.953
+Private,Grade 8,History,Male,79.72,5.64,0.745
+Private,Grade 6,History,Male,69.36,3.29,0.656
+Charter,Grade 8,Art,Male,64.85,2.25,0.581
+Private,Grade 9,English,Male,93.51,1.68,0.993
+Private,Grade 8,Music,Male,67.79,2.28,0.579
+Charter,Grade 9,Art,Male,84.1,5.16,0.89
+Public,Grade 8,Music,Female,78.36,3.65,0.843
+Private,Grade 9,PE,Female,79,7.05,0.826
+Public,Grade 6,Science,Female,79.51,0.66,0.716
+Public,Grade 8,Music,Female,88.43,5.44,0.957
+Public,Grade 11,Art,Female,59.5,6.38,0.655
+Public,Grade 8,Art,Male,81.06,4.45,0.892
+Charter,Grade 6,History,Male,70.35,5.53,0.697
+Private,Grade 7,History,Female,52.84,6.55,0.555
+Public,Grade 7,Music,Male,68.78,0.85,0.734
+Public,Grade 7,Math,Female,51.28,6.87,0.597
+Public,Grade 10,English,Female,59.29,5.24,0.665
+Charter,Grade 7,Music,Female,89.42,1.45,0.822
+Public,Grade 11,History,Male,80.73,7.9,0.722
+Private,Grade 7,PE,Male,77.79,7.07,0.789
+Public,Grade 8,History,Female,43.21,7.13,0.495
+Charter,Grade 10,History,Male,68.98,1.54,0.761
+Charter,Grade 6,English,Male,86.23,3.46,0.861
+Charter,Grade 11,Art,Male,76.33,1.32,0.812
+Private,Grade 11,Math,Female,80.95,6.02,0.729
+Public,Grade 7,Science,Male,62.41,5.52,0.667
+Private,Grade 10,Science,Male,63.56,4.65,0.554
+Public,Grade 6,Science,Male,69.58,7.26,0.635
+Private,Grade 8,PE,Female,59.66,0.64,0.617
+Public,Grade 8,Art,Male,77.63,6.05,0.854
+Private,Grade 10,Art,Male,88.23,1.42,0.878
+Public,Grade 6,PE,Female,49.25,5.12,0.469
+Charter,Grade 6,History,Male,52.31,3.6,0.553
+Charter,Grade 6,Computer Science,Male,99.34,4.53,1
+Charter,Grade 11,Math,Female,74.88,2.81,0.754
+Public,Grade 9,Math,Female,56.75,5.92,0.574
+Public,Grade 11,Art,Female,97.15,4.05,1
+Private,Grade 11,PE,Female,94.57,0.62,0.937
+Private,Grade 10,PE,Female,67.48,2.14,0.601
+Private,Grade 6,Science,Male,93.74,6.84,0.942
+Charter,Grade 7,Science,Female,97.86,4.25,0.962
+Charter,Grade 11,Science,Male,99.18,7.87,1
+Private,Grade 10,Music,Male,64.72,1.35,0.644
+Public,Grade 6,Computer Science,Female,82.51,6.35,0.88
+Charter,Grade 7,English,Male,66.74,2.84,0.633
+Public,Grade 7,English,Male,86.17,7.11,0.954
+Charter,Grade 11,Music,Male,64.76,2.14,0.563
+Charter,Grade 7,PE,Female,57.84,1.8,0.637
+Charter,Grade 11,PE,Female,72.83,6.8,0.687
+Charter,Grade 9,PE,Male,64.76,3.74,0.594
+Private,Grade 9,Science,Female,98.43,3.81,0.904
+Charter,Grade 9,PE,Male,69.23,1.59,0.637
+Private,Grade 7,Music,Female,95.62,3.13,0.907
+Private,Grade 9,Math,Male,46.48,3.41,0.518
+Public,Grade 8,Math,Female,49.43,0.73,0.469
+Public,Grade 11,Music,Male,52.78,2.01,0.472
+Private,Grade 8,Science,Male,87.01,7.01,0.874
+Public,Grade 11,Math,Male,72.27,3.43,0.727
+Charter,Grade 9,English,Female,51.6,1.66,0.434
+Private,Grade 11,Computer Science,Male,89.07,7.62,0.962
+Public,Grade 6,Art,Female,64.45,6.28,0.579
+Private,Grade 7,Science,Female,73.77,4.45,0.788
+Private,Grade 11,PE,Female,50.18,3.61,0.563
+Private,Grade 10,Computer Science,Female,47.26,7.13,0.457
+Private,Grade 8,Math,Female,90.31,2.12,0.924
+Private,Grade 10,English,Male,56.31,5.76,0.541
+Private,Grade 10,Music,Male,54.52,2.05,0.515
+Private,Grade 11,PE,Female,50.72,1.96,0.41
+Public,Grade 8,Science,Female,46.49,6.56,0.38
+Private,Grade 6,Computer Science,Male,43.2,3.62,0.491
+Private,Grade 9,Art,Male,92.38,6.75,0.865
+Private,Grade 10,PE,Female,41.46,2.34,0.399
+Charter,Grade 6,Science,Female,99.66,2.44,0.944
+Private,Grade 11,Science,Female,82.33,4.9,0.91
+Private,Grade 11,Music,Male,56.64,6.16,0.656
+Private,Grade 8,Math,Male,88.04,3.64,0.899
+Private,Grade 8,Music,Female,88.05,6.84,0.919
+Public,Grade 10,Art,Male,62.7,6.52,0.68
+Private,Grade 8,Art,Male,84.4,6.46,0.896
+Charter,Grade 7,Art,Female,56.24,3.49,0.619
+Charter,Grade 6,History,Male,95.53,2.87,0.872
+Private,Grade 7,History,Female,94.89,5.87,1
+Public,Grade 10,Math,Female,58.99,5.36,0.647
+Private,Grade 8,English,Female,82.44,1.15,0.905
+Charter,Grade 10,History,Male,63.37,1.46,0.579
+Private,Grade 9,English,Female,92.75,2.58,0.915
+Public,Grade 8,PE,Male,59.18,3.81,0.502
+Private,Grade 8,History,Male,62.98,7.46,0.548
+Charter,Grade 6,PE,Male,73.74,7.85,0.669
+Public,Grade 6,Art,Male,69.95,5.25,0.745
+Charter,Grade 8,Art,Female,84.52,1.76,0.912
+Charter,Grade 8,PE,Male,70.71,6.82,0.797
+Charter,Grade 9,English,Female,67.57,6.42,0.589
+Charter,Grade 10,Computer Science,Male,99.51,7.61,1
+Charter,Grade 7,English,Male,56.19,6.12,0.523
+Private,Grade 11,History,Female,78.85,4.82,0.74
+Charter,Grade 8,Math,Female,55.86,3.01,0.509
+Public,Grade 7,PE,Female,76.51,6.11,0.674
+Public,Grade 9,History,Male,70.36,2.26,0.783
+Charter,Grade 10,Science,Male,62.61,6.77,0.703
+Public,Grade 8,History,Female,62.71,7.7,0.636
+Charter,Grade 10,English,Female,59.46,3.73,0.632
+Public,Grade 9,Math,Female,79.56,0.98,0.711
+Public,Grade 10,Computer Science,Female,87.77,3.95,0.879
+Charter,Grade 7,English,Female,64.27,6.92,0.592
+Charter,Grade 6,English,Female,40.67,1.35,0.384
+Private,Grade 9,Art,Female,57.9,1.33,0.571
+Charter,Grade 6,Computer Science,Male,81.85,3,0.748
+Private,Grade 8,Music,Female,95.83,2.88,0.922
+Private,Grade 7,Math,Male,69.07,5.85,0.648
+Private,Grade 11,Science,Female,90.82,2.42,0.939
+Public,Grade 8,Math,Male,43.78,6.1,0.433
+Charter,Grade 9,Music,Male,72.61,6.11,0.717
+Charter,Grade 9,Computer Science,Male,52.59,2.22,0.462
+Charter,Grade 11,Math,Male,97.27,5.12,0.928
+Charter,Grade 11,Art,Female,40.38,3.35,0.391
+Charter,Grade 9,PE,Female,44.56,7.41,0.513
+Charter,Grade 10,English,Female,46.18,0.68,0.515
+Private,Grade 6,Computer Science,Female,84.76,4.35,0.852
+Public,Grade 7,Music,Female,42.36,5.7,0.412
+Private,Grade 7,Math,Female,43.24,2.24,0.355
+Private,Grade 11,Science,Female,59.81,5.45,0.686
+Charter,Grade 7,Music,Female,68.05,2.45,0.648
+Public,Grade 8,Art,Female,44.09,2.53,0.485
+Private,Grade 8,PE,Male,60.73,6.63,0.618
+Public,Grade 11,English,Female,77.64,5.83,0.764
+Private,Grade 7,PE,Female,78.29,1.33,0.819
+Charter,Grade 7,Music,Female,52.94,4.26,0.521
+Private,Grade 11,English,Male,90.15,0.78,0.97
+Private,Grade 10,Math,Female,47.88,5.47,0.574
+Public,Grade 9,Computer Science,Female,78.21,7.05,0.765
+Charter,Grade 6,Music,Male,73.53,6.93,0.72
+Public,Grade 11,PE,Male,68.64,2.08,0.662
+Private,Grade 6,English,Male,66.08,4.55,0.659
+Charter,Grade 6,PE,Male,95.07,1.36,0.874
+Private,Grade 8,Math,Female,78.88,6.3,0.746
+Charter,Grade 6,PE,Female,57.54,5.99,0.641
+Charter,Grade 10,Science,Male,77.07,7.1,0.713
+Private,Grade 7,Music,Male,59.54,6.99,0.505
+Charter,Grade 11,English,Male,92.91,4.89,0.916
+Private,Grade 11,History,Female,79.36,2.4,0.851
+Charter,Grade 6,Art,Male,91.12,4.03,0.967
+Private,Grade 7,Computer Science,Female,43.44,0.86,0.368
+Charter,Grade 11,Art,Male,96.44,6.96,0.883
+Public,Grade 6,Art,Female,66.85,2.2,0.714
+Private,Grade 11,Science,Female,66.01,6.8,0.684
+Public,Grade 7,Math,Female,42.61,6.79,0.405
+Public,Grade 10,English,Female,90.09,4.89,0.96
+Public,Grade 9,English,Male,78.33,5.49,0.733
+Private,Grade 9,Math,Male,64.59,1.9,0.573
+Charter,Grade 7,English,Male,65.68,3.54,0.704
+Public,Grade 10,English,Male,97.31,6.29,1
+Public,Grade 10,PE,Female,68.73,4.03,0.685
+Charter,Grade 9,Computer Science,Female,92.29,6.22,0.988
+Private,Grade 8,Math,Male,92.35,6.21,0.93
+Private,Grade 8,Science,Male,66.36,5.98,0.627
+Private,Grade 9,Science,Female,78.83,0.81,0.775
+Public,Grade 9,Music,Male,65.69,2.38,0.605
+Public,Grade 9,Math,Male,40.06,7.21,0.395
+Private,Grade 8,English,Female,76.03,1.21,0.78
+Charter,Grade 9,Art,Male,56.08,4.73,0.616
+Private,Grade 9,Music,Female,84.02,3.2,0.802
+Private,Grade 8,History,Male,61.69,7.89,0.631
+Public,Grade 11,Music,Male,52.21,2.41,0.467
+Private,Grade 8,PE,Female,79.07,5.74,0.885
+Public,Grade 9,Music,Female,81.04,2.32,0.906
+Public,Grade 11,History,Male,51.83,7.29,0.521
+Public,Grade 8,Music,Male,44.67,5.66,0.43
+Public,Grade 6,English,Female,60.32,7.22,0.643
+Private,Grade 7,English,Male,41.25,1.33,0.484
+Private,Grade 9,Music,Male,96.83,1.61,1
+Private,Grade 8,Science,Female,54.11,6.24,0.527
+Private,Grade 8,History,Female,71.52,1.23,0.644
+Private,Grade 8,Music,Male,44.83,4.99,0.483
+Private,Grade 11,Music,Male,75.9,3.45,0.845
+Charter,Grade 9,Art,Female,44,2.75,0.508
+Charter,Grade 8,Art,Female,62.94,3.21,0.578
+Charter,Grade 9,History,Female,50.31,2.61,0.43
+Public,Grade 11,PE,Female,78.51,6.3,0.731
+Public,Grade 6,Math,Male,43.8,2.08,0.429
+Charter,Grade 9,PE,Female,47.08,1.11,0.475
+Public,Grade 6,History,Male,43.11,1.74,0.336
+Charter,Grade 10,PE,Male,99.84,5.7,0.969
+Public,Grade 8,History,Male,95.62,6.02,0.951
+Public,Grade 10,History,Male,77.41,5.29,0.719
+Public,Grade 8,Music,Female,60.23,3.99,0.633
+Charter,Grade 9,Math,Female,91.23,3.5,0.932
+Private,Grade 6,Math,Male,87.38,3.18,0.941
+Public,Grade 7,Art,Male,81.34,5.38,0.779
+Public,Grade 7,Computer Science,Male,48.69,5.05,0.495
+Public,Grade 10,Math,Male,53.34,2.7,0.514
+Charter,Grade 11,Computer Science,Female,89.62,1.63,0.932
+Charter,Grade 10,Math,Female,42.64,5.15,0.448
+Public,Grade 10,Music,Male,81.83,1.97,0.906
+Charter,Grade 10,PE,Female,85.44,6.47,0.82
+Public,Grade 8,Computer Science,Male,55.68,7.78,0.562
+Public,Grade 6,History,Male,74.22,4.01,0.758
+Charter,Grade 6,Computer Science,Female,61.68,3.72,0.592
+Charter,Grade 11,History,Male,58.84,6.89,0.614
+Charter,Grade 10,Music,Female,53.85,4.32,0.616
+Charter,Grade 10,Music,Female,67.26,7.6,0.693
+Private,Grade 11,English,Female,91.65,7.12,0.944
+Charter,Grade 10,PE,Male,52.96,7.31,0.471
+Private,Grade 7,PE,Female,67.39,6.96,0.749
+Public,Grade 10,Computer Science,Female,56.79,5.52,0.636
+Charter,Grade 11,PE,Male,83.04,2.43,0.927
+Public,Grade 6,Science,Male,74.59,7.79,0.775
+Private,Grade 10,Music,Female,94.24,6.61,0.95
+Charter,Grade 11,Math,Male,63.71,4.22,0.601
+Private,Grade 6,Art,Female,68.88,6.93,0.684
+Public,Grade 9,Math,Female,90.24,4.07,0.883
+Public,Grade 11,Science,Male,49.25,6.96,0.571
+Private,Grade 6,Music,Male,57.41,4.2,0.596
+Private,Grade 10,English,Female,77.85,4.85,0.786
+Charter,Grade 10,English,Male,48.74,3.73,0.436
+Charter,Grade 6,Science,Female,65.4,7.28,0.566
+Public,Grade 7,Art,Female,76.8,1.35,0.748
+Private,Grade 6,Computer Science,Female,43.77,4.55,0.537
+Public,Grade 9,History,Female,97.36,6.48,1
+Charter,Grade 10,Art,Male,71.47,3.97,0.783
+Charter,Grade 9,Computer Science,Female,79.06,3.01,0.843
+Private,Grade 8,Art,Male,93.1,4.6,0.995
+Private,Grade 9,Math,Male,50.77,2.11,0.446
+Charter,Grade 7,Science,Female,83.61,1.35,0.814
+Public,Grade 9,Music,Male,41.25,7.91,0.401
+Public,Grade 10,Music,Male,75.47,7.63,0.814
+Charter,Grade 10,Music,Female,40.53,2.63,0.498
+Charter,Grade 11,PE,Male,71.44,0.5,0.733
+Private,Grade 6,Science,Female,41.22,5.86,0.431
+Private,Grade 10,Science,Female,47.02,2.71,0.413
+Charter,Grade 7,History,Female,46.25,7.18,0.553
+Public,Grade 6,Math,Female,87.62,0.64,0.932
+Public,Grade 7,History,Female,97.06,1.97,1
+Public,Grade 8,English,Male,98.72,7.43,0.991
+Public,Grade 9,Science,Female,61.77,5.03,0.568
+Public,Grade 9,Math,Female,70.89,1.21,0.648
+Public,Grade 9,Math,Male,95.86,3.15,1
+Private,Grade 11,Computer Science,Female,96.43,6.94,0.99
+Public,Grade 7,English,Male,46.36,7.55,0.479
+Public,Grade 9,Science,Female,43.2,4.24,0.414
+Public,Grade 8,Computer Science,Male,80.69,7.3,0.752
+Charter,Grade 8,Art,Male,81.43,0.99,0.912
+Public,Grade 10,Math,Male,95.03,2.51,0.861
+Public,Grade 10,Math,Female,57.98,6.61,0.569
+Charter,Grade 11,Math,Female,82.54,0.86,0.777
+Public,Grade 6,PE,Male,40.97,1.71,0.385
+Private,Grade 8,Math,Male,94.84,7.59,0.928
+Public,Grade 7,Art,Male,96.91,6.58,0.905
+Private,Grade 6,Computer Science,Male,83,3.22,0.795
+Public,Grade 7,English,Male,77.65,1.27,0.849
+Public,Grade 6,Music,Male,49.8,2.6,0.404
+Charter,Grade 6,English,Male,43.86,6.68,0.464
+Public,Grade 11,Art,Male,41.97,0.74,0.516
+Charter,Grade 8,Art,Male,43.32,0.94,0.376
+Public,Grade 10,PE,Male,47.64,2.07,0.428
+Charter,Grade 6,Math,Female,84.99,5.65,0.901
+Public,Grade 7,Music,Male,71.65,3.49,0.769
+Public,Grade 10,History,Female,55.8,5.91,0.507
+Charter,Grade 6,Computer Science,Male,83.66,4.55,0.801
+Public,Grade 6,PE,Female,48.24,4.79,0.467
+Private,Grade 8,Math,Female,55.27,5.41,0.509
+Charter,Grade 7,Science,Female,41.82,6.93,0.421
+Private,Grade 7,PE,Male,74.06,0.88,0.645
+Charter,Grade 7,Computer Science,Male,54.89,5.75,0.496
+Charter,Grade 7,Computer Science,Male,87.2,5.97,0.874
+Public,Grade 9,Science,Male,66.46,7.49,0.606
+Charter,Grade 11,PE,Male,45.57,4.68,0.422
+Charter,Grade 10,Science,Male,97.58,7.48,0.907
+Charter,Grade 7,English,Female,60.06,1.83,0.566
+Charter,Grade 11,Art,Male,92.58,7.45,0.871
+Public,Grade 9,Computer Science,Female,81.78,3.12,0.788
+Public,Grade 9,History,Female,74.76,1.57,0.843
+Private,Grade 6,English,Female,48.71,6.47,0.473
+Private,Grade 8,Science,Female,94.73,7,0.995
+Public,Grade 10,Music,Male,91.06,5.98,1
+Charter,Grade 9,History,Female,46.53,0.53,0.381
+Charter,Grade 7,Music,Male,85.78,4.42,0.915
+Public,Grade 9,PE,Male,49.38,1.15,0.558
+Private,Grade 10,English,Female,57.5,3.76,0.504
+Public,Grade 9,Math,Male,96.04,4.71,1
+Public,Grade 6,English,Female,62.7,0.79,0.555
+Private,Grade 7,Art,Male,51.62,7.91,0.425
+Charter,Grade 8,Math,Female,84.58,7.31,0.838
+Public,Grade 11,Music,Female,53.75,1.87,0.579
+Public,Grade 6,Art,Male,79.74,5.82,0.857
+Public,Grade 7,PE,Female,94.08,4.42,0.981
+Public,Grade 11,Computer Science,Male,55.21,1.13,0.583
+Charter,Grade 7,Math,Female,50.35,1.25,0.502
+Public,Grade 10,Music,Female,92.2,4.13,0.977
+Charter,Grade 7,PE,Female,51.42,5.39,0.504
+Charter,Grade 7,Music,Male,53.95,2.3,0.58
+Charter,Grade 7,History,Female,73.72,3.27,0.668
+Public,Grade 11,Computer Science,Female,81.23,3.17,0.805
+Private,Grade 6,Science,Female,47.18,2.96,0.387
+Charter,Grade 9,PE,Male,69.14,5.92,0.731
+Charter,Grade 10,Math,Male,96.43,0.64,0.914
+Private,Grade 10,Science,Female,95.8,4.39,0.991
+Charter,Grade 6,Math,Male,74.92,7.26,0.778
+Charter,Grade 10,Science,Female,88.87,2.89,0.854
+Private,Grade 8,English,Female,89.22,5.29,0.9
+Public,Grade 8,History,Male,44.13,0.9,0.42
+Private,Grade 11,English,Male,84.5,0.77,0.907
+Charter,Grade 7,History,Male,45.99,5.97,0.383
+Private,Grade 6,Computer Science,Male,61.81,1.6,0.616
+Public,Grade 8,Art,Male,52.14,0.77,0.62
+Private,Grade 6,Computer Science,Female,93.45,5.85,0.898
+Public,Grade 11,History,Female,65.31,3.51,0.596
+Private,Grade 11,Music,Male,97.66,0.74,0.993
+Charter,Grade 10,Computer Science,Male,82.28,4.8,0.875
+Public,Grade 8,Science,Female,73.56,3.37,0.778
+Public,Grade 7,English,Male,72.02,1.68,0.63
+Charter,Grade 8,Computer Science,Male,81.58,3.51,0.778
+Public,Grade 8,English,Male,79.53,3.47,0.726
+Charter,Grade 8,PE,Female,71.25,4.89,0.752
+Charter,Grade 8,English,Male,83.75,7.37,0.892
+Private,Grade 7,Science,Female,48.61,6.33,0.497
+Charter,Grade 7,History,Female,52.56,3.56,0.621
+Public,Grade 9,English,Male,66.35,2.37,0.564
+Private,Grade 9,English,Male,81.86,0.51,0.837
+Charter,Grade 9,Computer Science,Female,76.04,3.2,0.855
+Charter,Grade 8,Music,Male,87.63,7.77,0.928
+Public,Grade 10,Music,Male,57.67,6.88,0.506
+Charter,Grade 9,Math,Female,79.44,6.84,0.748
+Private,Grade 9,Music,Female,84.51,6.82,0.889
+Public,Grade 6,Music,Female,70.31,1.62,0.642
+Private,Grade 7,English,Female,86.33,2.49,0.905
+Charter,Grade 6,Science,Male,89.42,6.28,0.889
+Public,Grade 7,Art,Male,45.66,5.01,0.557
+Private,Grade 10,Computer Science,Male,68.17,0.67,0.756
+Charter,Grade 6,Music,Male,99.52,2.07,1
+Charter,Grade 11,PE,Male,88.51,4.42,0.819
+Charter,Grade 9,Art,Male,99.5,6.18,1
+Charter,Grade 6,Art,Male,41.15,3.69,0.448
+Charter,Grade 9,Science,Female,81.71,4.27,0.78
+Public,Grade 9,Music,Female,48.26,1.09,0.486
+Public,Grade 8,Music,Male,78.84,2.83,0.739
+Public,Grade 6,Science,Male,51.65,2.29,0.425
+Public,Grade 7,Science,Male,46.89,3.12,0.437
+Private,Grade 11,History,Male,50.23,7.04,0.429
+Public,Grade 8,Music,Female,67.56,1.22,0.776
+Charter,Grade 10,Computer Science,Male,55.36,1.09,0.454
+Public,Grade 7,Math,Female,55.37,5.92,0.524
+Charter,Grade 7,Computer Science,Female,87.83,2.93,0.805
+Private,Grade 6,History,Female,40.49,6.35,0.324
+Private,Grade 10,Science,Female,61.49,5.26,0.518
+Private,Grade 7,Computer Science,Female,50.97,2.13,0.511
+Charter,Grade 8,Science,Male,67.24,5,0.735
+Charter,Grade 11,History,Female,98.15,6.33,0.884
+Public,Grade 9,Computer Science,Female,60.94,2.56,0.588
+Charter,Grade 10,Computer Science,Male,51.64,4.01,0.453
+Public,Grade 6,History,Female,70.08,5.44,0.716
+Public,Grade 8,Art,Female,76.14,2.13,0.729
+Private,Grade 8,Science,Female,87.34,4.1,0.967
+Private,Grade 10,History,Male,42.72,7.62,0.431
+Public,Grade 6,Computer Science,Female,69.6,7.05,0.727
+Private,Grade 8,History,Female,55.95,5.59,0.513
+Charter,Grade 11,Art,Male,70.95,5.53,0.736
+Private,Grade 10,Music,Female,97.44,1.02,0.901
+Private,Grade 8,History,Female,94.03,5.82,0.856
+Public,Grade 9,History,Female,56.09,1.53,0.471
+Charter,Grade 9,English,Female,67.66,1.17,0.711
+Public,Grade 10,Computer Science,Male,90.76,7.41,1
+Public,Grade 10,Science,Female,84.4,1.16,0.824
+Private,Grade 9,PE,Male,52.95,5.96,0.558
+Private,Grade 8,History,Female,75.02,6.87,0.702
+Private,Grade 10,Computer Science,Male,78.37,7.52,0.834
+Charter,Grade 8,Art,Male,96.83,3.33,0.996
+Public,Grade 6,Science,Female,52.63,7.46,0.596
+Charter,Grade 6,PE,Female,83.58,7.99,0.874
+Public,Grade 6,History,Male,91.84,7.22,0.956
+Private,Grade 8,PE,Male,90.32,7.04,0.891
+Public,Grade 6,History,Female,62.9,4.06,0.695
+Charter,Grade 11,History,Male,83.28,6.14,0.783
+Charter,Grade 6,Science,Female,65.64,4.8,0.626
+Private,Grade 7,English,Male,52.62,6.58,0.511
+Charter,Grade 9,Math,Female,75.69,7.62,0.673
+Private,Grade 9,Art,Female,45.77,4.31,0.532
+Private,Grade 10,Science,Female,98.32,3.54,0.889
+Public,Grade 7,History,Female,76.76,7.72,0.787
+Charter,Grade 10,English,Male,50.82,1.83,0.587
+Public,Grade 6,Science,Female,72.71,4.34,0.784
+Charter,Grade 10,PE,Male,60.13,5.49,0.693
+Private,Grade 10,Computer Science,Female,94.88,2.2,0.94
+Public,Grade 9,Science,Male,47.62,4.41,0.525
+Charter,Grade 6,Music,Female,59.73,5.28,0.652
+Charter,Grade 6,PE,Male,70.89,1.6,0.795
+Charter,Grade 11,English,Male,80.28,5.98,0.809
+Public,Grade 11,PE,Female,62.56,5.92,0.528
+Public,Grade 9,Music,Male,52.34,7.47,0.502
+Public,Grade 9,History,Male,72.51,0.7,0.784
+Charter,Grade 8,Art,Male,98.66,6.28,0.994
+Public,Grade 8,PE,Female,45.33,4.98,0.544
+Public,Grade 11,Science,Male,52.67,0.58,0.45
+Private,Grade 11,Math,Female,81.88,7.74,0.791
+Public,Grade 6,PE,Female,41.37,5.31,0.483
+Charter,Grade 11,PE,Male,65.29,4.53,0.653
+Charter,Grade 6,Art,Female,77.78,2.82,0.753
+Private,Grade 6,PE,Male,51.54,5.91,0.467
+Private,Grade 11,Science,Male,68.62,4.74,0.662
+Private,Grade 8,Science,Male,63.38,7.81,0.633
+Public,Grade 11,English,Male,83.89,7.02,0.802
+Public,Grade 8,Art,Female,97.37,3.23,0.881
+Public,Grade 11,English,Male,69.47,3.37,0.697
+Private,Grade 11,PE,Male,53.42,7.23,0.606
+Public,Grade 9,English,Female,80.05,0.57,0.869
+Private,Grade 8,Music,Female,73.91,5.66,0.722
+Public,Grade 10,Math,Male,74.71,7.3,0.651
+Public,Grade 7,Computer Science,Male,86.77,2.95,0.823
+Charter,Grade 8,Computer Science,Male,82.06,3.72,0.893
+Charter,Grade 8,Math,Female,80.44,6.43,0.728
+Private,Grade 6,Music,Male,94.82,3.52,1
+Charter,Grade 10,History,Male,61.96,5.95,0.687
+Public,Grade 11,Math,Male,88.15,6.06,0.912
+Public,Grade 6,English,Male,83.14,6.19,0.772
+Public,Grade 10,Music,Female,44.22,5.65,0.44
+Public,Grade 9,History,Female,54.38,3.6,0.577
+Charter,Grade 11,English,Male,99.23,5.45,0.904
+Public,Grade 8,History,Female,81,5.37,0.776
+Private,Grade 8,Math,Female,79.48,6.44,0.731
+Public,Grade 11,Computer Science,Female,78.1,0.93,0.736
+Private,Grade 7,History,Female,86.27,1.89,0.949
+Charter,Grade 6,PE,Male,90.25,4.17,0.916
+Public,Grade 10,History,Female,84.46,2.09,0.754
+Public,Grade 6,PE,Female,53.26,4.81,0.619
+Private,Grade 8,History,Male,95.8,1.95,0.937
+Private,Grade 7,Art,Male,79.67,4.83,0.729
+Charter,Grade 11,History,Male,91.93,1.41,1
+Charter,Grade 6,Math,Male,72.45,6.18,0.694
+Public,Grade 6,English,Female,48.69,3.36,0.556
+Private,Grade 8,Science,Male,87.2,2.88,0.97
+Private,Grade 7,Art,Female,56.6,5.68,0.507
+Public,Grade 11,English,Male,48.81,5.38,0.512
+Public,Grade 6,History,Male,57.2,7.59,0.576
+Charter,Grade 9,English,Female,70.65,3.31,0.74
+Public,Grade 7,Math,Male,70.14,3.57,0.756
+Public,Grade 7,English,Female,64.06,3.12,0.732
+Public,Grade 8,Math,Female,91.83,7,0.897
+Public,Grade 11,Art,Male,88.28,2.81,0.859
+Private,Grade 11,Art,Female,47.58,6.22,0.434
+Private,Grade 11,English,Female,48.5,4.57,0.538
+Charter,Grade 11,Music,Female,84.84,6.56,0.926
+Charter,Grade 6,PE,Male,74.52,5.82,0.778
+Public,Grade 9,Science,Female,86.24,1.2,0.855
+Public,Grade 7,Art,Male,76.8,7.54,0.8
+Private,Grade 11,Music,Male,43.85,6.9,0.385
+Private,Grade 6,Music,Male,54.52,2.27,0.476
+Private,Grade 10,Math,Male,78.81,0.66,0.767
+Charter,Grade 8,English,Female,84.8,5.72,0.789
+Public,Grade 7,History,Male,41.5,7.26,0.35
+Private,Grade 6,Math,Male,67.33,7.24,0.697
+Private,Grade 11,Music,Female,94.43,5.24,0.918
+Private,Grade 9,Math,Male,68.12,2.63,0.688
+Private,Grade 7,Computer Science,Female,47.04,2.31,0.567
+Public,Grade 10,English,Male,82.69,5.37,0.896
+Charter,Grade 7,History,Male,42.17,4.38,0.422
+Public,Grade 10,PE,Male,64.57,3.57,0.714
+Public,Grade 11,English,Female,82.41,6.05,0.892
+Private,Grade 7,PE,Male,97.82,1.17,0.973
+Private,Grade 10,Computer Science,Male,96.88,1.77,0.936
+Public,Grade 8,Math,Female,70.37,2.89,0.7
+Public,Grade 8,Computer Science,Male,89,6.99,0.917
+Charter,Grade 7,PE,Female,87.71,4.53,0.835
+Public,Grade 10,Music,Female,92.32,1.59,0.926
+Public,Grade 10,History,Male,69.44,2.91,0.701
+Public,Grade 11,Music,Female,82.76,2.81,0.866
+Public,Grade 7,Art,Female,70.96,4.62,0.692
+Public,Grade 6,PE,Female,54.46,3.01,0.565
+Private,Grade 11,Art,Female,77.63,7.36,0.847
+Private,Grade 6,Art,Male,46.06,5.85,0.521
+Charter,Grade 6,English,Male,85.65,3.29,0.813
+Public,Grade 10,English,Male,90.64,2.76,0.942
+Public,Grade 9,Science,Female,85.53,2.76,0.933
+Public,Grade 10,English,Female,44.35,7.97,0.488
+Public,Grade 9,PE,Female,65.72,4.93,0.628
+Charter,Grade 10,History,Male,41.64,6.2,0.43
+Public,Grade 7,Computer Science,Male,45.16,6.81,0.474
+Public,Grade 6,Math,Male,53.06,7.65,0.614
+Charter,Grade 7,PE,Female,51.07,0.92,0.513
+Private,Grade 10,History,Female,47.66,3.79,0.463
+Public,Grade 9,English,Female,85.69,1.8,0.853
+Private,Grade 8,English,Male,88.14,3.06,0.934
+Private,Grade 10,Math,Male,50.72,3.93,0.454
+Private,Grade 11,Art,Male,51.97,5.73,0.548
+Charter,Grade 10,Computer Science,Male,50.51,3.57,0.487
+Charter,Grade 10,History,Male,56.62,6.03,0.56
+Public,Grade 11,Math,Male,40.35,0.56,0.427
+Public,Grade 6,History,Female,41.52,6.26,0.468
+Charter,Grade 11,Science,Male,48.38,6.11,0.394
+Private,Grade 7,Art,Female,86.39,7.71,0.812
+Charter,Grade 9,Computer Science,Female,84.5,1.44,0.856
+Public,Grade 9,Science,Male,78.04,6.87,0.843
+Public,Grade 7,Music,Female,73.1,0.61,0.823
+Public,Grade 10,Art,Male,86.89,6.44,0.952
+Charter,Grade 7,PE,Male,78.1,4.38,0.8
+Charter,Grade 8,English,Female,69.74,0.97,0.765
+Public,Grade 7,English,Female,67.81,5.72,0.719
+Public,Grade 8,Computer Science,Female,45.46,2.15,0.411
+Charter,Grade 10,Math,Male,61.04,1.97,0.518
+Private,Grade 6,Science,Female,71.39,5.45,0.682
+Charter,Grade 8,Computer Science,Female,43.17,4.86,0.411
+Charter,Grade 10,Math,Female,52.12,6.95,0.538
+Private,Grade 11,Math,Male,56.28,4.94,0.593
+Public,Grade 11,Music,Female,93.71,5.43,0.909
+Public,Grade 9,English,Male,43.2,6.89,0.426
+Public,Grade 11,Science,Female,81.16,1.11,0.87
+Private,Grade 10,Science,Female,44.5,4.38,0.416
+Public,Grade 10,Math,Female,40.06,5.36,0.317
+Private,Grade 11,Art,Male,45.6,2.94,0.435
+Public,Grade 7,Computer Science,Male,64.5,7.41,0.596
+Charter,Grade 8,English,Female,59.88,2.98,0.579
+Public,Grade 7,Music,Female,99.51,1.65,1
+Public,Grade 11,Music,Female,73.96,1.51,0.803
+Private,Grade 10,Computer Science,Male,75.56,2.73,0.748
+Charter,Grade 11,History,Female,59.1,3.99,0.621
+Public,Grade 11,Computer Science,Male,79.57,6.88,0.864
+Charter,Grade 11,PE,Female,86.96,6.71,0.909
+Private,Grade 11,Computer Science,Female,69.41,3.8,0.642
+Public,Grade 9,PE,Female,71.31,2.42,0.686
+Charter,Grade 8,Computer Science,Male,88.96,5.32,0.869
+Private,Grade 6,History,Female,45.73,4.48,0.38
+Public,Grade 6,Art,Female,49.14,7.46,0.577
+Charter,Grade 11,History,Male,41.59,4.17,0.467
+Charter,Grade 10,History,Male,84.26,6.31,0.937
+Private,Grade 10,PE,Female,74.88,0.79,0.756
+Charter,Grade 11,Science,Female,58.8,4.79,0.511
+Public,Grade 10,Music,Female,44.24,5.97,0.415
+Charter,Grade 11,Music,Male,70.97,6.98,0.79
+Private,Grade 7,PE,Female,96.68,6.03,0.928
+Charter,Grade 11,Art,Male,43.41,3.22,0.357
+Public,Grade 8,Computer Science,Female,97.65,1.29,0.907
+Private,Grade 9,Music,Male,93.39,7.32,0.882
+Public,Grade 11,Art,Male,79.59,7.31,0.729
+Charter,Grade 8,PE,Female,84.22,7.28,0.811
+Charter,Grade 6,Art,Female,75.27,3.64,0.723
+Charter,Grade 7,PE,Female,40.6,7.16,0.421
+Private,Grade 7,Computer Science,Male,66.46,3.41,0.76
+Charter,Grade 9,History,Male,99.9,0.6,0.977
+Private,Grade 6,Music,Male,45.92,3.47,0.456
+Charter,Grade 8,Math,Male,41.97,1.02,0.327
+Charter,Grade 8,English,Male,96.73,1.52,0.875
+Charter,Grade 11,English,Male,68.04,1.05,0.598
+Charter,Grade 11,Music,Female,98.62,5.93,0.912
+Charter,Grade 10,Music,Male,54.86,5.58,0.645
+Private,Grade 11,Science,Male,43.86,7.38,0.496
+Private,Grade 10,Science,Male,86.69,0.58,0.963
+Charter,Grade 8,Art,Female,55.01,2.58,0.638
+Public,Grade 7,Science,Female,62.81,1.23,0.627
+Charter,Grade 10,Music,Male,76.83,6.2,0.678
+Public,Grade 10,Math,Female,79.6,3.56,0.74
+Charter,Grade 8,PE,Male,69.1,5.87,0.602
+Public,Grade 6,Music,Male,72.56,2.34,0.77
+Public,Grade 8,English,Male,92.36,1.62,0.828
+Public,Grade 7,English,Male,89.42,2.07,0.865
+Public,Grade 8,English,Female,71.08,1.34,0.768
+Charter,Grade 9,Math,Male,93.18,7.84,0.909
+Public,Grade 11,Computer Science,Female,92.32,7.89,0.944
+Public,Grade 8,History,Female,80.94,4.54,0.735
+Charter,Grade 10,English,Male,89.31,4.63,0.794
+Private,Grade 11,Art,Female,84.2,6.23,0.912
+Public,Grade 6,English,Female,69.5,1.46,0.717
+Charter,Grade 9,Science,Female,90.33,1.87,0.88
+Charter,Grade 9,Computer Science,Female,63.56,6.92,0.707
+Public,Grade 10,PE,Female,97.32,1.95,0.922
+Public,Grade 7,Math,Female,61.51,6.94,0.535
+Public,Grade 8,Music,Female,73.06,4.82,0.686
+Private,Grade 7,Math,Female,50.72,5.7,0.525
+Public,Grade 7,Computer Science,Male,71.07,2.24,0.739
+Public,Grade 7,Math,Female,58.52,2.99,0.629
+Public,Grade 11,PE,Male,51.61,2.05,0.554
+Public,Grade 8,Math,Male,95.15,5.24,0.87
+Private,Grade 7,History,Female,51.37,5.6,0.559
+Private,Grade 10,Math,Female,63.62,3.06,0.633
+Public,Grade 11,Music,Male,67.42,1.19,0.599
+Private,Grade 6,PE,Female,64.55,5.94,0.581
+Charter,Grade 6,Art,Female,67.98,4.89,0.585
+Charter,Grade 11,PE,Female,84.29,1.61,0.8
+Private,Grade 7,Math,Female,50.44,6.66,0.589
+Public,Grade 6,English,Male,42.57,1.26,0.488
+Charter,Grade 7,Art,Female,78.86,6.22,0.789
+Private,Grade 9,Science,Male,44.81,3.28,0.522
+Public,Grade 11,Computer Science,Female,68.98,7.6,0.691
+Private,Grade 11,Science,Male,77.83,4.54,0.749
+Charter,Grade 6,PE,Female,63.01,4.11,0.577
+Private,Grade 6,PE,Female,83.25,2.12,0.75
+Private,Grade 7,History,Female,46.72,5.92,0.464
+Public,Grade 8,PE,Female,80.85,6.66,0.792
+Charter,Grade 11,Music,Male,59.54,4.71,0.566
+Public,Grade 9,Science,Female,64.13,6.78,0.587
+Private,Grade 6,English,Female,65.47,6.74,0.639
+Public,Grade 9,History,Female,56.77,4.37,0.576
+Public,Grade 11,Art,Female,88.83,6.46,0.839
+Private,Grade 7,Science,Female,54.99,6.78,0.616
+Private,Grade 10,Science,Female,89.24,2.44,0.809
+Public,Grade 8,Science,Female,58.97,1.22,0.613
+Public,Grade 10,PE,Female,54.88,1.04,0.473
+Public,Grade 11,Music,Female,48.43,2.95,0.565
+Charter,Grade 11,English,Female,51.63,6.35,0.573
+Private,Grade 7,PE,Male,66.56,1.13,0.723
+Public,Grade 11,English,Female,71.32,6.16,0.624
+Public,Grade 11,PE,Male,54.54,3.72,0.479
+Public,Grade 6,Math,Female,91.84,1.54,0.977
+Charter,Grade 9,Math,Female,83.79,1.62,0.805
+Charter,Grade 11,English,Male,40.75,0.55,0.447
+Private,Grade 11,Art,Male,50.88,4.2,0.453
+Private,Grade 8,Art,Female,42.11,1.74,0.336
+Public,Grade 6,Music,Female,49.57,3.58,0.501
+Private,Grade 10,Science,Female,63.73,4.23,0.653
+Public,Grade 9,Art,Male,46.24,2.98,0.55
+Private,Grade 10,Math,Female,89.72,5.49,0.817
+Private,Grade 6,Science,Female,99.99,2.12,0.921
+Charter,Grade 6,Art,Female,56.55,2.63,0.599
+Public,Grade 6,History,Female,85.24,4.11,0.903
+Charter,Grade 8,Music,Female,61.46,2.21,0.527
+Private,Grade 10,History,Female,73.19,5.13,0.727
+Public,Grade 10,Music,Male,77.04,7.79,0.761
+Private,Grade 9,Computer Science,Female,47.66,1.95,0.507
+Public,Grade 7,PE,Female,64.83,7.54,0.682
+Private,Grade 10,PE,Male,62.02,7.9,0.606
+Private,Grade 8,English,Male,71.1,1.17,0.71
+Charter,Grade 8,Music,Male,51.92,0.68,0.558
+Public,Grade 9,Computer Science,Female,42.8,5.93,0.431
+Charter,Grade 10,Science,Female,66.75,3.16,0.732
+Private,Grade 7,History,Male,47.6,6.48,0.389
+Charter,Grade 9,Math,Female,66.55,2.23,0.697
+Public,Grade 6,English,Male,66.25,5.38,0.714
+Private,Grade 6,English,Female,82.37,1.41,0.912
+Charter,Grade 11,PE,Female,57.78,4.2,0.541
+Private,Grade 8,Science,Male,85.02,5.09,0.767
+Charter,Grade 9,English,Female,40.74,3.78,0.345
+Private,Grade 6,Computer Science,Female,43.31,3.07,0.335
+Private,Grade 9,English,Male,72.09,4.35,0.786
+Private,Grade 8,History,Female,72.22,3.57,0.808
+Private,Grade 8,English,Female,49.29,5.83,0.468
+Public,Grade 10,Computer Science,Male,86.23,6.75,0.851
+Charter,Grade 11,PE,Female,80.17,1.61,0.724
+Charter,Grade 7,History,Female,69.06,7.3,0.709
+Charter,Grade 7,Music,Male,46.29,6.96,0.468
+Charter,Grade 7,English,Female,61.97,1.11,0.682
+Charter,Grade 6,Science,Female,58.02,4.05,0.491
+Private,Grade 9,Math,Male,54.1,2.59,0.533
+Private,Grade 11,Science,Female,91.37,3.21,0.954
+Charter,Grade 7,Computer Science,Female,81.51,0.75,0.757
+Private,Grade 11,Science,Female,52.1,2.53,0.525
+Private,Grade 11,PE,Female,64.22,5.93,0.616
+Private,Grade 10,Music,Female,95.91,5.1,1
+Public,Grade 6,Computer Science,Female,70.14,3.42,0.697
+Charter,Grade 6,PE,Female,81.98,0.61,0.8
+Public,Grade 8,Math,Male,81.72,7.1,0.81
+Charter,Grade 7,Art,Female,51.94,0.53,0.454
+Charter,Grade 10,History,Female,94.23,5,0.932
+Private,Grade 9,Music,Male,55.72,6.93,0.6
+Charter,Grade 9,Math,Male,78.97,4.18,0.706
+Charter,Grade 6,History,Female,78.34,2.71,0.694
+Charter,Grade 7,History,Male,97.65,2.43,1
+Charter,Grade 7,Science,Female,44.75,7.83,0.455
+Private,Grade 7,Math,Male,62.1,4.61,0.663
+Private,Grade 11,Math,Female,86.25,2.05,0.859
+Charter,Grade 8,History,Male,94,7.11,1
+Charter,Grade 10,English,Male,65.82,7.39,0.587
+Private,Grade 10,Art,Male,54.95,1.76,0.625
+Charter,Grade 7,PE,Female,89.61,7.82,0.924
+Public,Grade 11,Music,Male,54.23,1.69,0.601
+Public,Grade 11,Computer Science,Female,65.46,2.83,0.556
+Charter,Grade 8,Computer Science,Female,92.34,3.21,1
+Private,Grade 10,Music,Female,93.49,5.41,1
+Public,Grade 8,Science,Female,83.87,7.13,0.826
+Public,Grade 6,English,Male,48.55,0.63,0.435
+Charter,Grade 7,History,Male,58.34,6.88,0.496
+Private,Grade 9,Science,Male,67.73,7.74,0.763
+Charter,Grade 6,Art,Female,41.32,7.57,0.337
+Charter,Grade 6,Music,Female,61.66,2.33,0.688
+Charter,Grade 7,History,Male,94.59,0.78,0.908
+Public,Grade 10,Science,Male,53.01,7.05,0.465
+Private,Grade 9,Music,Male,89.22,3.97,0.831
+Public,Grade 10,Computer Science,Male,65.74,5.62,0.652
+Public,Grade 7,Science,Male,78.53,1.15,0.767
+Private,Grade 9,Art,Female,67.93,5.08,0.751
+Private,Grade 6,History,Male,46.2,2.14,0.448
+Private,Grade 9,History,Female,54.1,5.78,0.549
+Public,Grade 6,Math,Male,50.76,1.7,0.5
+Private,Grade 8,Computer Science,Male,90.11,6.82,0.801
+Private,Grade 11,Math,Male,73.32,2.63,0.802
+Private,Grade 6,History,Female,53.39,1.1,0.562
+Public,Grade 11,Computer Science,Male,42.78,6.28,0.426
+Private,Grade 10,Music,Male,67.62,2.06,0.663
+Public,Grade 10,Music,Male,68.02,3.83,0.762
+Charter,Grade 6,Math,Male,95.33,2.37,0.984
+Private,Grade 10,Art,Female,61.29,3.8,0.633
+Public,Grade 6,Music,Male,61.72,2.13,0.66
+Public,Grade 9,Science,Male,73.22,5.5,0.794
+Charter,Grade 8,Math,Female,72.85,3.91,0.818
+Public,Grade 11,Computer Science,Female,70.44,7.77,0.631
+Charter,Grade 10,Computer Science,Female,43.25,1.73,0.368
+Charter,Grade 10,Science,Male,79.63,0.9,0.873
+Public,Grade 11,Math,Female,69.75,5.34,0.663
+Charter,Grade 11,PE,Female,83.81,5.79,0.807
+Public,Grade 9,Math,Male,91.41,5.79,0.948
+Private,Grade 8,Computer Science,Male,83.35,5.93,0.888
+Public,Grade 10,Art,Male,51.22,5.58,0.504
+Public,Grade 6,Science,Female,65.21,2.2,0.672
+Private,Grade 9,PE,Female,80.48,3.99,0.8
+Public,Grade 6,Math,Male,63.89,7.64,0.603
+Private,Grade 7,Math,Female,41.32,5.49,0.323
+Public,Grade 9,Art,Female,74.44,3.64,0.751
+Charter,Grade 6,PE,Male,40.18,7.18,0.491
+Charter,Grade 10,English,Female,82.54,3.61,0.916
+Private,Grade 7,Art,Male,78.84,5.84,0.829
+Public,Grade 10,Music,Male,43.32,6.88,0.526
+Private,Grade 7,Computer Science,Male,46.2,6.02,0.402
+Public,Grade 11,History,Male,45.05,2.61,0.513
+Charter,Grade 8,Science,Male,67.49,4.18,0.649
+Charter,Grade 9,Art,Male,44.3,6.16,0.531
+Charter,Grade 6,English,Female,88.62,6.15,0.859
+Charter,Grade 11,Math,Female,87.32,7.88,0.882
+Charter,Grade 7,PE,Female,69.17,7.92,0.762
+Public,Grade 7,Music,Male,81.36,0.83,0.867
+Charter,Grade 8,Art,Female,70.29,6.33,0.663
+Charter,Grade 9,Music,Male,77.78,4.38,0.873
+Private,Grade 10,Music,Female,60.45,3.27,0.529
+Public,Grade 10,PE,Female,48,4.13,0.509
+Private,Grade 6,English,Female,66.47,7.25,0.64
+Charter,Grade 10,PE,Female,67.37,6.26,0.639
+Public,Grade 6,PE,Male,67.89,6.73,0.62
+Public,Grade 10,PE,Male,56.58,6.34,0.607
+Charter,Grade 11,Computer Science,Female,49.22,4.06,0.477
+Charter,Grade 11,History,Male,54.31,2.64,0.563
+Charter,Grade 11,Math,Female,63.26,1.02,0.538
+Public,Grade 6,Art,Female,52.02,7.34,0.589
+Public,Grade 9,Computer Science,Male,66.53,0.9,0.761
+Charter,Grade 10,Music,Male,95.36,5.33,0.891
+Private,Grade 10,Music,Female,91.17,5.08,0.821
+Charter,Grade 10,English,Female,55.07,7.11,0.502
+Charter,Grade 6,Science,Male,63.65,4.8,0.634
+Charter,Grade 9,English,Female,64.78,5.11,0.592
+Private,Grade 7,Math,Male,82.39,2.9,0.915
+Charter,Grade 8,Computer Science,Female,57.59,5.16,0.495
+Private,Grade 8,Math,Female,76.29,7.85,0.81
+Charter,Grade 8,Science,Female,77.65,2.6,0.722
+Charter,Grade 7,Art,Female,93.49,3.28,0.841
+Private,Grade 10,English,Female,77.78,4.2,0.84
+Charter,Grade 11,Computer Science,Male,42.26,7.18,0.427
+Public,Grade 8,Math,Male,58.04,4.07,0.532
+Public,Grade 10,Science,Male,96.64,1.7,0.934
+Charter,Grade 11,Music,Female,49.46,1.23,0.479
+Charter,Grade 10,Art,Male,67.68,4.13,0.731
+Public,Grade 6,History,Male,94.1,1.25,0.843
+Public,Grade 9,English,Female,54.34,1.42,0.553
+Charter,Grade 10,English,Female,51.25,4.68,0.432
+Charter,Grade 6,Computer Science,Male,59.88,3.01,0.643
+Public,Grade 10,English,Female,63.22,1.98,0.692
+Public,Grade 8,Computer Science,Male,43.3,3.77,0.448
+Private,Grade 10,Computer Science,Male,42.85,2.68,0.498
+Private,Grade 9,English,Female,81.92,5.62,0.728
+Private,Grade 6,Math,Male,94.28,2.77,0.942
+Public,Grade 6,Science,Female,47.64,3.18,0.429
+Charter,Grade 9,English,Female,92.45,5.42,0.954
+Charter,Grade 10,Computer Science,Female,72.21,3.29,0.778
+Private,Grade 9,English,Male,41.72,5.45,0.369
+Public,Grade 11,Art,Male,69.15,1.07,0.747
+Public,Grade 7,PE,Female,69.17,4.81,0.675
+Private,Grade 7,PE,Female,69.32,2.79,0.753
+Private,Grade 10,Math,Male,84.9,7.54,0.883
+Public,Grade 10,Science,Female,80.02,1.19,0.723
+Charter,Grade 6,Math,Female,62.85,4.79,0.573
+Charter,Grade 8,Music,Female,93.69,4.16,0.855
+Charter,Grade 11,English,Female,44.64,6.53,0.401
+Charter,Grade 8,English,Male,62.04,5.84,0.529
+Charter,Grade 7,Computer Science,Male,58.5,4.3,0.643
+Public,Grade 7,Science,Male,54.76,3.02,0.611
+Charter,Grade 11,PE,Female,68.18,2.07,0.653
+Charter,Grade 7,Music,Female,77.97,5.6,0.73
+Charter,Grade 8,Math,Female,54.66,4.5,0.488
+Public,Grade 8,English,Female,88.15,4.94,0.855
+Private,Grade 11,History,Male,56.69,5.64,0.559
+Public,Grade 9,Music,Male,46.48,1.3,0.472
+Public,Grade 11,English,Male,40.54,1.24,0.358
+Public,Grade 8,Math,Female,72.76,3.56,0.72
+Private,Grade 6,Science,Female,54.33,3.27,0.583
+Charter,Grade 8,English,Female,96.64,6.4,0.888
+Public,Grade 6,English,Female,67.14,5.12,0.592
+Charter,Grade 7,Science,Female,42.3,6.88,0.507
+Charter,Grade 7,Art,Female,54.46,1.73,0.514
+Charter,Grade 9,Science,Female,61.5,2.03,0.606
+Public,Grade 11,English,Male,86.88,4.94,0.842
+Private,Grade 8,English,Male,45.05,5.07,0.466
+Private,Grade 9,Art,Male,97.08,7.02,1
+Private,Grade 10,Science,Male,47.55,6.49,0.567
+Private,Grade 7,Computer Science,Female,94.44,6.79,0.87
+Private,Grade 11,English,Female,47.77,4.04,0.479
+Private,Grade 11,PE,Male,40.72,6,0.429
+Public,Grade 6,History,Female,94.13,1.34,0.895
+Charter,Grade 8,English,Male,65.85,7.08,0.613
+Charter,Grade 7,History,Female,69.69,2.47,0.743
+Private,Grade 10,PE,Female,94.08,2.16,1
+Public,Grade 8,Computer Science,Male,78.59,4.7,0.707
+Charter,Grade 10,PE,Male,76.06,7.47,0.699
+Charter,Grade 7,Math,Female,96.85,3.7,1
+Public,Grade 10,Science,Male,61.88,3.03,0.545
+Charter,Grade 7,Music,Male,94.53,7.57,0.987
+Public,Grade 8,Science,Male,71.61,4.71,0.689
+Public,Grade 9,History,Male,53.53,1.76,0.471
+Public,Grade 6,Art,Female,68.53,6.04,0.711
+Private,Grade 7,Art,Female,48.78,4.77,0.466
+Charter,Grade 8,Computer Science,Male,86.26,2.47,0.776
+Public,Grade 9,Math,Female,66.16,1.58,0.644
+Public,Grade 9,Computer Science,Female,51.79,7.59,0.542
+Charter,Grade 7,Music,Male,65.72,4.46,0.652
+Charter,Grade 10,History,Female,57.75,3.45,0.531
+Private,Grade 8,History,Male,98.91,7.28,0.95
+Charter,Grade 6,Science,Male,51.72,7.6,0.601
+Public,Grade 8,Music,Male,47.78,6.42,0.54
+Private,Grade 10,Art,Female,67.54,5.56,0.769
+Charter,Grade 10,English,Male,58.46,2.68,0.569
+Private,Grade 11,PE,Female,44.57,6.19,0.367
+Public,Grade 11,Music,Male,79.32,1.91,0.847
+Private,Grade 6,PE,Male,93.29,6.62,0.875
+Charter,Grade 10,English,Female,66.07,4.69,0.667
+Public,Grade 9,Science,Female,97.5,0.67,0.951
+Private,Grade 8,History,Male,74.6,6.48,0.695
+Public,Grade 8,Computer Science,Female,88.31,2.05,0.951
+Private,Grade 8,Computer Science,Male,67.16,5.19,0.582
+Charter,Grade 10,Music,Female,47.05,1.53,0.467
+Public,Grade 7,Math,Male,94.61,3.58,0.888
+Charter,Grade 8,History,Male,58.86,7.13,0.548
+Public,Grade 6,Math,Female,49.22,3.77,0.459
+Charter,Grade 6,History,Male,42.85,7.29,0.522
+Public,Grade 8,PE,Female,91.77,0.67,0.921
+Private,Grade 7,Science,Female,48.02,3.91,0.549
+Public,Grade 10,English,Female,92.05,1.67,0.898
+Charter,Grade 9,English,Male,60.63,6.87,0.538
+Private,Grade 8,Math,Male,82.85,4.24,0.785
+Private,Grade 11,English,Female,73.77,4.94,0.772
+Public,Grade 9,Music,Male,59.62,1.28,0.623
+Private,Grade 11,PE,Female,58.06,3.92,0.484
+Charter,Grade 6,English,Female,84.89,2.42,0.75
+Private,Grade 9,Music,Female,85.7,7.65,0.872
+Public,Grade 9,PE,Male,82.38,0.61,0.879
+Charter,Grade 8,Music,Female,86.22,1.6,0.954
+Private,Grade 7,Science,Male,65.77,0.94,0.603
+Charter,Grade 6,History,Female,70.32,5.74,0.766
+Charter,Grade 6,PE,Male,69.42,6.48,0.696
+Charter,Grade 10,Science,Male,67.37,2.37,0.732
+Charter,Grade 10,Science,Female,95.75,2.76,0.899
+Public,Grade 9,Music,Male,51.66,7.12,0.46
+Charter,Grade 7,Computer Science,Female,60.94,2,0.574
+Public,Grade 6,Art,Female,74.79,1.95,0.697
+Public,Grade 11,Science,Female,61.16,2.38,0.605
+Public,Grade 7,English,Male,41.78,5.89,0.471
+Private,Grade 7,Computer Science,Female,43.18,2.88,0.524
+Private,Grade 11,History,Female,95.4,0.98,1
+Charter,Grade 6,Computer Science,Male,76.41,4.18,0.836
+Public,Grade 9,Music,Male,69.55,3.59,0.769
+Public,Grade 10,Computer Science,Male,52,5.16,0.515
+Private,Grade 9,Art,Female,41.7,1.7,0.504
+Private,Grade 6,Music,Female,67.12,5.11,0.575
+Public,Grade 6,History,Male,59.32,0.52,0.579
+Charter,Grade 11,PE,Female,56.89,3.27,0.529
+Charter,Grade 10,Computer Science,Female,75.43,3.05,0.846
+Public,Grade 9,History,Female,79.98,2.78,0.814
+Private,Grade 8,Music,Female,99.22,6.39,1
+Public,Grade 10,Computer Science,Female,94.24,1.37,1
+Private,Grade 7,PE,Male,95.41,7.59,1
+Public,Grade 10,Music,Female,47.49,2.06,0.476
+Charter,Grade 8,Music,Female,98.78,2.65,0.97
+Private,Grade 8,Math,Male,72.93,0.75,0.811
+Private,Grade 8,English,Female,87.7,3.6,0.777
+Private,Grade 10,History,Male,70.5,3.92,0.662
+Public,Grade 7,Math,Female,81.87,4.37,0.813
+Public,Grade 11,Science,Female,65.55,7.52,0.652
+Public,Grade 8,Math,Female,52.16,1.21,0.561
+Public,Grade 7,Science,Male,44.35,1.81,0.441
+Charter,Grade 7,Math,Female,65.63,1.24,0.65
+Private,Grade 9,Math,Female,75.98,5.16,0.769
+Public,Grade 9,Science,Female,99.64,7.05,0.927
+Private,Grade 11,Computer Science,Male,72.24,4.88,0.705
+Private,Grade 9,Math,Female,68.84,6.2,0.658
+Charter,Grade 7,Art,Female,56.05,7.57,0.478
+Public,Grade 9,Computer Science,Male,47,4.77,0.401
+Private,Grade 10,History,Female,87.83,3.07,0.92
+Private,Grade 10,Computer Science,Female,60.92,5.92,0.583
+Public,Grade 7,Math,Female,62.11,5.34,0.72
+Private,Grade 9,History,Male,95.17,2.07,0.93
+Charter,Grade 8,History,Male,98.54,6.84,0.933
+Charter,Grade 11,History,Female,56.61,2.5,0.597
+Charter,Grade 7,Art,Female,45.89,4.82,0.446
+Charter,Grade 11,Computer Science,Female,75.05,1.67,0.775
+Charter,Grade 6,Music,Male,79.97,4.92,0.885
+Charter,Grade 9,Science,Male,41.27,5.19,0.394
+Public,Grade 6,Music,Male,46.67,4.8,0.513
+Charter,Grade 7,History,Male,77.74,4.22,0.764
+Charter,Grade 10,Music,Male,59.53,3.06,0.524
+Public,Grade 7,Computer Science,Male,92.17,5.84,1
+Public,Grade 9,PE,Male,67.64,3.94,0.745
+Public,Grade 9,Science,Male,81.37,1.07,0.895
+Private,Grade 6,Math,Male,93.91,7.02,1
+Charter,Grade 7,Art,Female,58.74,1.21,0.672
+Private,Grade 8,Computer Science,Female,59.3,6.93,0.566
+Charter,Grade 7,English,Female,71.59,4.35,0.625
+Private,Grade 7,Science,Male,40.2,4.65,0.368
+Private,Grade 9,Computer Science,Female,63.84,5.83,0.738
+Private,Grade 6,English,Male,96.76,3.41,1
+Private,Grade 11,Art,Female,63.39,3.62,0.613
+Charter,Grade 9,Music,Female,81.33,2.2,0.84
+Charter,Grade 11,English,Male,53.42,3.96,0.443
+Public,Grade 6,History,Male,72.62,5.96,0.787
+Public,Grade 10,Science,Male,57.99,2.38,0.551
+Public,Grade 11,Math,Male,68.25,7.93,0.627
+Charter,Grade 8,Art,Male,51.2,1.57,0.439
+Private,Grade 6,Math,Female,67.17,4.21,0.715
+Private,Grade 8,Science,Male,88.02,7.31,0.955
+Public,Grade 9,PE,Female,59.79,6,0.596
+Private,Grade 8,Art,Male,79.76,5.58,0.722
+Private,Grade 11,PE,Female,60.22,5.98,0.535
+Charter,Grade 11,Art,Female,80.13,7.82,0.718
+Private,Grade 6,Music,Male,62.09,5.76,0.706
+Public,Grade 6,English,Female,66.94,2.24,0.743
+Charter,Grade 10,PE,Male,99.27,6.6,0.993
+Public,Grade 10,Art,Female,80.03,5.95,0.819
+Private,Grade 7,Computer Science,Female,44.87,3.01,0.366
+Private,Grade 10,Art,Female,45.54,7.94,0.445
+Charter,Grade 7,English,Female,98.65,6.09,1
+Public,Grade 7,Music,Female,47.51,5.47,0.432
+Charter,Grade 11,Science,Female,41.54,1.23,0.486
+Charter,Grade 11,Math,Male,64.98,4.67,0.681
+Charter,Grade 11,Science,Male,55.18,3.01,0.649
+Charter,Grade 8,Math,Male,49.17,5.15,0.427
+Public,Grade 9,Art,Male,77.45,1.98,0.839
+Charter,Grade 11,Art,Male,40.53,1.75,0.343
+Private,Grade 9,Math,Male,88.46,2.71,0.92
+Private,Grade 7,Art,Female,91.5,5.94,0.815
+Public,Grade 9,Math,Male,82.15,0.84,0.895
+Public,Grade 10,Science,Male,50.62,3.07,0.468
+Public,Grade 10,Music,Female,48.14,4.1,0.439
+Public,Grade 8,Art,Female,71.68,1.85,0.672
+Public,Grade 10,Computer Science,Male,47.4,1.29,0.436
+Charter,Grade 8,Music,Male,40.27,1.73,0.329
+Public,Grade 11,Math,Male,70.6,3.66,0.616
+Charter,Grade 7,Science,Male,70.33,5.04,0.719
+Public,Grade 6,Music,Male,56.4,1,0.47
+Charter,Grade 11,Music,Male,89.98,3.13,0.999
+Charter,Grade 9,PE,Male,69.63,6.49,0.79
+Public,Grade 10,History,Female,41.49,3.3,0.418
+Charter,Grade 11,Computer Science,Female,51.53,2.12,0.427
+Charter,Grade 8,Science,Female,86.37,7.77,0.813
+Private,Grade 7,Art,Female,99.92,7.72,1
+Private,Grade 7,Science,Male,41.43,5.83,0.501
+Public,Grade 9,Music,Female,62.96,1.75,0.566
+Private,Grade 8,Art,Female,57.32,1.71,0.528
+Public,Grade 8,Science,Female,96.14,4.02,0.919
+Charter,Grade 7,PE,Male,55.85,2.02,0.607
+Public,Grade 9,Math,Male,64.52,2.25,0.55
+Charter,Grade 6,Science,Female,52.46,6.41,0.583
+Public,Grade 7,PE,Male,44.21,4.3,0.494
+Private,Grade 10,Music,Female,67.02,5.85,0.752
+Charter,Grade 11,Science,Female,84.07,5.44,0.787
+Public,Grade 9,Art,Male,82.42,1.58,0.923
+Private,Grade 6,PE,Male,91.97,2.4,0.869
+Charter,Grade 6,English,Male,81.35,2.61,0.732
+Charter,Grade 9,Computer Science,Female,66.11,6.72,0.666
+Public,Grade 10,PE,Male,63.18,4.34,0.545
+Private,Grade 8,Computer Science,Male,65.39,6.22,0.632
+Public,Grade 6,PE,Female,82.55,2.95,0.861
+Public,Grade 9,Math,Male,54.37,2.9,0.543
+Charter,Grade 10,Science,Male,70.71,6.08,0.764
+Public,Grade 10,Computer Science,Male,77.17,3.88,0.868
+Private,Grade 8,PE,Male,74.98,7.86,0.758
+Private,Grade 11,Math,Female,85.31,7.67,0.797
+Private,Grade 11,Computer Science,Female,40.09,6.14,0.465
+Charter,Grade 10,Music,Male,57.02,4.59,0.621
+Public,Grade 6,English,Male,40.91,5.12,0.342
+Public,Grade 8,PE,Male,42.42,4.15,0.495
+Public,Grade 8,Art,Female,44.9,3.63,0.432
+Private,Grade 11,Math,Female,47.15,4.41,0.553
+Private,Grade 10,English,Female,66.65,6.37,0.683
+Public,Grade 10,Science,Male,63.52,5.62,0.699
+Private,Grade 11,Science,Male,93.62,7.62,0.974
+Charter,Grade 11,Computer Science,Male,64.86,4.57,0.696
+Private,Grade 8,Art,Female,78.46,3.34,0.841
+Private,Grade 11,Science,Male,62.71,5.98,0.57
+Public,Grade 10,Math,Female,47.83,2.51,0.57
+Charter,Grade 10,PE,Female,49.33,5.31,0.433
+Private,Grade 8,English,Female,78.58,3.99,0.816
+Charter,Grade 9,Computer Science,Male,71.79,2.05,0.81
+Public,Grade 6,History,Male,93.69,7.59,0.99
+Public,Grade 10,Computer Science,Male,74.83,1.57,0.725
+Public,Grade 11,Science,Male,48.29,3.21,0.393
+Public,Grade 10,English,Male,51.37,3.33,0.504
+Private,Grade 6,Science,Female,81.16,4.81,0.87
+Charter,Grade 8,Computer Science,Female,61.9,2.89,0.52
+Private,Grade 10,Art,Male,41.87,6.68,0.36
+Private,Grade 8,PE,Male,96.27,5.64,0.963
+Public,Grade 11,Art,Female,73.69,1.93,0.677
+Private,Grade 10,Computer Science,Male,74.66,1.33,0.796
+Public,Grade 10,Music,Female,42.99,6.29,0.517
+Public,Grade 8,Math,Male,71.35,1.59,0.795
+Charter,Grade 9,Computer Science,Male,85.56,1,0.928
+Charter,Grade 9,Art,Female,80.57,7.73,0.864
+Charter,Grade 11,Art,Male,55.31,0.91,0.608
+Public,Grade 7,Math,Male,92.04,5.75,0.952
+Private,Grade 6,Computer Science,Male,61.59,3.14,0.607
+Private,Grade 6,Computer Science,Female,51.47,4.32,0.435
+Private,Grade 6,Music,Female,44.62,5.66,0.357
+Charter,Grade 7,Math,Male,76.99,3.26,0.675
+Charter,Grade 9,PE,Male,53.19,6.26,0.439
+Charter,Grade 8,Art,Male,79.3,1.1,0.821
+Private,Grade 11,Science,Male,92.3,7.86,0.974
+Private,Grade 11,Music,Male,43.2,4.17,0.497
+Private,Grade 7,Music,Female,59.75,5.06,0.516
+Public,Grade 6,Science,Female,82.34,7.19,0.921
+Charter,Grade 10,Math,Male,75.04,5.49,0.772
+Private,Grade 9,English,Female,55.94,4.87,0.646
+Private,Grade 6,Computer Science,Female,93.39,2.49,0.87
+Private,Grade 8,Music,Male,45.54,7.39,0.406
+Charter,Grade 7,Math,Female,67.57,3.85,0.708
+Charter,Grade 7,English,Female,83.73,3.22,0.914
+Public,Grade 11,Science,Male,95.08,1.85,0.93
+Charter,Grade 8,Art,Male,80.24,7.81,0.883
+Public,Grade 10,Science,Male,54.84,3.67,0.609
+Charter,Grade 6,Computer Science,Male,74.68,7.92,0.826
+Charter,Grade 8,PE,Female,84.95,2.75,0.831
+Charter,Grade 8,Science,Female,46.71,0.68,0.51
+Public,Grade 6,Science,Female,43.53,7.74,0.507
+Charter,Grade 8,Art,Male,69.65,3.33,0.796
+Public,Grade 11,Computer Science,Female,68.09,2.2,0.71
+Private,Grade 9,Math,Female,57.97,6.98,0.651
+Charter,Grade 9,History,Male,79.95,1.79,0.809
+Private,Grade 7,History,Female,66.42,7.27,0.742
+Private,Grade 9,Computer Science,Female,68.71,2.89,0.761
+Charter,Grade 6,Art,Male,53.21,1.95,0.584
+Public,Grade 8,Art,Male,89.74,1.99,0.937
+Private,Grade 7,History,Female,50.73,2.18,0.586
+Public,Grade 8,Science,Male,97.12,7.02,0.989
+Charter,Grade 7,PE,Male,53.41,2.86,0.619
+Public,Grade 10,PE,Male,53.72,2.85,0.44
+Private,Grade 10,Science,Female,77.4,1.82,0.706
+Charter,Grade 10,Art,Female,78.65,6.96,0.862
+Private,Grade 11,Computer Science,Female,99.12,3.86,1
+Private,Grade 6,Computer Science,Female,61.5,6.06,0.574
+Public,Grade 7,PE,Female,46.02,7.05,0.479
+Charter,Grade 7,Music,Male,70.74,5.41,0.664
+Public,Grade 8,PE,Female,81.01,6.04,0.8
+Public,Grade 9,Music,Female,64.49,6.67,0.649
+Public,Grade 8,Music,Male,54.62,7.62,0.558
+Charter,Grade 10,Math,Male,46.47,1.49,0.454
+Public,Grade 11,Science,Male,62.43,5.05,0.692
+Private,Grade 7,History,Male,79.04,6.1,0.879
+Charter,Grade 11,English,Male,82.09,7.87,0.762
+Public,Grade 8,Math,Male,73.94,6.59,0.734
+Public,Grade 10,Computer Science,Male,51.01,2.63,0.476
+Private,Grade 6,History,Male,41.7,2.99,0.441
+Public,Grade 6,Music,Male,79.65,4.3,0.836
+Private,Grade 9,PE,Female,55.07,5.06,0.509
+Private,Grade 10,Computer Science,Female,44.68,5.95,0.424
+Private,Grade 8,Science,Male,40.95,7.1,0.399
+Charter,Grade 7,Math,Male,92.82,7.99,0.905
+Private,Grade 8,English,Female,94.21,0.77,0.878
+Private,Grade 8,Music,Male,77.11,4.64,0.778
+Private,Grade 11,Art,Female,64.97,2.32,0.581
+Public,Grade 7,History,Male,53.09,5.41,0.615
+Public,Grade 8,History,Male,96.59,3.32,1
+Public,Grade 6,PE,Male,41.06,5.42,0.469
+Public,Grade 11,Science,Female,81.82,5.25,0.731
+Public,Grade 6,English,Male,59.78,1.22,0.595
+Charter,Grade 10,Computer Science,Female,51.06,3.08,0.444
+Public,Grade 7,Music,Female,67.79,2.2,0.729
+Charter,Grade 10,Music,Female,97.73,4.2,1
+Charter,Grade 8,History,Female,86.43,4.99,0.772
+Charter,Grade 8,English,Male,49.45,0.91,0.525
+Charter,Grade 6,History,Male,98.91,4.43,1
+Private,Grade 11,Science,Female,58.26,4.01,0.547
+Charter,Grade 7,PE,Male,49.73,4.57,0.462
+Public,Grade 11,Art,Female,41.55,1.23,0.411
+Private,Grade 6,History,Female,52.66,2.42,0.607
+Private,Grade 10,Math,Female,46.45,6.92,0.506
+Public,Grade 11,Science,Male,50.07,1.52,0.533
+Public,Grade 6,PE,Female,83.02,6.91,0.853
+Public,Grade 7,Science,Female,77.06,0.69,0.685
+Charter,Grade 7,Music,Female,54.74,1.26,0.536
+Public,Grade 10,PE,Female,55.28,6.23,0.481
+Private,Grade 6,Music,Female,90.57,3.62,0.857
+Public,Grade 6,Science,Female,81.71,1.32,0.724
+Public,Grade 11,Art,Female,56.32,2.32,0.535
+Charter,Grade 11,Science,Male,44.54,0.72,0.363
+Charter,Grade 8,History,Male,90.85,2.67,0.933
+Public,Grade 9,Computer Science,Female,98.9,1.74,0.955
+Private,Grade 6,History,Female,67.55,1.09,0.679
+Charter,Grade 7,Art,Male,68.05,7.97,0.621
+Charter,Grade 9,Music,Female,42.49,7.1,0.456
+Public,Grade 9,History,Female,89.45,0.77,0.934
+Private,Grade 8,PE,Male,67.27,5.94,0.627
+Public,Grade 9,English,Female,80.69,4.89,0.768
+Charter,Grade 9,Music,Male,58.27,1.43,0.583
+Charter,Grade 7,PE,Female,57.03,7.58,0.662
+Public,Grade 10,Math,Female,59.93,7.93,0.676
+Charter,Grade 6,English,Male,66.65,3.42,0.668
+Charter,Grade 6,Math,Male,92.74,7.11,1
+Private,Grade 10,Math,Male,65.9,7.26,0.651
+Public,Grade 6,Math,Male,96.61,2.87,0.942
+Public,Grade 10,History,Male,83.05,3.02,0.924
+Public,Grade 8,History,Male,54.46,6.96,0.577
+Charter,Grade 7,Science,Female,77.84,7.51,0.681
+Charter,Grade 11,Art,Male,49.92,4.71,0.581
+Charter,Grade 11,PE,Male,74.21,5.47,0.65
+Public,Grade 11,PE,Female,52.32,7.78,0.429
+Public,Grade 6,History,Female,82.27,5.25,0.809
+Private,Grade 8,Math,Female,67.46,4.06,0.676
+Charter,Grade 6,Art,Male,87.61,7.8,0.921
+Public,Grade 11,Music,Male,55.53,0.66,0.616
+Charter,Grade 8,Science,Male,45.61,4.96,0.358
+Private,Grade 8,PE,Female,89.98,2.47,0.918
+Charter,Grade 8,Art,Female,70.38,3.19,0.74
+Public,Grade 11,Music,Male,72.15,3.4,0.819
+Charter,Grade 8,Art,Male,99.55,7.47,0.977
+Public,Grade 7,PE,Female,50.3,0.73,0.43
+Charter,Grade 7,English,Female,58.66,6.26,0.501
+Private,Grade 10,Art,Male,44.11,6.55,0.526
+Private,Grade 8,Science,Male,58.36,2.76,0.633
+Private,Grade 6,Math,Male,77.09,6.21,0.835
+Public,Grade 8,History,Male,45.3,7.23,0.531
+Private,Grade 10,Computer Science,Male,83.84,4.99,0.783
+Charter,Grade 6,Science,Female,47.55,7.37,0.446
+Private,Grade 7,PE,Female,76.28,2.67,0.716
+Private,Grade 11,Math,Female,79.38,6.13,0.823
+Private,Grade 6,Art,Female,87.66,5.65,0.93
+Private,Grade 8,Science,Female,84.15,2.21,0.777
+Public,Grade 10,Math,Female,60.44,3.25,0.682
+Public,Grade 11,English,Male,69.72,7.59,0.677
+Charter,Grade 10,Science,Female,66.41,0.9,0.599
+Charter,Grade 10,Music,Male,45.6,5.04,0.477
+Public,Grade 10,Science,Female,60.33,1.39,0.589
+Charter,Grade 9,English,Male,61.35,0.74,0.6
+Public,Grade 6,PE,Male,50.16,3.75,0.577
+Charter,Grade 9,Computer Science,Female,72.89,4.86,0.706
+Public,Grade 9,PE,Male,41.84,1.56,0.486
+Charter,Grade 9,Math,Male,54.06,3.96,0.455
+Public,Grade 7,PE,Female,71.97,3.97,0.815
+Private,Grade 8,Science,Female,97.95,7.27,0.934
+Public,Grade 7,Computer Science,Male,51.5,7.29,0.559
+Private,Grade 9,English,Female,60.52,0.67,0.55
+Charter,Grade 8,History,Male,49.52,4.5,0.419
+Public,Grade 7,Art,Male,94.15,1.59,0.895
+Private,Grade 10,PE,Female,66.75,6.6,0.622
+Charter,Grade 9,History,Female,98.53,2.64,1
+Public,Grade 8,Music,Male,98.36,5.68,0.905
+Public,Grade 7,Music,Female,47.52,5.63,0.556
+Private,Grade 7,PE,Male,88.6,1.28,0.795
+Public,Grade 6,Math,Male,83.18,5.22,0.845
+Private,Grade 11,Music,Female,88.16,0.74,0.791
+Public,Grade 9,Math,Female,58.81,3.29,0.603
+Public,Grade 9,Art,Male,75.77,5.65,0.77
+Charter,Grade 6,Computer Science,Female,42.8,1.34,0.336
+Charter,Grade 7,PE,Female,43.18,4.53,0.464
+Public,Grade 6,English,Female,55.98,2.77,0.581
+Public,Grade 7,History,Male,46.25,2.41,0.493
+Public,Grade 11,English,Female,59.11,2.18,0.514
+Charter,Grade 6,Math,Female,83.14,4.77,0.791
+Private,Grade 10,Math,Male,81.06,5.95,0.864
+Public,Grade 6,Art,Male,71.01,2.17,0.81
+Private,Grade 7,English,Male,71.2,3.87,0.72
+Public,Grade 6,Computer Science,Male,62.09,5.67,0.634
+Public,Grade 7,English,Male,49.31,0.68,0.502
+Private,Grade 9,Math,Female,44.97,0.96,0.359
+Public,Grade 9,Art,Female,90.55,1.3,0.945
+Charter,Grade 9,Science,Male,60.08,7.4,0.581
+Public,Grade 8,PE,Female,78.84,6.29,0.766
+Public,Grade 11,Music,Male,52.72,4.74,0.526
+Private,Grade 7,PE,Male,92.14,5.9,1
+Charter,Grade 7,Art,Male,52.49,1.83,0.516
+Public,Grade 7,Computer Science,Male,41.63,4.29,0.496
+Charter,Grade 11,Science,Female,48.79,1.37,0.42
+Charter,Grade 8,Art,Female,94.5,4.58,0.999
+Charter,Grade 9,History,Male,45.98,4.15,0.462
+Private,Grade 9,History,Female,91.63,7.7,0.837
+Charter,Grade 6,Math,Female,43.5,2.22,0.4
+Public,Grade 11,Science,Female,42.27,2.46,0.418
+Public,Grade 9,Computer Science,Female,93.3,4.98,0.933
+Charter,Grade 7,Music,Female,41.75,4.15,0.515
+Charter,Grade 10,History,Male,44.2,1.53,0.401
+Private,Grade 9,Math,Female,40.93,0.85,0.316
+Public,Grade 9,Science,Male,87.75,6.52,0.857
+Private,Grade 9,Science,Male,57.79,7.66,0.615
+Charter,Grade 7,History,Female,77.59,4.83,0.691
+Private,Grade 8,Math,Male,45.39,7.94,0.38
+Charter,Grade 10,Computer Science,Male,81.41,3.72,0.81
+Private,Grade 11,PE,Male,71.27,3.04,0.699
+Public,Grade 8,Science,Female,82.17,0.71,0.874
+Private,Grade 11,Computer Science,Female,98.15,0.7,0.939
+Public,Grade 10,History,Female,72.98,2.09,0.674
+Public,Grade 6,History,Female,62.97,2.11,0.716
+Private,Grade 6,English,Male,41.02,2.65,0.384
+Public,Grade 7,Science,Female,75.07,3.41,0.742
+Charter,Grade 8,Computer Science,Male,74.76,4.76,0.655
+Public,Grade 10,English,Male,85.16,2.31,0.896
+Private,Grade 11,PE,Female,81.47,4.87,0.908
+Private,Grade 10,PE,Female,64.12,3.91,0.694
+Charter,Grade 6,English,Male,58.47,6.5,0.638
+Private,Grade 10,Science,Female,84.09,6.43,0.801
+Private,Grade 9,Science,Female,41.07,5.16,0.373
+Private,Grade 8,Science,Female,87.08,3.52,0.817
+Charter,Grade 11,PE,Male,50.61,6.07,0.439
+Private,Grade 8,Math,Female,98.9,0.54,1
+Public,Grade 10,Computer Science,Female,74.17,7.86,0.749
+Private,Grade 6,Math,Male,48.27,3.51,0.402
+Charter,Grade 11,English,Male,52.38,2.68,0.47
+Public,Grade 7,Math,Female,44.34,7.35,0.345
+Public,Grade 7,History,Female,72.29,6.79,0.796
+Charter,Grade 11,English,Male,52.63,3.91,0.565
+Public,Grade 11,PE,Male,53.27,7.1,0.516
+Public,Grade 10,Computer Science,Male,90.15,6.02,0.881
+Public,Grade 9,Math,Male,92.37,4.91,0.827
+Public,Grade 8,Math,Female,43.52,2.84,0.486
+Charter,Grade 6,PE,Male,50.83,4.16,0.563
+Charter,Grade 9,English,Male,82.52,5.04,0.9
+Private,Grade 6,Math,Female,59.34,5.09,0.659
+Charter,Grade 10,History,Male,45.45,4.76,0.422
+Private,Grade 10,Art,Female,69.37,6.94,0.674
+Public,Grade 9,Science,Female,86.98,4.51,0.819
+Public,Grade 6,Music,Male,57.88,6.12,0.524
+Private,Grade 10,Art,Female,77.77,7.64,0.747
+Charter,Grade 8,Art,Male,44.1,5.51,0.369
+Charter,Grade 8,English,Female,95.07,7,0.946
+Private,Grade 8,PE,Male,44,6.99,0.405
+Charter,Grade 6,History,Female,81.44,2.84,0.836
+Private,Grade 8,PE,Male,99.96,2.54,0.982
+Charter,Grade 11,Science,Female,96.39,2.71,0.922
+Public,Grade 10,PE,Female,59.41,5.63,0.624
+Charter,Grade 11,PE,Male,96.51,4.87,0.924
+Private,Grade 9,Computer Science,Female,53.69,5.19,0.454
+Public,Grade 9,History,Female,67.35,1.31,0.582
+Charter,Grade 7,History,Female,59.93,1.38,0.66
+Private,Grade 6,History,Female,94.57,4.86,0.92
+Private,Grade 9,Art,Male,82.39,2,0.853
+Charter,Grade 9,English,Male,86.94,7.72,0.812
+Private,Grade 11,Math,Female,46.81,7.93,0.468
+Charter,Grade 6,English,Female,52.64,2.25,0.469
+Private,Grade 8,English,Male,54.38,0.96,0.538
+Private,Grade 7,Science,Female,45.49,0.78,0.429
+Public,Grade 10,Math,Female,62.96,4.92,0.663
+Charter,Grade 6,Art,Female,75.65,5.57,0.671
+Private,Grade 11,English,Male,41.06,5.9,0.5
+Charter,Grade 7,Computer Science,Male,95.38,4.19,0.915
+Public,Grade 6,Art,Female,77.99,4.83,0.778
+Public,Grade 7,History,Male,78.2,1.68,0.814
+Public,Grade 7,PE,Female,49.98,5.43,0.491
+Private,Grade 6,History,Female,75.48,4.62,0.693
+Public,Grade 10,Science,Male,72.44,5.64,0.783
+Private,Grade 7,Art,Female,81.21,2.33,0.737
+Public,Grade 6,PE,Female,70.68,7.79,0.619
+Public,Grade 10,Science,Female,72.12,3.33,0.659
+Private,Grade 6,Music,Female,95.44,2.77,0.964
+Charter,Grade 6,Art,Male,80.04,3.77,0.742
+Private,Grade 11,PE,Female,43.53,3.9,0.381
+Public,Grade 9,Science,Male,85.26,3.1,0.85
+Public,Grade 8,PE,Female,51.69,3.2,0.528
+Charter,Grade 7,Music,Male,60.39,4.44,0.616
+Charter,Grade 7,History,Male,59.4,7.72,0.686
+Charter,Grade 6,History,Female,52.74,7.41,0.605
+Charter,Grade 6,PE,Female,73.81,3.28,0.82
+Charter,Grade 8,Art,Female,95.77,6.28,0.968
+Public,Grade 10,Science,Female,64.55,3.41,0.642
+Charter,Grade 10,PE,Female,73.63,5.74,0.668
+Public,Grade 10,Science,Female,47.15,7.65,0.564
+Charter,Grade 9,English,Female,68.99,1.7,0.773
+Public,Grade 6,Music,Female,91.84,5.71,0.846
+Private,Grade 7,Math,Female,64.33,1.07,0.729
+Charter,Grade 7,Art,Female,86.98,1.38,0.77
+Charter,Grade 10,Science,Female,83.08,7.37,0.88
+Private,Grade 8,Music,Female,90.36,2.07,0.827
+Private,Grade 10,English,Male,58.29,7.41,0.539
+Private,Grade 9,Music,Female,87.32,3.66,0.795
+Public,Grade 8,Science,Male,91.39,6.92,0.894
+Charter,Grade 7,History,Female,50,3.4,0.526
+Charter,Grade 7,Science,Female,87.47,7.7,0.813
+Charter,Grade 11,History,Male,80.05,0.68,0.728
+Charter,Grade 6,PE,Female,68.99,3.17,0.659
+Charter,Grade 7,Computer Science,Female,57.52,7.45,0.526
+Public,Grade 6,PE,Female,93,3.48,0.846
+Private,Grade 10,Computer Science,Male,84.58,2.85,0.877
+Private,Grade 11,Art,Female,57.5,6.01,0.557
+Charter,Grade 7,Math,Male,52.69,4.93,0.588
+Private,Grade 8,Computer Science,Female,41.66,4.06,0.343
+Charter,Grade 10,PE,Male,54.61,0.51,0.466
+Charter,Grade 11,Music,Female,45.4,0.82,0.402
+Public,Grade 8,Science,Male,43.47,6.23,0.497
+Charter,Grade 8,Computer Science,Female,91.61,7.99,0.836
+Private,Grade 6,History,Female,72.17,7.21,0.719
+Charter,Grade 8,PE,Female,72.73,6.29,0.639
+Charter,Grade 10,PE,Male,52.03,4.73,0.564
+Public,Grade 6,PE,Male,50.11,1.66,0.475
+Charter,Grade 7,English,Female,80.58,2.6,0.843
+Public,Grade 10,History,Male,95.98,0.88,1
+Private,Grade 10,Art,Female,91.73,6.73,0.975
+Private,Grade 10,Art,Female,40.8,3.84,0.363
+Charter,Grade 10,Art,Male,96.43,1.65,0.985
+Charter,Grade 11,Math,Female,84.35,5.57,0.899
+Private,Grade 10,Math,Female,43.12,2.12,0.479
+Public,Grade 10,Computer Science,Female,97.32,1.43,0.979
+Public,Grade 7,Science,Male,42,5.8,0.473
+Private,Grade 6,Art,Male,68.24,3.08,0.645
+Charter,Grade 7,Math,Female,72.9,4.61,0.775
+Charter,Grade 7,History,Female,40.79,4.21,0.353
+Public,Grade 7,Science,Male,95.34,5.41,1
+Public,Grade 9,Music,Female,95.17,2.64,0.985
+Charter,Grade 8,History,Female,75.3,2.85,0.747
+Charter,Grade 6,English,Male,69.04,2,0.739
+Private,Grade 10,Art,Male,97.18,2.62,0.907
+Private,Grade 10,Science,Male,66.69,1.19,0.758
+Charter,Grade 10,Math,Female,74.28,2.51,0.682
+Public,Grade 8,English,Male,49.75,1.83,0.486
+Charter,Grade 9,PE,Male,94.16,2.84,0.897
+Public,Grade 6,English,Female,71.07,5.39,0.675
+Private,Grade 8,Computer Science,Male,58.67,6.95,0.556
+Charter,Grade 11,Science,Female,62.1,7.4,0.703
+Charter,Grade 7,English,Male,95.34,5.53,0.946
+Public,Grade 7,PE,Male,45.86,7.73,0.543
+Public,Grade 9,Computer Science,Male,83.65,5.51,0.876
+Private,Grade 9,History,Male,94,2.93,0.939
+Private,Grade 7,PE,Male,80.18,2.9,0.762
+Public,Grade 9,English,Male,92.87,4.78,0.992
+Public,Grade 8,Math,Female,60.44,6.59,0.622
+Public,Grade 8,PE,Male,86.49,5.23,0.949
+Private,Grade 11,Music,Female,88.21,5.98,0.968
+Public,Grade 10,Art,Male,78.74,1.81,0.858
+Charter,Grade 8,PE,Male,89.4,4.67,0.983
+Private,Grade 10,Art,Male,52.3,7.03,0.47
+Charter,Grade 7,Computer Science,Male,57.76,7.03,0.659
+Charter,Grade 11,Math,Male,67.73,0.75,0.708
+Public,Grade 9,Music,Male,45.77,5.31,0.403
+Private,Grade 6,Music,Male,96.74,5.97,0.944
+Private,Grade 6,Computer Science,Male,82.03,5.69,0.822
+Private,Grade 10,Computer Science,Female,44.49,6.98,0.346
+Charter,Grade 9,Art,Female,44.35,3.71,0.409
+Charter,Grade 10,PE,Male,61.74,7.77,0.561
+Private,Grade 7,PE,Male,56.2,6.95,0.555
+Charter,Grade 8,PE,Female,63.6,4.83,0.621
+Public,Grade 9,English,Male,78.63,3.67,0.835
+Charter,Grade 9,PE,Female,79.74,6.4,0.723
+Public,Grade 7,Math,Female,84.69,1.09,0.905
+Charter,Grade 11,Music,Female,90.24,0.56,0.978
+Charter,Grade 11,Science,Female,78.31,1.27,0.717
+Public,Grade 7,English,Female,71.57,4.85,0.77
+Charter,Grade 7,Music,Female,96.5,3.49,1
+Private,Grade 7,PE,Male,74.11,4.51,0.704
+Charter,Grade 11,English,Female,68.93,3.72,0.745
+Private,Grade 9,Computer Science,Male,67.64,5.25,0.718
+Charter,Grade 8,English,Male,95.9,2.47,0.971
+Charter,Grade 8,Science,Female,55.6,5.51,0.6
+Public,Grade 7,Music,Male,95.44,7.04,0.855
+Charter,Grade 10,Math,Female,66.9,2.17,0.667
+Charter,Grade 10,Math,Male,98.1,3.98,0.896
+Public,Grade 9,English,Male,77.37,2.77,0.811
+Private,Grade 8,Computer Science,Female,62.95,2.17,0.546
+Public,Grade 9,History,Female,60.92,1.02,0.62
+Private,Grade 11,History,Female,98.53,3.88,0.927
+Public,Grade 11,English,Female,44.99,0.85,0.456
+Charter,Grade 11,Music,Female,41.01,6.94,0.332
+Private,Grade 9,History,Female,67.06,5.77,0.672
+Charter,Grade 7,Computer Science,Female,74.22,2.93,0.818
+Public,Grade 9,Art,Male,55.99,1.12,0.634
+Public,Grade 8,Music,Female,63.5,1.6,0.578
+Charter,Grade 11,Math,Male,87.7,5.99,0.827
+Public,Grade 11,Art,Female,80.45,0.84,0.817
+Public,Grade 6,Music,Female,50.37,1.13,0.504
+Charter,Grade 7,Music,Female,57.5,3.34,0.617
+Public,Grade 7,English,Male,53.78,7.71,0.534
+Public,Grade 11,PE,Male,80.59,3.93,0.827
+Charter,Grade 9,Computer Science,Male,77.86,7.27,0.716
+Public,Grade 7,Music,Female,80.56,1.06,0.748
+Private,Grade 10,PE,Female,42.8,6.64,0.522
+Charter,Grade 7,Art,Male,77.69,6.79,0.764
+Public,Grade 11,Computer Science,Male,71.42,5.84,0.636
+Charter,Grade 10,English,Female,57.92,3.54,0.488
+Public,Grade 9,Math,Female,79.1,0.53,0.846
+Private,Grade 10,Music,Male,71.02,4.32,0.727
+Charter,Grade 9,History,Male,49.91,5.93,0.514
+Public,Grade 7,PE,Male,76.47,2.53,0.712
+Public,Grade 7,Computer Science,Female,88.07,6.83,0.87
+Private,Grade 6,Science,Female,49.34,6.65,0.476
+Charter,Grade 8,Science,Female,56.72,1.73,0.536
+Private,Grade 7,Computer Science,Male,88.86,2.21,0.812
+Private,Grade 8,English,Male,78.88,3.89,0.786
+Charter,Grade 9,PE,Female,82.03,4.6,0.736
+Private,Grade 6,PE,Female,57.15,4.1,0.521
+Private,Grade 11,Math,Male,94.79,6.54,0.865
+Private,Grade 6,English,Female,46.32,7.37,0.376
+Private,Grade 11,Art,Female,77.5,6.32,0.757
+Public,Grade 6,Science,Male,81.09,3.39,0.842
+Private,Grade 7,English,Male,58.19,2.07,0.577
+Charter,Grade 10,Science,Female,48.06,2.7,0.57
+Public,Grade 7,English,Male,79.91,7.08,0.888
+Charter,Grade 11,Science,Male,61.69,4.48,0.539
+Private,Grade 6,English,Male,61.78,6.93,0.559
+Public,Grade 9,Computer Science,Male,81.47,7.15,0.848
+Charter,Grade 8,English,Female,71.86,5.53,0.748
+Charter,Grade 8,History,Male,94.25,1.11,0.991
+Public,Grade 7,History,Male,69.16,6.08,0.727
+Public,Grade 10,History,Male,90.45,7.38,0.886
+Public,Grade 9,Music,Female,85.86,2.71,0.829
+Private,Grade 9,History,Female,86.61,4.69,0.802
+Public,Grade 9,English,Male,86.11,6.59,0.957
+Private,Grade 8,Science,Male,67.65,1.6,0.747
+Private,Grade 6,PE,Male,97.19,3.95,0.944
+Private,Grade 6,Science,Female,68.03,4.98,0.702
+Private,Grade 6,History,Male,75.3,2.15,0.808
+Public,Grade 7,Music,Female,72.23,4.39,0.634
+Public,Grade 11,English,Male,81.94,3.02,0.807
+Private,Grade 8,Music,Female,59.17,7.13,0.686
+Charter,Grade 6,Art,Female,62.9,5.68,0.594
+Private,Grade 10,Computer Science,Male,51.56,2.25,0.441
+Private,Grade 11,PE,Female,46.95,2.44,0.524
+Charter,Grade 7,History,Male,99.18,5.15,1
+Public,Grade 6,History,Female,67.59,0.9,0.749
+Private,Grade 9,History,Male,47.61,3.81,0.449
+Public,Grade 8,History,Female,82.05,4.22,0.795
+Private,Grade 7,Music,Male,58.68,6.8,0.548
+Public,Grade 7,Science,Female,77.26,0.54,0.87
+Private,Grade 8,Science,Female,71.64,3.95,0.813
+Private,Grade 6,Art,Male,75.63,4.14,0.813
+Public,Grade 11,Art,Male,41.54,1.76,0.319
+Charter,Grade 7,Computer Science,Female,72.14,3.72,0.688
+Public,Grade 10,Science,Male,97.15,4.9,0.883
+Private,Grade 9,PE,Female,72.16,2.98,0.729
+Charter,Grade 6,English,Female,49.29,4.91,0.58
+Private,Grade 11,Art,Male,52.66,5.41,0.486
+Charter,Grade 9,Science,Male,72.05,1.56,0.703
+Charter,Grade 7,Computer Science,Female,83.73,4.9,0.892
+Charter,Grade 6,PE,Female,94.74,2.3,0.925
+Private,Grade 10,English,Female,41.78,2.26,0.478
+Charter,Grade 8,Math,Male,52.49,5.19,0.439
+Private,Grade 10,History,Male,82.63,0.92,0.776
+Public,Grade 6,Math,Female,97.98,3.96,0.987
+Charter,Grade 9,Science,Female,56.74,0.97,0.617
+Private,Grade 8,Art,Male,53.78,6.2,0.488
+Charter,Grade 7,Art,Male,78.25,6.36,0.724
+Private,Grade 11,Science,Male,75.53,2.2,0.758
+Private,Grade 8,Computer Science,Female,94.56,4.18,0.853
+Public,Grade 9,Math,Male,66.76,2.43,0.767
+Public,Grade 11,Music,Female,93.44,1.58,0.977
+Private,Grade 11,History,Male,88.92,6.8,0.833
+Charter,Grade 8,Science,Female,54.79,7.37,0.508
+Charter,Grade 7,English,Female,75.63,1.17,0.678
+Public,Grade 10,History,Male,57.46,6.43,0.577
+Private,Grade 10,Music,Male,76.53,1.16,0.849
+Public,Grade 11,Math,Male,47.42,4.96,0.464
+Charter,Grade 10,Science,Male,49.86,7.92,0.59
+Public,Grade 8,Music,Female,52.46,4.35,0.456
+Public,Grade 7,Science,Male,54.96,1.66,0.517
+Charter,Grade 9,English,Female,60.66,4.53,0.535
+Public,Grade 10,English,Male,79.05,1.38,0.847
+Private,Grade 7,PE,Female,77.6,7.73,0.796
+Charter,Grade 9,PE,Female,61.68,7.41,0.699
+Public,Grade 8,English,Female,95.16,4.45,0.924
+Charter,Grade 7,English,Female,99.42,7.11,1
+Private,Grade 6,Math,Male,89.76,6.36,0.86
+Charter,Grade 8,Music,Female,86.29,3.81,0.878
+Private,Grade 9,Music,Female,90.79,2.16,0.982
+Charter,Grade 6,Science,Female,70.12,4.34,0.723
+Charter,Grade 6,Music,Female,80.6,3.12,0.713
+Public,Grade 10,Music,Male,67.15,7.98,0.691
+Private,Grade 6,History,Male,57.17,3.34,0.581
+Private,Grade 7,Music,Male,45.73,1.39,0.551
+Charter,Grade 7,Science,Female,85.65,0.92,0.851
+Private,Grade 11,Music,Female,57.27,1.84,0.665
+Private,Grade 9,Computer Science,Female,52.19,6.62,0.446
+Private,Grade 6,Math,Female,96.45,0.91,0.868
+Private,Grade 7,English,Male,83.32,4.39,0.899
+Private,Grade 7,PE,Female,95.66,7.45,1
+Private,Grade 9,Art,Female,85.93,3.24,0.9
+Charter,Grade 7,English,Male,96.07,3.1,0.882
+Public,Grade 9,Computer Science,Female,87.91,5.54,0.961
+Private,Grade 8,Computer Science,Female,94.48,6.77,0.931
+Private,Grade 11,Music,Male,57.12,3.46,0.54
+Public,Grade 10,Computer Science,Male,67.87,5.84,0.777
+Public,Grade 10,PE,Female,87.81,2.81,0.905
+Private,Grade 8,History,Male,54.18,4.45,0.541
+Charter,Grade 6,Computer Science,Male,96.14,0.63,1
+Public,Grade 6,Computer Science,Male,71.01,6.08,0.686
+Charter,Grade 6,Math,Male,41.56,7.81,0.497
+Charter,Grade 9,Math,Female,97.49,4.57,1
+Public,Grade 10,Math,Female,71.05,6.81,0.651
+Public,Grade 10,Art,Male,47.6,1.67,0.388
+Private,Grade 8,History,Male,74.53,5.89,0.651
+Charter,Grade 6,Math,Female,62.28,2.06,0.68
+Charter,Grade 7,Science,Male,55.76,2.13,0.476
+Private,Grade 10,Computer Science,Male,40.22,3.66,0.411
+Public,Grade 8,Computer Science,Female,59.31,3.47,0.525
+Charter,Grade 10,Music,Female,43.23,3.18,0.476
+Public,Grade 9,Music,Female,44.68,7.77,0.5
+Charter,Grade 11,Science,Female,91.04,4.34,0.981
+Private,Grade 11,Music,Female,88.21,7.59,0.854
+Private,Grade 9,PE,Male,95.95,2.07,0.969
+Public,Grade 11,Computer Science,Male,97.61,7.35,0.946
+Charter,Grade 7,English,Male,60.19,0.91,0.591
+Public,Grade 10,Science,Male,43.49,1.59,0.449
+Private,Grade 8,Music,Female,81.23,4.33,0.74
+Private,Grade 7,English,Male,46.82,2.45,0.39
+Charter,Grade 10,Math,Female,87.39,1.12,0.842
+Charter,Grade 11,Music,Male,43.37,6.81,0.345
+Public,Grade 7,Math,Male,78.36,5.36,0.799
+Charter,Grade 7,History,Male,99.13,7.12,1
+Charter,Grade 8,History,Male,99.92,3.1,1
+Public,Grade 11,History,Female,63.18,6.06,0.726
+Public,Grade 9,Art,Female,82.94,5.3,0.775
+Private,Grade 11,Math,Male,87.76,5.67,0.852
+Private,Grade 10,Music,Male,70.6,5.33,0.796
+Private,Grade 7,Science,Female,45.95,2.57,0.473
+Charter,Grade 7,English,Female,59.57,5.51,0.603
+Charter,Grade 9,Art,Male,90.09,5.05,0.931
+Public,Grade 11,Science,Male,80.18,5.91,0.715
+Charter,Grade 9,Computer Science,Female,47.78,6.26,0.471
+Public,Grade 8,History,Female,98.8,7.98,1
+Charter,Grade 9,English,Female,89.33,6.39,0.961
+Public,Grade 10,Computer Science,Female,85.42,5.82,0.813
+Charter,Grade 8,Computer Science,Male,92.39,1.59,0.925
+Public,Grade 11,Music,Female,94.07,1.74,1
+Private,Grade 7,History,Female,91.28,5.82,0.974
+Public,Grade 6,Computer Science,Female,77.81,1.77,0.716
+Private,Grade 11,History,Male,60.99,2.7,0.641
+Private,Grade 8,Music,Female,56.06,8,0.542
+Private,Grade 6,Art,Female,46.47,3.15,0.498
+Public,Grade 10,PE,Male,49.18,2.45,0.485
+Public,Grade 11,Music,Male,90.07,1.24,0.927
+Public,Grade 11,Science,Male,65.41,4.94,0.689
+Charter,Grade 9,History,Female,82.38,0.79,0.822
+Public,Grade 7,Computer Science,Female,47.86,1.78,0.501
+Private,Grade 10,Science,Male,97.76,6.56,0.917
+Charter,Grade 11,Music,Female,73.25,5.04,0.753
+Public,Grade 7,History,Male,94.95,4.7,0.98
+Charter,Grade 10,Music,Female,60.17,5.25,0.598
+Private,Grade 9,English,Female,96.77,5.14,1
+Charter,Grade 6,History,Female,66.22,2.61,0.594
+Charter,Grade 7,PE,Female,54.3,5.16,0.478
+Charter,Grade 6,Art,Male,64.42,4.17,0.695
+Charter,Grade 11,Math,Male,67.37,3,0.715
+Charter,Grade 11,Computer Science,Male,95.59,3.85,0.92
+Public,Grade 6,Music,Male,73.77,1.14,0.658
+Charter,Grade 11,Science,Male,62.48,2.59,0.531
+Private,Grade 6,Computer Science,Male,55.09,5.44,0.611
+Public,Grade 8,History,Male,88.51,7.72,0.95
+Charter,Grade 9,History,Female,75.34,7.79,0.814
+Public,Grade 11,Science,Male,67.44,6.36,0.725
+Public,Grade 7,PE,Female,69.84,3.93,0.608
+Charter,Grade 9,Computer Science,Male,83.69,5.85,0.912
+Charter,Grade 7,Math,Male,40.24,1.46,0.445
+Private,Grade 7,Computer Science,Male,99.96,5.85,0.924
+Charter,Grade 7,Art,Male,51.5,1.94,0.448
+Public,Grade 7,Art,Female,87.33,2.69,0.828
+Public,Grade 7,Computer Science,Female,68.07,5.73,0.614
+Charter,Grade 8,History,Female,45.23,2,0.448
+Charter,Grade 8,English,Female,90.54,7.59,0.995
+Private,Grade 7,Science,Female,77.29,5.6,0.734
+Charter,Grade 11,History,Male,53.17,3.61,0.502
+Public,Grade 6,English,Male,55.23,7.2,0.604
+Public,Grade 7,Art,Female,89.94,2.06,0.996
+Private,Grade 8,Science,Male,49.49,2.29,0.468
+Private,Grade 6,PE,Male,93.92,0.62,0.867
+Public,Grade 7,Math,Female,66.85,5.41,0.757
+Private,Grade 8,Math,Male,71.86,5.63,0.721
+Private,Grade 7,Art,Male,88.24,4.18,0.866
+Public,Grade 6,Computer Science,Male,97.51,6.06,0.967
+Charter,Grade 9,Science,Male,80.41,1.49,0.895
+Private,Grade 10,Music,Male,96.01,2.42,1
+Public,Grade 8,Art,Female,73.64,7.95,0.766
+Charter,Grade 10,Science,Male,71.11,1.23,0.787
+Private,Grade 9,PE,Female,94.92,2.02,1
+Charter,Grade 10,Computer Science,Female,42.04,1.78,0.498
+Charter,Grade 7,Computer Science,Male,63.02,2.54,0.562
+Public,Grade 7,History,Male,59.97,5.73,0.646
+Private,Grade 6,Art,Female,67.85,0.87,0.586
+Charter,Grade 8,Computer Science,Male,49.43,3.43,0.477
+Public,Grade 8,Math,Female,96.64,5.8,0.988
+Public,Grade 9,Math,Male,66.04,2.3,0.648
+Private,Grade 9,Art,Female,61.48,6.36,0.612
+Private,Grade 7,Music,Female,80.61,5.98,0.808
+Charter,Grade 6,English,Male,57.68,3.15,0.517
+Charter,Grade 9,Science,Male,70.06,5.84,0.632
+Charter,Grade 6,Music,Female,72.33,6.36,0.746
+Private,Grade 7,PE,Female,92.68,3.66,1
+Public,Grade 6,PE,Female,81.35,2.79,0.905
+Public,Grade 9,History,Female,81.1,5.12,0.84
+Charter,Grade 8,English,Male,59.34,3.2,0.644
+Charter,Grade 10,Math,Female,68.63,3.09,0.714
+Public,Grade 9,Computer Science,Male,68.55,4.3,0.774
+Charter,Grade 8,Computer Science,Male,52.06,3.94,0.541
+Charter,Grade 11,History,Male,88.36,5.39,0.968
+Charter,Grade 10,Math,Male,61.32,4.08,0.514
+Charter,Grade 9,Science,Female,72,6.89,0.624
+Charter,Grade 6,Math,Male,41.88,4.03,0.328
+Private,Grade 7,Science,Male,73.22,3.43,0.776
+Charter,Grade 10,Math,Female,72.51,2.52,0.668
+Private,Grade 7,Music,Male,67.13,2.51,0.703
+Charter,Grade 10,Computer Science,Female,62.19,6.51,0.635
+Private,Grade 7,Math,Male,58.65,7.8,0.545
+Charter,Grade 7,Art,Female,91.68,2.57,0.848
+Charter,Grade 8,Computer Science,Male,92.87,3.72,0.832
+Private,Grade 11,PE,Male,65.61,6.47,0.623
+Charter,Grade 10,Computer Science,Female,77.37,3.57,0.75
+Private,Grade 10,English,Male,81.68,7.58,0.881
+Public,Grade 11,History,Female,76.36,5.46,0.794
+Public,Grade 9,Science,Female,47.91,7.19,0.406
+Public,Grade 10,Math,Female,57.53,5.07,0.509
+Charter,Grade 10,Computer Science,Male,47.86,0.96,0.523
+Charter,Grade 6,Art,Female,76.29,0.58,0.854
+Charter,Grade 11,Music,Male,45.96,4.75,0.517
+Charter,Grade 7,History,Female,82.8,2.68,0.739
+Private,Grade 7,Music,Male,65.64,2.18,0.754
+Private,Grade 8,PE,Male,44.09,4.43,0.52
+Charter,Grade 10,PE,Male,65.79,5.29,0.564
+Public,Grade 11,Math,Male,88.74,2.52,0.819
+Private,Grade 6,Math,Female,60.08,5.49,0.556
+Public,Grade 7,Computer Science,Male,85.13,4.02,0.777
+Charter,Grade 7,Computer Science,Female,42.74,5.49,0.501
+Private,Grade 10,Art,Male,67.59,4.28,0.699
+Private,Grade 11,Music,Male,50.39,7.42,0.57
+Public,Grade 11,Art,Male,60.99,1.74,0.638
+Charter,Grade 6,Science,Male,83.56,0.55,0.893
+Public,Grade 8,Computer Science,Male,52.22,3.18,0.426
+Public,Grade 6,PE,Female,93.3,6.27,0.914
+Private,Grade 9,Art,Male,61.98,7.05,0.579
+Public,Grade 8,English,Male,89.48,6.98,0.859
+Charter,Grade 11,PE,Female,42.3,1.35,0.499
+Public,Grade 9,PE,Male,90.59,6.69,0.899
+Public,Grade 8,Music,Female,53.3,2.34,0.521
+Public,Grade 6,Art,Male,61.81,6.05,0.636
+Charter,Grade 11,History,Female,96.25,4.96,0.972
+Private,Grade 8,PE,Female,43.9,3.7,0.439
+Private,Grade 8,PE,Female,83.09,7.72,0.828
+Private,Grade 9,Art,Male,45.49,3.62,0.535
+Private,Grade 9,Music,Male,90.12,4.61,0.83
+Charter,Grade 6,Science,Female,43.39,3.21,0.464
+Charter,Grade 10,History,Female,52.2,6.31,0.553
+Charter,Grade 9,Computer Science,Male,94.71,7.09,0.855
+Private,Grade 9,Art,Female,98.73,1.71,1
+Charter,Grade 11,Math,Male,50.09,3.69,0.407
+Private,Grade 6,Computer Science,Male,88.36,1.68,0.83
+Public,Grade 11,Music,Female,62.83,2.66,0.609
+Private,Grade 7,PE,Female,84.2,7.77,0.906
+Private,Grade 11,PE,Female,64.09,7.33,0.66
+Public,Grade 7,English,Female,63.22,7.78,0.676
+Charter,Grade 7,Math,Female,61.15,2.08,0.649
+Public,Grade 10,Math,Female,43.59,1.19,0.463
+Private,Grade 11,Math,Male,42.62,4.25,0.418
+Public,Grade 8,Science,Male,63.95,3.02,0.592
+Charter,Grade 10,Science,Male,63.12,5.36,0.684
+Charter,Grade 11,Science,Male,50.07,6.6,0.595
+Charter,Grade 8,Art,Male,55.05,3.99,0.507
+Public,Grade 6,Computer Science,Male,84.93,1.25,0.791
+Public,Grade 7,English,Male,57.53,3.85,0.617
+Public,Grade 8,History,Male,92.18,5.27,0.828
+Private,Grade 7,PE,Female,52.25,2.88,0.614
+Charter,Grade 10,PE,Male,60.25,6.66,0.634
+Public,Grade 10,Computer Science,Male,74.91,1.88,0.79
+Public,Grade 11,Computer Science,Male,84.09,4.83,0.787
+Public,Grade 8,Music,Male,96.52,3.73,1
+Public,Grade 6,English,Male,60.76,7.79,0.537
+Charter,Grade 11,Computer Science,Male,72.78,6.37,0.762
+Private,Grade 9,PE,Female,88.48,5.44,0.787
+Private,Grade 7,History,Male,97.23,5.7,1
+Private,Grade 8,Math,Male,85.01,1.79,0.838
+Private,Grade 11,Science,Female,54.57,3.33,0.449
+Private,Grade 9,History,Male,98.08,5.96,0.951
+Public,Grade 9,Computer Science,Male,82.38,5.78,0.872
+Charter,Grade 7,English,Male,85.38,4.27,0.921
+Charter,Grade 7,Art,Female,73.03,6.29,0.773
+Private,Grade 7,English,Male,56.44,3.54,0.623
+Charter,Grade 10,Math,Male,82.61,3.02,0.835
+Private,Grade 6,History,Female,72.4,2.98,0.664
+Charter,Grade 9,PE,Female,88.25,1.56,0.945
+Charter,Grade 8,Computer Science,Female,72.7,0.65,0.67
+Public,Grade 9,Music,Male,45.4,1.64,0.488
+Private,Grade 6,History,Male,70.52,3.81,0.664
+Private,Grade 11,PE,Female,40.18,3.64,0.467
+Public,Grade 11,English,Male,40.16,1.31,0.34
+Charter,Grade 11,Computer Science,Male,83.88,7.95,0.802
+Public,Grade 9,History,Female,78.47,7.54,0.844
+Private,Grade 8,English,Male,41.83,1.64,0.506
+Public,Grade 7,English,Male,54.44,2.11,0.454
+Public,Grade 10,English,Female,66.25,1.49,0.674
+Private,Grade 10,Art,Female,48.14,7.45,0.479
+Charter,Grade 8,PE,Female,76.65,6.3,0.864
+Private,Grade 7,Math,Female,50.35,6.82,0.446
+Charter,Grade 11,PE,Male,78.89,5.99,0.862
+Public,Grade 11,Math,Female,87.2,2.77,0.873
+Private,Grade 10,History,Female,88.18,6.83,0.977
+Private,Grade 6,Science,Female,52.69,6.21,0.584
+Public,Grade 11,History,Female,54.32,2.9,0.542
+Charter,Grade 8,English,Female,75.49,4.66,0.792
+Charter,Grade 6,History,Male,93.55,4.26,0.89
+Public,Grade 7,Math,Female,97.27,4.6,0.918
+Private,Grade 9,Math,Female,68.12,4.33,0.737
+Charter,Grade 10,Music,Female,46.17,1.92,0.454
+Public,Grade 9,History,Female,45.08,6.99,0.521
+Public,Grade 10,Math,Male,71.74,5.9,0.742
+Public,Grade 11,Computer Science,Female,55.99,0.59,0.536
+Charter,Grade 6,Art,Male,76.6,3.36,0.856
+Public,Grade 11,PE,Male,77.35,7.49,0.864
+Charter,Grade 8,Math,Male,87.15,3.72,0.889
+Private,Grade 9,Music,Female,62.37,6.74,0.53
+Public,Grade 9,Art,Male,66.11,4.63,0.703
+Public,Grade 9,English,Male,95.75,0.69,0.891
+Public,Grade 11,Math,Female,57.84,5.83,0.505
+Charter,Grade 10,History,Male,47.18,4.13,0.542
+Charter,Grade 7,Computer Science,Male,83.79,6,0.836
+Private,Grade 11,Math,Female,75.79,5.27,0.731
+Private,Grade 9,Computer Science,Female,82.16,6.06,0.788
+Private,Grade 9,Computer Science,Female,89.76,5.8,0.804
+Public,Grade 7,Computer Science,Female,83.4,4.49,0.743
+Charter,Grade 11,English,Female,75.46,5.21,0.73
+Private,Grade 10,Music,Female,68.31,2.84,0.723
+Public,Grade 7,Math,Female,44.81,4.51,0.454
+Public,Grade 11,Science,Female,47.91,2.41,0.425
+Charter,Grade 6,Computer Science,Female,51.59,3.91,0.561
+Private,Grade 10,Art,Male,96.08,1.93,0.935
+Charter,Grade 9,Science,Female,86,3.28,0.783
+Public,Grade 7,Art,Female,92.76,7.75,0.84
+Private,Grade 8,History,Male,85.54,2.32,0.931
+Charter,Grade 8,Music,Male,60.08,6.08,0.625
+Public,Grade 11,PE,Female,66.78,5.18,0.714
+Charter,Grade 8,Art,Female,93.96,6.25,0.918
+Private,Grade 10,Science,Male,99.17,4.1,1
+Private,Grade 8,PE,Male,85.45,1.38,0.872
+Private,Grade 7,Science,Male,77.06,2.22,0.842
+Public,Grade 8,Music,Male,68.29,4.73,0.703
+Charter,Grade 9,English,Female,40.44,1.93,0.501
+Charter,Grade 7,Math,Male,81.68,7.22,0.762
+Public,Grade 9,Music,Male,54.96,8,0.498
+Public,Grade 8,Science,Female,84.43,4.32,0.937
+Public,Grade 7,PE,Female,71.98,0.96,0.718
+Public,Grade 7,History,Female,69.59,5.6,0.754
+Charter,Grade 11,Music,Female,85.09,5.71,0.94
+Private,Grade 8,English,Male,74.95,3.51,0.664
+Charter,Grade 6,Art,Female,55.86,2.13,0.608
+Charter,Grade 10,Computer Science,Female,66.39,4.36,0.662
+Charter,Grade 8,Science,Male,86.12,7.13,0.902
+Private,Grade 10,Math,Male,62.9,5.29,0.583
+Charter,Grade 7,English,Male,78.3,7.55,0.807
+Private,Grade 6,Music,Female,97.34,4.03,0.969
+Charter,Grade 8,Science,Male,51.4,7.44,0.545
+Public,Grade 11,PE,Female,55.27,2.24,0.505
+Private,Grade 11,English,Female,60.49,3.65,0.58
+Private,Grade 7,PE,Female,50.04,6.21,0.545
+Charter,Grade 10,Art,Female,57.64,2.14,0.672
+Private,Grade 6,English,Female,82.26,4.31,0.804
+Public,Grade 11,Math,Female,95.37,3.49,1
+Charter,Grade 6,History,Female,59.42,6.8,0.586
+Charter,Grade 11,PE,Female,73.38,2.97,0.757
+Charter,Grade 8,History,Male,63.64,2.3,0.598
+Public,Grade 11,Science,Male,69.43,4.01,0.792
+Private,Grade 10,Math,Male,57.7,7.54,0.516
+Private,Grade 8,Music,Female,75.09,6.38,0.684
+Charter,Grade 7,Math,Female,93.29,3.07,0.952
+Charter,Grade 7,PE,Male,98.31,5.8,0.93
+Private,Grade 11,History,Male,91.36,0.5,0.883
+Public,Grade 8,English,Male,53.37,7.84,0.544
+Charter,Grade 8,Music,Male,81.58,3.45,0.91
+Private,Grade 9,English,Female,87.08,5.3,0.773
+Private,Grade 11,PE,Female,99.9,6.19,1
+Public,Grade 11,Music,Female,65.17,7.42,0.588
+Charter,Grade 9,PE,Male,87.55,7.47,0.797
+Private,Grade 11,Math,Female,57.84,4.45,0.637
+Charter,Grade 11,History,Male,50.29,6.4,0.501
+Charter,Grade 10,Math,Male,86.76,6.08,0.798
+Public,Grade 6,Math,Male,81.09,1.4,0.759
+Charter,Grade 9,English,Female,61.69,7.15,0.59
+Private,Grade 11,Music,Female,76.7,1.88,0.674
+Charter,Grade 8,History,Male,70.9,5.41,0.758
+Charter,Grade 11,Music,Female,47.7,7.19,0.452
+Public,Grade 7,History,Female,71.88,1.11,0.636
+Public,Grade 9,Math,Male,71.81,6.83,0.739
+Charter,Grade 7,Science,Female,70.8,6.23,0.738
+Private,Grade 8,Math,Female,92.88,1.99,0.902
+Private,Grade 11,Science,Female,81.37,1.14,0.876
+Charter,Grade 11,English,Male,98.38,5.39,1
+Charter,Grade 11,Art,Male,68.21,2.99,0.736
+Public,Grade 6,Computer Science,Female,85.26,0.99,0.799
+Charter,Grade 6,Music,Female,52.85,6,0.544
+Charter,Grade 9,Math,Female,75.97,7.48,0.774
+Private,Grade 11,English,Female,82.44,3.02,0.78
+Charter,Grade 10,Art,Female,99.88,6.62,0.957
+Public,Grade 10,Math,Male,46.95,5.74,0.414
+Private,Grade 10,Science,Male,85.76,3.1,0.863
+Public,Grade 9,PE,Female,57.94,6.5,0.527
+Private,Grade 10,Art,Female,63.68,1.03,0.55
+Charter,Grade 10,Art,Male,42.5,5.89,0.456
+Public,Grade 8,Music,Male,80.73,3.24,0.768
+Charter,Grade 11,History,Male,95.67,7.19,0.906
+Public,Grade 7,Science,Female,85.01,3.04,0.781
+Charter,Grade 8,Science,Male,65.18,5.2,0.573
+Charter,Grade 7,English,Female,76.89,5.98,0.703
+Charter,Grade 7,Art,Female,90.18,7.24,0.901
+Private,Grade 11,History,Male,70.19,1.49,0.802
+Public,Grade 7,History,Male,89.09,4.84,0.986
+Charter,Grade 6,History,Male,86.08,1.48,0.953
+Charter,Grade 9,History,Male,57.75,3.4,0.552
+Public,Grade 7,Science,Male,88.31,4.41,0.929
+Public,Grade 6,History,Female,77.37,1.38,0.808
+Charter,Grade 8,English,Female,61.4,5.44,0.56
+Charter,Grade 11,Music,Male,68.78,5.95,0.755
+Private,Grade 11,English,Female,91.56,2.38,0.842
+Public,Grade 9,Music,Female,74.18,4.42,0.801
+Public,Grade 11,Art,Female,89.41,7.11,0.887
+Private,Grade 10,History,Male,76.81,3.08,0.757
+Charter,Grade 10,Art,Male,54.85,3.63,0.506
+Charter,Grade 7,Science,Male,98.92,4.66,1
+Private,Grade 7,Science,Female,50.47,6.71,0.463
+Charter,Grade 8,Art,Female,63.74,7.01,0.681
+Public,Grade 6,PE,Female,57.37,2.28,0.597
+Private,Grade 8,Art,Male,57.33,2.52,0.609
+Private,Grade 11,Art,Female,44.38,7.52,0.398
+Charter,Grade 8,Art,Female,90.15,7.42,0.885
+Charter,Grade 8,Art,Female,95.12,1.93,1
+Private,Grade 6,Art,Female,62.19,4.11,0.648
+Charter,Grade 10,English,Female,69.27,2.07,0.697
+Private,Grade 9,Science,Male,56.18,6.62,0.614
+Charter,Grade 8,PE,Female,88.95,7.2,0.941
+Public,Grade 9,Music,Male,58.38,1.23,0.554
+Charter,Grade 11,Science,Male,67.18,3.5,0.684
+Charter,Grade 6,Computer Science,Male,70.96,1,0.702
+Public,Grade 11,Computer Science,Male,53.83,3.6,0.45
+Charter,Grade 7,Science,Male,55.2,5.81,0.65
+Charter,Grade 9,Computer Science,Female,97.95,0.64,1
+Private,Grade 11,Computer Science,Female,88.7,4.13,0.848
+Public,Grade 9,Science,Female,66.78,7.78,0.572
+Private,Grade 6,Computer Science,Female,56.07,1.09,0.615
+Public,Grade 11,Computer Science,Female,56.54,1.79,0.539
+Charter,Grade 7,Art,Female,84.15,6.97,0.881
+Public,Grade 6,PE,Female,48.96,2.79,0.586
+Charter,Grade 7,Music,Female,84.06,2.54,0.939
+Public,Grade 11,Music,Female,98.26,3.94,0.925
+Public,Grade 8,Art,Female,78.78,5.15,0.832
+Private,Grade 10,PE,Female,73.24,6.23,0.742
+Private,Grade 7,PE,Female,62.3,7.75,0.718
+Charter,Grade 8,Math,Male,84.18,1.13,0.824
+Charter,Grade 11,Computer Science,Male,90.33,5.27,0.83
+Private,Grade 11,English,Male,75.2,6.21,0.682
+Public,Grade 10,Computer Science,Female,40.05,1.18,0.396
+Private,Grade 8,Math,Female,94.88,5.67,0.956
+Public,Grade 10,Computer Science,Female,77.92,5.77,0.737
+Charter,Grade 6,PE,Male,87.76,4.65,0.8
+Public,Grade 8,Art,Female,47.01,1.73,0.568
+Private,Grade 11,Music,Male,46.1,6.2,0.495
+Public,Grade 8,Computer Science,Female,59.45,5.41,0.538
+Charter,Grade 11,History,Female,51.09,2.23,0.451
+Public,Grade 7,Science,Female,76.24,4.02,0.718
+Public,Grade 7,Science,Female,41.85,6.63,0.442
+Private,Grade 7,Science,Male,95.55,7.57,0.987
+Charter,Grade 11,Art,Male,45.72,0.93,0.479
+Private,Grade 11,Art,Female,67.75,4.32,0.702
+Charter,Grade 7,PE,Female,64.07,3.65,0.693
+Charter,Grade 8,Science,Male,89.62,4.47,0.941
+Public,Grade 11,Computer Science,Female,73.09,4.33,0.818
+Private,Grade 11,PE,Male,89.42,7.19,0.928
+Private,Grade 7,Math,Male,58.42,1.75,0.516
+Public,Grade 10,Computer Science,Female,64.9,4.95,0.565
+Private,Grade 8,Math,Female,52.27,1.96,0.547
+Charter,Grade 7,Computer Science,Female,60.55,2.39,0.698
+Private,Grade 6,Art,Female,58.9,3.98,0.563
+Charter,Grade 11,History,Male,80.11,7.47,0.801
+Charter,Grade 6,Music,Male,76.14,2.39,0.711
+Private,Grade 10,Music,Female,73.58,6.04,0.669
+Charter,Grade 9,Math,Male,80.58,0.78,0.741
+Public,Grade 7,Music,Male,77.22,5.6,0.722
+Charter,Grade 8,Math,Female,64.91,4.06,0.699
+Charter,Grade 8,English,Female,52.26,5.77,0.463
+Public,Grade 11,PE,Male,87.16,4.72,0.941
+Private,Grade 7,Computer Science,Male,77.03,6.17,0.687
+Private,Grade 11,Music,Female,76.83,1.45,0.812
+Private,Grade 6,Art,Female,86.96,6.64,0.905
+Charter,Grade 6,English,Female,48.66,7.96,0.49
+Public,Grade 8,English,Male,63.28,6.95,0.697
+Charter,Grade 10,Science,Female,52.6,3.18,0.434
+Charter,Grade 6,English,Female,99.59,6.26,1
+Charter,Grade 8,English,Male,40.06,6.81,0.369
+Public,Grade 9,Art,Male,57.34,2.55,0.516
+Private,Grade 8,Music,Female,82.07,4.16,0.819
+Charter,Grade 7,Art,Male,62.74,7.96,0.702
+Charter,Grade 8,PE,Female,79.24,2.16,0.849
+Private,Grade 8,English,Male,73.31,5.07,0.638
+Private,Grade 10,Art,Male,96.34,0.6,1
+Charter,Grade 6,Math,Male,69.37,7.57,0.684
+Charter,Grade 8,Art,Female,75.45,6.89,0.709
+Private,Grade 10,English,Male,43.33,6.48,0.399
+Charter,Grade 7,History,Female,74.72,1.3,0.656
+Private,Grade 8,PE,Female,84.96,2.06,0.905
+Charter,Grade 10,Art,Female,54.57,6.87,0.498
+Private,Grade 7,Science,Female,52.21,2.18,0.559
+Charter,Grade 11,Computer Science,Female,67.69,6,0.747
+Private,Grade 9,Science,Male,63.17,2.04,0.549
+Charter,Grade 8,PE,Male,51.42,7.34,0.49
+Charter,Grade 6,Art,Male,71.22,7.94,0.811
+Public,Grade 7,English,Female,46.07,7.94,0.379
+Charter,Grade 9,PE,Female,87.66,4.65,0.905
+Public,Grade 7,PE,Male,42.93,3.39,0.366
+Charter,Grade 10,English,Male,58.12,1.6,0.597
+Public,Grade 7,Computer Science,Male,72.35,3.82,0.629
+Private,Grade 8,English,Male,45.47,1.64,0.433
+Charter,Grade 11,English,Female,54.14,5.7,0.641
+Public,Grade 6,Music,Male,94.2,3.31,0.879
+Charter,Grade 11,PE,Male,48.48,6.2,0.446
+Charter,Grade 9,PE,Female,63.03,2.59,0.686
+Private,Grade 6,PE,Female,67.07,4.54,0.761
+Charter,Grade 11,English,Male,78.69,2.78,0.883
+Charter,Grade 8,English,Male,79.73,1.51,0.755
+Private,Grade 10,Computer Science,Female,82.51,1.39,0.828
+Public,Grade 11,History,Female,47.54,2.63,0.522
+Public,Grade 7,Art,Female,71.29,2.99,0.636
+Private,Grade 11,Science,Female,90.68,6,0.858
+Private,Grade 9,Art,Male,48.2,7.89,0.498
+Public,Grade 6,PE,Female,80.52,4.39,0.814
+Public,Grade 10,History,Male,94.98,7.69,0.902
+Private,Grade 10,English,Female,56.35,2.94,0.623
+Public,Grade 8,Computer Science,Male,79.92,5.87,0.847
+Public,Grade 8,History,Female,73.9,5.1,0.718
+Charter,Grade 11,PE,Female,58.04,7.77,0.613
+Private,Grade 7,Science,Male,97.36,5.4,0.99
+Charter,Grade 9,English,Male,82.79,4.44,0.809
+Public,Grade 9,English,Female,64.74,4.49,0.549
+Charter,Grade 7,Music,Male,54.18,5.58,0.59
+Public,Grade 7,Art,Male,41.39,0.66,0.346
+Charter,Grade 11,English,Male,92.95,2.39,0.916
+Public,Grade 7,PE,Female,53.03,0.64,0.439
+Charter,Grade 6,History,Female,92.21,2.67,1
+Public,Grade 11,Art,Male,85.02,5.41,0.885
+Private,Grade 6,Music,Female,70.18,6.79,0.64
+Charter,Grade 10,Computer Science,Female,76.66,6.08,0.757
+Public,Grade 7,Music,Male,45.11,4.72,0.423
+Private,Grade 10,English,Male,41.93,5.48,0.391
+Charter,Grade 6,Art,Male,66.28,6.38,0.723
+Public,Grade 8,Science,Male,96.58,1.77,0.868
+Public,Grade 11,History,Male,94.27,5.42,0.931
+Public,Grade 10,Math,Male,85.08,5.78,0.94
+Private,Grade 6,Computer Science,Female,96.74,1.05,0.918
+Public,Grade 9,Music,Female,67.88,7.28,0.615
+Charter,Grade 7,English,Female,54.23,1.74,0.458
+Private,Grade 6,Computer Science,Female,84.29,1.04,0.748
+Charter,Grade 11,Art,Female,41.22,3.44,0.488
+Private,Grade 7,Math,Female,78.11,6.04,0.759
+Private,Grade 9,Music,Female,66.62,2.72,0.729
+Charter,Grade 7,History,Male,45.74,4.28,0.499
+Public,Grade 6,PE,Female,40.32,7.92,0.31
+Public,Grade 6,Science,Male,47.51,3.37,0.422
+Charter,Grade 9,History,Female,45.99,3.53,0.425
+Charter,Grade 7,Computer Science,Female,85.53,3.33,0.943
+Public,Grade 11,PE,Male,49.26,7.41,0.516
+Charter,Grade 8,Math,Female,40.94,4.77,0.434
+Public,Grade 9,Science,Male,44.62,4.64,0.514
+Charter,Grade 6,Art,Male,94.61,6.42,0.971
+Private,Grade 10,Music,Male,81.15,2.48,0.852
+Charter,Grade 6,Art,Female,78.82,7.49,0.734
+Public,Grade 9,English,Female,87.4,7.86,0.964
+Public,Grade 8,History,Female,75.45,7.2,0.748
+Private,Grade 8,Science,Male,62.63,7.79,0.587
+Private,Grade 6,PE,Male,65.89,7.32,0.7
+Private,Grade 11,PE,Male,60.42,6.11,0.529
+Charter,Grade 7,Art,Male,96.5,5.78,1
+Public,Grade 11,Science,Female,81.48,5.83,0.841
+Private,Grade 9,Computer Science,Female,56.4,7.21,0.646
+Public,Grade 10,PE,Female,75.81,4.29,0.843
+Charter,Grade 8,Computer Science,Female,70.36,6.4,0.729
+Public,Grade 10,PE,Male,96.42,2.47,0.917
+Public,Grade 9,PE,Female,53.71,6.53,0.45
+Public,Grade 11,Art,Male,76.09,7.82,0.763
+Charter,Grade 6,Math,Female,78.05,7.27,0.846
+Public,Grade 10,PE,Female,80.06,6.06,0.709
+Private,Grade 9,Math,Male,97.77,2.79,0.926
+Public,Grade 11,English,Female,43.36,4.14,0.419
+Private,Grade 7,Science,Male,96.87,7.05,0.881
+Public,Grade 10,Art,Female,74.58,5.08,0.819
+Private,Grade 10,English,Female,95.26,5.2,0.958
+Private,Grade 11,Science,Female,81.05,3.05,0.787
+Private,Grade 10,Math,Female,63.85,2.61,0.669
+Charter,Grade 10,History,Male,98.78,4.44,1
+Private,Grade 11,Music,Female,59.04,3.56,0.664
+Public,Grade 7,Art,Female,61.68,5.75,0.621
+Charter,Grade 8,Computer Science,Male,68.85,3.38,0.739
+Charter,Grade 6,PE,Male,79.41,4.28,0.834
+Private,Grade 9,Science,Female,56.27,2.56,0.583
+Public,Grade 6,Computer Science,Female,70.23,4.66,0.648
+Charter,Grade 7,Art,Male,77.26,7.73,0.688
+Charter,Grade 6,Music,Male,50.85,0.94,0.548
+Public,Grade 10,Science,Male,68.96,5.71,0.77
+Charter,Grade 8,Art,Male,73.55,3.49,0.646
+Public,Grade 9,Computer Science,Male,88.26,2.2,0.842
+Charter,Grade 10,PE,Male,88.41,3.2,0.81
+Charter,Grade 11,Art,Male,58.01,4.26,0.518
+Public,Grade 10,Math,Female,53.38,6.49,0.53
+Public,Grade 9,English,Male,79.08,4.68,0.777
+Public,Grade 10,Art,Male,41.33,2.95,0.438
+Private,Grade 9,Computer Science,Female,78.25,3.45,0.686
+Charter,Grade 11,PE,Female,83.73,7.84,0.921
+Public,Grade 8,PE,Male,60.19,2.69,0.553
+Charter,Grade 6,Computer Science,Male,73.76,2.11,0.785
+Charter,Grade 6,Computer Science,Male,63.91,1.23,0.61
+Private,Grade 9,Science,Male,66.53,4.3,0.671
+Charter,Grade 6,Computer Science,Female,58.27,5.47,0.631
+Private,Grade 8,PE,Female,59.52,3.63,0.518
+Public,Grade 8,Music,Female,86.11,2.31,0.903
+Charter,Grade 9,Computer Science,Female,95.1,2.29,0.861
+Private,Grade 10,Science,Male,41.37,7.41,0.46
+Public,Grade 6,History,Male,72.55,7.24,0.72
+Private,Grade 9,English,Male,78.77,5.26,0.858
+Charter,Grade 9,Art,Female,92.17,0.81,0.947
+Public,Grade 10,PE,Male,52.5,7.29,0.529
+Private,Grade 11,Math,Female,83.49,6.16,0.762
+Charter,Grade 10,Art,Female,68.88,2.03,0.66
+Charter,Grade 7,Computer Science,Male,43.07,5.68,0.415
+Private,Grade 6,Computer Science,Female,72.27,1.78,0.653
+Private,Grade 9,Computer Science,Male,92.36,6.91,0.968
+Charter,Grade 7,PE,Male,48.55,5.32,0.414
+Charter,Grade 11,Math,Female,74.25,6.73,0.791
+Charter,Grade 7,Science,Female,88.07,6.56,0.863
+Private,Grade 8,Computer Science,Male,83.17,0.75,0.748
+Public,Grade 6,Music,Male,64.68,5.25,0.592
+Charter,Grade 7,English,Male,87.42,4.06,0.779
+Public,Grade 11,Science,Female,65.3,3.58,0.615
+Charter,Grade 10,Music,Male,86.24,5.84,0.828
+Private,Grade 10,English,Female,94.84,6.36,1
+Charter,Grade 9,PE,Female,84.08,2.52,0.775
+Charter,Grade 7,Math,Female,45.76,1.67,0.496
+Private,Grade 8,English,Female,75.89,2.61,0.76
+Private,Grade 6,History,Female,90.74,5.38,0.831
+Charter,Grade 6,Math,Male,82.34,4.37,0.795
+Private,Grade 11,Math,Female,49.99,3.57,0.534
+Public,Grade 6,Science,Female,49.04,2.46,0.52
+Charter,Grade 8,PE,Male,53.4,0.72,0.586
+Charter,Grade 9,English,Female,87.52,0.73,0.814
+Private,Grade 7,History,Female,47.72,5.14,0.405
+Charter,Grade 10,PE,Male,90.89,7.22,0.906
+Charter,Grade 9,Math,Male,83.72,5.64,0.766
+Private,Grade 7,Science,Male,70.06,4.25,0.717
+Public,Grade 8,Art,Male,99.38,3.04,0.927
+Charter,Grade 9,Art,Female,96.05,3.47,0.976
+Charter,Grade 9,History,Male,59.22,0.96,0.508
+Charter,Grade 7,Art,Male,92.37,1.96,0.9
+Private,Grade 6,Science,Female,46.1,6.98,0.503
+Charter,Grade 10,Computer Science,Female,41.66,7.7,0.473
+Private,Grade 10,Art,Female,85.46,4.62,0.866
+Private,Grade 10,Music,Female,85.22,7.12,0.812
+Private,Grade 11,History,Male,76.19,2.48,0.774
+Public,Grade 6,History,Male,61.87,4.4,0.708
+Charter,Grade 11,Science,Male,75.46,4.62,0.745
+Charter,Grade 10,Art,Female,50.09,3.57,0.557
+Public,Grade 9,English,Male,53.53,2.7,0.513
+Private,Grade 8,Art,Male,47.91,5.02,0.411
+Private,Grade 7,Computer Science,Male,91.6,1.09,0.833
+Private,Grade 9,PE,Male,80.32,7.94,0.828
+Charter,Grade 9,English,Male,63.3,2.08,0.679
+Public,Grade 10,Music,Female,55.92,6.49,0.589
+Public,Grade 10,Science,Female,53.99,3.8,0.574
+Private,Grade 10,English,Female,71.57,3.72,0.735
+Public,Grade 9,Math,Male,80.25,3.76,0.847
+Charter,Grade 8,PE,Male,89.24,2.22,0.813
+Public,Grade 6,Math,Female,59.29,5.15,0.658
+Charter,Grade 7,Math,Female,92.3,1.79,0.973
+Charter,Grade 7,Science,Male,64.8,7.56,0.609
+Private,Grade 6,English,Male,84.62,7.95,0.834
+Public,Grade 11,History,Male,61.37,3.08,0.65
+Charter,Grade 6,Music,Female,76.93,3.84,0.672
+Charter,Grade 7,Math,Male,82.59,7.09,0.788
+Private,Grade 11,Science,Male,89.15,2.08,0.829
+Public,Grade 6,Computer Science,Male,43.83,6.88,0.457
+Public,Grade 11,English,Female,42.73,1.07,0.502
+Private,Grade 8,Music,Female,49.23,4.31,0.586
+Private,Grade 11,English,Female,47.23,3.16,0.488
+Charter,Grade 7,Music,Female,85.14,4.35,0.884
+Charter,Grade 9,Math,Male,70.81,0.88,0.72
+Charter,Grade 11,History,Female,69.89,1.9,0.773
+Public,Grade 8,Science,Male,77.75,3.74,0.722
+Public,Grade 7,History,Male,43.6,7.87,0.499
+Public,Grade 10,History,Male,69.36,5.66,0.765
+Charter,Grade 11,English,Female,74.61,4.14,0.802
+Private,Grade 11,History,Female,60.22,7.2,0.678
+Private,Grade 7,Science,Female,88.01,7.46,0.969
+Public,Grade 6,Science,Female,62.67,1.42,0.62
+Public,Grade 8,History,Female,76.23,1.14,0.797
+Public,Grade 7,English,Male,50.89,5.23,0.588
+Private,Grade 9,Art,Male,81.45,1.74,0.828
+Charter,Grade 6,PE,Male,62.44,1.03,0.695
+Private,Grade 6,History,Female,99.36,6.15,1
+Charter,Grade 8,Science,Male,58.86,7.76,0.648
+Private,Grade 9,Computer Science,Male,98.8,2.24,0.896
+Charter,Grade 7,Math,Female,93.71,7.38,0.868
+Public,Grade 11,Science,Female,76.66,3.93,0.835
+Public,Grade 8,Art,Male,52.56,4.32,0.553
+Private,Grade 9,History,Male,85.95,6.08,0.833
+Public,Grade 7,Math,Male,75.5,2.63,0.738
+Public,Grade 7,Computer Science,Female,83.38,6.68,0.867
+Private,Grade 10,Music,Male,56.97,2.93,0.513
+Charter,Grade 11,Music,Male,68.02,3.84,0.684
+Public,Grade 7,Math,Male,86.44,2.91,0.824
+Private,Grade 9,Music,Female,86.7,5.44,0.869
+Private,Grade 11,Computer Science,Female,85.7,3.53,0.831
+Charter,Grade 11,Art,Female,79.34,0.6,0.718
+Private,Grade 8,History,Female,81.03,6.83,0.886
+Public,Grade 10,Music,Female,60.68,8,0.653
+Charter,Grade 8,Music,Female,44.4,6.21,0.491
+Charter,Grade 11,Computer Science,Female,90.45,0.83,0.811
+Charter,Grade 10,Music,Male,54.09,5.29,0.531
+Charter,Grade 10,History,Male,86.1,6.27,0.906
+Public,Grade 11,Math,Male,51.58,3.36,0.567
+Public,Grade 10,English,Male,93.26,5.26,0.983
+Public,Grade 8,History,Male,56.19,6.01,0.567
+Private,Grade 8,History,Female,66.37,7.61,0.743
+Private,Grade 6,Science,Female,64.7,4.63,0.601
+Private,Grade 8,History,Female,98.61,2.02,1
+Private,Grade 8,Math,Female,76.75,4.68,0.73
+Public,Grade 9,Music,Female,41.57,6.43,0.515
+Charter,Grade 7,PE,Male,55.44,4.92,0.649
+Public,Grade 10,History,Male,84.99,2.28,0.881
+Private,Grade 8,Music,Male,79.56,4.47,0.806
+Private,Grade 11,English,Female,94.76,6.42,0.934
+Charter,Grade 6,Science,Male,64.7,1.91,0.68
+Private,Grade 8,Science,Male,45.54,0.82,0.496
+Private,Grade 6,History,Female,67.4,2.57,0.678
+Public,Grade 9,Art,Male,79.69,2.05,0.798
+Charter,Grade 10,Math,Male,93.95,2.05,0.921
+Public,Grade 10,Music,Female,64.72,7.65,0.701
+Public,Grade 10,Math,Female,51.34,7.29,0.457
+Private,Grade 11,Computer Science,Female,47.71,4.75,0.435
+Private,Grade 10,English,Male,42.46,6.37,0.412
+Public,Grade 11,Science,Female,99.05,0.93,0.955
+Public,Grade 9,Math,Male,63.04,6.44,0.707
+Public,Grade 10,Computer Science,Female,41.54,4.56,0.471
+Public,Grade 9,Math,Male,46.39,2.48,0.498
+Public,Grade 11,Science,Female,60.69,6,0.647
+Public,Grade 9,Art,Female,44.18,0.76,0.397
+Private,Grade 7,English,Female,77.11,1.08,0.769
+Public,Grade 10,Music,Male,85.54,3.92,0.888
+Charter,Grade 7,Computer Science,Female,76.55,3.5,0.682
+Private,Grade 9,Science,Female,52.57,4.34,0.45
+Public,Grade 10,Art,Male,48.5,7.31,0.584
+Charter,Grade 9,Science,Male,43.64,2.36,0.447
+Private,Grade 6,Science,Male,63.73,5.65,0.563
+Public,Grade 9,Math,Male,72.71,0.96,0.791
+Public,Grade 9,PE,Male,57.94,5.81,0.488
+Private,Grade 7,Math,Male,76.26,0.78,0.812
+Charter,Grade 10,PE,Female,56.01,4.06,0.489
+Public,Grade 9,Math,Female,62.96,7.35,0.627
+Charter,Grade 6,Computer Science,Male,90.47,7.89,0.982
+Charter,Grade 7,Music,Male,55.99,6.29,0.48
+Charter,Grade 6,History,Female,60.74,5.59,0.581
+Private,Grade 9,PE,Male,40.34,1.19,0.391
+Charter,Grade 10,Computer Science,Male,42.63,7.15,0.493
+Charter,Grade 6,Art,Male,84.77,7.16,0.776
+Charter,Grade 8,Computer Science,Female,90.32,2.58,0.918
+Public,Grade 7,Music,Female,46.01,5.53,0.368
+Public,Grade 6,Computer Science,Male,54.41,1.78,0.468
+Private,Grade 9,English,Male,96.16,1.56,0.95
+Public,Grade 6,Math,Female,53.32,4.97,0.475
+Charter,Grade 6,History,Female,52.82,2.43,0.456
+Charter,Grade 7,English,Female,57.18,5.31,0.519
+Public,Grade 9,Math,Female,41.53,2.71,0.395
+Public,Grade 10,Science,Female,53.92,4.2,0.538
+Charter,Grade 8,Math,Female,97.58,3.08,0.927
+Charter,Grade 8,Computer Science,Female,60.76,6.09,0.576
+Public,Grade 8,Art,Male,85.86,2.09,0.779
+Public,Grade 6,Art,Female,67.78,4.71,0.771
+Charter,Grade 7,History,Male,95.04,5.48,0.944
+Public,Grade 8,History,Male,60.31,4.05,0.508
+Charter,Grade 10,History,Male,69.78,6.62,0.599
+Public,Grade 11,History,Male,56.07,1.41,0.582
+Charter,Grade 11,PE,Male,82.6,5,0.924
+Public,Grade 11,PE,Male,71.88,2.88,0.678
+Charter,Grade 7,English,Male,93.34,2.5,1
+Private,Grade 10,Math,Female,57.61,7.88,0.637
+Private,Grade 10,Music,Male,86.68,0.97,0.806
+Public,Grade 6,Science,Female,55.75,2.74,0.572
+Public,Grade 11,History,Male,94.23,3.43,0.855
+Private,Grade 6,Computer Science,Male,43.21,5.48,0.391
+Public,Grade 6,Music,Female,44.47,3.91,0.5
+Private,Grade 6,English,Female,76.9,3.63,0.756
+Private,Grade 11,Art,Male,47.68,1.95,0.468
+Public,Grade 9,Math,Male,60.02,1.21,0.644
+Public,Grade 9,Music,Male,60.4,6.28,0.548
+Public,Grade 11,Computer Science,Male,74.24,0.65,0.779
+Charter,Grade 11,PE,Female,48.04,6.47,0.547
+Public,Grade 9,History,Male,90.35,3.95,0.993
+Private,Grade 7,Art,Male,70.12,0.94,0.715
+Public,Grade 8,History,Male,94.59,5.14,1
+Private,Grade 11,Computer Science,Female,53.91,0.76,0.591
+Charter,Grade 8,Science,Male,64.8,6.55,0.605
+Public,Grade 8,Music,Male,80.68,5.15,0.897
+Public,Grade 8,Music,Male,84,0.67,0.875
+Charter,Grade 11,Art,Female,43.51,4.93,0.404
+Private,Grade 8,PE,Male,83.9,6.58,0.846

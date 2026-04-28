@@ -71,6 +71,10 @@ const DrillDownRenderer = ({ onRenderTime }) => {
     );
   }
 
+  const rejected = globalData?.rejected ?? [];
+  const hasOnlyNumeric =
+    metrics.length > 0 && rejected.every((r) => r.reason !== 'too_few_unique');
+
   if (!dimensions.length) {
     return (
       <div className='empty-state'>
@@ -80,10 +84,22 @@ const DrillDownRenderer = ({ onRenderTime }) => {
           style={{ marginBottom: '12px', opacity: 0.5 }}
         />
         <h3>No Hierarchy Detected</h3>
-        <p className='empty-subtext'>
-          The CSV needs at least one categorical column with under 50 unique
-          values.
-        </p>
+        {hasOnlyNumeric ? (
+          <p className='empty-subtext'>
+            All columns appear to be numeric
+            {metrics.length
+              ? ` (${metrics.slice(0, 3).join(', ')}${metrics.length > 3 ? '…' : ''}).`
+              : '.'}{' '}
+            Add a column with categorical values (e.g. country, category,
+            status) to build a drill-down hierarchy.
+          </p>
+        ) : (
+          <p className='empty-subtext'>
+            No suitable categorical columns found. Each dimension column needs
+            2–500 unique values. Try removing ID columns or columns with
+            free-text.
+          </p>
+        )}
       </div>
     );
   }
@@ -172,7 +188,14 @@ const DrillDownRenderer = ({ onRenderTime }) => {
   };
 
   const renderTable = () => {
-    const data = formatForChart(currentNode, 'bar', rows, drillPath, metrics);
+    const data = formatForChart(
+      currentNode,
+      'bar',
+      rows,
+      drillPath,
+      metrics,
+      null,
+    );
     if (data.length === 0) return <div className='empty-state'>No data</div>;
     const cols = Object.keys(data[0]);
     return (
