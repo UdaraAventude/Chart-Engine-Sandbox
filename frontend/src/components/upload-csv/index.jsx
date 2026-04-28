@@ -39,6 +39,8 @@ const UploadCSV = () => {
     e.preventDefault();
     setIsDragging(false);
     const file = e.dataTransfer.files[0];
+    console.log(e, 'eeeeee');
+
     processFile(file);
   };
 

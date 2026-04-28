@@ -10,6 +10,9 @@ export function parseCSV(file, onProgress) {
       skipEmptyLines: true,
       dynamicTyping: false,
       chunk: (results, parser) => {
+        debugger;
+        console.log(results);
+
         allRows.push(...results.data);
         if (file.size > 0) {
           const pct = Math.min(

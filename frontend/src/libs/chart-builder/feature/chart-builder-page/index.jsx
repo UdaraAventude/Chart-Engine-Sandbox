@@ -53,6 +53,8 @@ const ChartBuilderPage = () => {
     return { dimensions, metrics };
   }, [dataset]);
 
+  console.log(globalData);
+
   return (
     <div
       style={{

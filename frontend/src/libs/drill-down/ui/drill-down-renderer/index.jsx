@@ -2,7 +2,7 @@ import React, { useRef, useCallback, useEffect } from 'react';
 import { Activity } from 'lucide-react';
 import '../../../../styles/DrillDown.css';
 import useStore from '../../../../store';
-import { getNodeAtPath, isLeaf, formatForChart } from '../../engine';
+import { getNodeAtPath, isLeaf, formatForChart } from '../../hooks/engine';
 import DrillDownBreadcrumb from '../drill-down-breadcrumb';
 import BarChart from '../../../../components/bar-chart';
 import PieChart from '../../../../components/pie-chart';
@@ -131,6 +131,8 @@ const DrillDownRenderer = ({ onRenderTime }) => {
     const yLabel = (metrics[0] || '').replace(/_/g, ' ').toUpperCase();
 
     if (chartType === 'pie') {
+      console.log(data, 'pie');
+
       return (
         <PieChart
           data={data}
@@ -143,6 +145,7 @@ const DrillDownRenderer = ({ onRenderTime }) => {
     }
 
     if (chartType === 'line') {
+      console.log(data, 'line');
       return (
         <LineChart
           data={data}
