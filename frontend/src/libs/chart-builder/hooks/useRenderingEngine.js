@@ -7,7 +7,7 @@ const transformToHeatMapData = (rawData, xAxisCol, yAxisCol) => {
   const cells = new Map();
 
   // 1. Extract unique categories and bin the data
-  rawData.forEach(row => {
+  rawData.forEach((row) => {
     const xVal = String(row[xAxisCol] ?? 'Unknown');
     const yVal = String(row[yAxisCol] ?? 'Unknown');
 
@@ -40,7 +40,7 @@ const transformToHeatMapData = (rawData, xAxisCol, yAxisCol) => {
 const transformToUniversalData = (rawData, xAxisCol, yAxisCol) => {
   // We group by X axis to prevent 200,000 overlapping DOM elements on preview
   const grouped = {};
-  rawData.forEach(row => {
+  rawData.forEach((row) => {
     const xVal = String(row[xAxisCol] ?? 'Unknown');
     const yVal = parseFloat(row[yAxisCol]);
 
@@ -52,7 +52,7 @@ const transformToUniversalData = (rawData, xAxisCol, yAxisCol) => {
   });
 
   const datasetSource = [
-    [xAxisCol, yAxisCol] // Row 0: Headers
+    [xAxisCol, yAxisCol], // Row 0: Headers
   ];
 
   // Row 1-N: Aggregated Data (Average)
@@ -67,15 +67,18 @@ const transformToUniversalData = (rawData, xAxisCol, yAxisCol) => {
 
 export const useRenderingEngine = ({ data, config }) => {
   const [chartOption, setChartOption] = useState({});
-  console.log(data);
 
   useEffect(() => {
     if (!data || data.length === 0 || !config.xAxis || !config.yAxis) {
       setChartOption({
-        title: { text: config.title || 'Chart Preview', left: 'center', textStyle: { color: '#94a3b8' } },
+        title: {
+          text: config.title || 'Chart Preview',
+          left: 'center',
+          textStyle: { color: '#94a3b8' },
+        },
         xAxis: { type: 'category', data: [] },
         yAxis: { type: 'value' },
-        series: []
+        series: [],
       });
       return;
     }
@@ -88,16 +91,34 @@ export const useRenderingEngine = ({ data, config }) => {
       // Needs specialized transformer logic
       // ----------------------------------------------------
       case 'heatmap': {
-        const { xCategories, yCategories, heatMapData, maxVal } = transformToHeatMapData(data, config.xAxis, config.yAxis);
-
-        console.log(`[useRenderingEngine] Transformed Heatmap Data:`, heatMapData);
+        const { xCategories, yCategories, heatMapData, maxVal } =
+          transformToHeatMapData(data, config.xAxis, config.yAxis);
 
         generatedOption = {
-          title: { text: config.title || 'Heat Map Preview', left: 'center', top: 10 },
+          title: {
+            text: config.title || 'Heat Map Preview',
+            left: 'center',
+            top: 10,
+          },
           tooltip: { position: 'top' },
-          grid: { top: 60, bottom: 60, left: 60, right: 40, containLabel: true },
-          xAxis: { type: 'category', data: xCategories, splitArea: { show: true }, axisLabel: { rotate: 30 } },
-          yAxis: { type: 'category', data: yCategories, splitArea: { show: true } },
+          grid: {
+            top: 60,
+            bottom: 60,
+            left: 60,
+            right: 40,
+            containLabel: true,
+          },
+          xAxis: {
+            type: 'category',
+            data: xCategories,
+            splitArea: { show: true },
+            axisLabel: { rotate: 30 },
+          },
+          yAxis: {
+            type: 'category',
+            data: yCategories,
+            splitArea: { show: true },
+          },
           visualMap: {
             min: 0,
             max: maxVal,
@@ -105,15 +126,22 @@ export const useRenderingEngine = ({ data, config }) => {
             orient: 'horizontal',
             left: 'center',
             bottom: '0%',
-            inRange: { color: ['#ebf4ff', '#2563eb', '#1e3a8a'] }
+            inRange: { color: ['#ebf4ff', '#2563eb', '#1e3a8a'] },
           },
-          series: [{
-            name: 'Density',
-            type: 'heatmap',
-            data: heatMapData,
-            label: { show: true },
-            emphasis: { itemStyle: { shadowBlur: 10, shadowColor: 'rgba(0, 0, 0, 0.5)' } }
-          }]
+          series: [
+            {
+              name: 'Density',
+              type: 'heatmap',
+              data: heatMapData,
+              label: { show: true },
+              emphasis: {
+                itemStyle: {
+                  shadowBlur: 10,
+                  shadowColor: 'rgba(0, 0, 0, 0.5)',
+                },
+              },
+            },
+          ],
         };
         break;
       }
@@ -127,24 +155,32 @@ export const useRenderingEngine = ({ data, config }) => {
       case 'scatter':
       case 'pie':
       default: {
-        const datasetSource = transformToUniversalData(data, config.xAxis, config.yAxis);
-
-        console.log(`[useRenderingEngine] Formatted ECharts Dataset Payload:`, {
-          dimensions: datasetSource[0],
-          source: datasetSource
-        });
+        const datasetSource = transformToUniversalData(
+          data,
+          config.xAxis,
+          config.yAxis,
+        );
 
         generatedOption = {
           title: {
             text: config.title || 'Chart Preview',
             left: 'center',
             top: 10,
-            textStyle: { color: '#1e293b', fontWeight: 'bold' }
+            textStyle: { color: '#1e293b', fontWeight: 'bold' },
           },
           tooltip: { trigger: config.chartType === 'pie' ? 'item' : 'axis' },
           dataset: { source: datasetSource },
-          grid: { top: 60, bottom: 60, left: 60, right: 40, containLabel: true },
-          xAxis: config.chartType === 'pie' ? undefined : { type: 'category', axisLabel: { rotate: 30 } },
+          grid: {
+            top: 60,
+            bottom: 60,
+            left: 60,
+            right: 40,
+            containLabel: true,
+          },
+          xAxis:
+            config.chartType === 'pie'
+              ? undefined
+              : { type: 'category', axisLabel: { rotate: 30 } },
           yAxis: config.chartType === 'pie' ? undefined : { type: 'value' },
           series: [
             {
@@ -153,25 +189,24 @@ export const useRenderingEngine = ({ data, config }) => {
                 x: config.xAxis,
                 y: config.yAxis,
                 itemName: config.xAxis,
-                value: config.yAxis
+                value: config.yAxis,
               },
               itemStyle: {
                 borderRadius: config.chartType === 'bar' ? [4, 4, 0, 0] : 0,
-                color: config.chartType === 'pie' ? undefined : '#2563eb'
+                color: config.chartType === 'pie' ? undefined : '#2563eb',
               },
               smooth: true,
               symbolSize: config.chartType === 'scatter' ? 12 : 8,
-              radius: config.chartType === 'pie' ? ['40%', '70%'] : undefined
-            }
+              radius: config.chartType === 'pie' ? ['40%', '70%'] : undefined,
+            },
           ],
-          animationDuration: 500
+          animationDuration: 500,
         };
         break;
       }
     }
 
     setChartOption(generatedOption);
-
   }, [data, config]);
 
   return { chartOption };

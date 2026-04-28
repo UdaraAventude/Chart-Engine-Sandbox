@@ -131,8 +131,6 @@ const DrillDownRenderer = ({ onRenderTime }) => {
     const yLabel = (metrics[0] || '').replace(/_/g, ' ').toUpperCase();
 
     if (chartType === 'pie') {
-      console.log(data, 'pie');
-
       return (
         <PieChart
           data={data}
@@ -145,7 +143,6 @@ const DrillDownRenderer = ({ onRenderTime }) => {
     }
 
     if (chartType === 'line') {
-      console.log(data, 'line');
       return (
         <LineChart
           data={data}

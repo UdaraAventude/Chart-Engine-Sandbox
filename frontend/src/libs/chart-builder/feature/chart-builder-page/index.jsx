@@ -21,7 +21,6 @@ const ChartBuilderPage = () => {
   const handleChange = (key, value) => {
     setConfig((prev) => {
       const newConfig = { ...prev, [key]: value };
-      console.log(`[ChartBuilder] Config Updated:`, newConfig);
       return newConfig;
     });
   };
@@ -52,8 +51,6 @@ const ChartBuilderPage = () => {
 
     return { dimensions, metrics };
   }, [dataset]);
-
-  console.log(globalData);
 
   return (
     <div

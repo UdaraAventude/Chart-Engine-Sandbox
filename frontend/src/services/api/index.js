@@ -5,6 +5,7 @@ import useStore from '../../store';
 export async function uploadCSV(file, onProgress) {
   const rows = await parseCSV(file, onProgress);
   const globalData = formatCSV(rows);
+
   const store = useStore.getState();
 
   store.setGlobalData(globalData);
