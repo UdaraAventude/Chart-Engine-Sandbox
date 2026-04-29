@@ -1,29 +1,21 @@
 import React from 'react';
-import {
-  BarChart3,
-  PieChart,
-  LineChart,
-  ScatterChart,
-  Table2,
-} from 'lucide-react';
+import { DRILL_CHART_OPTIONS } from '../../constants/chartOptions';
 
-const CHART_OPTIONS = [
-  { value: 'bar', label: 'Bar', icon: <BarChart3 size={16} /> },
-  { value: 'pie', label: 'Pie', icon: <PieChart size={16} /> },
-  { value: 'line', label: 'Line', icon: <LineChart size={16} /> },
-  { value: 'scatter', label: 'Scatter', icon: <ScatterChart size={16} /> },
-  { value: 'table', label: 'Table', icon: <Table2 size={16} /> },
-];
-
+/**
+ * ChartToolbar — pill-button row for selecting chart type.
+ * Calls onSelect(value) when a pill is clicked.
+ * Driven by DRILL_CHART_OPTIONS (single source of truth).
+ */
 const ChartToolbar = ({ activeChartType, onSelect }) => {
   return (
     <div className='premium-toolbar-row'>
       <div className='pill-group'>
-        {CHART_OPTIONS.map((opt) => (
+        {DRILL_CHART_OPTIONS.map((opt) => (
           <button
             key={opt.value}
             onClick={() => onSelect(opt.value)}
             className={`pill-btn ${activeChartType === opt.value ? 'active' : ''}`}
+            title={opt.detail}
           >
             {opt.icon}
             <span>{opt.label}</span>

@@ -14,12 +14,14 @@ const DrillDownPage = () => {
     chartTypeByDepth,
     setChartTypeAtDepth,
     setRenderTime,
+    resetDrill,
   } = useStore();
 
   const activeChartType = chartTypeByDepth[drillPath.length] ?? 'bar';
 
   const handleChartTypeSelect = (type) => {
-    setChartTypeAtDepth(drillPath.length, type);
+    resetDrill();
+    setChartTypeAtDepth(0, type);
   };
 
   return (

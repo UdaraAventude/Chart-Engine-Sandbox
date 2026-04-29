@@ -3,9 +3,17 @@ export const createDrillSlice = (set, get) => ({
   chartTypeByDepth: {},
 
   drillInto: (childName, column) =>
-    set((state) => ({
-      drillPath: [...state.drillPath, { column, value: childName }],
-    })),
+    set((state) => {
+      const currentDepth = state.drillPath.length;
+      const parentType = state.chartTypeByDepth[currentDepth] ?? 'bar';
+      return {
+        drillPath: [...state.drillPath, { column, value: childName }],
+        chartTypeByDepth: {
+          ...state.chartTypeByDepth,
+          [currentDepth + 1]: parentType,   // ← inherit parent type
+        },
+      };
+    }),
 
   drillBack: () =>
     set((state) => {
@@ -18,7 +26,7 @@ export const createDrillSlice = (set, get) => ({
   drillBackTo: (depth) =>
     set((state) => {
       const newChartTypeByDepth = { ...state.chartTypeByDepth };
-      for (let i = depth; i <= state.drillPath.length; i++) {
+      for (let i = depth + 1; i <= state.drillPath.length; i++) {
         delete newChartTypeByDepth[i];
       }
       return {

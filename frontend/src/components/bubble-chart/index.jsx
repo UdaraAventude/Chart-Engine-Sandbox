@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import ReactECharts from 'echarts-for-react';
 import * as echarts from 'echarts';
 import { PALETTE, CHART_THEME } from '../_shared/chartTheme';
+import '../_shared/charts.css';
 
 const BubbleChart = ({
   data = [],
@@ -115,7 +116,8 @@ const BubbleChart = ({
   return (
     <ReactECharts
       option={option}
-      style={{ height, width: '100%' }}
+      className="echarts-wrapper"
+      style={{ height }}
       onEvents={
         onBubbleClick ? { click: (p) => onBubbleClick(p.seriesName) } : {}
       }
