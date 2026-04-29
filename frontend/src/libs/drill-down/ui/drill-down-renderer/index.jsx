@@ -5,6 +5,7 @@ import useStore from '../../../../store';
 import { getNodeAtPath, isLeaf, formatForChart, filterRows } from '../../hooks/engine';
 import { DRILL_CHART_OPTIONS } from '../../constants/chartOptions';
 import DrillDownBreadcrumb from '../drill-down-breadcrumb';
+import { AGGREGATION_OPTIONS } from '../../hooks/engine/aggregation';
 
 // Import our new chart adapters
 import {
@@ -14,7 +15,8 @@ import {
   BubbleAdapter,
   ScatterAdapter,
   StandardAdapter,
-  CorrelationAdapter
+  CorrelationAdapter,
+  SunburstAdapter
 } from '../chart-adapters';
 
 const CHART_ADAPTERS = {
@@ -26,7 +28,8 @@ const CHART_ADAPTERS = {
   correlation: CorrelationAdapter,
   bar: StandardAdapter,
   line: StandardAdapter,
-  pie: StandardAdapter
+  pie: StandardAdapter,
+  sunburst: SunburstAdapter
 };
 
 // Inline range parser — mirrors parseHistBinRange in engine/index.js
@@ -52,6 +55,8 @@ const DrillDownRenderer = ({ onRenderTime }) => {
   const drillBackTo       = useStore((s) => s.drillBackTo);
   const setChartTypeAtDepth = useStore((s) => s.setChartTypeAtDepth);
   const setRenderTime     = useStore((s) => s.setRenderTime);
+  const aggregation       = useStore((s) => s.aggregation);
+  const setAggregation    = useStore((s) => s.setAggregation);
 
   const t0 = useRef(0);
 
@@ -240,6 +245,7 @@ const DrillDownRenderer = ({ onRenderTime }) => {
         handleClick={handleClick}
         onChartReady={onChartReady}
         drillInto={drillInto}
+        aggregation={aggregation}
       />
     );
   };
@@ -265,30 +271,53 @@ const DrillDownRenderer = ({ onRenderTime }) => {
           </span>
         </div>
 
-        <select
-          value={chartType}
-          onChange={(e) => setChartTypeAtDepth(drillPath.length, e.target.value)}
-          style={{
-            padding: '6px 10px',
-            borderRadius: '8px',
-            border: '1px solid #e2e8f0',
-            background: '#f8fafc',
-            fontSize: '13px',
-            fontWeight: 600,
-            color: '#334155',
-            cursor: 'pointer',
-          }}
-        >
-          {DRILL_CHART_OPTIONS.map((o) => {
-            const isSupported = o.minRemainingDepth <= availableDepth;
-            if (!isSupported && o.value !== chartType) return null;
-            return (
-              <option key={o.value} value={o.value} disabled={!isSupported}>
-                {o.label} {!isSupported ? '(Not enough data)' : ''}
+        <div style={{ display: 'flex', gap: '8px' }}>
+          <select
+            value={aggregation}
+            onChange={(e) => setAggregation(e.target.value)}
+            style={{
+              padding: '6px 10px',
+              borderRadius: '8px',
+              border: '1px solid #e2e8f0',
+              background: '#f8fafc',
+              fontSize: '13px',
+              fontWeight: 600,
+              color: '#334155',
+              cursor: 'pointer',
+            }}
+          >
+            {AGGREGATION_OPTIONS.map((o) => (
+              <option key={o.value} value={o.value}>
+                {o.symbol} {o.label}
               </option>
-            );
-          })}
-        </select>
+            ))}
+          </select>
+
+          <select
+            value={chartType}
+            onChange={(e) => setChartTypeAtDepth(drillPath.length, e.target.value)}
+            style={{
+              padding: '6px 10px',
+              borderRadius: '8px',
+              border: '1px solid #e2e8f0',
+              background: '#f8fafc',
+              fontSize: '13px',
+              fontWeight: 600,
+              color: '#334155',
+              cursor: 'pointer',
+            }}
+          >
+            {DRILL_CHART_OPTIONS.map((o) => {
+              const isSupported = o.minRemainingDepth <= availableDepth;
+              if (!isSupported && o.value !== chartType) return null;
+              return (
+                <option key={o.value} value={o.value} disabled={!isSupported}>
+                  {o.label} {!isSupported ? '(Not enough data)' : ''}
+                </option>
+              );
+            })}
+          </select>
+        </div>
       </div>
 
       <DrillDownBreadcrumb

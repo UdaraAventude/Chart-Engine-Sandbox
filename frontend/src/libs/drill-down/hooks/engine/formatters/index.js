@@ -4,6 +4,8 @@ import { computeMultilineData } from './multilineFormatter';
 import { computeHeatmapData } from './heatmapFormatter';
 import { formatStandard } from './standardFormatter';
 import { computeCorrelationData } from './correlationFormatter';
+import { formatSunburstData } from './sunburstFormatter';
+
 
 export function formatForChartRegistry(
   node,
@@ -13,8 +15,10 @@ export function formatForChartRegistry(
   metrics,
   dimensions,
   limit,
-  filterRowsFn
+  filterRowsFn, aggregation = 'avg'
 ) {
+  const primaryMetric = metrics[0] ?? '';
+
   if (chartType === 'scatter') {
     return formatScatter(rows, drillPath, metrics, filterRowsFn);
   }
@@ -22,13 +26,17 @@ export function formatForChartRegistry(
     return formatBubble(node, rows, drillPath, metrics, dimensions, limit, filterRowsFn);
   }
   if (chartType === 'multiline') {
-    return computeMultilineData(node, limit);
+    return computeMultilineData(node, limit, aggregation, primaryMetric);
   }
   if (chartType === 'heatmap') {
-    return computeHeatmapData(node, limit);
+    return computeHeatmapData(node, limit, aggregation, primaryMetric);
+  }
+
+  if (chartType === 'sunburst') {
+    return formatSunburstData(node, limit, aggregation, primaryMetric);
   }
   if (chartType === 'correlation') {
     return computeCorrelationData(rows, drillPath, metrics, filterRowsFn);
   }
-  return formatStandard(node, limit);
+  return formatStandard(node, limit, aggregation, primaryMetric);
 }
