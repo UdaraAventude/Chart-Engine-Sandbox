@@ -3,19 +3,16 @@ import { Activity } from 'lucide-react';
 import '../../../../styles/DrillDown.css';
 import useStore from '../../../../store';
 import { getNodeAtPath, isLeaf, formatForChart } from '../../hooks/engine';
+import { DRILL_CHART_OPTIONS } from '../../constants/chartOptions';
 import DrillDownBreadcrumb from '../drill-down-breadcrumb';
 import BarChart from '../../../../components/bar-chart';
 import PieChart from '../../../../components/pie-chart';
 import LineChart from '../../../../components/line-chart';
 import ScatterChart from '../../../../components/scatter-chart';
+import BubbleChart from '../../../../components/bubble-chart';
 
-const CHART_OPTIONS = [
-  { value: 'bar', label: 'Bar' },
-  { value: 'pie', label: 'Pie' },
-  { value: 'line', label: 'Line' },
-  { value: 'scatter', label: 'Scatter' },
-  { value: 'table', label: 'Table' },
-];
+
+// CHART_OPTIONS is now imported as DRILL_CHART_OPTIONS from '../../constants/chartOptions'
 
 const DrillDownRenderer = ({ onRenderTime }) => {
   const globalData = useStore((s) => s.globalData);
@@ -121,6 +118,7 @@ const DrillDownRenderer = ({ onRenderTime }) => {
         rows,
         drillPath,
         metrics,
+        dimensions,
       );
       return (
         <ScatterChart
@@ -136,12 +134,31 @@ const DrillDownRenderer = ({ onRenderTime }) => {
       );
     }
 
+    if (chartType === 'bubble') {
+      const bubbleData = formatForChart(currentNode, 'bubble', rows, drillPath, metrics, dimensions, 50);
+      return (
+        <BubbleChart
+          data={bubbleData}
+          xCol={metrics[0] ?? ''}
+          yCol={metrics[1] ?? metrics[0] ?? ''}
+          sizeCol={metrics[0] ?? ''}
+          title={title}
+          isLeaf={atLeaf}
+          height='100%'
+          onBubbleClick={handleClick}
+          onChartReady={onChartReady}
+        />
+      );
+    }
+
+
     const data = formatForChart(
       currentNode,
       chartType,
       rows,
       drillPath,
       metrics,
+      dimensions,
     );
     const xLabel = (currentColumn || '').replace(/_/g, ' ').toUpperCase();
     const yLabel = (metrics[0] || '').replace(/_/g, ' ').toUpperCase();
@@ -194,6 +211,7 @@ const DrillDownRenderer = ({ onRenderTime }) => {
       rows,
       drillPath,
       metrics,
+      dimensions,
       null,
     );
     if (data.length === 0) return <div className='empty-state'>No data</div>;
@@ -261,7 +279,7 @@ const DrillDownRenderer = ({ onRenderTime }) => {
             cursor: 'pointer',
           }}
         >
-          {CHART_OPTIONS.map((o) => (
+          {DRILL_CHART_OPTIONS.map((o) => (
             <option key={o.value} value={o.value}>
               {o.label}
             </option>

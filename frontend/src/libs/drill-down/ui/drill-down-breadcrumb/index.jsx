@@ -48,20 +48,6 @@ const DrillDownBreadcrumb = ({
         <button
           onClick={() => onNavigate(drillPath.length - 1)}
           className='back-btn'
-          style={{
-            marginLeft: 'auto',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '4px',
-            padding: '4px 12px',
-            fontSize: '12px',
-            fontWeight: 600,
-            color: '#185FA5',
-            background: 'white',
-            border: '1px solid #e2e8f0',
-            borderRadius: '8px',
-            cursor: 'pointer',
-          }}
         >
           <Undo2 size={12} />
           Back
