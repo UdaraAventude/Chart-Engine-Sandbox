@@ -14,7 +14,8 @@ import {
   BubbleAdapter,
   ScatterAdapter,
   StandardAdapter,
-  CorrelationAdapter
+  CorrelationAdapter,
+  SunburstAdapter
 } from '../chart-adapters';
 
 const CHART_ADAPTERS = {
@@ -26,7 +27,8 @@ const CHART_ADAPTERS = {
   correlation: CorrelationAdapter,
   bar: StandardAdapter,
   line: StandardAdapter,
-  pie: StandardAdapter
+  pie: StandardAdapter,
+  sunburst: SunburstAdapter,
 };
 
 // Inline range parser — mirrors parseHistBinRange in engine/index.js
@@ -44,29 +46,29 @@ function parseHistBinRange(label) {
 
 const DrillDownRenderer = ({ onRenderTime }) => {
   // ── Store subscriptions ────────────────────────────────────────────────────
-  const globalData        = useStore((s) => s.globalData);
-  const totalRows         = useStore((s) => s.totalRows);
-  const drillPath         = useStore((s) => s.drillPath);
-  const chartTypeByDepth  = useStore((s) => s.chartTypeByDepth);
-  const drillInto         = useStore((s) => s.drillInto);
-  const drillBackTo       = useStore((s) => s.drillBackTo);
+  const globalData = useStore((s) => s.globalData);
+  const totalRows = useStore((s) => s.totalRows);
+  const drillPath = useStore((s) => s.drillPath);
+  const chartTypeByDepth = useStore((s) => s.chartTypeByDepth);
+  const drillInto = useStore((s) => s.drillInto);
+  const drillBackTo = useStore((s) => s.drillBackTo);
   const setChartTypeAtDepth = useStore((s) => s.setChartTypeAtDepth);
-  const setRenderTime     = useStore((s) => s.setRenderTime);
+  const setRenderTime = useStore((s) => s.setRenderTime);
 
   const t0 = useRef(0);
 
-  const tree       = globalData?.tree;
+  const tree = globalData?.tree;
   const dimensions = globalData?.dimensions ?? [];
-  const metrics    = globalData?.metrics ?? [];
-  const rows       = globalData?.rows ?? [];
+  const metrics = globalData?.metrics ?? [];
+  const rows = globalData?.rows ?? [];
 
   const currentNode = getNodeAtPath(tree, drillPath);
-  const atLeaf      = isLeaf(currentNode);
+  const atLeaf = isLeaf(currentNode);
 
   // __hist__ steps are numeric range filters — they do NOT consume a categorical
   // dimension slot, so we count only non-hist steps for the dimension index.
   const categoricalDepth = drillPath.filter((s) => !s.column.startsWith('__hist__')).length;
-  const currentColumn    = dimensions[categoricalDepth] ?? '';
+  const currentColumn = dimensions[categoricalDepth] ?? '';
 
   const availableDepth = dimensions.length - categoricalDepth;
 
@@ -105,7 +107,7 @@ const DrillDownRenderer = ({ onRenderTime }) => {
     return rows.filter((row) =>
       drillPath.every((step) => {
         if (step.column.startsWith('__hist__')) {
-          const col   = step.column.slice('__hist__'.length);
+          const col = step.column.slice('__hist__'.length);
           const range = parseHistBinRange(step.value);
           if (!range) return true;
           const v = Number(row[col]);
@@ -116,7 +118,7 @@ const DrillDownRenderer = ({ onRenderTime }) => {
     ).length;
   }, [lastHistStep, rows, drillPath]);
 
-  const treeRowCount    = currentNode?.count ?? totalRows;
+  const treeRowCount = currentNode?.count ?? totalRows;
   const resolvedRowCount = histDrilledRowCount ?? treeRowCount;
 
   // ── CONDITIONAL RETURNS — after ALL hooks ─────────────────────────────────
@@ -131,7 +133,7 @@ const DrillDownRenderer = ({ onRenderTime }) => {
     );
   }
 
-  const rejected       = globalData?.rejected ?? [];
+  const rejected = globalData?.rejected ?? [];
   const hasOnlyNumeric = metrics.length > 0 && rejected.every((r) => r.reason !== 'too_few_unique');
 
   if (!dimensions.length) {
@@ -177,7 +179,7 @@ const DrillDownRenderer = ({ onRenderTime }) => {
       // At categorical levels, show aggregated metrics per child
       data = formatForChart(currentNode, 'bar', rows, drillPath, metrics, dimensions, null);
     }
-    
+
     if (!data || data.length === 0) return <div className='empty-state'>No data</div>;
     const cols = Object.keys(data[0]);
     return (
@@ -240,6 +242,7 @@ const DrillDownRenderer = ({ onRenderTime }) => {
         handleClick={handleClick}
         onChartReady={onChartReady}
         drillInto={drillInto}
+        drillBackTo={drillBackTo}
       />
     );
   };
@@ -259,8 +262,8 @@ const DrillDownRenderer = ({ onRenderTime }) => {
           </span>
           <div className='drill-engine-divider' />
           <span className='drill-engine-levels'>
-            {currentOption && !currentOption.canDrill 
-              ? 'Read-Only View' 
+            {currentOption && !currentOption.canDrill
+              ? 'Read-Only View'
               : `Level ${Math.min(categoricalDepth + 1, dimensions.length)} of ${dimensions.length}`}
           </span>
         </div>
