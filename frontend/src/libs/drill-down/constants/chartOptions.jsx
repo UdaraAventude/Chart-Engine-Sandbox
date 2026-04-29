@@ -93,8 +93,8 @@ export const DRILL_CHART_OPTIONS = [
     label: 'Histogram',
     icon: <BarChart2 size={16} />,
     desc: 'Frequency distribution.',
-    detail: 'Distribution of a single numeric metric across equal-width bins. Read-only view.',
-    canDrill: false,
+    detail: 'Distribution of a single numeric metric across equal-width bins. Click a bin to drill into the next dimension for rows within that range.',
+    canDrill: true,
   },
   {
     value: 'table',
