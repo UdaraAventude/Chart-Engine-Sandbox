@@ -13,14 +13,6 @@ const AppLayout = () => {
             `nav-link${isActive ? ' nav-link--active' : ''}`
           }
         >
-          Drill-Down
-        </NavLink>
-        <NavLink
-          to='/dashboard'
-          className={({ isActive }) =>
-            `nav-link${isActive ? ' nav-link--active' : ''}`
-          }
-        >
           Dashboard
         </NavLink>
         <NavLink
