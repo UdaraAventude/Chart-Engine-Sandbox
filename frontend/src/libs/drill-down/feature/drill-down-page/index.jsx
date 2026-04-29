@@ -33,6 +33,7 @@ const DrillDownPage = () => {
             Technical Evaluation & Performance Benchmarking
           </p>
         </div>
+
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
           <UploadCSV />
         </div>
@@ -53,6 +54,7 @@ const DrillDownPage = () => {
                 activeChartType={activeChartType}
                 onSelect={handleChartTypeSelect}
               />
+
               <div
                 className='viz-viewport'
                 style={{
@@ -61,59 +63,11 @@ const DrillDownPage = () => {
                   border: '1px solid #e2e8f0',
                   boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.05)',
                   marginTop: '24px',
+                  padding: '24px',
+                  minHeight: '600px',
                 }}
               >
                 <DrillDownRenderer onRenderTime={setRenderTime} />
-              </div>
-
-              <div
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  marginTop: '40px',
-                }}
-              >
-                <Link
-                  to='/dashboard'
-                  className='matrix-toggle-btn'
-                  style={{
-                    textDecoration: 'none',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '12px',
-                    padding: '16px 32px',
-                    background: 'var(--primary)',
-                    color: 'white',
-                    borderRadius: '16px',
-                    fontWeight: 700,
-                    fontSize: '16px',
-                  }}
-                >
-                  <LayoutDashboard size={20} />
-                  Dashboard View
-                  <ArrowRight size={20} />
-                </Link>
-                <Link
-                  to='/builder'
-                  className='matrix-toggle-btn'
-                  style={{
-                    textDecoration: 'none',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '12px',
-                    padding: '16px 32px',
-                    background: 'white',
-                    color: '#9333ea',
-                    border: '1.5px solid #9333ea',
-                    borderRadius: '16px',
-                    fontWeight: 700,
-                    fontSize: '16px',
-                    marginLeft: '12px',
-                  }}
-                >
-                  <Wand2 size={20} />
-                  Chart Builder
-                </Link>
               </div>
             </>
           ) : (

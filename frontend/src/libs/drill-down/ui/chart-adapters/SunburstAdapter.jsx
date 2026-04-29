@@ -1,6 +1,6 @@
-import React, { useMemo } from 'react';
-import SunburstChart from '../../../../components/sunburst-chart';
-import { formatForChart } from '../../hooks/engine';
+import React, { useMemo } from "react";
+import SunburstChart from "../../../../components/sunburst-chart";
+import { formatForChart } from "../../hooks/engine";
 
 export default function SunburstAdapter({
   currentNode,
@@ -11,14 +11,34 @@ export default function SunburstAdapter({
   title,
   handleClick,
   onChartReady,
-  aggregation
+  aggregation,
 }) {
   const data = useMemo(() => {
-    return formatForChart(currentNode, 'sunburst', rows, drillPath, metrics, dimensions, 30, aggregation);
+    // console.log('Debug: currentNode:', currentNode);
+    // console.log('Debug: rows:', rows);
+    // console.log('Debug: drillPath:', drillPath);
+    // console.log('Debug: metrics:', metrics);
+    // console.log('Debug: dimensions:', dimensions);
+    // console.log('Debug: aggregation:', aggregation);
+
+    return formatForChart(
+      currentNode,
+      "sunburst",
+      rows,
+      drillPath,
+      metrics,
+      dimensions,
+      30,
+      aggregation,
+    );
   }, [currentNode, rows, drillPath, metrics, dimensions, aggregation]);
 
   if (!data || data.length === 0) {
-    return <div className="empty-state">Not enough data to render a Sunburst chart.</div>;
+    return (
+      <div className="empty-state">
+        Not enough data to render a Sunburst chart.
+      </div>
+    );
   }
 
   return (

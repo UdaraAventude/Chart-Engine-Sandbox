@@ -10,17 +10,25 @@ const ChartToolbar = ({ activeChartType, onSelect }) => {
   return (
     <div className='premium-toolbar-row'>
       <div className='pill-group'>
-        {DRILL_CHART_OPTIONS.map((opt) => (
-          <button
-            key={opt.value}
-            onClick={() => onSelect(opt.value)}
-            className={`pill-btn ${activeChartType === opt.value ? 'active' : ''}`}
-            title={opt.detail}
-          >
-            {opt.icon}
-            <span>{opt.label}</span>
-          </button>
-        ))}
+        {DRILL_CHART_OPTIONS.map((opt) => {
+          const isActive = activeChartType === opt.value;
+          return (
+            <button
+              key={opt.value}
+              onClick={() => onSelect(opt.value)}
+              className={`pill-btn ${isActive ? 'active' : ''}`}
+              title={opt.detail}
+              style={
+                isActive
+                  ? { backgroundColor: opt.color || '#0284c7', color: 'white' }
+                  : {}
+              }
+            >
+              {opt.icon}
+              <span>{opt.label}</span>
+            </button>
+          );
+        })}
       </div>
     </div>
   );
