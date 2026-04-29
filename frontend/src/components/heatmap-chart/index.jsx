@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import ReactECharts from 'echarts-for-react';
 import { CHART_THEME } from '../_shared/chartTheme';
+import '../_shared/charts.css';
 
 const HeatmapChart = ({
   xCategories = [],
@@ -121,7 +122,8 @@ const HeatmapChart = ({
   return (
     <ReactECharts
       option={option}
-      style={{ height, width: '100%' }}
+      className="echarts-wrapper"
+      style={{ height }}
       onEvents={
         onCellClick
           ? {

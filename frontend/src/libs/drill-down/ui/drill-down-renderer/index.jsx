@@ -1,44 +1,85 @@
-import React, { useRef, useCallback, useEffect } from 'react';
+import React, { useRef, useCallback, useEffect, useMemo } from 'react';
 import { Activity } from 'lucide-react';
 import '../../../../styles/DrillDown.css';
 import useStore from '../../../../store';
-import { getNodeAtPath, isLeaf, formatForChart } from '../../hooks/engine';
+import { getNodeAtPath, isLeaf, formatForChart, filterRows } from '../../hooks/engine';
+import { DRILL_CHART_OPTIONS } from '../../constants/chartOptions';
 import DrillDownBreadcrumb from '../drill-down-breadcrumb';
-import BarChart from '../../../../components/bar-chart';
-import PieChart from '../../../../components/pie-chart';
-import LineChart from '../../../../components/line-chart';
-import ScatterChart from '../../../../components/scatter-chart';
 
-const CHART_OPTIONS = [
-  { value: 'bar', label: 'Bar' },
-  { value: 'pie', label: 'Pie' },
-  { value: 'line', label: 'Line' },
-  { value: 'scatter', label: 'Scatter' },
-  { value: 'table', label: 'Table' },
-];
+// Import our new chart adapters
+import {
+  HistogramAdapter,
+  HeatmapAdapter,
+  MultilineAdapter,
+  BubbleAdapter,
+  ScatterAdapter,
+  StandardAdapter,
+  CorrelationAdapter
+} from '../chart-adapters';
+
+const CHART_ADAPTERS = {
+  histogram: HistogramAdapter,
+  heatmap: HeatmapAdapter,
+  multiline: MultilineAdapter,
+  bubble: BubbleAdapter,
+  scatter: ScatterAdapter,
+  correlation: CorrelationAdapter,
+  bar: StandardAdapter,
+  line: StandardAdapter,
+  pie: StandardAdapter
+};
+
+// Inline range parser — mirrors parseHistBinRange in engine/index.js
+function parseHistBinRange(label) {
+  const parseVal = (s) => {
+    const str = s.trim();
+    if (str.endsWith('M')) return parseFloat(str) * 1_000_000;
+    if (str.endsWith('k')) return parseFloat(str) * 1_000;
+    return parseFloat(str);
+  };
+  const parts = label.split(' – ');
+  if (parts.length !== 2) return null;
+  return { lo: parseVal(parts[0]), hi: parseVal(parts[1]) };
+}
 
 const DrillDownRenderer = ({ onRenderTime }) => {
-  const globalData = useStore((s) => s.globalData);
-  const totalRows = useStore((s) => s.totalRows);
-  const drillPath = useStore((s) => s.drillPath);
-  const chartTypeByDepth = useStore((s) => s.chartTypeByDepth);
-  const drillInto = useStore((s) => s.drillInto);
-  const drillBackTo = useStore((s) => s.drillBackTo);
+  // ── Store subscriptions ────────────────────────────────────────────────────
+  const globalData        = useStore((s) => s.globalData);
+  const totalRows         = useStore((s) => s.totalRows);
+  const drillPath         = useStore((s) => s.drillPath);
+  const chartTypeByDepth  = useStore((s) => s.chartTypeByDepth);
+  const drillInto         = useStore((s) => s.drillInto);
+  const drillBackTo       = useStore((s) => s.drillBackTo);
   const setChartTypeAtDepth = useStore((s) => s.setChartTypeAtDepth);
-  const setRenderTime = useStore((s) => s.setRenderTime);
+  const setRenderTime     = useStore((s) => s.setRenderTime);
 
   const t0 = useRef(0);
 
-  const chartType = chartTypeByDepth[drillPath.length] ?? 'bar';
-  const tree = globalData?.tree;
+  const tree       = globalData?.tree;
   const dimensions = globalData?.dimensions ?? [];
-  const metrics = globalData?.metrics ?? [];
-  const rows = globalData?.rows ?? [];
+  const metrics    = globalData?.metrics ?? [];
+  const rows       = globalData?.rows ?? [];
 
   const currentNode = getNodeAtPath(tree, drillPath);
-  const atLeaf = isLeaf(currentNode);
-  const currentColumn = dimensions[drillPath.length] ?? '';
-  const currentRowCount = currentNode?.count ?? totalRows;
+  const atLeaf      = isLeaf(currentNode);
+
+  // __hist__ steps are numeric range filters — they do NOT consume a categorical
+  // dimension slot, so we count only non-hist steps for the dimension index.
+  const categoricalDepth = drillPath.filter((s) => !s.column.startsWith('__hist__')).length;
+  const currentColumn    = dimensions[categoricalDepth] ?? '';
+
+  const availableDepth = dimensions.length - categoricalDepth;
+
+  const chartType = chartTypeByDepth[drillPath.length] ?? 'bar';
+  const currentOption = DRILL_CHART_OPTIONS.find(o => o.value === chartType);
+
+  // Whether the current drillPath contains any histogram bin step
+  const lastHistStep = useMemo(
+    () => [...drillPath].reverse().find((s) => s.column.startsWith('__hist__')) ?? null,
+    [drillPath],
+  );
+
+  // ── ALL hooks unconditionally at top ──────────────────────────────────────
 
   const onChartReady = useCallback(() => {
     const elapsed = performance.now() - t0.current;
@@ -57,32 +98,46 @@ const DrillDownRenderer = ({ onRenderTime }) => {
     t0.current = performance.now();
   });
 
+  // When drillPath contains a __hist__ step, count the rows that satisfy
+  // the full path (including the range filter) so the breadcrumb is accurate.
+  const histDrilledRowCount = useMemo(() => {
+    if (!lastHistStep || !rows.length) return null;
+    return rows.filter((row) =>
+      drillPath.every((step) => {
+        if (step.column.startsWith('__hist__')) {
+          const col   = step.column.slice('__hist__'.length);
+          const range = parseHistBinRange(step.value);
+          if (!range) return true;
+          const v = Number(row[col]);
+          return !isNaN(v) && v >= range.lo && v < range.hi;
+        }
+        return String(row[step.column] ?? '').trim() === step.value;
+      }),
+    ).length;
+  }, [lastHistStep, rows, drillPath]);
+
+  const treeRowCount    = currentNode?.count ?? totalRows;
+  const resolvedRowCount = histDrilledRowCount ?? treeRowCount;
+
+  // ── CONDITIONAL RETURNS — after ALL hooks ─────────────────────────────────
+
   if (!globalData || !tree) {
     return (
       <div className='empty-state'>
-        <Activity
-          size={32}
-          strokeWidth={1.5}
-          style={{ marginBottom: '12px', opacity: 0.5 }}
-        />
+        <Activity size={32} strokeWidth={1.5} style={{ marginBottom: '12px', opacity: 0.5 }} />
         <h3>No Data</h3>
         <p className='empty-subtext'>Upload a CSV file to begin.</p>
       </div>
     );
   }
 
-  const rejected = globalData?.rejected ?? [];
-  const hasOnlyNumeric =
-    metrics.length > 0 && rejected.every((r) => r.reason !== 'too_few_unique');
+  const rejected       = globalData?.rejected ?? [];
+  const hasOnlyNumeric = metrics.length > 0 && rejected.every((r) => r.reason !== 'too_few_unique');
 
   if (!dimensions.length) {
     return (
       <div className='empty-state'>
-        <Activity
-          size={32}
-          strokeWidth={1.5}
-          style={{ marginBottom: '12px', opacity: 0.5 }}
-        />
+        <Activity size={32} strokeWidth={1.5} style={{ marginBottom: '12px', opacity: 0.5 }} />
         <h3>No Hierarchy Detected</h3>
         {hasOnlyNumeric ? (
           <p className='empty-subtext'>
@@ -90,126 +145,46 @@ const DrillDownRenderer = ({ onRenderTime }) => {
             {metrics.length
               ? ` (${metrics.slice(0, 3).join(', ')}${metrics.length > 3 ? '…' : ''}).`
               : '.'}{' '}
-            Add a column with categorical values (e.g. country, category,
-            status) to build a drill-down hierarchy.
+            Add a column with categorical values (e.g. country, category, status) to build a
+            drill-down hierarchy.
           </p>
         ) : (
           <p className='empty-subtext'>
-            No suitable categorical columns found. Each dimension column needs
-            2–500 unique values. Try removing ID columns or columns with
-            free-text.
+            No suitable categorical columns found. Each dimension column needs 2–500 unique values.
+            Try removing ID columns or columns with free-text.
           </p>
         )}
       </div>
     );
   }
 
+  // ── Helpers ────────────────────────────────────────────────────────────────
+
   function buildTitle() {
     const base = 'Data Explorer';
     if (drillPath.length === 0) return base;
-    return base + ' \u203a ' + drillPath.map((p) => p.value).join(' \u203a ');
+    return base + ' › ' + drillPath.map((p) => p.value).join(' › ');
   }
 
-  const renderChart = () => {
-    t0.current = performance.now();
-    const title = buildTitle();
-
-    if (chartType === 'scatter') {
-      const { rawData, xCol, yCol } = formatForChart(
-        currentNode,
-        'scatter',
-        rows,
-        drillPath,
-        metrics,
-      );
-      return (
-        <ScatterChart
-          rawData={rawData}
-          xCol={xCol}
-          yCol={yCol}
-          colorCol={currentColumn}
-          title={title}
-          height='100%'
-          onPointClick={handleClick}
-          onChartReady={onChartReady}
-        />
-      );
-    }
-
-    const data = formatForChart(
-      currentNode,
-      chartType,
-      rows,
-      drillPath,
-      metrics,
-    );
-    const xLabel = (currentColumn || '').replace(/_/g, ' ').toUpperCase();
-    const yLabel = (metrics[0] || '').replace(/_/g, ' ').toUpperCase();
-
-    if (chartType === 'pie') {
-      return (
-        <PieChart
-          data={data}
-          title={title}
-          height='100%'
-          onSliceClick={handleClick}
-          onChartReady={onChartReady}
-        />
-      );
-    }
-
-    if (chartType === 'line') {
-      return (
-        <LineChart
-          data={data}
-          title={title}
-          xAxisLabel={xLabel}
-          yAxisLabel={yLabel}
-          isLeaf={atLeaf}
-          height='100%'
-          onPointClick={handleClick}
-          onChartReady={onChartReady}
-        />
-      );
-    }
-
-    return (
-      <BarChart
-        data={data}
-        title={title}
-        xAxisLabel={xLabel}
-        yAxisLabel={yLabel}
-        isLeaf={atLeaf}
-        height='100%'
-        onBarClick={handleClick}
-        onChartReady={onChartReady}
-      />
-    );
-  };
+  // ── Chart / Table renderer ────────────────────────────────────────────────
 
   const renderTable = () => {
-    const data = formatForChart(
-      currentNode,
-      'bar',
-      rows,
-      drillPath,
-      metrics,
-      null,
-    );
-    if (data.length === 0) return <div className='empty-state'>No data</div>;
+    let data;
+    if (atLeaf) {
+      // At the absolute leaf, show raw filtered rows (limited to 500 for performance)
+      data = filterRows(rows, drillPath).slice(0, 500);
+    } else {
+      // At categorical levels, show aggregated metrics per child
+      data = formatForChart(currentNode, 'bar', rows, drillPath, metrics, dimensions, null);
+    }
+    
+    if (!data || data.length === 0) return <div className='empty-state'>No data</div>;
     const cols = Object.keys(data[0]);
     return (
-      <div
-        className='table-view-container'
-        style={{ overflow: 'auto', maxHeight: '100%' }}
-      >
+      <div className='table-view-container' style={{ overflow: 'auto', maxHeight: '100%' }}>
         <table className='premium-table'>
           <thead>
-            <tr>
-              {cols.map((c) => (
-                <th key={c}>{c}</th>
-              ))}
-            </tr>
+            <tr>{cols.map((c) => <th key={c}>{c}</th>)}</tr>
           </thead>
           <tbody>
             {data.map((row, i) => (
@@ -225,15 +200,57 @@ const DrillDownRenderer = ({ onRenderTime }) => {
     );
   };
 
+  const renderChart = () => {
+    t0.current = performance.now();
+    const title = buildTitle();
+
+    if (chartType === 'table') return renderTable();
+
+    const ChartAdapter = CHART_ADAPTERS[chartType];
+    if (!ChartAdapter) {
+      return <div className='empty-state'>Unsupported chart type: {chartType}</div>;
+    }
+
+    if (currentOption && currentOption.minRemainingDepth > availableDepth) {
+      return (
+        <div className='empty-state'>
+          <Activity size={32} strokeWidth={1.5} style={{ marginBottom: '12px', opacity: 0.5 }} />
+          <h3>Not Enough Data</h3>
+          <p className='empty-subtext'>
+            Cannot drill down furthermore. Not enough hierarchy depth remaining to render a {currentOption.label} chart.
+            <br />
+            Please switch to a supported chart type (like Table or Scatter) from the dropdown above.
+          </p>
+        </div>
+      );
+    }
+
+    return (
+      <ChartAdapter
+        chartType={chartType}
+        currentNode={currentNode}
+        rows={rows}
+        drillPath={drillPath}
+        metrics={metrics}
+        dimensions={dimensions}
+        currentColumn={currentColumn}
+        categoricalDepth={categoricalDepth}
+        atLeaf={atLeaf}
+        title={title}
+        handleClick={handleClick}
+        onChartReady={onChartReady}
+        drillInto={drillInto}
+      />
+    );
+  };
+
+  // ── Main render ───────────────────────────────────────────────────────────
+
   return (
     <div className='drill-container'>
       <div
         className='drill-toolbar'
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-        }}
+        style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
       >
         <div className='drill-engine-badge'>
           <Activity size={16} className='drill-engine-dot' />
@@ -242,14 +259,15 @@ const DrillDownRenderer = ({ onRenderTime }) => {
           </span>
           <div className='drill-engine-divider' />
           <span className='drill-engine-levels'>
-            {dimensions.length} levels
+            {currentOption && !currentOption.canDrill 
+              ? 'Read-Only View' 
+              : `Level ${Math.min(categoricalDepth + 1, dimensions.length)} of ${dimensions.length}`}
           </span>
         </div>
+
         <select
           value={chartType}
-          onChange={(e) =>
-            setChartTypeAtDepth(drillPath.length, e.target.value)
-          }
+          onChange={(e) => setChartTypeAtDepth(drillPath.length, e.target.value)}
           style={{
             padding: '6px 10px',
             borderRadius: '8px',
@@ -261,23 +279,27 @@ const DrillDownRenderer = ({ onRenderTime }) => {
             cursor: 'pointer',
           }}
         >
-          {CHART_OPTIONS.map((o) => (
-            <option key={o.value} value={o.value}>
-              {o.label}
-            </option>
-          ))}
+          {DRILL_CHART_OPTIONS.map((o) => {
+            const isSupported = o.minRemainingDepth <= availableDepth;
+            if (!isSupported && o.value !== chartType) return null;
+            return (
+              <option key={o.value} value={o.value} disabled={!isSupported}>
+                {o.label} {!isSupported ? '(Not enough data)' : ''}
+              </option>
+            );
+          })}
         </select>
       </div>
 
       <DrillDownBreadcrumb
         drillPath={drillPath}
         onNavigate={(depth) => drillBackTo(depth)}
-        rowCount={currentRowCount}
+        rowCount={resolvedRowCount}
         totalRows={totalRows}
       />
 
       <div className='chart-container-wrapper' style={{ height: '480px' }}>
-        {chartType === 'table' ? renderTable() : renderChart()}
+        {renderChart()}
         {drillPath.length > 0 && (
           <div className='floating-depth-badge'>LEVEL {drillPath.length}</div>
         )}

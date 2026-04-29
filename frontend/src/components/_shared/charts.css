@@ -1,0 +1,10 @@
+/* ─────────────────────────────────────────────
+   Shared styles for all ReactECharts wrappers
+   Import this file once (main.jsx) so every
+   chart component automatically gets width:100%.
+───────────────────────────────────────────── */
+
+.echarts-wrapper {
+  width: 100%;
+  display: block;
+}

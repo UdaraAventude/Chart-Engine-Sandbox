@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import ReactECharts from 'echarts-for-react';
 import { SUNBURST_PALETTE, CHART_THEME } from '../_shared/chartTheme';
+import '../_shared/charts.css';
 
 const SunburstChart = ({
   data = [],
@@ -165,7 +166,8 @@ const SunburstChart = ({
   return (
     <ReactECharts
       option={option}
-      style={{ height, width: '100%' }}
+      className="echarts-wrapper"
+      style={{ height }}
       onEvents={
         onNodeClick
           ? {
