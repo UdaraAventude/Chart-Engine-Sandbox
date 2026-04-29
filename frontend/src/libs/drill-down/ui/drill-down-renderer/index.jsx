@@ -12,6 +12,7 @@ import ScatterChart from '../../../../components/scatter-chart';
 import BubbleChart from '../../../../components/bubble-chart';
 import HistogramChart from '../../../../components/histogram-chart';
 import MultilineChart from '../../../../components/multiline-chart';
+import HeatmapChart from '../../../../components/heatmap-chart';
 
 // Inline range parser — mirrors parseHistBinRange in engine/index.js
 function parseHistBinRange(label) {
@@ -248,6 +249,36 @@ const DrillDownRenderer = ({ onRenderTime }) => {
           yAxisLabel={yLabelMulti}
           height='100%'
           onSeriesClick={handleClick}
+          onChartReady={onChartReady}
+        />
+      );
+    }
+
+    // ── HEATMAP ───────────────────────────────────────────────────────────────
+    if (chartType === 'heatmap') {
+      const heatData = formatForChart(currentNode, 'heatmap', rows, drillPath, metrics, dimensions);
+      const nextDimension = dimensions[categoricalDepth + 1] ?? '';
+
+      if (!heatData.xCategories || heatData.xCategories.length === 0 || !heatData.yCategories || heatData.yCategories.length === 0) {
+        return (
+          <div className='empty-state'>
+            Not enough hierarchy depth to render a heatmap chart.
+            Needs at least one more dimension level.
+          </div>
+        );
+      }
+
+      return (
+        <HeatmapChart
+          xCategories={heatData.xCategories}
+          yCategories={heatData.yCategories}
+          cells={heatData.cells}
+          xCol={currentColumn}
+          yCol={nextDimension}
+          measureCol={metrics[0]}
+          title={title}
+          height='100%'
+          onCellClick={!atLeaf ? (xIdx, cell) => handleClick(cell.xLabel) : undefined}
           onChartReady={onChartReady}
         />
       );
