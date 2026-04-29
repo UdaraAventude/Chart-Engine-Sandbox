@@ -2,17 +2,32 @@ import React, { useRef, useCallback, useEffect, useMemo } from 'react';
 import { Activity } from 'lucide-react';
 import '../../../../styles/DrillDown.css';
 import useStore from '../../../../store';
-import { getNodeAtPath, isLeaf, formatForChart, computeHistogramBins } from '../../hooks/engine';
+import { getNodeAtPath, isLeaf, formatForChart, filterRows } from '../../hooks/engine';
 import { DRILL_CHART_OPTIONS } from '../../constants/chartOptions';
 import DrillDownBreadcrumb from '../drill-down-breadcrumb';
-import BarChart from '../../../../components/bar-chart';
-import PieChart from '../../../../components/pie-chart';
-import LineChart from '../../../../components/line-chart';
-import ScatterChart from '../../../../components/scatter-chart';
-import BubbleChart from '../../../../components/bubble-chart';
-import HistogramChart from '../../../../components/histogram-chart';
-import MultilineChart from '../../../../components/multiline-chart';
-import HeatmapChart from '../../../../components/heatmap-chart';
+
+// Import our new chart adapters
+import {
+  HistogramAdapter,
+  HeatmapAdapter,
+  MultilineAdapter,
+  BubbleAdapter,
+  ScatterAdapter,
+  StandardAdapter,
+  CorrelationAdapter
+} from '../chart-adapters';
+
+const CHART_ADAPTERS = {
+  histogram: HistogramAdapter,
+  heatmap: HeatmapAdapter,
+  multiline: MultilineAdapter,
+  bubble: BubbleAdapter,
+  scatter: ScatterAdapter,
+  correlation: CorrelationAdapter,
+  bar: StandardAdapter,
+  line: StandardAdapter,
+  pie: StandardAdapter
+};
 
 // Inline range parser — mirrors parseHistBinRange in engine/index.js
 function parseHistBinRange(label) {
@@ -40,8 +55,6 @@ const DrillDownRenderer = ({ onRenderTime }) => {
 
   const t0 = useRef(0);
 
-  // ── Derived values (safe: no conditional returns yet) ─────────────────────
-  const chartType  = chartTypeByDepth[drillPath.length] ?? 'bar';
   const tree       = globalData?.tree;
   const dimensions = globalData?.dimensions ?? [];
   const metrics    = globalData?.metrics ?? [];
@@ -54,6 +67,11 @@ const DrillDownRenderer = ({ onRenderTime }) => {
   // dimension slot, so we count only non-hist steps for the dimension index.
   const categoricalDepth = drillPath.filter((s) => !s.column.startsWith('__hist__')).length;
   const currentColumn    = dimensions[categoricalDepth] ?? '';
+
+  const availableDepth = dimensions.length - categoricalDepth;
+
+  const chartType = chartTypeByDepth[drillPath.length] ?? 'bar';
+  const currentOption = DRILL_CHART_OPTIONS.find(o => o.value === chartType);
 
   // Whether the current drillPath contains any histogram bin step
   const lastHistStep = useMemo(
@@ -79,12 +97,6 @@ const DrillDownRenderer = ({ onRenderTime }) => {
   useEffect(() => {
     t0.current = performance.now();
   });
-
-  // Compute histogram bins (null when not in histogram mode)
-  const histogramBins = useMemo(() => {
-    if (chartType !== 'histogram' || !rows.length || !metrics.length) return null;
-    return computeHistogramBins(rows, drillPath, metrics[0]);
-  }, [chartType, rows, drillPath, metrics]);
 
   // When drillPath contains a __hist__ step, count the rows that satisfy
   // the full path (including the range filter) so the breadcrumb is accurate.
@@ -154,188 +166,19 @@ const DrillDownRenderer = ({ onRenderTime }) => {
     return base + ' › ' + drillPath.map((p) => p.value).join(' › ');
   }
 
-  // ── Chart renderer ────────────────────────────────────────────────────────
-
-  const renderChart = () => {
-    t0.current = performance.now();
-    const title = buildTitle();
-
-    // ── HISTOGRAM ────────────────────────────────────────────────────────────
-    if (chartType === 'histogram') {
-      if (!histogramBins || !histogramBins.labels.length) {
-        return <div className='empty-state'>No numeric data available for histogram.</div>;
-      }
-
-      const handleBinClick = (label) => {
-        if (atLeaf || !currentColumn) return;
-        // Sentinel column "__hist__<metricCol>" carries the bin range in its value.
-        // filterRows() in the engine knows how to interpret this.
-        drillInto(label, `__hist__${metrics[0]}`);
-      };
-
-      return (
-        <HistogramChart
-          labels={histogramBins.labels}
-          counts={histogramBins.counts}
-          columnName={metrics[0]}
-          title={title}
-          height='100%'
-          onBarClick={!atLeaf ? handleBinClick : undefined}
-          onChartReady={onChartReady}
-        />
-      );
-    }
-
-    // ── SCATTER ───────────────────────────────────────────────────────────────
-    if (chartType === 'scatter') {
-      const { rawData, xCol, yCol } = formatForChart(
-        currentNode, 'scatter', rows, drillPath, metrics, dimensions,
-      );
-      return (
-        <ScatterChart
-          rawData={rawData}
-          xCol={xCol}
-          yCol={yCol}
-          colorCol={currentColumn}
-          title={title}
-          height='100%'
-          onPointClick={handleClick}
-          onChartReady={onChartReady}
-        />
-      );
-    }
-
-    // ── BUBBLE ────────────────────────────────────────────────────────────────
-    if (chartType === 'bubble') {
-      const bubbleData = formatForChart(currentNode, 'bubble', rows, drillPath, metrics, dimensions, 50);
-      return (
-        <BubbleChart
-          data={bubbleData}
-          xCol={metrics[0] ?? ''}
-          yCol={metrics[1] ?? metrics[0] ?? ''}
-          sizeCol={metrics[0] ?? ''}
-          title={title}
-          isLeaf={atLeaf}
-          height='100%'
-          onBubbleClick={handleClick}
-          onChartReady={onChartReady}
-        />
-      );
-    }
-
-    // ── MULTILINE ─────────────────────────────────────────────────────────────
-    if (chartType === 'multiline') {
-      const multiData = formatForChart(currentNode, 'multiline', rows, drillPath, metrics, dimensions);
-      const nextDimension = dimensions[categoricalDepth + 1] ?? '';
-
-      if (!multiData.xAxisLabels || multiData.xAxisLabels.length === 0) {
-        return (
-          <div className='empty-state'>
-            Not enough hierarchy depth to render a multi-line chart.
-            Needs at least one more dimension level.
-          </div>
-        );
-      }
-
-      const xLabelMulti = nextDimension.replace(/_/g, ' ').toUpperCase();
-      const yLabelMulti = (metrics[0] || '').replace(/_/g, ' ').toUpperCase();
-
-      return (
-        <MultilineChart
-          quarters={multiData.xAxisLabels}
-          series={multiData.series}
-          title={title}
-          xAxisLabel={xLabelMulti}
-          yAxisLabel={yLabelMulti}
-          height='100%'
-          onSeriesClick={handleClick}
-          onChartReady={onChartReady}
-        />
-      );
-    }
-
-    // ── HEATMAP ───────────────────────────────────────────────────────────────
-    if (chartType === 'heatmap') {
-      const heatData = formatForChart(currentNode, 'heatmap', rows, drillPath, metrics, dimensions);
-      const nextDimension = dimensions[categoricalDepth + 1] ?? '';
-
-      if (!heatData.xCategories || heatData.xCategories.length === 0 || !heatData.yCategories || heatData.yCategories.length === 0) {
-        return (
-          <div className='empty-state'>
-            Not enough hierarchy depth to render a heatmap chart.
-            Needs at least one more dimension level.
-          </div>
-        );
-      }
-
-      return (
-        <HeatmapChart
-          xCategories={heatData.xCategories}
-          yCategories={heatData.yCategories}
-          cells={heatData.cells}
-          xCol={currentColumn}
-          yCol={nextDimension}
-          measureCol={metrics[0]}
-          title={title}
-          height='100%'
-          onCellClick={!atLeaf ? (xIdx, cell) => handleClick(cell.xLabel) : undefined}
-          onChartReady={onChartReady}
-        />
-      );
-    }
-
-    // ── BAR / LINE / PIE ──────────────────────────────────────────────────────
-    const data   = formatForChart(currentNode, chartType, rows, drillPath, metrics, dimensions);
-    const xLabel = (currentColumn || '').replace(/_/g, ' ').toUpperCase();
-    const yLabel = (metrics[0]   || '').replace(/_/g, ' ').toUpperCase();
-
-    if (chartType === 'pie') {
-      return (
-        <PieChart
-          data={data}
-          title={title}
-          height='100%'
-          onSliceClick={handleClick}
-          onChartReady={onChartReady}
-        />
-      );
-    }
-
-    if (chartType === 'line') {
-      return (
-        <LineChart
-          data={data}
-          title={title}
-          xAxisLabel={xLabel}
-          yAxisLabel={yLabel}
-          isLeaf={atLeaf}
-          height='100%'
-          onPointClick={handleClick}
-          onChartReady={onChartReady}
-        />
-      );
-    }
-
-    // Default: Bar
-    return (
-      <BarChart
-        data={data}
-        title={title}
-        xAxisLabel={xLabel}
-        yAxisLabel={yLabel}
-        isLeaf={atLeaf}
-        height='100%'
-        onBarClick={handleClick}
-        onChartReady={onChartReady}
-      />
-    );
-  };
-
-  // ── Table renderer ────────────────────────────────────────────────────────
+  // ── Chart / Table renderer ────────────────────────────────────────────────
 
   const renderTable = () => {
-    const data = formatForChart(currentNode, 'bar', rows, drillPath, metrics, dimensions, null);
-    if (data.length === 0) return <div className='empty-state'>No data</div>;
+    let data;
+    if (atLeaf) {
+      // At the absolute leaf, show raw filtered rows (limited to 500 for performance)
+      data = filterRows(rows, drillPath).slice(0, 500);
+    } else {
+      // At categorical levels, show aggregated metrics per child
+      data = formatForChart(currentNode, 'bar', rows, drillPath, metrics, dimensions, null);
+    }
+    
+    if (!data || data.length === 0) return <div className='empty-state'>No data</div>;
     const cols = Object.keys(data[0]);
     return (
       <div className='table-view-container' style={{ overflow: 'auto', maxHeight: '100%' }}>
@@ -357,6 +200,50 @@ const DrillDownRenderer = ({ onRenderTime }) => {
     );
   };
 
+  const renderChart = () => {
+    t0.current = performance.now();
+    const title = buildTitle();
+
+    if (chartType === 'table') return renderTable();
+
+    const ChartAdapter = CHART_ADAPTERS[chartType];
+    if (!ChartAdapter) {
+      return <div className='empty-state'>Unsupported chart type: {chartType}</div>;
+    }
+
+    if (currentOption && currentOption.minRemainingDepth > availableDepth) {
+      return (
+        <div className='empty-state'>
+          <Activity size={32} strokeWidth={1.5} style={{ marginBottom: '12px', opacity: 0.5 }} />
+          <h3>Not Enough Data</h3>
+          <p className='empty-subtext'>
+            Cannot drill down furthermore. Not enough hierarchy depth remaining to render a {currentOption.label} chart.
+            <br />
+            Please switch to a supported chart type (like Table or Scatter) from the dropdown above.
+          </p>
+        </div>
+      );
+    }
+
+    return (
+      <ChartAdapter
+        chartType={chartType}
+        currentNode={currentNode}
+        rows={rows}
+        drillPath={drillPath}
+        metrics={metrics}
+        dimensions={dimensions}
+        currentColumn={currentColumn}
+        categoricalDepth={categoricalDepth}
+        atLeaf={atLeaf}
+        title={title}
+        handleClick={handleClick}
+        onChartReady={onChartReady}
+        drillInto={drillInto}
+      />
+    );
+  };
+
   // ── Main render ───────────────────────────────────────────────────────────
 
   return (
@@ -371,7 +258,11 @@ const DrillDownRenderer = ({ onRenderTime }) => {
             {chartType.charAt(0).toUpperCase() + chartType.slice(1)} Drill-Down
           </span>
           <div className='drill-engine-divider' />
-          <span className='drill-engine-levels'>{dimensions.length} levels</span>
+          <span className='drill-engine-levels'>
+            {currentOption && !currentOption.canDrill 
+              ? 'Read-Only View' 
+              : `Level ${Math.min(categoricalDepth + 1, dimensions.length)} of ${dimensions.length}`}
+          </span>
         </div>
 
         <select
@@ -388,9 +279,15 @@ const DrillDownRenderer = ({ onRenderTime }) => {
             cursor: 'pointer',
           }}
         >
-          {DRILL_CHART_OPTIONS.map((o) => (
-            <option key={o.value} value={o.value}>{o.label}</option>
-          ))}
+          {DRILL_CHART_OPTIONS.map((o) => {
+            const isSupported = o.minRemainingDepth <= availableDepth;
+            if (!isSupported && o.value !== chartType) return null;
+            return (
+              <option key={o.value} value={o.value} disabled={!isSupported}>
+                {o.label} {!isSupported ? '(Not enough data)' : ''}
+              </option>
+            );
+          })}
         </select>
       </div>
 
@@ -402,7 +299,7 @@ const DrillDownRenderer = ({ onRenderTime }) => {
       />
 
       <div className='chart-container-wrapper' style={{ height: '480px' }}>
-        {chartType === 'table' ? renderTable() : renderChart()}
+        {renderChart()}
         {drillPath.length > 0 && (
           <div className='floating-depth-badge'>LEVEL {drillPath.length}</div>
         )}
