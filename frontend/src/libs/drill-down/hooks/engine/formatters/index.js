@@ -4,6 +4,7 @@ import { computeMultilineData } from './multilineFormatter';
 import { computeHeatmapData } from './heatmapFormatter';
 import { formatStandard } from './standardFormatter';
 import { computeCorrelationData } from './correlationFormatter';
+import { formatSunburstData } from './sunburstFormatter';
 
 export function formatForChartRegistry(
   node,
@@ -29,6 +30,9 @@ export function formatForChartRegistry(
   }
   if (chartType === 'correlation') {
     return computeCorrelationData(rows, drillPath, metrics, filterRowsFn);
+  }
+  if (chartType === 'sunburst') {
+    return formatSunburstData(node, limit);
   }
   return formatStandard(node, limit);
 }

@@ -19,6 +19,7 @@ import {
   LayoutGrid,
   GitCommit,
   TrendingUp,
+  Sun,
   BarChart2,
   Table2,
 } from 'lucide-react';
@@ -66,6 +67,15 @@ export const DRILL_CHART_OPTIONS = [
     icon: <CircleDot size={16} />,
     desc: 'Multi-dimensional group analysis.',
     detail: 'X, Y, and Size each encode a different metric per group. Click a bubble to drill.',
+    canDrill: true,
+    minRemainingDepth: 1,
+  },
+  {
+    value: 'sunburst',
+    label: 'Sunburst',
+    icon: <Sun size={16} />,
+    desc: 'Hierarchical ring chart.',
+    detail: 'Shows all dimension levels as concentric rings. Click a segment to drill in.',
     canDrill: true,
     minRemainingDepth: 1,
   },
