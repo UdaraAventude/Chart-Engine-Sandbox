@@ -11,6 +11,7 @@ import LineChart from '../../../../components/line-chart';
 import ScatterChart from '../../../../components/scatter-chart';
 import BubbleChart from '../../../../components/bubble-chart';
 import HistogramChart from '../../../../components/histogram-chart';
+import MultilineChart from '../../../../components/multiline-chart';
 
 // Inline range parser — mirrors parseHistBinRange in engine/index.js
 function parseHistBinRange(label) {
@@ -216,6 +217,37 @@ const DrillDownRenderer = ({ onRenderTime }) => {
           isLeaf={atLeaf}
           height='100%'
           onBubbleClick={handleClick}
+          onChartReady={onChartReady}
+        />
+      );
+    }
+
+    // ── MULTILINE ─────────────────────────────────────────────────────────────
+    if (chartType === 'multiline') {
+      const multiData = formatForChart(currentNode, 'multiline', rows, drillPath, metrics, dimensions);
+      const nextDimension = dimensions[categoricalDepth + 1] ?? '';
+
+      if (!multiData.xAxisLabels || multiData.xAxisLabels.length === 0) {
+        return (
+          <div className='empty-state'>
+            Not enough hierarchy depth to render a multi-line chart.
+            Needs at least one more dimension level.
+          </div>
+        );
+      }
+
+      const xLabelMulti = nextDimension.replace(/_/g, ' ').toUpperCase();
+      const yLabelMulti = (metrics[0] || '').replace(/_/g, ' ').toUpperCase();
+
+      return (
+        <MultilineChart
+          quarters={multiData.xAxisLabels}
+          series={multiData.series}
+          title={title}
+          xAxisLabel={xLabelMulti}
+          yAxisLabel={yLabelMulti}
+          height='100%'
+          onSeriesClick={handleClick}
           onChartReady={onChartReady}
         />
       );
