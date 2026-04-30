@@ -85,6 +85,7 @@ export const DRILL_CHART_OPTIONS = [
     canDrill: true,
     minRemainingDepth: 1,
   },
+
   {
     value: 'heatmap',
     label: 'Heatmap',
