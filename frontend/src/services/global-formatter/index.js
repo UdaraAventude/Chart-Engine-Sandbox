@@ -168,14 +168,30 @@ function applyFallbackBucketing(rows, rejected) {
   };
 }
 
-function aggregateMetrics(rows, metrics) {
+// Computes all aggregation methods for each metric column
+// Returns: { salary: { avg, sum, min, max, count }, age: { ... }, ... }
+function aggregateAllMethods(rows, metrics) {
   const result = {};
   for (const m of metrics) {
-    const vals = rows.map((r) => parseFloat(r[m])).filter((v) => !isNaN(v));
-    if (!vals.length) continue;
-    result[m] = parseFloat(
-      (vals.reduce((s, v) => s + v, 0) / vals.length).toFixed(4),
-    );
+    const vals = rows.map(r => parseFloat(r[m])).filter(v => !isNaN(v));
+    if (!vals.length) {
+      result[m] = { avg: 0, sum: 0, min: 0, max: 0, count: 0 };
+      continue;
+    }
+    const sum = vals.reduce((s, v) => s + v, 0);
+    let min = vals[0];
+    let max = vals[0];
+    for (let i = 1; i < vals.length; i++) {
+      if (vals[i] < min) min = vals[i];
+      if (vals[i] > max) max = vals[i];
+    }
+    result[m] = {
+      avg: parseFloat((sum / vals.length).toFixed(4)),
+      sum: parseFloat(sum.toFixed(4)),
+      min: parseFloat(min.toFixed(4)),
+      max: parseFloat(max.toFixed(4)),
+      count: vals.length,
+    };
   }
   return result;
 }
@@ -196,26 +212,21 @@ function buildTree(rows, dimensions, metrics, depth = 0) {
 
   return Array.from(groups.entries()).map(([name, groupRows]) => {
     const children = buildTree(groupRows, dimensions, metrics, depth + 1);
-    const metricAggs = aggregateMetrics(groupRows, metrics);
-    const value = primaryMetric
-      ? parseFloat(
-          (
-            groupRows
-              .map((r) => parseFloat(r[primaryMetric]))
-              .filter((v) => !isNaN(v))
-              .reduce((s, v) => s + v, 0) / groupRows.length
-          ).toFixed(4),
-        )
-      : groupRows.length;
+    const aggs = aggregateAllMethods(groupRows, metrics);
+
+
+    const primaryAggs = primaryMetric ? aggs[primaryMetric] : null;
+    const value = primaryAggs ? primaryAggs.avg : groupRows.length;
 
     return {
       name,
-      value: isNaN(value) ? groupRows.length : value,
+      value,
       count: groupRows.length,
-      metrics: metricAggs,
+      aggs,
       children,
     };
   });
+
 }
 
 export function formatCSV(rows) {
@@ -248,14 +259,15 @@ export function formatCSV(rows) {
       rejected = rejected.filter((r) => !fallbackDimensions.includes(r.key));
     }
   }
-
+  const rootAggs = aggregateAllMethods(finalRows, metrics);
   const tree = {
     name: 'root',
     value: 0,
-    count: rows.length,
-    metrics: aggregateMetrics(finalRows, metrics),
+    count: finalRows.length,
+    aggs: rootAggs,
     children: buildTree(finalRows, dimensions, metrics, 0),
   };
+
 
   return { tree, dimensions, metrics, rows: finalRows, rejected };
 }

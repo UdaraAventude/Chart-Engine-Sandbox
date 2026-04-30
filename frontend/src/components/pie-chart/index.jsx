@@ -32,12 +32,12 @@ const PieChart = ({
       },
       legend: showLegend
         ? {
-            orient: legendOrient,
-            left: 'left',
-            top: 'middle',
-            textStyle: { color: '#374151' },
-            type: 'scroll',
-          }
+          orient: legendOrient,
+          left: 'left',
+          top: 'middle',
+          textStyle: { color: '#374151' },
+          type: 'scroll',
+        }
         : { show: false },
       series: [
         {

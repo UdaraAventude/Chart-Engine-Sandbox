@@ -21,6 +21,12 @@ const ChartBuilderPage = () => {
   const handleChange = (key, value) => {
     setConfig((prev) => {
       const newConfig = { ...prev, [key]: value };
+
+      // Update chartTypeByDepth when chartType changes
+      if (key === 'chartType') {
+        setChartTypeAtDepth(0, value);
+      }
+
       return newConfig;
     });
   };

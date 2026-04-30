@@ -13,11 +13,12 @@ export default function HeatmapAdapter({
   atLeaf,
   title,
   handleClick,
-  onChartReady
+  onChartReady,
+  aggregation
 }) {
   const heatData = useMemo(() => {
-    return formatForChart(currentNode, 'heatmap', rows, drillPath, metrics, dimensions);
-  }, [currentNode, rows, drillPath, metrics, dimensions]);
+    return formatForChart(currentNode, 'heatmap', rows, drillPath, metrics, dimensions, 50, aggregation);
+  }, [currentNode, rows, drillPath, metrics, dimensions, aggregation]);
 
   const nextDimension = dimensions[categoricalDepth + 1] ?? '';
 

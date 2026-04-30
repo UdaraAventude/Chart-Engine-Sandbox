@@ -36,7 +36,7 @@ const BubbleChart = ({
           Math.min(
             maxBubbleSize,
             (val[2] / maxSize) * (maxBubbleSize - minBubbleSize) +
-              minBubbleSize,
+            minBubbleSize,
           ),
         ),
       itemStyle: {
