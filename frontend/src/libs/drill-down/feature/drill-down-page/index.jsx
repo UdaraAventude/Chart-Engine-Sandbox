@@ -70,55 +70,7 @@ const DrillDownPage = () => {
                 <DrillDownRenderer onRenderTime={setRenderTime} />
               </div>
 
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  marginTop: "40px",
-                }}
-              >
-                <Link
-                  to="/dashboard"
-                  className="matrix-toggle-btn"
-                  style={{
-                    textDecoration: "none",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "12px",
-                    padding: "16px 32px",
-                    background: "var(--primary)",
-                    color: "white",
-                    borderRadius: "16px",
-                    fontWeight: 700,
-                    fontSize: "16px",
-                  }}
-                >
-                  <LayoutDashboard size={20} />
-                  Dashboard View
-                  <ArrowRight size={20} />
-                </Link>
-                <Link
-                  to="/builder"
-                  className="matrix-toggle-btn"
-                  style={{
-                    textDecoration: "none",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "12px",
-                    padding: "16px 32px",
-                    background: "white",
-                    color: "#9333ea",
-                    border: "1.5px solid #9333ea",
-                    borderRadius: "16px",
-                    fontWeight: 700,
-                    fontSize: "16px",
-                    marginLeft: "12px",
-                  }}
-                >
-                  <Wand2 size={20} />
-                  Chart Builder
-                </Link>
-              </div>
+
             </>
           ) : (
             <div style={{ textAlign: "center", padding: "60px 0" }}>
