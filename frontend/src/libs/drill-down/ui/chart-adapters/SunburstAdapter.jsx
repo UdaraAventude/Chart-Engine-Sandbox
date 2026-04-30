@@ -1,45 +1,53 @@
-import React, { useMemo } from 'react';
-import SunburstChart from '../../../../components/sunburst-chart';
-import { formatForChart } from '../../hooks/engine';
+import React, { useMemo } from "react";
+import SunburstChart from "../../../../components/sunburst-chart";
+import { formatForChart } from "../../hooks/engine";
 
 export default function SunburstAdapter({
-    currentNode,
-    rows,
-    drillPath,
-    metrics,
-    dimensions,
-    atLeaf,
-    title,
-    handleClick,
-    onChartReady,
-    drillInto,
-    drillBackTo
+  currentNode,
+  rows,
+  drillPath,
+  metrics,
+  dimensions,
+  title,
+  handleClick,
+  onChartReady,
+  aggregation,
 }) {
+  const data = useMemo(() => {
+    // console.log('Debug: currentNode:', currentNode);
+    // console.log('Debug: rows:', rows);
+    // console.log('Debug: drillPath:', drillPath);
+    // console.log('Debug: metrics:', metrics);
+    // console.log('Debug: dimensions:', dimensions);
+    // console.log('Debug: aggregation:', aggregation);
 
-    const sunburstData = useMemo(() => {
-        return formatForChart(currentNode, 'sunburst', rows, drillPath, metrics, dimensions);
-    }, [currentNode, rows, drillPath, metrics, dimensions]);
-
-    if (!sunburstData || sunburstData.length === 0) {
-        return (
-            <div className='empty-state flex items-center justify-center h-full text-gray-500'>
-                No data to display in Sunburst chart.
-            </div>
-        );
-    }
-
-    return (
-        <SunburstChart
-            data={sunburstData}
-            measureCol={metrics[0] ?? ''}
-            aggregationMethod='avg'
-            title={title}
-            drillPath={drillPath}
-            maxDepth={dimensions.length}
-            height='100%'
-            onNodeClick={(name) => handleClick(name)}
-            onCenterClick={() => drillBackTo(Math.max(0, drillPath.length - 1))}
-            onChartReady={onChartReady}
-        />
+    return formatForChart(
+      currentNode,
+      "sunburst",
+      rows,
+      drillPath,
+      metrics,
+      dimensions,
+      30,
+      aggregation,
     );
+  }, [currentNode, rows, drillPath, metrics, dimensions, aggregation]);
+
+  if (!data || data.length === 0) {
+    return (
+      <div className="empty-state">
+        Not enough data to render a Sunburst chart.
+      </div>
+    );
+  }
+
+  return (
+    <SunburstChart
+      data={data}
+      title={title}
+      height="100%"
+      onSliceClick={handleClick}
+      onChartReady={onChartReady}
+    />
+  );
 }

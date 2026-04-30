@@ -1,22 +1,33 @@
-export function formatSunburstData(node, limit) {
-    if (!node || !node.children || node.children.length === 0) {
-        return [];
+import { resolveNodeValue } from "../aggregation";
+
+export function formatSunburstData(
+  node,
+  limit,
+  aggregation = "avg",
+  primaryMetric = "",
+) {
+  if (!node) return null;
+
+  function buildNode(n) {
+    const result = {
+      name: n.name,
+      value: resolveNodeValue(n, primaryMetric, aggregation), // ← Use the utility here!
+      count: n.count,
+    };
+
+    if (n.children && n.children.length > 0) {
+      result.children = n.children.map(buildNode);
+      // If there is a limit, we sort and slice the children
+      if (limit !== null && result.children.length > limit) {
+        result.children = result.children
+          .sort((a, b) => b.value - a.value)
+          .slice(0, limit);
+      }
     }
-    function convert(n, depth) {
-        if (!n) return null;
+    return result;
+  }
 
-        const hasChildren = n.children && n.children.length > 0;
-
-        return {
-            name: n.name,
-            value: n.value,
-            sum: n.value * n.count,
-            count: n.count,
-            children: hasChildren
-                ? n.children.slice(0, depth === 0 ? limit : 30).map(c => convert(c, depth + 1))
-                : undefined,
-        };
-    }
-
-    return node.children.slice(0, limit).map(c => convert(c, 0));
+  // The sunburst expects a root node with a children array
+  const formattedRoot = buildNode(node);
+  return formattedRoot.children || [];
 }

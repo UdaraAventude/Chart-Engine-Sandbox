@@ -11,11 +11,12 @@ export default function BubbleAdapter({
   atLeaf,
   title,
   handleClick,
-  onChartReady
+  onChartReady,
+  aggregation
 }) {
   const bubbleData = useMemo(() => {
-    return formatForChart(currentNode, 'bubble', rows, drillPath, metrics, dimensions, 50);
-  }, [currentNode, rows, drillPath, metrics, dimensions]);
+    return formatForChart(currentNode, 'bubble', rows, drillPath, metrics, dimensions, 50, aggregation);
+  }, [currentNode, rows, drillPath, metrics, dimensions, aggregation]);
 
   return (
     <BubbleChart

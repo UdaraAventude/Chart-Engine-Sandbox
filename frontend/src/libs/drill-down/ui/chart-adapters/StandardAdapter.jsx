@@ -15,11 +15,12 @@ export default function StandardAdapter({
   atLeaf,
   title,
   handleClick,
-  onChartReady
+  onChartReady,
+  aggregation
 }) {
   const data = useMemo(() => {
-    return formatForChart(currentNode, chartType, rows, drillPath, metrics, dimensions);
-  }, [currentNode, chartType, rows, drillPath, metrics, dimensions]);
+    return formatForChart(currentNode, chartType, rows, drillPath, metrics, dimensions, aggregation);
+  }, [currentNode, chartType, rows, drillPath, metrics, dimensions, aggregation]);
 
   const xLabel = (currentColumn || '').replace(/_/g, ' ').toUpperCase();
   const yLabel = (metrics[0] || '').replace(/_/g, ' ').toUpperCase();
