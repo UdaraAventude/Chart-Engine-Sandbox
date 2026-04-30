@@ -538,3 +538,52 @@
   font-weight: 600;
   pointer-events: none;
 }
+
+/* ── Export Toolbar ─────────────────────────────────── */
+.export-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: flex-end;
+  padding: 8px 0 4px;
+}
+
+.export-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--drill-border);
+  background: var(--drill-surface);
+  color: var(--drill-text-secondary);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+  letter-spacing: 0.03em;
+}
+
+.export-btn:hover {
+  background: var(--drill-active-bg);
+  border-color: var(--drill-accent-border);
+  color: var(--drill-accent-text);
+}
+
+.export-btn:active {
+  transform: scale(0.97);
+}
+
+.export-btn.disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.export-label {
+  font-size: 11px;
+  color: var(--drill-text-muted);
+  margin-right: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}

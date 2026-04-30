@@ -5,6 +5,7 @@ import useStore from '../../../../store';
 import { getNodeAtPath, isLeaf, formatForChart, filterRows } from '../../hooks/engine';
 import { DRILL_CHART_OPTIONS } from '../../constants/chartOptions';
 import DrillDownBreadcrumb from '../drill-down-breadcrumb';
+import { exportToPNG, exportToSVG } from '../../../../services/export';
 
 // Import our new chart adapters
 import {
@@ -56,6 +57,7 @@ const DrillDownRenderer = ({ onRenderTime }) => {
   const setRenderTime = useStore((s) => s.setRenderTime);
 
   const t0 = useRef(0);
+  const echartsRef = useRef(null);
 
   const tree = globalData?.tree;
   const dimensions = globalData?.dimensions ?? [];
@@ -83,11 +85,33 @@ const DrillDownRenderer = ({ onRenderTime }) => {
 
   // ── ALL hooks unconditionally at top ──────────────────────────────────────
 
-  const onChartReady = useCallback(() => {
+  const onChartReady = useCallback((instance) => {
+    if (instance) echartsRef.current = instance;
     const elapsed = performance.now() - t0.current;
     onRenderTime?.(elapsed.toFixed(1));
     setRenderTime?.(elapsed.toFixed(1));
   }, [onRenderTime, setRenderTime]);
+
+  const handleExport = (format) => {
+    // Guard: ensure the ref and instance exist
+    if (!echartsRef.current) {
+      console.warn('[DrillDown] Export called before chart was ready.');
+      return;
+    }
+
+    // Since we captured the instance via onChartReady, it IS the echarts instance
+    const instance = echartsRef.current;
+
+    // Build a meaningful filename from the current drill path
+    const pathLabel = drillPath.length > 0
+      ? drillPath.map(d => d.value).join('_')
+      : 'overview';
+    
+    const filename = `chart_${pathLabel}`;
+
+    if (format === 'png') exportToPNG(instance, `${filename}.png`);
+    if (format === 'svg') exportToSVG(instance, `${filename}.svg`);
+  };
 
   const handleClick = useCallback(
     (name) => {
@@ -300,6 +324,27 @@ const DrillDownRenderer = ({ onRenderTime }) => {
         rowCount={resolvedRowCount}
         totalRows={totalRows}
       />
+
+      {/* Export Toolbar */}
+      {chartType !== 'table' && (
+        <div className="export-toolbar">
+          <span className="export-label">Export</span>
+          <button
+            className="export-btn"
+            onClick={() => handleExport('png')}
+            title="Download chart as PNG image"
+          >
+            PNG
+          </button>
+          <button
+            className="export-btn"
+            onClick={() => handleExport('svg')}
+            title="Download chart as scalable SVG"
+          >
+            SVG
+          </button>
+        </div>
+      )}
 
       <div className='chart-container-wrapper' style={{ height: '480px' }}>
         {renderChart()}
