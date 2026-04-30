@@ -69,7 +69,7 @@ const CorrelationChart = ({
   }, [columns, matrix, title, colorRange, showLabels]);
 
   return (
-    <ReactECharts
+    <ReactECharts opts={{ renderer: 'svg' }}
       option={option}
       className="echarts-wrapper"
       style={{ height }}

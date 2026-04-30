@@ -89,7 +89,7 @@ const MultilineChart = ({
   ]);
 
   return (
-    <ReactECharts
+    <ReactECharts opts={{ renderer: 'svg' }}
       option={option}
       className="echarts-wrapper"
       style={{ height }}
