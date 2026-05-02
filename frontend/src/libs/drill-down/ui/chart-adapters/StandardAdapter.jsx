@@ -1,8 +1,8 @@
-import React, { useMemo } from 'react';
-import BarChart from '../../../../components/bar-chart';
-import PieChart from '../../../../components/pie-chart';
-import LineChart from '../../../../components/line-chart';
-import { formatForChart } from '../../hooks/engine';
+import React, { useMemo } from "react";
+import BarChart from "../../../../components/bar-chart";
+import PieChart from "../../../../components/pie-chart";
+import LineChart from "../../../../components/line-chart";
+import { formatForChart } from "../../hooks/engine";
 
 export default function StandardAdapter({
   chartType,
@@ -16,28 +16,47 @@ export default function StandardAdapter({
   title,
   handleClick,
   onChartReady,
-  aggregation
+  aggregation,
 }) {
   const data = useMemo(() => {
-    return formatForChart(currentNode, chartType, rows, drillPath, metrics, dimensions, aggregation);
-  }, [currentNode, chartType, rows, drillPath, metrics, dimensions, aggregation]);
+    // pass `limit` as undefined and provide `aggregation` explicitly
+    return formatForChart(
+      currentNode,
+      chartType,
+      rows,
+      drillPath,
+      metrics,
+      dimensions,
+      undefined,
+      aggregation,
+    );
+  }, [
+    currentNode,
+    chartType,
+    rows,
+    drillPath,
+    metrics,
+    dimensions,
+    aggregation,
+  ]);
 
-  const xLabel = (currentColumn || '').replace(/_/g, ' ').toUpperCase();
-  const yLabel = (metrics[0] || '').replace(/_/g, ' ').toUpperCase();
+  const xLabel = (currentColumn || "").replace(/_/g, " ").toUpperCase();
+  const yLabel = (metrics[0] || "").replace(/_/g, " ").toUpperCase();
 
-  if (chartType === 'pie') {
+  if (chartType === "pie") {
     return (
       <PieChart
         data={data}
         title={title}
-        height='100%'
+        height="100%"
         onSliceClick={handleClick}
+        aggregationMethod={aggregation}
         onChartReady={onChartReady}
       />
     );
   }
 
-  if (chartType === 'line') {
+  if (chartType === "line") {
     return (
       <LineChart
         data={data}
@@ -45,7 +64,8 @@ export default function StandardAdapter({
         xAxisLabel={xLabel}
         yAxisLabel={yLabel}
         isLeaf={atLeaf}
-        height='100%'
+        height="100%"
+        aggregationMethod={aggregation}
         onPointClick={handleClick}
         onChartReady={onChartReady}
       />
@@ -59,7 +79,8 @@ export default function StandardAdapter({
       xAxisLabel={xLabel}
       yAxisLabel={yLabel}
       isLeaf={atLeaf}
-      height='100%'
+      height="100%"
+      aggregationMethod={aggregation}
       onBarClick={handleClick}
       onChartReady={onChartReady}
     />

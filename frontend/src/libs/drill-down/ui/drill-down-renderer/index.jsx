@@ -62,6 +62,7 @@ const DrillDownRenderer = ({ onRenderTime }) => {
   const setRenderTime = useStore((s) => s.setRenderTime);
   const aggregation = useStore((s) => s.aggregation);
   const setAggregation = useStore((s) => s.setAggregation);
+  console.log("🔵 Current aggregation in store:", aggregation);
 
   const t0 = useRef(0);
 

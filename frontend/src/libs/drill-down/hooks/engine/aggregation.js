@@ -2,11 +2,11 @@
 
 // Exported aggregation method options for UI dropdown
 export const AGGREGATION_OPTIONS = [
-  { value: 'avg', label: 'Average', symbol: '〈A〉' },
-  { value: 'sum', label: 'Sum', symbol: '∑' },
-  { value: 'min', label: 'Min', symbol: '↓' },
-  { value: 'max', label: 'Max', symbol: '↑' },
-  { value: 'count', label: 'Count', symbol: '#' },
+  { value: "avg", label: "Average", symbol: "〈A〉" },
+  { value: "sum", label: "Sum", symbol: "∑" },
+  { value: "min", label: "Min", symbol: "↓" },
+  { value: "max", label: "Max", symbol: "↑" },
+  { value: "count", label: "Count", symbol: "#" },
 ];
 
 /**
@@ -17,9 +17,9 @@ export const AGGREGATION_OPTIONS = [
  * @param {string} aggregation - One of 'avg', 'sum', 'min', 'max', 'count'.
  * @returns {number} Resolved numeric value.
  */
-export function resolveNodeValue(node, metric = '', aggregation = 'avg') {
+export function resolveNodeValue(node, metric = "", aggregation = "avg") {
   if (!node) return undefined;
-  // Prefer pre-computed aggregation if present
+
   if (node.aggs && node.aggs[metric] && aggregation in node.aggs[metric]) {
     return node.aggs[metric][aggregation];
   }

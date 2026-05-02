@@ -18,6 +18,7 @@ const BarChart = ({
   onBarClick,
   onChartReady,
 }) => {
+  console.log('🎯 BarChart received aggregationMethod:', aggregationMethod);
   const option = useMemo(() => {
     if (!data?.length) return {};
     const names = data.map((d) => d.name);
@@ -93,16 +94,16 @@ const BarChart = ({
       ],
       dataZoom: autoZoom
         ? [
-            {
-              type: 'slider',
-              bottom: 5,
-              height: 20,
-              backgroundColor: '#f9fafb',
-              borderColor: '#e5e7eb',
-              fillerColor: 'rgba(24,95,165,0.12)',
-              textStyle: { color: '#6b7280' },
-            },
-          ]
+          {
+            type: 'slider',
+            bottom: 5,
+            height: 20,
+            backgroundColor: '#f9fafb',
+            borderColor: '#e5e7eb',
+            fillerColor: 'rgba(24,95,165,0.12)',
+            textStyle: { color: '#6b7280' },
+          },
+        ]
         : [],
       animationDuration: 1000,
       animationEasing: 'cubicOut',

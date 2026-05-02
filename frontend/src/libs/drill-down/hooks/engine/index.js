@@ -43,6 +43,7 @@ export function formatForChart(
   metrics,
   dimensions,
   limit = CHART_TOP_N,
+  aggregation = 'avg'
 ) {
   return formatForChartRegistry(
     node,
@@ -52,7 +53,8 @@ export function formatForChart(
     metrics,
     dimensions,
     limit,
-    filterRows
+    filterRows,
+    aggregation
   );
 }
 

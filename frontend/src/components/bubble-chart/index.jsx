@@ -1,19 +1,19 @@
-import React, { useMemo } from 'react';
-import ReactECharts from 'echarts-for-react';
-import * as echarts from 'echarts';
-import { PALETTE, CHART_THEME } from '../_shared/chartTheme';
-import '../_shared/charts.css';
+import React, { useMemo } from "react";
+import ReactECharts from "echarts-for-react";
+import * as echarts from "echarts";
+import { PALETTE, CHART_THEME } from "../_shared/chartTheme";
+import "../_shared/charts.css";
 
 const BubbleChart = ({
   data = [],
-  xCol = '',
-  yCol = '',
-  sizeCol = '',
-  title = '',
+  xCol = "",
+  yCol = "",
+  sizeCol = "",
+  title = "",
   isLeaf = false,
   minBubbleSize = 12,
   maxBubbleSize = 80,
-  height = '420px',
+  height = "420px",
   palette = PALETTE,
   onBubbleClick,
   onChartReady,
@@ -28,7 +28,7 @@ const BubbleChart = ({
 
     const series = data.map((d, i) => ({
       name: d.name,
-      type: 'scatter',
+      type: "scatter",
       data: [[d.x, d.y, d.size, d.count]],
       symbolSize: (val) =>
         Math.max(
@@ -36,33 +36,33 @@ const BubbleChart = ({
           Math.min(
             maxBubbleSize,
             (val[2] / maxSize) * (maxBubbleSize - minBubbleSize) +
-            minBubbleSize,
+              minBubbleSize,
           ),
         ),
       itemStyle: {
         color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [
           { offset: 0, color: palette[i % palette.length] },
-          { offset: 1, color: palette[i % palette.length] + '99' },
+          { offset: 1, color: palette[i % palette.length] + "99" },
         ]),
-        borderColor: isLeaf ? '#d97706' : palette[i % palette.length],
+        borderColor: isLeaf ? "#d97706" : palette[i % palette.length],
         borderWidth: isLeaf ? 2 : 1,
         opacity: 0.9,
       },
     }));
 
     return {
-      backgroundColor: 'transparent',
+      backgroundColor: "transparent",
       title: {
         ...CHART_THEME.titleStyle,
         text: title,
-        left: 'center',
+        left: "center",
         top: 12,
       },
       legend: {
         bottom: 10,
-        left: 'center',
-        textStyle: { color: '#374151' },
-        type: 'scroll',
+        left: "center",
+        textStyle: { color: "#374151" },
+        type: "scroll",
       },
       tooltip: {
         ...CHART_THEME.tooltipBase,
@@ -79,9 +79,9 @@ const BubbleChart = ({
       },
       grid: { top: 60, bottom: 60, left: 60, right: 40, containLabel: true },
       xAxis: {
-        type: 'value',
-        name: xCol.replace(/_/g, ' ').toUpperCase(),
-        nameLocation: 'middle',
+        type: "value",
+        name: xCol.replace(/_/g, " ").toUpperCase(),
+        nameLocation: "middle",
         nameGap: 35,
         nameTextStyle: CHART_THEME.axisNameStyle,
         axisLabel: CHART_THEME.axisLabel,
@@ -89,9 +89,9 @@ const BubbleChart = ({
         splitLine: CHART_THEME.splitLine,
       },
       yAxis: {
-        type: 'value',
-        name: yCol.replace(/_/g, ' ').toUpperCase(),
-        nameLocation: 'middle',
+        type: "value",
+        name: yCol.replace(/_/g, " ").toUpperCase(),
+        nameLocation: "middle",
         nameGap: 50,
         nameTextStyle: CHART_THEME.axisNameStyle,
         axisLabel: CHART_THEME.axisLabel,

@@ -47,6 +47,7 @@ export default function SunburstAdapter({
       title={title}
       height="100%"
       onSliceClick={handleClick}
+      aggregationMethod={aggregation}
       onChartReady={onChartReady}
     />
   );

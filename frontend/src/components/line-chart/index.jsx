@@ -21,6 +21,7 @@ const LineChart = ({
   onPointClick,
   onChartReady,
 }) => {
+  console.log('🌞 LineChart received aggregationMethod:', aggregationMethod);
   const option = useMemo(() => {
     if (!data?.length) return {};
     const names = data.map((d) => d.name);
@@ -86,11 +87,11 @@ const LineChart = ({
           lineStyle: { width: lineWidth, color },
           areaStyle: showArea
             ? {
-                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                  { offset: 0, color: color + '4d' },
-                  { offset: 1, color: color + '00' },
-                ]),
-              }
+              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                { offset: 0, color: color + '4d' },
+                { offset: 1, color: color + '00' },
+              ]),
+            }
             : undefined,
           label: {
             show: data.length <= 12,
@@ -103,16 +104,16 @@ const LineChart = ({
       ],
       dataZoom: autoZoom
         ? [
-            {
-              type: 'slider',
-              bottom: 5,
-              height: 20,
-              backgroundColor: '#f9fafb',
-              borderColor: '#e5e7eb',
-              fillerColor: 'rgba(24,95,165,0.12)',
-              textStyle: { color: '#6b7280' },
-            },
-          ]
+          {
+            type: 'slider',
+            bottom: 5,
+            height: 20,
+            backgroundColor: '#f9fafb',
+            borderColor: '#e5e7eb',
+            fillerColor: 'rgba(24,95,165,0.12)',
+            textStyle: { color: '#6b7280' },
+          },
+        ]
         : [],
       animationDuration: 1000,
       animationEasing: 'cubicOut',

@@ -46,5 +46,5 @@ export function formatForChartRegistry(
   if (chartType === "correlation") {
     return computeCorrelationData(rows, drillPath, metrics, filterRowsFn);
   }
-  return formatStandard(node, limit);
+  return formatStandard(node, limit, aggregation, primaryMetric);
 }

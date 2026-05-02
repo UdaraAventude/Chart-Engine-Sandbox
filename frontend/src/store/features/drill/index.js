@@ -1,16 +1,17 @@
 export const createDrillSlice = (set, get) => ({
   drillPath: [],
   chartTypeByDepth: {},
-
+  aggregation: "avg",
+  setAggregation: (method) => set({ aggregation: method }),
   drillInto: (childName, column) =>
     set((state) => {
       const currentDepth = state.drillPath.length;
-      const parentType = state.chartTypeByDepth[currentDepth] ?? 'bar';
+      const parentType = state.chartTypeByDepth[currentDepth] ?? "bar";
       return {
         drillPath: [...state.drillPath, { column, value: childName }],
         chartTypeByDepth: {
           ...state.chartTypeByDepth,
-          [currentDepth + 1]: parentType,   // ← inherit parent type
+          [currentDepth + 1]: parentType, // ← inherit parent type
         },
       };
     }),

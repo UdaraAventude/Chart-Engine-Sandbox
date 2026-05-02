@@ -6,7 +6,7 @@ import '../_shared/charts.css';
 const SunburstChart = ({
   data = [],
   measureCol = '',
-  aggregationMethod = 'sum',
+  aggregationMethod = 'avg', // used only for tooltip label — values already resolved upstream
   title = '',
   drillPath = [],
   maxDepth = 4,
@@ -16,41 +16,23 @@ const SunburstChart = ({
   onCenterClick,
   onChartReady,
 }) => {
+  // Only assign colours — DO NOT recalculate values.
+  // formatForChart already called resolveNodeValue(node, metric, aggregation)
+  // so every node.value is correct for the chosen method (avg/sum/min/max/count).
+  // Recalculating here was overwriting those values and breaking min/max entirely.
+  console.log('🌞 SunburstChart received aggregationMethod:', aggregationMethod);
   const processedData = useMemo(() => {
-    const updateNodes = (nodes) =>
-      nodes.map((node) => {
-        const baseSum =
-          typeof node.sum === 'number'
-            ? node.sum
-            : typeof node.value === 'number'
-              ? node.value
-              : 0;
-        const baseCount = typeof node.count === 'number' ? node.count : 0;
+    const assignColors = (nodes) =>
+      nodes.map((node, i) => ({
+        ...node,
+        itemStyle: { color: palette[i % palette.length] },
+        children: Array.isArray(node.children) && node.children.length > 0
+          ? assignColors(node.children)
+          : node.children,
+      }));
 
-        let val = baseSum;
-        if (aggregationMethod === 'avg' || aggregationMethod === 'mean')
-          val = baseCount > 0 ? baseSum / baseCount : 0;
-        else if (aggregationMethod === 'count') val = baseCount;
-
-        const hasChildren =
-          Array.isArray(node.children) && node.children.length > 0;
-        const newNode = { ...node };
-
-        if (hasChildren) {
-          newNode.children = updateNodes(node.children);
-          delete newNode.value;
-        } else {
-          newNode.value = val;
-        }
-        return newNode;
-      });
-
-    const processed = updateNodes(data || []);
-    processed.forEach((node, i) => {
-      node.itemStyle = { color: palette[i % palette.length] };
-    });
-    return processed;
-  }, [data, aggregationMethod, palette]);
+    return assignColors(data || []);
+  }, [data, palette]);
 
   const option = useMemo(() => {
     if (!processedData.length) return {};
@@ -141,15 +123,15 @@ const SunburstChart = ({
         },
         ...(drillPath.length > 0
           ? [
-              {
-                type: 'circle',
-                left: 'center',
-                top: 'middle',
-                shape: { r: 48 },
-                style: { fill: 'rgba(0,0,0,0)', cursor: 'pointer' },
-                onclick: onCenterClick,
-              },
-            ]
+            {
+              type: 'circle',
+              left: 'center',
+              top: 'middle',
+              shape: { r: 48 },
+              style: { fill: 'rgba(0,0,0,0)', cursor: 'pointer' },
+              onclick: onCenterClick,
+            },
+          ]
           : []),
       ],
     };
@@ -171,13 +153,13 @@ const SunburstChart = ({
       onEvents={
         onNodeClick
           ? {
-              click: (params) =>
-                onNodeClick(
-                  params.data?.name,
-                  params.treePathInfo?.length ?? 0,
-                  params.treePathInfo,
-                ),
-            }
+            click: (params) =>
+              onNodeClick(
+                params.data?.name,
+                params.treePathInfo?.length ?? 0,
+                params.treePathInfo,
+              ),
+          }
           : {}
       }
       onChartReady={onChartReady}
