@@ -36,6 +36,8 @@ export const createDrillSlice = (set, get) => ({
     }),
 
   resetDrill: () => set({ drillPath: [], chartTypeByDepth: {} }),
+  aggregation: 'avg',
+  setAggregation: (aggregation) => set({ aggregation }),
 
   setChartTypeAtDepth: (depth, type) =>
     set((state) => ({

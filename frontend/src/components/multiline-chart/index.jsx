@@ -16,6 +16,7 @@ const MultilineChart = ({
   lineWidth = 3,
   height = '420px',
   palette = PALETTE,
+  aggregation = 'avg',
   onSeriesClick,
   onChartReady,
 }) => {
@@ -29,7 +30,18 @@ const MultilineChart = ({
         left: 'center',
         top: 12,
       },
-      tooltip: { ...CHART_THEME.tooltipBase, trigger: 'axis' },
+      tooltip: {
+        ...CHART_THEME.tooltipBase,
+        trigger: 'axis',
+        formatter: (params) => {
+          const aggLabel = aggregation.charAt(0).toUpperCase() + aggregation.slice(1);
+          let res = `<div style="font-weight:bold;margin-bottom:4px;color:#111827;border-bottom:1px solid #e5e7eb;padding-bottom:4px;">${params[0].name}</div>`;
+          params.forEach((item) => {
+            res += `<div style="color:#374151">${item.marker} ${item.seriesName}: <span style="font-weight:bold;">${item.value.toLocaleString()}</span> (${aggLabel})</div>`;
+          });
+          return res;
+        },
+      },
       legend: {
         bottom: 10,
         left: 'center',
@@ -86,6 +98,7 @@ const MultilineChart = ({
     symbolSize,
     lineWidth,
     palette,
+    aggregation,
   ]);
 
   return (

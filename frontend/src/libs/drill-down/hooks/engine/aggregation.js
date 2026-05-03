@@ -9,17 +9,8 @@ export const AGGREGATION_OPTIONS = [
   { value: 'count', label: 'Count', symbol: '#' },
 ];
 
-/**
- * Resolve a node's value for a given metric and aggregation type.
- * Falls back to node.value (average) if specific aggregation data missing.
- * @param {object} node - Tree node containing aggs map.
- * @param {string} metric - Primary metric name.
- * @param {string} aggregation - One of 'avg', 'sum', 'min', 'max', 'count'.
- * @returns {number} Resolved numeric value.
- */
 export function resolveNodeValue(node, metric = '', aggregation = 'avg') {
   if (!node) return undefined;
-  // Prefer pre-computed aggregation if present
   if (node.aggs && node.aggs[metric] && aggregation in node.aggs[metric]) {
     return node.aggs[metric][aggregation];
   }

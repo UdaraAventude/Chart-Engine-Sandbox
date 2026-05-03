@@ -15,6 +15,7 @@ const HeatmapChart = ({
   colorRange = ['#FCEBEB', '#F09595', '#E24B4A', '#A32D2D', '#501313'],
   showCellLabels,
   height = '420px',
+  aggregation = 'avg',
   onCellClick,
   onChartReady,
 }) => {
@@ -49,7 +50,7 @@ const HeatmapChart = ({
             <div style="font-weight:bold;margin-bottom:4px;color:#111827;border-bottom:1px solid #e5e7eb;padding-bottom:4px;">Cell Detail</div>
             <div style="color:#374151">${xCol}: <span style="color:#185FA5">${c.xLabel}</span></div>
             <div style="color:#374151">${yCol}: <span style="color:#185FA5">${c.yLabel}</span></div>
-            <div style="color:#374151">Avg Value: <span style="color:#059669;font-weight:bold;">${c.value.toFixed(2)}</span></div>
+            <div style="color:#374151">${aggregation.charAt(0).toUpperCase() + aggregation.slice(1)} Value: <span style="color:#059669;font-weight:bold;">${c.value.toFixed(2)}</span></div>
             <div style="color:#374151">Count: <span style="color:#7c3aed">${c.count}</span></div>
           `;
         },

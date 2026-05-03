@@ -19,7 +19,7 @@ export default function StandardAdapter({
   aggregation
 }) {
   const data = useMemo(() => {
-    return formatForChart(currentNode, chartType, rows, drillPath, metrics, dimensions, aggregation);
+    return formatForChart(currentNode, chartType, rows, drillPath, metrics, dimensions, undefined, aggregation);
   }, [currentNode, chartType, rows, drillPath, metrics, dimensions, aggregation]);
 
   const xLabel = (currentColumn || '').replace(/_/g, ' ').toUpperCase();
@@ -33,6 +33,7 @@ export default function StandardAdapter({
         height='100%'
         onSliceClick={handleClick}
         onChartReady={onChartReady}
+        aggregation={aggregation}
       />
     );
   }
@@ -48,6 +49,7 @@ export default function StandardAdapter({
         height='100%'
         onPointClick={handleClick}
         onChartReady={onChartReady}
+        aggregation={aggregation}
       />
     );
   }
@@ -62,6 +64,7 @@ export default function StandardAdapter({
       height='100%'
       onBarClick={handleClick}
       onChartReady={onChartReady}
+      aggregation={aggregation}
     />
   );
 }

@@ -43,6 +43,7 @@ export default function HeatmapAdapter({
       height='100%'
       onCellClick={!atLeaf ? (xIdx, cell) => handleClick(cell.xLabel) : undefined}
       onChartReady={onChartReady}
+      aggregation={aggregation}
     />
   );
 }

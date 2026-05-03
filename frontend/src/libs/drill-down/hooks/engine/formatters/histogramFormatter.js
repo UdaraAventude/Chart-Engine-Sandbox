@@ -12,7 +12,7 @@ export function parseHistBinRange(label) {
   return { lo: parseVal(parts[0]), hi: parseVal(parts[1]) };
 }
 
-export function computeHistogramBins(rows, drillPath, metricCol, filterRows, binCount = HISTOGRAM_BINS) {
+export function computeHistogramBins(rows, drillPath, metricCol, filterRows, binCount = HISTOGRAM_BINS, aggregation = 'count') {
   const filtered = filterRows(rows, drillPath);
 
   const values = filtered
@@ -34,15 +34,33 @@ export function computeHistogramBins(rows, drillPath, metricCol, filterRows, bin
   const effectiveBins = range === 0 ? 1 : binCount;
   const binSize = range === 0 ? 1 : range / effectiveBins;
 
-  const counts = new Array(effectiveBins).fill(0);
   const binRows = Array.from({ length: effectiveBins }, () => []);
 
   filtered.forEach((row) => {
     const v = Number(row[metricCol]);
     if (isNaN(v) || !isFinite(v)) return;
     const idx = Math.min(Math.floor((v - min) / binSize), effectiveBins - 1);
-    counts[idx] += 1;
     binRows[idx].push(row);
+  });
+
+  const counts = binRows.map((rowsInBin) => {
+    if (rowsInBin.length === 0) return 0;
+    const vals = rowsInBin.map((r) => Number(r[metricCol]));
+
+    switch (aggregation) {
+      case 'sum':
+        return vals.reduce((a, b) => a + b, 0);
+      case 'avg':
+      case 'mean':
+        return vals.reduce((a, b) => a + b, 0) / vals.length;
+      case 'min':
+        return Math.min(...vals);
+      case 'max':
+        return Math.max(...vals);
+      case 'count':
+      default:
+        return vals.length;
+    }
   });
 
   const fmt = (v) =>

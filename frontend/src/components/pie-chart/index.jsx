@@ -12,6 +12,8 @@ const PieChart = ({
   legendOrient = 'vertical',
   height = '420px',
   palette = PALETTE,
+  aggregation = 'avg',
+  isLeaf = false,
   onSliceClick,
   onChartReady,
 }) => {
@@ -28,7 +30,16 @@ const PieChart = ({
       tooltip: {
         ...CHART_THEME.tooltipBase,
         trigger: 'item',
-        formatter: '{b}: {c} ({d}%)',
+        formatter: (params) => {
+          const d = data[params.dataIndex];
+          const aggLabel = aggregation.charAt(0).toUpperCase() + aggregation.slice(1);
+          return `
+            <div style="font-weight:bold;margin-bottom:4px;color:#111827;border-bottom:1px solid #e5e7eb;padding-bottom:4px;">${d.name}</div>
+            <div style="color:#374151">${aggLabel}: <span style="color:#185FA5;font-weight:bold;">${d.value.toLocaleString()}</span></div>
+            <div style="color:#374151">Records: <span style="color:#7c3aed">${d.count ?? ''}</span></div>
+            ${!isLeaf ? '<div style="margin-top:8px;color:#059669;font-size:11px;font-style:italic;">▲ Click to drill</div>' : ''}
+          `;
+        },
       },
       legend: showLegend
         ? {
@@ -65,6 +76,8 @@ const PieChart = ({
     showLegend,
     legendOrient,
     palette,
+    aggregation,
+    isLeaf,
   ]);
 
   return (
