@@ -72,6 +72,7 @@ const BarChart = ({
       },
       series: [
         {
+          name: yAxisLabel,
           data: values,
           type: "bar",
           itemStyle: {

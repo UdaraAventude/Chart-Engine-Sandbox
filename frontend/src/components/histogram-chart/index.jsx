@@ -63,6 +63,7 @@ const HistogramChart = ({
       },
       series: [
         {
+          name: 'FREQUENCY',
           data: counts,
           type: 'bar',
           barWidth,

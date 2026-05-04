@@ -14,6 +14,7 @@ const PieChart = ({
   palette = PALETTE,
   aggregation = 'avg',
   isLeaf = false,
+  metricName = '',
   onSliceClick,
   onChartReady,
 }) => {
@@ -52,7 +53,7 @@ const PieChart = ({
         : { show: false },
       series: [
         {
-          name: title,
+          name: metricName || title,
           type: 'pie',
           radius: [innerRadius, outerRadius],
           avoidLabelOverlap: false,
@@ -78,6 +79,7 @@ const PieChart = ({
     palette,
     aggregation,
     isLeaf,
+    metricName,
   ]);
 
   return (

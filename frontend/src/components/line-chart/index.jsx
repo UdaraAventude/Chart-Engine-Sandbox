@@ -75,6 +75,7 @@ const LineChart = ({
       },
       series: [
         {
+          name: yAxisLabel,
           data: values,
           type: 'line',
           smooth,
