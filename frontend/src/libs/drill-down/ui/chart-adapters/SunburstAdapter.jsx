@@ -12,6 +12,7 @@ export default function SunburstAdapter({
   handleClick,
   onChartReady,
   aggregation,
+  drillBackTo,
 }) {
   const data = useMemo(() => {
     // console.log('Debug: currentNode:', currentNode);
@@ -44,9 +45,10 @@ export default function SunburstAdapter({
   return (
     <SunburstChart
       data={data}
+      measureCol={metrics[0]}
       title={title}
       height="100%"
-      onSliceClick={handleClick}
+      onNodeClick={handleClick}
       onChartReady={onChartReady}
       aggregation={aggregation}
     />

@@ -29,7 +29,13 @@ const SunburstChart = ({
         return newNode;
       });
 
-    const processed = updateNodes(data || []);
+    let processed = updateNodes(data || []);
+    
+    // Aggressively skip any single-child roots to keep the center hole clean and relevant
+    while (processed.length === 1 && processed[0].children?.length > 0) {
+      processed = processed[0].children;
+    }
+
     processed.forEach((node, i) => {
       node.itemStyle = { color: palette[i % palette.length] };
     });
@@ -56,11 +62,12 @@ const SunburstChart = ({
           return `<b>${params.name}</b><br/>${aggLabel}: ${params.value?.toLocaleString()}`;
         },
       },
-      series: [
-        {
-          type: 'sunburst',
-          data: processedData,
-          radius: ['15%', '90%'],
+          series: [
+            {
+              name: `${aggregation.toUpperCase()} OF ${measureCol.toUpperCase()}`,
+              type: 'sunburst',
+              data: processedData,
+              radius: ['15%', '90%'],
           center: ['50%', '52%'],
           sort: 'desc',
           emphasis: {
@@ -68,7 +75,7 @@ const SunburstChart = ({
             itemStyle: { shadowBlur: 6, shadowColor: 'rgba(0,0,0,0.15)' },
           },
           levels: [
-            {},
+            { label: { show: false }, itemStyle: { color: 'transparent' } },
             {
               r0: '15%',
               r:
@@ -120,23 +127,11 @@ const SunburstChart = ({
           left: 'center',
           bottom: 10,
           style: {
-            text: '◎ Click arcs to dive • Center circle to go back',
+            text: '◎ Click arcs to dive',
             fill: '#9ca3af',
             font: '12px system-ui, sans-serif',
           },
         },
-        ...(drillPath.length > 0
-          ? [
-              {
-                type: 'circle',
-                left: 'center',
-                top: 'middle',
-                shape: { r: 48 },
-                style: { fill: 'rgba(0,0,0,0)', cursor: 'pointer' },
-                onclick: onCenterClick,
-              },
-            ]
-          : []),
       ],
     };
   }, [

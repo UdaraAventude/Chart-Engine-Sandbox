@@ -11,7 +11,7 @@ import {
 import { DRILL_CHART_OPTIONS } from "../../constants/chartOptions";
 import DrillDownBreadcrumb from "../drill-down-breadcrumb";
 import { AGGREGATION_OPTIONS } from "../../hooks/engine/aggregation";
-import { exportToPNG, exportToSVG } from "../../../../services/export";
+import { exportToPNG, exportToSVG, exportToPDF, exportToCSV, exportToExcel } from "../../../../services/export";
 
 // Import our new chart adapters
 import {
@@ -108,25 +108,24 @@ const DrillDownRenderer = ({ onRenderTime }) => {
   );
 
   const handleExport = (format) => {
-    // Guard: ensure the ref and instance exist
     if (!echartsRef.current) {
-      console.warn("[DrillDown] Export called before chart was ready.");
+      console.warn('[DrillDown] Export called before chart was ready.');
       return;
     }
 
-    // Since we captured the instance via onChartReady, it IS the echarts instance
     const instance = echartsRef.current;
-
-    // Build a meaningful filename from the current drill path
-    const pathLabel =
-      drillPath.length > 0
-        ? drillPath.map((d) => d.value).join("_")
-        : "overview";
+    const pathLabel = drillPath.length > 0
+      ? drillPath.map(d => d.value).join('_')
+      : 'overview';
 
     const filename = `chart_${pathLabel}`;
+    const dimLabel = (currentColumn || '').replace(/_/g, ' ').toUpperCase() || 'Name';
 
-    if (format === "png") exportToPNG(instance, `${filename}.png`);
-    if (format === "svg") exportToSVG(instance, `${filename}.svg`);
+    if (format === 'png')   exportToPNG(instance,   `${filename}.png`);
+    if (format === 'svg')   exportToSVG(instance,   `${filename}.svg`);
+    if (format === 'pdf')   exportToPDF(instance,   `${filename}.pdf`);
+    if (format === 'csv')   exportToCSV(instance,   `${filename}.csv`, dimLabel);
+    if (format === 'excel') exportToExcel(instance, `${filename}.xlsx`, dimLabel);
   };
 
   const handleClick = useCallback(
@@ -411,23 +410,39 @@ const DrillDownRenderer = ({ onRenderTime }) => {
       />
 
       {/* Export Toolbar */}
-      {chartType !== "table" && (
+      {chartType !== 'table' && (
         <div className="export-toolbar">
           <span className="export-label">Export</span>
-          <button
-            className="export-btn"
-            onClick={() => handleExport("png")}
-            title="Download chart as PNG image"
-          >
+
+          <button className="export-btn" onClick={() => handleExport('png')}
+            title="Download chart as PNG image">
             PNG
           </button>
-          <button
-            className="export-btn"
-            onClick={() => handleExport("svg")}
-            title="Download chart as scalable SVG"
-          >
+
+          <button className="export-btn" onClick={() => handleExport('svg')}
+            title="Download chart as scalable SVG">
             SVG
           </button>
+
+          <button className="export-btn" onClick={() => handleExport('pdf')}
+            title="Download chart as PDF document">
+            PDF
+          </button>
+
+          {/* Data exports — only meaningful for charts that have series data */}
+          {chartType !== 'scatter' && chartType !== 'heatmap' && (
+            <>
+              <button className="export-btn" onClick={() => handleExport('csv')}
+                title="Download chart data as CSV">
+                CSV
+              </button>
+
+              <button className="export-btn" onClick={() => handleExport('excel')}
+                title="Download chart data as Excel">
+                Excel
+              </button>
+            </>
+          )}
         </div>
       )}
 

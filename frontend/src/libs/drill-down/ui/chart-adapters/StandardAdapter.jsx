@@ -3,6 +3,7 @@ import BarChart from '../../../../components/bar-chart';
 import PieChart from '../../../../components/pie-chart';
 import LineChart from '../../../../components/line-chart';
 import { formatForChart } from '../../hooks/engine';
+import { AGGREGATION_OPTIONS } from '../../hooks/engine/aggregation';
 
 export default function StandardAdapter({
   chartType,
@@ -23,13 +24,17 @@ export default function StandardAdapter({
   }, [currentNode, chartType, rows, drillPath, metrics, dimensions, aggregation]);
 
   const xLabel = (currentColumn || '').replace(/_/g, ' ').toUpperCase();
-  const yLabel = (metrics[0] || '').replace(/_/g, ' ').toUpperCase();
+  
+  const aggObj = AGGREGATION_OPTIONS.find(o => o.value === aggregation);
+  const aggLabel = aggObj ? aggObj.label.toUpperCase() : aggregation.toUpperCase();
+  const yLabel = `${aggLabel} OF ${(metrics[0] || '').replace(/_/g, ' ').toUpperCase()}`;
 
   if (chartType === 'pie') {
     return (
       <PieChart
         data={data}
         title={title}
+        metricName={yLabel}
         height='100%'
         onSliceClick={handleClick}
         onChartReady={onChartReady}
