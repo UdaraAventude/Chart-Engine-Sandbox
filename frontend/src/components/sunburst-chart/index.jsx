@@ -54,7 +54,7 @@ const SunburstChart = ({
         text: title,
         subtext: `${measureCol} (${aggregation}) • click arc to dive`,
         left: 'center',
-        top: 12,
+        top: 2,
       },
       tooltip: {
         ...CHART_THEME.tooltipBase,
@@ -69,8 +69,8 @@ const SunburstChart = ({
           name: `${aggregation.toUpperCase()} OF ${measureCol.toUpperCase()}`,
           type: 'sunburst',
           data: processedData,
-          radius: [0, '95%'],
-          center: ['50%', '52%'],
+          radius: [0, '82%'],
+          center: ['50%', '50%'],
           sort: 'desc',
           nodeClick: 'rootToNode',
           label: {
@@ -146,11 +146,11 @@ const SunburstChart = ({
         {
           type: 'text',
           left: 'center',
-          bottom: 10,
+          bottom: 2,
           style: {
             text: '◎ Click center to drill back • Click arcs to dive',
             fill: '#9ca3af',
-            font: '11px system-ui, sans-serif',
+            font: '10px system-ui, sans-serif',
           },
         },
       ],
