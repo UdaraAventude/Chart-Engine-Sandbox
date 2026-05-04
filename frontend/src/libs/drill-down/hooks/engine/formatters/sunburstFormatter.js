@@ -8,16 +8,17 @@ export function formatSunburstData(
 ) {
   if (!node) return null;
 
-  function buildNode(n) {
+  function buildNode(n, path = "") {
+    const currentPath = path ? `${path}/${n.name}` : n.name;
     const result = {
+      id: currentPath,
       name: n.name,
-      value: resolveNodeValue(n, primaryMetric, aggregation), // ← Use the utility here!
+      value: resolveNodeValue(n, primaryMetric, aggregation),
       count: n.count,
     };
 
     if (n.children && n.children.length > 0) {
-      result.children = n.children.map(buildNode);
-      // If there is a limit, we sort and slice the children
+      result.children = n.children.map(c => buildNode(c, currentPath));
       if (limit !== null && result.children.length > limit) {
         result.children = result.children
           .sort((a, b) => b.value - a.value)
@@ -27,7 +28,7 @@ export function formatSunburstData(
     return result;
   }
 
-  // The sunburst expects a root node with a children array
+  // Build from the provided node (which could be the root or a sub-node)
   const formattedRoot = buildNode(node);
   return formattedRoot.children || [];
 }

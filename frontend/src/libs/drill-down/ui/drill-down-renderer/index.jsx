@@ -322,6 +322,7 @@ const DrillDownRenderer = ({ onRenderTime }) => {
         drillInto={drillInto}
         drillBackTo={drillBackTo}
         aggregation={aggregation}
+        tree={tree}
       />
     );
   };

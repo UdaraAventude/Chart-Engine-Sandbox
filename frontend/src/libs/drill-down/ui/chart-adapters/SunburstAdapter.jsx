@@ -13,26 +13,20 @@ export default function SunburstAdapter({
   onChartReady,
   aggregation,
   drillBackTo,
+  tree,
 }) {
   const data = useMemo(() => {
-    // console.log('Debug: currentNode:', currentNode);
-    // console.log('Debug: rows:', rows);
-    // console.log('Debug: drillPath:', drillPath);
-    // console.log('Debug: metrics:', metrics);
-    // console.log('Debug: dimensions:', dimensions);
-    // console.log('Debug: aggregation:', aggregation);
-
     return formatForChart(
-      currentNode,
+      tree,
       "sunburst",
       rows,
       drillPath,
       metrics,
       dimensions,
-      30,
+      200,
       aggregation,
     );
-  }, [currentNode, rows, drillPath, metrics, dimensions, aggregation]);
+  }, [tree, rows, drillPath, metrics, dimensions, aggregation]);
 
   if (!data || data.length === 0) {
     return (
@@ -46,9 +40,15 @@ export default function SunburstAdapter({
     <SunburstChart
       data={data}
       measureCol={metrics[0]}
+      drillPath={drillPath}
       title={title}
       height="100%"
       onNodeClick={handleClick}
+      onCenterClick={() => {
+        if (drillPath.length > 0) {
+          drillBackTo(drillPath.length - 1);
+        }
+      }}
       onChartReady={onChartReady}
       aggregation={aggregation}
     />
