@@ -1,21 +1,19 @@
-import { parseCSV } from '../local-analytics';
-import { formatCSV } from '../global-formatter';
 import useStore from '../../store';
 
 export async function uploadCSV(file, onProgress) {
-  const rows = await parseCSV(file, onProgress);
-
-  const globalData = await new Promise((resolve, reject) => {
+  const { result, totalRows } = await new Promise((resolve, reject) => {
     const worker = new Worker(
       new URL('../../workers/csv-pipeline.worker.js', import.meta.url),
       { type: 'module' },
     );
 
     worker.onmessage = (e) => {
-      const { type, result, message } = e.data;
-      if (type === 'done') {
+      const { type, pct, result, totalRows, message } = e.data;
+      if (type === 'progress') {
+        onProgress?.(pct);
+      } else if (type === 'done') {
         worker.terminate();
-        resolve(result);
+        resolve({ result, totalRows });
       } else if (type === 'error') {
         worker.terminate();
         reject(new Error(message));
@@ -27,13 +25,13 @@ export async function uploadCSV(file, onProgress) {
       reject(err);
     };
 
-    worker.postMessage({ rows });
+    worker.postMessage({ file });
   });
 
   const store = useStore.getState();
-  store.setGlobalData(globalData);
-  store.setTotalRows(rows.length);
+  store.setGlobalData(result);
+  store.setTotalRows(totalRows);
   store.resetDrill();
   onProgress?.(100);
-  return globalData;
+  return result;
 }
