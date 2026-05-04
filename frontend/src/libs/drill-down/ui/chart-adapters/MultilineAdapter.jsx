@@ -42,6 +42,7 @@ export default function MultilineAdapter({
       height='100%'
       onSeriesClick={handleClick}
       onChartReady={onChartReady}
+      aggregation={aggregation}
     />
   );
 }

@@ -10,12 +10,13 @@ export default function HistogramAdapter({
   atLeaf,
   title,
   onChartReady,
-  drillInto
+  drillInto,
+  aggregation = 'count',
 }) {
   const histogramBins = useMemo(() => {
     if (!rows.length || !metrics.length) return null;
-    return computeHistogramBins(rows, drillPath, metrics[0], filterRows);
-  }, [rows, drillPath, metrics]);
+    return computeHistogramBins(rows, drillPath, metrics[0], filterRows, 20, aggregation);
+  }, [rows, drillPath, metrics, aggregation]);
 
   if (!histogramBins || !histogramBins.labels.length) {
     return <div className='empty-state'>No numeric data available for histogram.</div>;

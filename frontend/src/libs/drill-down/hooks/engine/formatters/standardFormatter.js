@@ -1,10 +1,14 @@
-export function formatStandard(node, limit) {
+import { resolveNodeValue } from '../aggregation';
+
+export function formatStandard(node, limit, aggregation = 'avg', primaryMetric = '') {
   if (!node) return [];
 
   const children = (node.children || []).map((c) => ({
     name: c.name,
-    value: c.value,
+    value: resolveNodeValue(c, primaryMetric, aggregation),
     count: c.count,
+    // Add raw aggs just in case UI wants to see it
+    aggs: c.aggs,
   }));
 
   if (limit !== null && children.length > limit) {

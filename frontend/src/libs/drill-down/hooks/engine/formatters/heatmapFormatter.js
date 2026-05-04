@@ -1,4 +1,6 @@
-export function computeHeatmapData(node, limit) {
+import { resolveNodeValue } from "../aggregation";
+
+export function computeHeatmapData(node, limit, aggregation = 'avg', primaryMetric = '') {
   if (!node || !node.children || node.children.length === 0) {
     return { xCategories: [], yCategories: [], cells: [] };
   }
@@ -22,7 +24,7 @@ export function computeHeatmapData(node, limit) {
         cells.push({
           x: xIndex,
           y: yIndex,
-          value: gc.value,
+          value: resolveNodeValue(gc, primaryMetric, aggregation),
           xLabel: child.name,
           yLabel: gc.name,
           count: gc.count,

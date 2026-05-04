@@ -1,4 +1,6 @@
-export function computeMultilineData(node, limit) {
+import { resolveNodeValue } from "../aggregation";
+
+export function computeMultilineData(node, limit, aggregation = 'avg', primaryMetric = '') {
   if (!node || !node.children || node.children.length === 0) {
     return { xAxisLabels: [], series: [] };
   }
@@ -20,7 +22,7 @@ export function computeMultilineData(node, limit) {
   const series = node.children.slice(0, limit).map(child => {
     const gcMap = {};
     (child.children || []).forEach(gc => {
-      gcMap[gc.name] = gc.value;
+      gcMap[gc.name] = resolveNodeValue(gc, primaryMetric, aggregation);
     });
 
     const data = xAxisLabels.map(x => gcMap[x] ?? 0);

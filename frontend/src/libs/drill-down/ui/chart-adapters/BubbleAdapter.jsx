@@ -29,6 +29,7 @@ export default function BubbleAdapter({
       height='100%'
       onBubbleClick={handleClick}
       onChartReady={onChartReady}
+      aggregation={aggregation}
     />
   );
 }

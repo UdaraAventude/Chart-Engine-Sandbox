@@ -6,7 +6,7 @@ import '../_shared/charts.css';
 const SunburstChart = ({
   data = [],
   measureCol = '',
-  aggregationMethod = 'sum',
+  aggregation = 'avg',
   title = '',
   drillPath = [],
   maxDepth = 4,
@@ -19,28 +19,12 @@ const SunburstChart = ({
   const processedData = useMemo(() => {
     const updateNodes = (nodes) =>
       nodes.map((node) => {
-        const baseSum =
-          typeof node.sum === 'number'
-            ? node.sum
-            : typeof node.value === 'number'
-              ? node.value
-              : 0;
-        const baseCount = typeof node.count === 'number' ? node.count : 0;
-
-        let val = baseSum;
-        if (aggregationMethod === 'avg' || aggregationMethod === 'mean')
-          val = baseCount > 0 ? baseSum / baseCount : 0;
-        else if (aggregationMethod === 'count') val = baseCount;
-
-        const hasChildren =
-          Array.isArray(node.children) && node.children.length > 0;
         const newNode = { ...node };
-
-        if (hasChildren) {
+        if (Array.isArray(node.children) && node.children.length > 0) {
           newNode.children = updateNodes(node.children);
+          // If it's a branch, we don't want a value property on it for Sunburst usually, 
+          // but we want to keep the children structure.
           delete newNode.value;
-        } else {
-          newNode.value = val;
         }
         return newNode;
       });
@@ -50,7 +34,7 @@ const SunburstChart = ({
       node.itemStyle = { color: palette[i % palette.length] };
     });
     return processed;
-  }, [data, aggregationMethod, palette]);
+  }, [data, palette]);
 
   const option = useMemo(() => {
     if (!processedData.length) return {};
@@ -60,15 +44,17 @@ const SunburstChart = ({
       title: {
         ...CHART_THEME.titleStyle,
         text: title,
-        subtext: `${measureCol} (${aggregationMethod}) • click segment to drill`,
+        subtext: `${measureCol} (${aggregation}) • click segment to drill`,
         left: 'center',
         top: 12,
       },
       tooltip: {
         ...CHART_THEME.tooltipBase,
         trigger: 'item',
-        formatter: (params) =>
-          `<b>${params.name}</b><br/>${aggregationMethod}: ${params.value?.toLocaleString()}`,
+        formatter: (params) => {
+          const aggLabel = aggregation.charAt(0).toUpperCase() + aggregation.slice(1);
+          return `<b>${params.name}</b><br/>${aggLabel}: ${params.value?.toLocaleString()}`;
+        },
       },
       series: [
         {
@@ -157,7 +143,7 @@ const SunburstChart = ({
     processedData,
     title,
     measureCol,
-    aggregationMethod,
+    aggregation,
     drillPath,
     maxDepth,
     onCenterClick,

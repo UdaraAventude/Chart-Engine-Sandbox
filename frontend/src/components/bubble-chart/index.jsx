@@ -15,6 +15,7 @@ const BubbleChart = ({
   maxBubbleSize = 80,
   height = '420px',
   palette = PALETTE,
+  aggregation = 'avg',
   onBubbleClick,
   onChartReady,
 }) => {
@@ -68,11 +69,12 @@ const BubbleChart = ({
         ...CHART_THEME.tooltipBase,
         formatter: (params) => {
           const d = data[params.seriesIndex];
+          const aggLabel = aggregation.charAt(0).toUpperCase() + aggregation.slice(1);
           return `
             <div style="font-weight:bold;margin-bottom:4px;color:#111827;border-bottom:1px solid #e5e7eb;padding-bottom:4px;">${d.name}</div>
-            <div style="color:#374151">Avg ${xCol}: <span style="color:#185FA5">${d.x.toFixed(2)}</span></div>
-            <div style="color:#374151">Avg ${yCol}: <span style="color:#185FA5">${d.y.toFixed(2)}</span></div>
-            <div style="color:#374151">Sum ${sizeCol}: <span style="color:#059669;font-weight:bold;">${d.size.toLocaleString()}</span></div>
+            <div style="color:#374151">${aggLabel} ${xCol}: <span style="color:#185FA5">${d.x.toFixed(2)}</span></div>
+            <div style="color:#374151">${aggLabel} ${yCol}: <span style="color:#185FA5">${d.y.toFixed(2)}</span></div>
+            <div style="color:#374151">${aggLabel} ${sizeCol}: <span style="color:#059669;font-weight:bold;">${d.size.toLocaleString()}</span></div>
             <div style="color:#374151">Records: <span style="color:#7c3aed">${d.count}</span></div>
           `;
         },
@@ -111,6 +113,7 @@ const BubbleChart = ({
     maxSize,
     minBubbleSize,
     maxBubbleSize,
+    aggregation,
   ]);
 
   return (

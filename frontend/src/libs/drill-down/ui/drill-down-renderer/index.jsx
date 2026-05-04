@@ -11,7 +11,7 @@ import {
 import { DRILL_CHART_OPTIONS } from "../../constants/chartOptions";
 import DrillDownBreadcrumb from "../drill-down-breadcrumb";
 import { AGGREGATION_OPTIONS } from "../../hooks/engine/aggregation";
-import { exportToPNG, exportToSVG } from '../../../../services/export';
+import { exportToPNG, exportToSVG } from "../../../../services/export";
 
 // Import our new chart adapters
 import {
@@ -97,17 +97,20 @@ const DrillDownRenderer = ({ onRenderTime }) => {
 
   // ── ALL hooks unconditionally at top ──────────────────────────────────────
 
-  const onChartReady = useCallback((instance) => {
-    if (instance) echartsRef.current = instance;
-    const elapsed = performance.now() - t0.current;
-    onRenderTime?.(elapsed.toFixed(1));
-    setRenderTime?.(elapsed.toFixed(1));
-  }, [onRenderTime, setRenderTime]);
+  const onChartReady = useCallback(
+    (instance) => {
+      if (instance) echartsRef.current = instance;
+      const elapsed = performance.now() - t0.current;
+      onRenderTime?.(elapsed.toFixed(1));
+      setRenderTime?.(elapsed.toFixed(1));
+    },
+    [onRenderTime, setRenderTime],
+  );
 
   const handleExport = (format) => {
     // Guard: ensure the ref and instance exist
     if (!echartsRef.current) {
-      console.warn('[DrillDown] Export called before chart was ready.');
+      console.warn("[DrillDown] Export called before chart was ready.");
       return;
     }
 
@@ -115,14 +118,15 @@ const DrillDownRenderer = ({ onRenderTime }) => {
     const instance = echartsRef.current;
 
     // Build a meaningful filename from the current drill path
-    const pathLabel = drillPath.length > 0
-      ? drillPath.map(d => d.value).join('_')
-      : 'overview';
+    const pathLabel =
+      drillPath.length > 0
+        ? drillPath.map((d) => d.value).join("_")
+        : "overview";
 
     const filename = `chart_${pathLabel}`;
 
-    if (format === 'png') exportToPNG(instance, `${filename}.png`);
-    if (format === 'svg') exportToSVG(instance, `${filename}.svg`);
+    if (format === "png") exportToPNG(instance, `${filename}.png`);
+    if (format === "svg") exportToSVG(instance, `${filename}.svg`);
   };
 
   const handleClick = useCallback(
@@ -231,12 +235,13 @@ const DrillDownRenderer = ({ onRenderTime }) => {
         metrics,
         dimensions,
         null,
+        aggregation,
       );
     }
 
     if (!data || data.length === 0)
       return <div className="empty-state">No data</div>;
-    const cols = Object.keys(data[0]);
+    const cols = Object.keys(data[0]).filter((c) => c !== "aggs");
     return (
       <div
         className="table-view-container"
@@ -246,7 +251,7 @@ const DrillDownRenderer = ({ onRenderTime }) => {
           <thead>
             <tr>
               {cols.map((c) => (
-                <th key={c}>{c}</th>
+                <th key={c}>{c.toUpperCase()}</th>
               ))}
             </tr>
           </thead>
@@ -254,7 +259,11 @@ const DrillDownRenderer = ({ onRenderTime }) => {
             {data.map((row, i) => (
               <tr key={i}>
                 {cols.map((c) => (
-                  <td key={c}>{row[c]?.toLocaleString?.() ?? row[c]}</td>
+                  <td key={c}>
+                    {typeof row[c] === "number"
+                      ? row[c].toLocaleString()
+                      : String(row[c] ?? "")}
+                  </td>
                 ))}
               </tr>
             ))}
@@ -309,7 +318,7 @@ const DrillDownRenderer = ({ onRenderTime }) => {
         categoricalDepth={categoricalDepth}
         atLeaf={atLeaf}
         title={title}
-        handleClick={handleClick}
+        handleClick={currentOption?.canDrill ? handleClick : undefined}
         onChartReady={onChartReady}
         drillInto={drillInto}
         drillBackTo={drillBackTo}
@@ -402,19 +411,19 @@ const DrillDownRenderer = ({ onRenderTime }) => {
       />
 
       {/* Export Toolbar */}
-      {chartType !== 'table' && (
+      {chartType !== "table" && (
         <div className="export-toolbar">
           <span className="export-label">Export</span>
           <button
             className="export-btn"
-            onClick={() => handleExport('png')}
+            onClick={() => handleExport("png")}
             title="Download chart as PNG image"
           >
             PNG
           </button>
           <button
             className="export-btn"
-            onClick={() => handleExport('svg')}
+            onClick={() => handleExport("svg")}
             title="Download chart as scalable SVG"
           >
             SVG

@@ -31,6 +31,7 @@ export function formatForChartRegistry(
       dimensions,
       limit,
       filterRowsFn,
+      aggregation,
     );
   }
   if (chartType === "multiline") {
@@ -46,5 +47,5 @@ export function formatForChartRegistry(
   if (chartType === "correlation") {
     return computeCorrelationData(rows, drillPath, metrics, filterRowsFn);
   }
-  return formatStandard(node, limit);
+  return formatStandard(node, limit, aggregation, primaryMetric);
 }

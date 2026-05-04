@@ -10,7 +10,7 @@ const LineChart = ({
   xAxisLabel = '',
   yAxisLabel = '',
   isLeaf = false,
-  aggregationMethod = 'sum',
+  aggregation = 'avg',
   smooth = true,
   color = '#185FA5',
   showArea = true,
@@ -41,9 +41,10 @@ const LineChart = ({
         trigger: 'axis',
         formatter: (params) => {
           const d = data[params[0].dataIndex];
+          const aggLabel = aggregation.charAt(0).toUpperCase() + aggregation.slice(1);
           return `
             <div style="font-weight:bold;margin-bottom:4px;color:#111827;border-bottom:1px solid #e5e7eb;padding-bottom:4px;">${d.name}</div>
-            <div style="color:#374151">${aggregationMethod}: <span style="color:${color};font-weight:bold;">${d.value.toLocaleString()}</span></div>
+            <div style="color:#374151">${aggLabel}: <span style="color:${color};font-weight:bold;">${d.value.toLocaleString()}</span></div>
             <div style="color:#374151">Records: <span style="color:#7c3aed">${d.count}</span></div>
             ${!isLeaf ? '<div style="margin-top:8px;color:#059669;font-size:11px;font-style:italic;">▲ Click to drill</div>' : ''}
           `;
@@ -123,7 +124,7 @@ const LineChart = ({
     xAxisLabel,
     yAxisLabel,
     isLeaf,
-    aggregationMethod,
+    aggregation,
     smooth,
     color,
     showArea,
