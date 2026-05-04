@@ -12,11 +12,17 @@ export const PALETTE = [
 ];
 
 export const SUNBURST_PALETTE = [
-  '#185FA5',
-  '#7c3aed',
-  '#059669',
-  '#d97706',
-  '#dc2626',
+  '#da0d68', // Pink/Berry
+  '#da1d23', // Red/Cherry
+  '#ebb40f', // Yellow/Lemon
+  '#187a2f', // Green/Lime
+  '#0aa3b5', // Cyan/Aqua
+  '#007fb1', // Blue/Ocean
+  '#c94930', // Orange/Sunset
+  '#7c3aed', // Purple/Grape
+  '#059669', // Emerald
+  '#d97706', // Amber
+  '#db2777', // Rose
 ];
 
 export const CHART_THEME = {
