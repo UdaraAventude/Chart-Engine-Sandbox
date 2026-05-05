@@ -1,9 +1,11 @@
 import Papa from 'papaparse';
-import { formatCSV } from '../services/global-formatter/index.js';
+import { StreamFormatter } from '../services/global-formatter/index.js';
 
 self.onmessage = (e) => {
   const { file } = e.data;
-  const allRows = [];
+  // Estimate row count assuming an average of 100 bytes per row
+  const estimatedRowCount = Math.floor(file.size / 100);
+  const streamProcessor = new StreamFormatter(estimatedRowCount);
   let lastPct = 0;
 
   Papa.parse(file, {
@@ -11,9 +13,10 @@ self.onmessage = (e) => {
     skipEmptyLines: true,
     dynamicTyping: false,
     chunk: (results, parser) => {
-      for (const row of results.data) {
-        allRows.push(row);
+      if (lastPct === 0) {
+        console.log("1. RAW PAPAPARSE CHUNK (Flat Data):", results.data);
       }
+      streamProcessor.processChunk(results.data);
       if (file.size > 0) {
         const pct = Math.min(
           90,
@@ -28,11 +31,12 @@ self.onmessage = (e) => {
     complete: () => {
       self.postMessage({ type: 'progress', pct: 95 });
       try {
-        const globalData = formatCSV(allRows);
+        const globalData = streamProcessor.finish();
+        console.log("2. FINAL GENERATED TREE (Nested Data):", globalData.tree);
         self.postMessage({
           type: 'done',
           result: globalData,
-          totalRows: allRows.length,
+          totalRows: streamProcessor.totalRows,
         });
       } catch (err) {
         self.postMessage({ type: 'error', message: err.message });
@@ -43,3 +47,4 @@ self.onmessage = (e) => {
     },
   });
 };
+

@@ -11,9 +11,6 @@ function triggerDownload(dataURL, filename) {
   document.body.removeChild(anchor);
 }
 
-// ─────────────────────────────────────────────────────────────────
-// PNG EXPORT
-// ─────────────────────────────────────────────────────────────────
 
 export function exportToPNG(echartsInstance, filename = 'chart.png') {
   if (!echartsInstance) {
@@ -62,9 +59,6 @@ export function exportToPNG(echartsInstance, filename = 'chart.png') {
   console.error('[ExportService] Unexpected data URL format returned.');
 }
 
-// ─────────────────────────────────────────────────────────────────
-// SVG EXPORT
-// ─────────────────────────────────────────────────────────────────
 
 export function exportToSVG(echartsInstance, filename = 'chart.svg') {
   if (!echartsInstance) {
@@ -88,9 +82,6 @@ export function exportToSVG(echartsInstance, filename = 'chart.svg') {
   triggerDownload(dataURL, filename);
 }
 
-// ─────────────────────────────────────────────────────────────────
-// PDF EXPORT
-// ─────────────────────────────────────────────────────────────────
 
 export function exportToPDF(echartsInstance, filename = 'chart.pdf') {
   if (!echartsInstance) {
@@ -171,9 +162,6 @@ export function exportToPDF(echartsInstance, filename = 'chart.pdf') {
   console.error('[ExportService] Unexpected data URL format for PDF export.');
 }
 
-// ─────────────────────────────────────────────────────────────────
-// CSV EXPORT
-// ─────────────────────────────────────────────────────────────────
 
 export function exportToCSV(echartsInstance, filename = 'chart-data.csv', dimensionName = 'Name') {
   if (!echartsInstance) {
@@ -234,9 +222,6 @@ export function exportToCSV(echartsInstance, filename = 'chart-data.csv', dimens
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 
-// ─────────────────────────────────────────────────────────────────
-// EXCEL EXPORT
-// ─────────────────────────────────────────────────────────────────
 
 export function exportToExcel(echartsInstance, filename = 'chart-data.xlsx', dimensionName = 'Name') {
   if (!echartsInstance) {

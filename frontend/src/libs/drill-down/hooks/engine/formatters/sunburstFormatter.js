@@ -9,9 +9,15 @@ export function formatSunburstData(
   if (!node) return null;
 
   function buildNode(n, path = "") {
-    const currentPath = path ? `${path}/${n.name}` : n.name;
+    // Prevent "root" from being prepended to match the ECharts targetNodeId correctly
+    const isRoot = path === "" && n.name === "root";
+    let currentPath = "";
+    if (!isRoot) {
+      currentPath = path ? `${path}/${n.name}` : n.name;
+    }
+
     const result = {
-      id: currentPath,
+      id: currentPath || "root",
       name: n.name,
       value: resolveNodeValue(n, primaryMetric, aggregation),
       count: n.count,
