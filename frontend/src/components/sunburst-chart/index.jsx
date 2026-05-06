@@ -7,56 +7,49 @@ const SunburstChart = ({
   data = [],
   measureCol = "",
   aggregation = "avg",
-  title = "",
   drillPath = [],
-  maxDepth = 4,
   height = "500px",
   palette = SUNBURST_PALETTE,
   onNodeClick,
   onCenterClick,
   onChartReady,
 }) => {
+  const echartsRef = useRef(null);
+
+  // True when the last drillPath change was caused by a user click on the chart.
+  // ECharts already zoomed natively — skip the programmatic sync dispatch.
+  const clickedInternally = useRef(false);
+
+  // ── Stable processed data ─────────────────────────────────────────────────
   const processedData = useMemo(() => {
     const updateNodes = (nodes) =>
       nodes.map((node) => {
         const newNode = { ...node };
         if (Array.isArray(node.children) && node.children.length > 0) {
           newNode.children = updateNodes(node.children);
-          // If it's a branch, we don't want a value property on it for Sunburst usually,
-          // but we want to keep the children structure.
           delete newNode.value;
         }
         return newNode;
       });
 
     let processed = updateNodes(data || []);
-
-    // Aggressively skip any single-child roots to keep the center hole clean and relevant
     while (processed.length === 1 && processed[0].children?.length > 0) {
       processed = processed[0].children;
     }
-
     processed.forEach((node, i) => {
       node.itemStyle = { color: palette[i % palette.length] };
     });
     return processed;
   }, [data, palette]);
-  console.log(data);
 
-  const echartsRef = useRef(null);
-
+  // ── Stable chart option ───────────────────────────────────────────────────
+  // CRITICAL: drillPath is intentionally NOT a dep. Any option reference change
+  // causes ReactECharts → chart.setOption() → ECharts zoom state reset.
+  // The chart title (path) is rendered via an HTML overlay outside ECharts.
   const option = useMemo(() => {
     if (!processedData.length) return {};
-
     return {
       backgroundColor: "transparent",
-      title: {
-        ...CHART_THEME.titleStyle,
-        text: title,
-        subtext: `${measureCol} (${aggregation}) • click arc to dive`,
-        left: "center",
-        top: 2,
-      },
       tooltip: {
         ...CHART_THEME.tooltipBase,
         trigger: "item",
@@ -71,27 +64,22 @@ const SunburstChart = ({
           name: `${aggregation.toUpperCase()} OF ${measureCol.toUpperCase()}`,
           type: "sunburst",
           data: processedData,
-          radius: [0, "82%"],
-          center: ["50%", "50%"],
+          radius: [0, "88%"],
+          center: ["50%", "52%"],
           sort: "desc",
           nodeClick: "rootToNode",
-          label: {
-            show: false, // Global default: hide labels to prevent messiness
-          },
+          label: { show: false },
           emphasis: {
             focus: "ancestor",
             itemStyle: { shadowBlur: 10, shadowColor: "rgba(0,0,0,0.2)" },
-            label: {
-              show: true, // Show label on hover for ANY level
-            },
+            label: { show: true },
           },
           levels: [
             {
-              // Root level
               r0: 0,
               r: "15%",
               label: {
-                show: drillPath.length > 0,
+                show: true,
                 formatter: "◎",
                 fontSize: 16,
                 color: "#6b7280",
@@ -99,11 +87,10 @@ const SunburstChart = ({
               itemStyle: { color: "#ffffff", opacity: 0.8 },
             },
             {
-              // Level 1
               r0: "15%",
               r: "35%",
               label: {
-                show: true, // Explicitly show for level 1
+                show: true,
                 rotate: "radial",
                 fontSize: 11,
                 fontWeight: "600",
@@ -114,11 +101,10 @@ const SunburstChart = ({
               itemStyle: { borderWidth: 2, borderColor: "#ffffff" },
             },
             {
-              // Level 2
               r0: "35%",
               r: "70%",
               label: {
-                show: true, // Explicitly show for level 2
+                show: true,
                 rotate: "radial",
                 fontSize: 10,
                 color: "#374151",
@@ -128,15 +114,13 @@ const SunburstChart = ({
               itemStyle: { borderWidth: 1.5, borderColor: "#ffffff" },
             },
             {
-              // Level 3+
               r0: "70%",
               r: "72%",
               label: {
-                show: false, // Explicitly hide for level 3 and beyond
+                show: false,
                 position: "outside",
                 padding: 3,
                 fontSize: 9,
-                color: "#4b5563",
                 minAngle: 5,
               },
               itemStyle: { borderWidth: 1, borderColor: "#ffffff" },
@@ -144,87 +128,101 @@ const SunburstChart = ({
           ],
         },
       ],
-      graphic: [
-        {
-          type: "text",
-          left: "center",
-          bottom: 2,
-          style: {
-            text: "◎ Click center to drill back • Click arcs to dive",
-            fill: "#9ca3af",
-            font: "10px system-ui, sans-serif",
-          },
-        },
-      ],
     };
-  }, [processedData, title, measureCol, aggregation, drillPath, maxDepth]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [processedData, measureCol, aggregation]);
 
-  const isProgrammatic = useRef(false);
-
-  // Sync internal ECharts zoom state with external drillPath
+  // ── External navigation sync (breadcrumb / back button) ───────────────────
+  // When drillPath changes from OUTSIDE (not from a user click on the chart),
+  // dispatch to reset ECharts zoom to match the new path.
   useEffect(() => {
-    if (!echartsRef.current) return;
-
-    const chart = echartsRef.current.getEchartsInstance();
-
-    isProgrammatic.current = true;
-    if (drillPath.length === 0) {
-      chart.dispatchAction({
-        type: "sunburstClick",
-        targetNodeId: null,
-      });
-    } else {
-      const targetId = drillPath.map((p) => p.value).join("/");
-      chart.dispatchAction({
-        type: "sunburstClick",
-        targetNodeId: targetId,
-      });
+    if (clickedInternally.current) {
+      clickedInternally.current = false;
+      return;
     }
-    // Reset flag after the action has been dispatched and potentially triggered events
-    setTimeout(() => {
-      isProgrammatic.current = false;
-    }, 50);
+    if (!echartsRef.current) return;
+    const chart = echartsRef.current.getEchartsInstance();
+    const targetNodeId =
+      drillPath.length > 0 ? drillPath.map((p) => p.value).join("/") : null;
+    chart.dispatchAction({ type: "sunburstRootToNode", targetNodeId });
   }, [drillPath]);
 
   return (
-    <ReactECharts
-      ref={echartsRef}
-      opts={{ renderer: "svg" }}
-      option={option}
-      className="echarts-wrapper"
-      style={{ height }}
-      onEvents={{
-        click: (params) => {
-          // Ignore programmatic clicks to avoid loops
-          if (isProgrammatic.current) return;
+    <div style={{ position: "relative", height }}>
+      {/* ── HTML title overlay — zero ECharts involvement ── */}
+      <div
+        style={{
+          position: "absolute",
+          top: 6,
+          left: 0,
+          right: 0,
+          textAlign: "center",
+          zIndex: 10,
+          pointerEvents: "none",
+        }}
+      >
+        <div
+          style={{
+            fontSize: 13,
+            fontWeight: 700,
+            color: "#1e293b",
+            letterSpacing: 0.2,
+          }}
+        >
+          {drillPath.length === 0
+            ? "Data Explorer"
+            : "Data Explorer › " + drillPath.map((p) => p.value).join(" › ")}
+        </div>
+        <div style={{ fontSize: 11, color: "#6b7280", marginTop: 1 }}>
+          {measureCol} ({aggregation}) • click arc to dive
+        </div>
+      </div>
 
-          const clickedDepth = (params.treePathInfo?.length ?? 1) - 1;
-          const currentDepth = drillPath.length;
+      <ReactECharts
+        ref={echartsRef}
+        opts={{ renderer: "svg" }}
+        option={option}
+        className="echarts-wrapper"
+        style={{ height: "100%", width: "100%" }}
+        onEvents={{
+          click: (params) => {
+            const treePathInfo = params.treePathInfo ?? [];
+            const clickedDepth = treePathInfo.length - 1;
 
-          // If center hole or level 0 is clicked
-          if (params.dataIndex === undefined || clickedDepth === 0) {
-            if (onCenterClick) onCenterClick();
-            return;
-          }
+            // Center hole → drill back
+            if (clickedDepth <= 0 || params.dataIndex === undefined) {
+              if (onCenterClick) onCenterClick();
+              return;
+            }
 
-          // Only trigger onNodeClick if we are clicking deeper than current path
-          if (clickedDepth > currentDepth && onNodeClick) {
-            // If the user clicked several levels deep at once,
-            // we should technically drill through all of them, but the engine
-            // currently expects one step at a time. For now, we take the name of
-            // the node at currentDepth + 1 from the treePathInfo.
-            const nextNodeInfo = params.treePathInfo[currentDepth + 1];
-            onNodeClick(
-              nextNodeInfo.name,
-              currentDepth + 1,
-              params.treePathInfo,
-            );
-          }
-        },
-      }}
-      onChartReady={onChartReady}
-      notMerge={false}
-    />
+            // Mark as internal click — useEffect will skip programmatic dispatch
+            clickedInternally.current = true;
+
+            if (onNodeClick) {
+              onNodeClick(params.name, clickedDepth, treePathInfo);
+            }
+          },
+        }}
+        onChartReady={onChartReady}
+        notMerge={false}
+      />
+
+      {/* ── Bottom hint ── */}
+      <div
+        style={{
+          position: "absolute",
+          bottom: 4,
+          left: 0,
+          right: 0,
+          textAlign: "center",
+          fontSize: 10,
+          color: "#9ca3af",
+          pointerEvents: "none",
+        }}
+      >
+        ◎ Click center to drill back • Click arcs to dive
+      </div>
+    </div>
   );
 };
 
