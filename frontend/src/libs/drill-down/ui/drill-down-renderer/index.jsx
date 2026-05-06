@@ -19,7 +19,6 @@ import {
   exportToExcel,
 } from "../../../../services/export";
 
-// Import our new chart adapters
 import {
   HistogramAdapter,
   HeatmapAdapter,
@@ -44,7 +43,6 @@ const CHART_ADAPTERS = {
   sunburst: SunburstAdapter,
 };
 
-// Inline range parser — mirrors parseHistBinRange in engine/index.js
 function parseHistBinRange(label) {
   const parseVal = (s) => {
     const str = s.trim();
@@ -83,8 +81,7 @@ const DrillDownRenderer = ({ onRenderTime }) => {
   const currentNode = getNodeAtPath(tree, drillPath);
   const atLeaf = isLeaf(currentNode);
 
-  // __hist__ steps are numeric range filters — they do NOT consume a categorical
-  // dimension slot, so we count only non-hist steps for the dimension index.
+  // Non-hist steps count for dimension index
   const categoricalDepth = drillPath.filter(
     (s) => !s.column.startsWith("__hist__"),
   ).length;
@@ -95,7 +92,6 @@ const DrillDownRenderer = ({ onRenderTime }) => {
   const chartType = chartTypeByDepth[drillPath.length] ?? "bar";
   const currentOption = DRILL_CHART_OPTIONS.find((o) => o.value === chartType);
 
-  // Whether the current drillPath contains any histogram bin step
   const lastHistStep = useMemo(
     () =>
       [...drillPath].reverse().find((s) => s.column.startsWith("__hist__")) ??
@@ -150,8 +146,7 @@ const DrillDownRenderer = ({ onRenderTime }) => {
     t0.current = performance.now();
   });
 
-  // When drillPath contains a __hist__ step, count the rows that satisfy
-  // the full path (including the range filter) so the breadcrumb is accurate.
+  // Count rows satisfying the full path for accurate breadcrumb row count
   const histDrilledRowCount = useMemo(() => {
     if (!lastHistStep || !rows.length) return null;
     return rows.filter((row) =>

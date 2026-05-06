@@ -16,9 +16,11 @@ const SunburstChart = ({
 }) => {
   const echartsRef = useRef(null);
 
-  // True when the last drillPath change was caused by a user click on the chart.
-  // ECharts already zoomed natively — skip the programmatic sync dispatch.
+  // Skip programmatic sync if the change was user-initiated (ECharts already zoomed)
   const clickedInternally = useRef(false);
+
+  const drillPathRef = useRef(drillPath);
+  useEffect(() => { drillPathRef.current = drillPath; }, [drillPath]);
 
   // ── Stable processed data ─────────────────────────────────────────────────
   const processedData = useMemo(() => {
@@ -43,9 +45,8 @@ const SunburstChart = ({
   }, [data, palette]);
 
   // ── Stable chart option ───────────────────────────────────────────────────
-  // CRITICAL: drillPath is intentionally NOT a dep. Any option reference change
-  // causes ReactECharts → chart.setOption() → ECharts zoom state reset.
-  // The chart title (path) is rendered via an HTML overlay outside ECharts.
+  // drillPath is excluded from deps to prevent setOption() from resetting native zoom state.
+  // Title is rendered via HTML overlay to keep the ECharts option object stable.
   const option = useMemo(() => {
     if (!processedData.length) return {};
     return {
@@ -132,9 +133,13 @@ const SunburstChart = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [processedData, measureCol, aggregation]);
 
-  // ── External navigation sync (breadcrumb / back button) ───────────────────
-  // When drillPath changes from OUTSIDE (not from a user click on the chart),
-  // dispatch to reset ECharts zoom to match the new path.
+  // ── Helper: dispatch zoom to match the current drillPath ─────────────────
+  const dispatchZoom = (chart, path) => {
+    const targetNodeId = path.length > 0 ? path.map((p) => p.value).join("/") : null;
+    chart.dispatchAction({ type: "sunburstRootToNode", targetNodeId });
+  };
+
+  // Sync zoom with external navigation (breadcrumb/back)
   useEffect(() => {
     if (clickedInternally.current) {
       clickedInternally.current = false;
@@ -142,10 +147,17 @@ const SunburstChart = ({
     }
     if (!echartsRef.current) return;
     const chart = echartsRef.current.getEchartsInstance();
-    const targetNodeId =
-      drillPath.length > 0 ? drillPath.map((p) => p.value).join("/") : null;
-    chart.dispatchAction({ type: "sunburstRootToNode", targetNodeId });
+    dispatchZoom(chart, drillPath);
   }, [drillPath]);
+
+  // Sync zoom on mount for cases where Sunburst mounts with an existing drillPath (chart switch)
+  const handleChartReady = (chartInstance) => {
+    const path = drillPathRef.current;
+    if (path.length > 0) {
+      setTimeout(() => dispatchZoom(chartInstance, path), 50);
+    }
+    if (onChartReady) onChartReady(chartInstance);
+  };
 
   return (
     <div style={{ position: "relative", height }}>
@@ -203,7 +215,7 @@ const SunburstChart = ({
             }
           },
         }}
-        onChartReady={onChartReady}
+        onChartReady={handleChartReady}
         notMerge={false}
       />
 

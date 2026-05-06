@@ -20,7 +20,7 @@ export function computeHistogramBins(rows, drillPath, metricCol, filterRows, bin
     .filter((v) => !isNaN(v) && isFinite(v));
 
   if (values.length === 0) {
-    return { labels: [], counts: [], binRows: [], min: 0, max: 0, binSize: 0, metricCol };
+    return { labels: [], counts: [], binRows: [], binEdges: [], min: 0, max: 0, binSize: 0, metricCol };
   }
 
   let min = Infinity;
@@ -72,11 +72,16 @@ export function computeHistogramBins(rows, drillPath, metricCol, filterRows, bin
           ? String(v)
           : v.toFixed(1);
 
+  // exact boundaries for each bin (lo of bin i, hi of last bin)
+  const binEdges = Array.from({ length: effectiveBins + 1 }, (_, i) => min + i * binSize);
+  // Clamp last edge to actual max to avoid precision overshoot
+  binEdges[effectiveBins] = max;
+
   const labels = Array.from({ length: effectiveBins }, (_, i) => {
-    const lo = min + i * binSize;
-    const hi = lo + binSize;
+    const lo = binEdges[i];
+    const hi = binEdges[i + 1];
     return `${fmt(lo)} – ${fmt(hi)}`;
   });
 
-  return { labels, counts, binRows, min, max, binSize, metricCol };
+  return { labels, counts, binRows, binEdges, min, max, binSize, metricCol };
 }

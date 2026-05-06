@@ -14,8 +14,7 @@ export default function SunburstAdapter({
   drillToPath,
   tree,
 }) {
-  // Always format from the full tree root — data never changes during drill.
-  // ECharts manages zoom state internally via nodeClick: "rootToNode".
+  // Format full tree; ECharts handles zoom natively via nodeClick: "rootToNode"
   const data = useMemo(() => {
     if (!tree) return [];
     return formatSunburstData(tree, 200, aggregation, metrics[0] ?? "");
@@ -29,22 +28,7 @@ export default function SunburstAdapter({
     );
   }
 
-  /**
-   * Called when the user clicks any arc.
-   *
-   * We build the COMPLETE new drillPath from root → clicked node using
-   * treePathInfo, then call drillToPath to atomically replace the entire path.
-   *
-   * This handles:
-   *  - Forward drilling (clicking deeper arcs)
-   *  - Sideways navigation (clicking a sibling arc)
-   *  - Backward navigation (clicking an ancestor arc)
-   *
-   * treePathInfo index mapping:
-   *   [0] = invisible root  (skip)
-   *   [1] = depth-1 node    → dimensions[0]
-   *   [2] = depth-2 node    → dimensions[1]
-   */
+  // Build complete drillPath from root to clicked node using treePathInfo
   const handleNodeClick = (name, clickedDepth, treePathInfo) => {
     const newSteps = [];
     for (let d = 1; d <= clickedDepth; d++) {

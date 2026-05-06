@@ -15,12 +15,7 @@ export const createDrillSlice = (set, get) => ({
       };
     }),
 
-  /**
-   * Atomically drill through multiple levels at once.
-   * steps: Array of { column: string, value: string }
-   * This is used by the Sunburst adapter when the user clicks a deep arc
-   * (ECharts zooms visually in one shot; we must sync all levels at once).
-   */
+  // Atomically drill through multiple levels at once
   drillIntoMany: (steps) =>
     set((state) => {
       const baseDepth = state.drillPath.length;
@@ -42,11 +37,7 @@ export const createDrillSlice = (set, get) => ({
       return { drillPath: newPath, chartTypeByDepth: newChartTypeByDepth };
     }),
 
-  /**
-   * Atomically replace the entire drillPath with a new set of steps.
-   * Used by Sunburst to set the path to exactly the clicked node
-   * (handles forward, backward, and sideways navigation in one call).
-   */
+  // Atomically replace the entire drillPath
   drillToPath: (steps) =>
     set((state) => {
       const baseType = state.chartTypeByDepth[0] ?? 'sunburst';
