@@ -13,6 +13,15 @@ export default function HistogramAdapter({
   drillInto,
   aggregation = 'count',
 }) {
+  // Prevent recursive histogram drilling for the same metric
+  const histMetric = metrics[0] ?? '';
+  const alreadyInHistBin = drillPath.some(
+    (step) => step.column === `__hist__${histMetric}`
+  );
+
+  // Treat as leaf if already inside a histogram bin for this metric
+  const canDrillFurther = !atLeaf && !alreadyInHistBin && !!currentColumn;
+
   const histogramBins = useMemo(() => {
     if (!rows.length || !metrics.length) return null;
     return computeHistogramBins(rows, drillPath, metrics[0], filterRows, 20, aggregation);
@@ -23,10 +32,15 @@ export default function HistogramAdapter({
   }
 
   const handleBinClick = (label) => {
-    if (atLeaf || !currentColumn) return;
+    if (!canDrillFurther) return;
     const binIdx = histogramBins.labels.indexOf(label);
     if (binIdx === -1) return;
-    drillInto(label, `__hist__${metrics[0]}`);
+
+    // Use numeric boundaries to avoid precision loss from re-parsing labels
+  const lo = histogramBins.binEdges[binIdx];
+    const hi = histogramBins.binEdges[binIdx + 1];
+    // Store boundaries in step meta for accurate filtering
+    drillInto(label, `__hist__${metrics[0]}`, { lo, hi });
   };
 
   return (
@@ -36,7 +50,7 @@ export default function HistogramAdapter({
       columnName={metrics[0]}
       title={title}
       height='100%'
-      onBarClick={!atLeaf ? handleBinClick : undefined}
+      onBarClick={canDrillFurther ? handleBinClick : undefined}
       onChartReady={onChartReady}
     />
   );

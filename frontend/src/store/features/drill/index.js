@@ -15,12 +15,37 @@ export const createDrillSlice = (set, get) => ({
       };
     }),
 
+  // Atomically drill through multiple levels at once
+  drillIntoMany: (steps) =>
+    set((state) => {
+      const baseDepth = state.drillPath.length;
+      const baseType = state.chartTypeByDepth[baseDepth] ?? 'sunburst';
+      const newPath = [...state.drillPath];
+      const newChartTypeByDepth = { ...state.chartTypeByDepth };
+      steps.forEach((step, i) => {
+        newPath.push({ column: step.column, value: step.value });
+        newChartTypeByDepth[baseDepth + i + 1] = baseType; // inherit chart type
+      });
+      return { drillPath: newPath, chartTypeByDepth: newChartTypeByDepth };
+    }),
+
   drillBack: () =>
     set((state) => {
       const newPath = state.drillPath.slice(0, -1);
       const newChartTypeByDepth = { ...state.chartTypeByDepth };
       delete newChartTypeByDepth[state.drillPath.length];
       return { drillPath: newPath, chartTypeByDepth: newChartTypeByDepth };
+    }),
+
+  // Atomically replace the entire drillPath
+  drillToPath: (steps) =>
+    set((state) => {
+      const baseType = state.chartTypeByDepth[0] ?? 'sunburst';
+      const newChartTypeByDepth = { [0]: baseType };
+      steps.forEach((_, i) => {
+        newChartTypeByDepth[i + 1] = baseType;
+      });
+      return { drillPath: steps, chartTypeByDepth: newChartTypeByDepth };
     }),
 
   drillBackTo: (depth) =>
