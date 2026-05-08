@@ -1,12 +1,32 @@
 function getDynamicConfig(rowCount) {
   if (rowCount > 1000000) {
-    return { maxDimCardinality: 50, maxHierarchyDepth: 3, fallbackTopValues: 10, numericCategoricalThreshold: 10 };
+    return {
+      maxDimCardinality: 50,
+      maxHierarchyDepth: 3,
+      fallbackTopValues: 10,
+      numericCategoricalThreshold: 10,
+    };
   } else if (rowCount > 100000) {
-    return { maxDimCardinality: 100, maxHierarchyDepth: 4, fallbackTopValues: 15, numericCategoricalThreshold: 15 };
+    return {
+      maxDimCardinality: 100,
+      maxHierarchyDepth: 4,
+      fallbackTopValues: 15,
+      numericCategoricalThreshold: 15,
+    };
   } else if (rowCount > 10000) {
-    return { maxDimCardinality: 200, maxHierarchyDepth: 5, fallbackTopValues: 20, numericCategoricalThreshold: 20 };
+    return {
+      maxDimCardinality: 200,
+      maxHierarchyDepth: 5,
+      fallbackTopValues: 20,
+      numericCategoricalThreshold: 20,
+    };
   }
-  return { maxDimCardinality: 500, maxHierarchyDepth: 6, fallbackTopValues: 20, numericCategoricalThreshold: 25 };
+  return {
+    maxDimCardinality: 500,
+    maxHierarchyDepth: 6,
+    fallbackTopValues: 20,
+    numericCategoricalThreshold: 25,
+  };
 }
 
 function isNumeric(value) {
@@ -14,14 +34,13 @@ function isNumeric(value) {
   return !isNaN(parseFloat(value)) && isFinite(value);
 }
 
-// Conservative date pattern matching — avoids false-positives on plain numbers/text
 const DATE_PATTERNS = [
-  /^\d{4}-\d{2}-\d{2}/, // ISO: 2023-01-15
-  /^\d{1,2}\/\d{1,2}\/\d{2,4}/, // US: 01/15/2023 or 1/15/23
-  /^\d{4}\/\d{2}\/\d{2}/, // ISO alt: 2023/01/15
-  /^\d{1,2}-\d{1,2}-\d{4}/, // EU: 15-01-2023
-  /^[A-Za-z]+ \d{1,2},? \d{4}/, // "January 15, 2023"
-  /^\d{1,2} [A-Za-z]+ \d{4}/, // "15 January 2023"
+  /^\d{4}-\d{2}-\d{2}/,
+  /^\d{1,2}\/\d{1,2}\/\d{2,4}/,
+  /^\d{4}\/\d{2}\/\d{2}/,
+  /^\d{1,2}-\d{1,2}-\d{4}/,
+  /^[A-Za-z]+ \d{1,2},? \d{4}/,
+  /^\d{1,2} [A-Za-z]+ \d{4}/,
 ];
 
 function isDateLike(value) {
@@ -39,7 +58,6 @@ function bucketToYearMonth(value) {
   if (isNaN(d.getTime())) return v;
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
 }
-
 
 function preprocessDates(rows) {
   if (!rows.length) return rows;
@@ -74,7 +92,6 @@ function preprocessDates(rows) {
   });
 }
 
-
 function detectColumns(rows, config) {
   if (!rows.length) return { dimensions: [], metrics: [], rejected: [] };
 
@@ -100,8 +117,6 @@ function detectColumns(rows, config) {
     if (numericRatio >= 0.8) {
       const unique = new Set(values.map((v) => String(v).trim())).size;
       if (unique >= 2 && unique <= config.numericCategoricalThreshold) {
-        // Low-cardinality numeric column — treat as categorical dimension
-        // (e.g. year, encoded sex/cp/fbs, ordinal rating scales)
         dimensions.push({ key, cardinality: unique });
       } else {
         metrics.push(key);
@@ -128,7 +143,6 @@ function detectColumns(rows, config) {
     rejected,
   };
 }
-
 
 function applyFallbackBucketing(rows, rejected, config) {
   const candidates = rejected
@@ -172,8 +186,6 @@ function applyFallbackBucketing(rows, rejected, config) {
   };
 }
 
-// Computes all aggregation methods for each metric column
-// Returns: { salary: { avg, sum, min, max, count }, age: { ... }, ... }
 function aggregateAllMethods(rows, metrics) {
   const result = {};
   for (const m of metrics) {
@@ -252,7 +264,7 @@ export function formatCSV(rows) {
     const { patchedRows, fallbackDimensions } = applyFallbackBucketing(
       processedRows,
       rejected,
-      config
+      config,
     );
     if (fallbackDimensions.length) {
       finalRows = patchedRows;
@@ -272,7 +284,6 @@ export function formatCSV(rows) {
   return { tree, dimensions, metrics, rows: finalRows, rejected };
 }
 
-
 export class StreamFormatter {
   constructor(estimatedRowCount = 5000000) {
     this.totalRows = 0;
@@ -280,14 +291,14 @@ export class StreamFormatter {
     this.savedRows = [];
     this.isInitialized = false;
     this.tree = { name: "root", count: 0, aggs: {}, childrenMap: new Map() };
-    
+
     this.dateCols = new Set();
     this.dimensions = [];
     this.metrics = [];
     this.rejected = [];
     this.fallbackDimensions = [];
     this.topValMaps = new Map();
-    this.config = getDynamicConfig(estimatedRowCount); 
+    this.config = getDynamicConfig(estimatedRowCount);
   }
 
   processChunk(rows) {
@@ -311,25 +322,36 @@ export class StreamFormatter {
     const keys = Object.keys(sample[0] || {});
 
     for (const key of keys) {
-      const values = sample.map((r) => r[key]).filter((v) => v !== null && v !== undefined && v !== "");
+      const values = sample
+        .map((r) => r[key])
+        .filter((v) => v !== null && v !== undefined && v !== "");
       if (!values.length) continue;
-      const numericRatio = values.filter((v) => isNumeric(v)).length / values.length;
+      const numericRatio =
+        values.filter((v) => isNumeric(v)).length / values.length;
       if (numericRatio >= 0.8) continue;
-      const dateRatio = values.filter((v) => isDateLike(v)).length / values.length;
+      const dateRatio =
+        values.filter((v) => isDateLike(v)).length / values.length;
       if (dateRatio >= 0.6) this.dateCols.add(key);
     }
 
-    const processedSample = sample.map(row => {
+    const processedSample = sample.map((row) => {
       const newRow = { ...row };
       for (const col of this.dateCols) {
-        if (newRow[col] !== null && newRow[col] !== undefined && newRow[col] !== "") {
+        if (
+          newRow[col] !== null &&
+          newRow[col] !== undefined &&
+          newRow[col] !== ""
+        ) {
           newRow[col] = bucketToYearMonth(newRow[col]);
         }
       }
       return newRow;
     });
 
-    const { dimensions, metrics, rejected } = detectColumns(processedSample, this.config);
+    const { dimensions, metrics, rejected } = detectColumns(
+      processedSample,
+      this.config,
+    );
     this.dimensions = dimensions;
     this.metrics = metrics;
     this.rejected = rejected;
@@ -356,7 +378,9 @@ export class StreamFormatter {
           this.fallbackDimensions.push(key);
         }
         this.dimensions = this.fallbackDimensions;
-        this.rejected = this.rejected.filter((r) => !this.fallbackDimensions.includes(r.key));
+        this.rejected = this.rejected.filter(
+          (r) => !this.fallbackDimensions.includes(r.key),
+        );
       }
     }
 
@@ -399,14 +423,20 @@ export class StreamFormatter {
       for (const dim of this.dimensions) {
         const key = String(row[dim] ?? "Unknown").trim();
         if (!currentNode.childrenMap.has(key)) {
-          currentNode.childrenMap.set(key, { name: key, count: 0, aggs: {}, childrenMap: new Map() });
+          currentNode.childrenMap.set(key, {
+            name: key,
+            count: 0,
+            aggs: {},
+            childrenMap: new Map(),
+          });
         }
         currentNode = currentNode.childrenMap.get(key);
         currentNode.count++;
         this.updateAggs(currentNode.aggs, row);
       }
 
-      if (this.savedRows.length < 500) {
+      const rowCap = this.config.maxDimCardinality > 50 ? 1000000 : 200000;
+      if (this.savedRows.length < rowCap) {
         this.savedRows.push(row);
       }
     }
@@ -415,7 +445,9 @@ export class StreamFormatter {
   finalizeTree(node) {
     for (const m of this.metrics) {
       if (node.aggs[m] && node.aggs[m].count > 0) {
-        node.aggs[m].avg = parseFloat((node.aggs[m].sum / node.aggs[m].count).toFixed(4));
+        node.aggs[m].avg = parseFloat(
+          (node.aggs[m].sum / node.aggs[m].count).toFixed(4),
+        );
         node.aggs[m].sum = parseFloat(node.aggs[m].sum.toFixed(4));
         node.aggs[m].min = parseFloat(node.aggs[m].min.toFixed(4));
         node.aggs[m].max = parseFloat(node.aggs[m].max.toFixed(4));
@@ -447,7 +479,7 @@ export class StreamFormatter {
       dimensions: this.dimensions || [],
       metrics: this.metrics || [],
       rows: this.savedRows,
-      rejected: this.rejected || []
+      rejected: this.rejected || [],
     };
   }
 }

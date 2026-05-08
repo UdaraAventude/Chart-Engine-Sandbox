@@ -7,7 +7,6 @@ export function formatStandard(node, limit, aggregation = 'avg', primaryMetric =
     name: c.name,
     value: resolveNodeValue(c, primaryMetric, aggregation),
     count: c.count,
-    // Add raw aggs just in case UI wants to see it
     aggs: c.aggs,
   }));
 

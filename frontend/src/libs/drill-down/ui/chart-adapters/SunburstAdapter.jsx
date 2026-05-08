@@ -14,7 +14,6 @@ export default function SunburstAdapter({
   drillToPath,
   tree,
 }) {
-  // Format full tree; ECharts handles zoom natively via nodeClick: "rootToNode"
   const data = useMemo(() => {
     if (!tree) return [];
     return formatSunburstData(tree, 200, aggregation, metrics[0] ?? "");
@@ -28,7 +27,6 @@ export default function SunburstAdapter({
     );
   }
 
-  // Build complete drillPath from root to clicked node using treePathInfo
   const handleNodeClick = (name, clickedDepth, treePathInfo) => {
     const newSteps = [];
     for (let d = 1; d <= clickedDepth; d++) {

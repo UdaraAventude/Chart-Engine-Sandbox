@@ -5,35 +5,40 @@ import './AppLayout.css';
 const AppLayout = () => {
   return (
     <div className='app-root'>
-      <nav className='app-nav'>
-        <NavLink
-          to='/'
-          end
-          className={({ isActive }) =>
-            `nav-link${isActive ? ' nav-link--active' : ''}`
-          }
-        >
-          Dashboard
-        </NavLink>
-        <NavLink
-          to='/builder'
-          className={({ isActive }) =>
-            `nav-link nav-link--builder${isActive ? ' nav-link--active' : ''}`
-          }
-        >
-          Chart Builder
-        </NavLink>
-      </nav>
+      <header className='app-header'>
+        <nav className='header-nav'>
+          <NavLink
+            to='/'
+            end
+            className={({ isActive }) =>
+              `nav-link-top${isActive ? ' active' : ''}`
+            }
+          >
+            Dashboard
+          </NavLink>
+          <NavLink
+            to='/builder'
+            className={({ isActive }) =>
+              `nav-link-top${isActive ? ' active' : ''}`
+            }
+          >
+            Chart Builder
+          </NavLink>
+        </nav>
+      </header>
 
       <main className='app-main'>
         <Outlet />
       </main>
 
-      <footer className='eval-footer app-footer'>
-        <p>Advanced Hierarchical Analytics Platform • Apache ECharts</p>
+      <footer className='app-footer'>
       </footer>
+
     </div>
   );
 };
 
 export default AppLayout;
+
+
+

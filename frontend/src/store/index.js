@@ -1,7 +1,7 @@
-import { create } from 'zustand';
-import { createDataSlice } from './features/data';
-import { createUISlice } from './features/ui';
-import { createDrillSlice } from './features/drill';
+import { create } from "zustand";
+import { createDataSlice } from "./features/data";
+import { createUISlice } from "./features/ui";
+import { createDrillSlice } from "./features/drill";
 
 const useStore = create((set, get) => ({
   ...createDataSlice(set, get),
@@ -9,8 +9,7 @@ const useStore = create((set, get) => ({
   ...createDrillSlice(set, get),
 }));
 
-// Expose store for console debugging
-if (typeof window !== 'undefined') {
+if (typeof window !== "undefined") {
   window.__zustand_store__ = useStore;
 }
 
