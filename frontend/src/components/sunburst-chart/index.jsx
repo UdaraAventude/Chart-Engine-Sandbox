@@ -16,13 +16,13 @@ const SunburstChart = ({
 }) => {
   const echartsRef = useRef(null);
 
-  // Skip programmatic sync if the change was user-initiated (ECharts already zoomed)
   const clickedInternally = useRef(false);
 
   const drillPathRef = useRef(drillPath);
-  useEffect(() => { drillPathRef.current = drillPath; }, [drillPath]);
+  useEffect(() => {
+    drillPathRef.current = drillPath;
+  }, [drillPath]);
 
-  // ── Stable processed data ─────────────────────────────────────────────────
   const processedData = useMemo(() => {
     const updateNodes = (nodes) =>
       nodes.map((node) => {
@@ -44,9 +44,6 @@ const SunburstChart = ({
     return processed;
   }, [data, palette]);
 
-  // ── Stable chart option ───────────────────────────────────────────────────
-  // drillPath is excluded from deps to prevent setOption() from resetting native zoom state.
-  // Title is rendered via HTML overlay to keep the ECharts option object stable.
   const option = useMemo(() => {
     if (!processedData.length) return {};
     return {
@@ -133,13 +130,12 @@ const SunburstChart = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [processedData, measureCol, aggregation]);
 
-  // ── Helper: dispatch zoom to match the current drillPath ─────────────────
   const dispatchZoom = (chart, path) => {
-    const targetNodeId = path.length > 0 ? path.map((p) => p.value).join("/") : null;
+    const targetNodeId =
+      path.length > 0 ? path.map((p) => p.value).join("/") : null;
     chart.dispatchAction({ type: "sunburstRootToNode", targetNodeId });
   };
 
-  // Sync zoom with external navigation (breadcrumb/back)
   useEffect(() => {
     if (clickedInternally.current) {
       clickedInternally.current = false;
@@ -150,7 +146,6 @@ const SunburstChart = ({
     dispatchZoom(chart, drillPath);
   }, [drillPath]);
 
-  // Sync zoom on mount for cases where Sunburst mounts with an existing drillPath (chart switch)
   const handleChartReady = (chartInstance) => {
     const path = drillPathRef.current;
     if (path.length > 0) {
@@ -161,7 +156,6 @@ const SunburstChart = ({
 
   return (
     <div style={{ position: "relative", height }}>
-      {/* ── HTML title overlay — zero ECharts involvement ── */}
       <div
         style={{
           position: "absolute",
@@ -201,13 +195,11 @@ const SunburstChart = ({
             const treePathInfo = params.treePathInfo ?? [];
             const clickedDepth = treePathInfo.length - 1;
 
-            // Center hole → drill back
             if (clickedDepth <= 0 || params.dataIndex === undefined) {
               if (onCenterClick) onCenterClick();
               return;
             }
 
-            // Mark as internal click — useEffect will skip programmatic dispatch
             clickedInternally.current = true;
 
             if (onNodeClick) {

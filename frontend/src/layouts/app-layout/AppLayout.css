@@ -1,61 +1,84 @@
-/* ─────────────────────────────────────────────
-   AppLayout component styles
-   Extracted from inline styles in index.jsx.
-   NavLink active/inactive states are driven by
-   the .nav-link--active modifier class applied
-   via className={({ isActive }) => …}.
-───────────────────────────────────────────── */
-
-/* Root page shell */
 .app-root {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: var(--header-height) 1fr auto;
+  grid-template-areas:
+    "header"
+    "main"
+    "footer";
   min-height: 100vh;
+  width: 100vw;
 }
 
-/* Sticky top navigation bar */
-.app-nav {
+.app-header {
+  grid-area: header;
+  background-color: white;
+  border-bottom: 1px solid var(--border-color);
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 12px 24px;
-  border-bottom: 1px solid #e2e8f0;
-  background-color: white;
+  justify-content: flex-start;
+  padding: 0 40px;
+  z-index: 40;
   position: sticky;
   top: 0;
-  z-index: 100;
 }
 
-/* Page content area */
+
+.header-nav {
+  display: flex;
+  gap: 16px;
+  height: 100%;
+}
+
+.nav-link-top {
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-muted);
+  transition: all 0.2s;
+  height: 100%;
+  position: relative;
+  letter-spacing: 0.02em;
+}
+
+.nav-link-top:hover {
+  color: var(--primary);
+}
+
+.nav-link-top.active {
+  color: var(--primary);
+}
+
+.nav-link-top.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--primary);
+  border-radius: 4px 4px 0 0;
+}
+
 .app-main {
-  flex: 1;
+  grid-area: main;
+  padding: 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+  overflow-y: auto;
 }
 
-/* Footer */
+
 .app-footer {
-  padding-bottom: 40px;
-}
-
-/* ── NavLink base style ── */
-.nav-link {
-  padding: 6px 16px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 14px;
-  color: #64748b;
-  background: transparent;
-  transition: color 0.15s ease, background 0.15s ease;
-}
-
-/* ── Default active state (blue – Drill-Down & Dashboard) ── */
-.nav-link--active {
-  color: #2563eb;
-  background: #eff6ff;
-}
-
-/* ── Builder active state override (purple) ── */
-.nav-link--builder.nav-link--active {
-  color: #9333ea;
-  background: #faf5ff;
+  grid-area: footer;
+  padding: 24px 40px;
+  border-top: 1px solid var(--border-color);
+  background: white;
+  font-size: 12px;
+  color: var(--text-light);
+  display: flex;
+  justify-content: space-between;
 }

@@ -105,13 +105,9 @@ const UploadCSV = () => {
               style={{ width: `${uploadProgress}%` }}
             />
           </div>
-          {totalRows > 0 && (
-            <div className='upload-row-count'>
-              {totalRows?.toLocaleString()} rows
-            </div>
-          )}
         </div>
       )}
+
     </div>
   );
 };

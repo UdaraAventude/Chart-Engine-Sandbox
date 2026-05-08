@@ -1,14 +1,3 @@
-/**
- * DRILL_CHART_OPTIONS — single source of truth for all chart type metadata
- * used across:
- *   - ChartToolbar       (pill buttons)
- *   - DrillDownRenderer  (inner <select> dropdown)
- *   - DrillDownSelector  (rich type-grid panel)
- *
- * `canDrill` — whether clicking elements in this chart type triggers drillInto().
- *              Set to false for read-only / analytical views.
- */
-
 import React from 'react';
 import {
   BarChart3,
@@ -29,7 +18,7 @@ export const DRILL_CHART_OPTIONS = [
     value: 'bar',
     label: 'Bar',
     icon: <BarChart3 size={16} />,
-    color: '#2563eb', // Blue
+    color: '#4e79a7', // Tableau Blue
     desc: 'Aggregate dimensions into categorical bars.',
     detail: 'Best for hierarchical categorical data. Click a bar to drill into that group.',
     canDrill: true,
@@ -39,7 +28,7 @@ export const DRILL_CHART_OPTIONS = [
     value: 'pie',
     label: 'Pie',
     icon: <PieChart size={16} />,
-    color: '#0d9488', // Teal
+    color: '#76b7b2', // Tableau Teal
     desc: 'Categorical share distribution.',
     detail: 'Shows proportional distribution of metrics. Click a slice to drill in.',
     canDrill: true,
@@ -49,7 +38,7 @@ export const DRILL_CHART_OPTIONS = [
     value: 'sunburst',
     label: 'Sunburst',
     icon: <Sun size={16} />,
-    color: '#d97706', // Amber
+    color: '#f28e2b', // Tableau Orange
     desc: 'Hierarchical radial partition.',
     detail: 'Click a segment to drill into deeper groups.',
     canDrill: true,
@@ -59,7 +48,7 @@ export const DRILL_CHART_OPTIONS = [
     value: 'line',
     label: 'Line',
     icon: <LineChart size={16} />,
-    color: '#4f46e5', // Indigo
+    color: '#e15759', // Tableau Red
     desc: 'Trend across categories.',
     detail: 'Displays metric values as a trend line. Click a point to drill.',
     canDrill: true,
@@ -69,7 +58,7 @@ export const DRILL_CHART_OPTIONS = [
     value: 'scatter',
     label: 'Scatter',
     icon: <ScatterChart size={16} />,
-    color: '#0891b2', // Cyan
+    color: '#59a14f', // Tableau Green
     desc: 'Point clustering analysis.',
     detail: 'Plots raw rows using two numeric columns. Colour-coded by current group.',
     canDrill: false,
@@ -79,7 +68,7 @@ export const DRILL_CHART_OPTIONS = [
     value: 'bubble',
     label: 'Bubble',
     icon: <CircleDot size={16} />,
-    color: '#7c3aed', // Violet
+    color: '#b07aa1', // Tableau Purple
     desc: 'Multi-dimensional group analysis.',
     detail: 'X, Y, and Size each encode a different metric per group. Click a bubble to drill.',
     canDrill: true,
@@ -90,7 +79,7 @@ export const DRILL_CHART_OPTIONS = [
     value: 'heatmap',
     label: 'Heatmap',
     icon: <LayoutGrid size={16} />,
-    color: '#e11d48', // Rose
+    color: '#bab0ac', // Tableau Grey
     desc: 'Cross-tab density map.',
     detail: 'Shows average metric across two dimension axes. Click a cell to drill on X axis.',
     canDrill: true,
@@ -120,7 +109,7 @@ export const DRILL_CHART_OPTIONS = [
     value: 'histogram',
     label: 'Histogram',
     icon: <BarChart2 size={16} />,
-    color: '#c026d3', // Fuchsia
+    color: '#edc948', // Tableau Yellow
     desc: 'Frequency distribution.',
     detail: 'Distribution of a single numeric metric across equal-width bins. Click a bin to drill into the next dimension for rows within that range.',
     canDrill: true,
@@ -137,3 +126,4 @@ export const DRILL_CHART_OPTIONS = [
     minRemainingDepth: 0,
   },
 ];
+

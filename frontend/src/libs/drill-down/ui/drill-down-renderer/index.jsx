@@ -1,5 +1,12 @@
 import React, { useRef, useCallback, useEffect, useMemo } from "react";
-import { Activity } from "lucide-react";
+import {
+  Activity,
+  Download,
+  Layers,
+  Maximize2,
+  Share2,
+  ChevronRight,
+} from "lucide-react";
 import "../../../../styles/DrillDown.css";
 import useStore from "../../../../store";
 import {
@@ -56,7 +63,6 @@ function parseHistBinRange(label) {
 }
 
 const DrillDownRenderer = ({ onRenderTime }) => {
-  // ── Store subscriptions ────────────────────────────────────────────────────
   const globalData = useStore((s) => s.globalData);
   const totalRows = useStore((s) => s.totalRows);
   const drillPath = useStore((s) => s.drillPath);
@@ -81,7 +87,6 @@ const DrillDownRenderer = ({ onRenderTime }) => {
   const currentNode = getNodeAtPath(tree, drillPath);
   const atLeaf = isLeaf(currentNode);
 
-  // Non-hist steps count for dimension index
   const categoricalDepth = drillPath.filter(
     (s) => !s.column.startsWith("__hist__"),
   ).length;
@@ -98,8 +103,6 @@ const DrillDownRenderer = ({ onRenderTime }) => {
       null,
     [drillPath],
   );
-
-  // ── ALL hooks unconditionally at top ──────────────────────────────────────
 
   const onChartReady = useCallback(
     (instance) => {
@@ -127,12 +130,20 @@ const DrillDownRenderer = ({ onRenderTime }) => {
     const dimLabel =
       (currentColumn || "").replace(/_/g, " ").toUpperCase() || "Name";
 
+    const drillContext =
+      drillPath.length > 0
+        ? drillPath.map((d) => d.value).join(" > ")
+        : "Overview";
+    const headerText = `Chart Export: ${drillContext} | Aggregation: ${aggregation.toUpperCase()}`;
+
     if (format === "png") exportToPNG(instance, `${filename}.png`);
     if (format === "svg") exportToSVG(instance, `${filename}.svg`);
-    if (format === "pdf") await exportToPDF(instance, `${filename}.pdf`);
-    if (format === "csv") exportToCSV(instance, `${filename}.csv`, dimLabel);
+    if (format === "pdf")
+      await exportToPDF(instance, `${filename}.pdf`, headerText);
+    if (format === "csv")
+      exportToCSV(instance, `${filename}.csv`, dimLabel, headerText);
     if (format === "excel")
-      await exportToExcel(instance, `${filename}.xlsx`, dimLabel);
+      await exportToExcel(instance, `${filename}.xlsx`, dimLabel, headerText);
   };
 
   const handleClick = useCallback(
@@ -166,18 +177,19 @@ const DrillDownRenderer = ({ onRenderTime }) => {
   const treeRowCount = currentNode?.count ?? totalRows;
   const resolvedRowCount = histDrilledRowCount ?? treeRowCount;
 
-  // ── CONDITIONAL RETURNS — after ALL hooks ─────────────────────────────────
-
   if (!globalData || !tree) {
     return (
       <div className="empty-state">
-        <Activity
-          size={32}
-          strokeWidth={1.5}
-          style={{ marginBottom: "12px", opacity: 0.5 }}
+        <Layers
+          size={48}
+          strokeWidth={1.2}
+          color="var(--text-light)"
+          style={{ marginBottom: "20px" }}
         />
-        <h3>No Data</h3>
-        <p className="empty-subtext">Upload a CSV file to begin.</p>
+        <h3>No Workspace Loaded</h3>
+        <p className="empty-subtext">
+          Select a CSV file to generate your interactive analytics dashboard.
+        </p>
       </div>
     );
   }
@@ -190,32 +202,25 @@ const DrillDownRenderer = ({ onRenderTime }) => {
     return (
       <div className="empty-state">
         <Activity
-          size={32}
-          strokeWidth={1.5}
-          style={{ marginBottom: "12px", opacity: 0.5 }}
+          size={48}
+          strokeWidth={1.2}
+          color="var(--text-light)"
+          style={{ marginBottom: "20px" }}
         />
         <h3>No Hierarchy Detected</h3>
         {hasOnlyNumeric ? (
           <p className="empty-subtext">
-            All columns appear to be numeric
-            {metrics.length
-              ? ` (${metrics.slice(0, 3).join(", ")}${metrics.length > 3 ? "…" : ""}).`
-              : "."}{" "}
-            Add a column with categorical values (e.g. country, category,
-            status) to build a drill-down hierarchy.
+            All columns appear to be numeric. Add a categorical column to enable
+            drill-down features.
           </p>
         ) : (
           <p className="empty-subtext">
-            No suitable categorical columns found. Each dimension column needs
-            2–500 unique values. Try removing ID columns or columns with
-            free-text.
+            No suitable categorical columns found for hierarchy construction.
           </p>
         )}
       </div>
     );
   }
-
-  // ── Helpers ────────────────────────────────────────────────────────────────
 
   function buildTitle() {
     const base = "Data Explorer";
@@ -223,15 +228,13 @@ const DrillDownRenderer = ({ onRenderTime }) => {
     return base + " › " + drillPath.map((p) => p.value).join(" › ");
   }
 
-  // ── Chart / Table renderer ────────────────────────────────────────────────
-
   const renderTable = () => {
     let data;
+    let isRaw = false;
     if (atLeaf) {
-      // At the absolute leaf, show raw filtered rows (limited to 500 for performance)
       data = filterRows(rows, drillPath).slice(0, 500);
+      isRaw = true;
     } else {
-      // At categorical levels, show aggregated metrics per child
       data = formatForChart(
         currentNode,
         "bar",
@@ -245,35 +248,47 @@ const DrillDownRenderer = ({ onRenderTime }) => {
     }
 
     if (!data || data.length === 0)
-      return <div className="empty-state">No data</div>;
+      return (
+        <div className="empty-state">No data available for this selection.</div>
+      );
+
     const cols = Object.keys(data[0]).filter((c) => c !== "aggs");
+
     return (
-      <div
-        className="table-view-container"
-        style={{ overflow: "auto", maxHeight: "100%" }}
-      >
-        <table className="premium-table">
-          <thead>
-            <tr>
-              {cols.map((c) => (
-                <th key={c}>{c.toUpperCase()}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {data.map((row, i) => (
-              <tr key={i}>
+      <div className="table-view-container">
+        <div className="table-header-info">
+          <span className="table-mode-badge">
+            {isRaw ? "RAW RECORDS" : "AGGREGATED INSIGHTS"}
+          </span>
+          <span className="table-row-count">
+            Showing {data.length.toLocaleString()}{" "}
+            {isRaw ? "total records" : "groups"}
+          </span>
+        </div>
+        <div className="table-scroll-wrapper">
+          <table className="premium-table">
+            <thead>
+              <tr>
                 {cols.map((c) => (
-                  <td key={c}>
-                    {typeof row[c] === "number"
-                      ? row[c].toLocaleString()
-                      : String(row[c] ?? "")}
-                  </td>
+                  <th key={c}>{c.replace(/_/g, " ").toUpperCase()}</th>
                 ))}
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {data.map((row, i) => (
+                <tr key={i}>
+                  {cols.map((c) => (
+                    <td key={c}>
+                      {typeof row[c] === "number"
+                        ? row[c].toLocaleString()
+                        : String(row[c] ?? "")}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     );
   };
@@ -294,18 +309,17 @@ const DrillDownRenderer = ({ onRenderTime }) => {
     if (currentOption && currentOption.minRemainingDepth > availableDepth) {
       return (
         <div className="empty-state">
-          <Activity
-            size={32}
+          <Layers
+            size={40}
             strokeWidth={1.5}
-            style={{ marginBottom: "12px", opacity: 0.5 }}
+            color="var(--text-light)"
+            style={{ marginBottom: "12px" }}
           />
-          <h3>Not Enough Data</h3>
+          <h3>Maximum Hierarchy Depth Reached</h3>
           <p className="empty-subtext">
-            Cannot drill down furthermore. Not enough hierarchy depth remaining
-            to render a {currentOption.label} chart.
-            <br />
-            Please switch to a supported chart type (like Table or Scatter) from
-            the dropdown above.
+            This visualization cannot drill further.
+            <strong> Switch to Table view</strong> above to explore raw record
+            details.
           </p>
         </div>
       );
@@ -335,45 +349,40 @@ const DrillDownRenderer = ({ onRenderTime }) => {
     );
   };
 
-  // ── Main render ───────────────────────────────────────────────────────────
+  const containerRef = useRef(null);
+
+  const handleFullscreen = () => {
+    if (!containerRef.current) return;
+    if (!document.fullscreenElement) {
+      containerRef.current.requestFullscreen().catch((err) => {
+        alert(
+          `Error attempting to enable full-screen mode: ${err.message} (${err.name})`,
+        );
+      });
+    } else {
+      document.exitFullscreen();
+    }
+  };
 
   return (
-    <div className="drill-container">
-      <div
-        className="drill-toolbar"
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}
-      >
+    <div className="drill-container" ref={containerRef}>
+      <div className="drill-toolbar">
         <div className="drill-engine-badge">
           <Activity size={16} className="drill-engine-dot" />
           <span className="drill-engine-text">
-            {chartType.charAt(0).toUpperCase() + chartType.slice(1)} Drill-Down
+            {chartType.charAt(0).toUpperCase() + chartType.slice(1)} Analytics
           </span>
           <div className="drill-engine-divider" />
           <span className="drill-engine-levels">
-            {currentOption && !currentOption.canDrill
-              ? "Read-Only View"
-              : `Level ${Math.min(categoricalDepth + 1, dimensions.length)} of ${dimensions.length}`}
+            Depth {categoricalDepth + 1}/{dimensions.length}
           </span>
         </div>
 
-        <div style={{ display: "flex", gap: "8px" }}>
+        <div className="drill-controls">
           <select
             value={aggregation}
             onChange={(e) => setAggregation(e.target.value)}
-            style={{
-              padding: "6px 10px",
-              borderRadius: "8px",
-              border: "1px solid #e2e8f0",
-              background: "#f8fafc",
-              fontSize: "13px",
-              fontWeight: 600,
-              color: "#334155",
-              cursor: "pointer",
-            }}
+            className="premium-select"
           >
             {AGGREGATION_OPTIONS.map((o) => (
               <option key={o.value} value={o.value}>
@@ -387,23 +396,14 @@ const DrillDownRenderer = ({ onRenderTime }) => {
             onChange={(e) =>
               setChartTypeAtDepth(drillPath.length, e.target.value)
             }
-            style={{
-              padding: "6px 10px",
-              borderRadius: "8px",
-              border: "1px solid #e2e8f0",
-              background: "#f8fafc",
-              fontSize: "13px",
-              fontWeight: 600,
-              color: "#334155",
-              cursor: "pointer",
-            }}
+            className="premium-select"
           >
             {DRILL_CHART_OPTIONS.map((o) => {
               const isSupported = o.minRemainingDepth <= availableDepth;
               if (!isSupported && o.value !== chartType) return null;
               return (
                 <option key={o.value} value={o.value} disabled={!isSupported}>
-                  {o.label} {!isSupported ? "(Not enough data)" : ""}
+                  {o.label}
                 </option>
               );
             })}
@@ -411,69 +411,65 @@ const DrillDownRenderer = ({ onRenderTime }) => {
         </div>
       </div>
 
-      <DrillDownBreadcrumb
-        drillPath={drillPath}
-        onNavigate={(depth) => drillBackTo(depth)}
-        rowCount={resolvedRowCount}
-        totalRows={totalRows}
-      />
+      <div className="breadcrumb-container">
+        <DrillDownBreadcrumb
+          drillPath={drillPath}
+          onNavigate={(depth) => drillBackTo(depth)}
+          rowCount={resolvedRowCount}
+          totalRows={totalRows}
+        />
+      </div>
 
-      {/* Export Toolbar */}
       {chartType !== "table" && (
         <div className="export-toolbar">
-          <span className="export-label">Export</span>
+          <div style={{ marginRight: "auto", display: "flex", gap: "8px" }}>
+            <button
+              className="export-btn"
+              title="View in Fullscreen"
+              onClick={handleFullscreen}
+            >
+              <Maximize2 size={12} />
+            </button>
+          </div>
+          <span className="export-label">
+            <Download size={10} style={{ marginRight: "4px" }} /> Export
+          </span>
 
-          <button
-            className="export-btn"
-            onClick={() => handleExport("png")}
-            title="Download chart as PNG image"
-          >
+          <button className="export-btn" onClick={() => handleExport("png")}>
             PNG
           </button>
-
-          <button
-            className="export-btn"
-            onClick={() => handleExport("svg")}
-            title="Download chart as scalable SVG"
-          >
+          <button className="export-btn" onClick={() => handleExport("svg")}>
             SVG
           </button>
-
-          <button
-            className="export-btn"
-            onClick={() => handleExport("pdf")}
-            title="Download chart as PDF document"
-          >
+          <button className="export-btn" onClick={() => handleExport("pdf")}>
             PDF
           </button>
 
-          {/* Data exports — only meaningful for charts that have series data */}
           {chartType !== "scatter" && chartType !== "heatmap" && (
             <>
               <button
                 className="export-btn"
                 onClick={() => handleExport("csv")}
-                title="Download chart data as CSV"
               >
                 CSV
               </button>
-
               <button
                 className="export-btn"
                 onClick={() => handleExport("excel")}
-                title="Download chart data as Excel"
               >
-                Excel
+                XLSX
               </button>
             </>
           )}
         </div>
       )}
 
-      <div className="chart-container-wrapper" style={{ height: "480px" }}>
+      <div className="chart-container-wrapper" style={{ height: "520px" }}>
         {renderChart()}
         {drillPath.length > 0 && (
-          <div className="floating-depth-badge">LEVEL {drillPath.length}</div>
+          <div className="floating-depth-badge">
+            EXPLORER LVL {drillPath.length}
+          </div>
         )}
       </div>
     </div>

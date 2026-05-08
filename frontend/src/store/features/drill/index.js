@@ -5,26 +5,25 @@ export const createDrillSlice = (set, get) => ({
   drillInto: (childName, column) =>
     set((state) => {
       const currentDepth = state.drillPath.length;
-      const parentType = state.chartTypeByDepth[currentDepth] ?? 'bar';
+      const parentType = state.chartTypeByDepth[currentDepth] ?? "bar";
       return {
         drillPath: [...state.drillPath, { column, value: childName }],
         chartTypeByDepth: {
           ...state.chartTypeByDepth,
-          [currentDepth + 1]: parentType,   // ← inherit parent type
+          [currentDepth + 1]: parentType,
         },
       };
     }),
 
-  // Atomically drill through multiple levels at once
   drillIntoMany: (steps) =>
     set((state) => {
       const baseDepth = state.drillPath.length;
-      const baseType = state.chartTypeByDepth[baseDepth] ?? 'sunburst';
+      const baseType = state.chartTypeByDepth[baseDepth] ?? "sunburst";
       const newPath = [...state.drillPath];
       const newChartTypeByDepth = { ...state.chartTypeByDepth };
       steps.forEach((step, i) => {
         newPath.push({ column: step.column, value: step.value });
-        newChartTypeByDepth[baseDepth + i + 1] = baseType; // inherit chart type
+        newChartTypeByDepth[baseDepth + i + 1] = baseType;
       });
       return { drillPath: newPath, chartTypeByDepth: newChartTypeByDepth };
     }),
@@ -37,14 +36,25 @@ export const createDrillSlice = (set, get) => ({
       return { drillPath: newPath, chartTypeByDepth: newChartTypeByDepth };
     }),
 
-  // Atomically replace the entire drillPath
   drillToPath: (steps) =>
     set((state) => {
-      const baseType = state.chartTypeByDepth[0] ?? 'sunburst';
-      const newChartTypeByDepth = { [0]: baseType };
+      const currentDepth = state.drillPath.length;
+      const activeType =
+        state.chartTypeByDepth[currentDepth] ??
+        state.chartTypeByDepth[0] ??
+        "sunburst";
+
+      const newChartTypeByDepth = { ...state.chartTypeByDepth };
+
+      const maxDepth = Math.max(state.drillPath.length, steps.length);
+      for (let i = steps.length + 1; i <= maxDepth; i++) {
+        delete newChartTypeByDepth[i];
+      }
+
       steps.forEach((_, i) => {
-        newChartTypeByDepth[i + 1] = baseType;
+        newChartTypeByDepth[i + 1] = activeType;
       });
+
       return { drillPath: steps, chartTypeByDepth: newChartTypeByDepth };
     }),
 
@@ -61,7 +71,7 @@ export const createDrillSlice = (set, get) => ({
     }),
 
   resetDrill: () => set({ drillPath: [], chartTypeByDepth: {} }),
-  aggregation: 'avg',
+  aggregation: "avg",
   setAggregation: (aggregation) => set({ aggregation }),
 
   setChartTypeAtDepth: (depth, type) =>
