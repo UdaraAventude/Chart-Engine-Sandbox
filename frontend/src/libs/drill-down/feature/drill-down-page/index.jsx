@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowLeft, FileSpreadsheet } from 'lucide-react';
+import { ArrowLeft, FileSpreadsheet, Layers, BarChart3, Database } from 'lucide-react';
 import DatasetWorkspace from '../../../../components/dataset-workspace';
 import ChartToolbar from '../../ui/chart-toolbar';
 import DrillDownRenderer from '../../ui/drill-down-renderer';
@@ -25,29 +25,17 @@ const DrillDownPage = () => {
     maxHierarchyDepth: metadata?.maxHierarchyDepth,
     totalRows: metadata?.totalRows ?? 0,
   });
-  /** Top toolbar: new chart type at overview (resets drill path). */
-  const handleChartTypeSelect = (type) => {
-    resetDrillAndSetChartType(type);
-  };
 
-  const handleChangeDataset = () => {
-    setShowExplore(false);
-  };
-
+  const handleChartTypeSelect = (type) => { resetDrillAndSetChartType(type); };
+  const handleChangeDataset = () => { setShowExplore(false); };
   const handleDatasetReady = () => {
-    if (useStore.getState().activeDatasetId) {
-      setShowExplore(true);
-    }
+    if (useStore.getState().activeDatasetId) setShowExplore(true);
   };
 
   if (!showExplore || !activeDatasetId) {
     return (
       <div className="eval-container eval-container--workspace">
-        <DatasetWorkspace
-          onDatasetReady={() => {
-            handleDatasetReady();
-          }}
-        />
+        <DatasetWorkspace onDatasetReady={handleDatasetReady} />
         {error && <div className="error-banner">{error}</div>}
       </div>
     );
@@ -57,19 +45,31 @@ const DrillDownPage = () => {
     <div className="eval-container eval-container--explore">
       <header className="explore-header">
         <button type="button" className="explore-back-btn" onClick={handleChangeDataset}>
-          <ArrowLeft size={18} />
+          <ArrowLeft size={14} />
           Change dataset
         </button>
+
         <div className="explore-dataset-chip">
-          <FileSpreadsheet size={20} />
+          <FileSpreadsheet size={18} />
           <div>
             <strong>{metadata?.fileName ?? 'Dataset'}</strong>
-            <span>
-              {(metadata?.totalRows ?? 0).toLocaleString()} rows ·{' '}
-              {depthCtx.treeDepth} drill level{depthCtx.treeDepth !== 1 ? 's' : ''}{' '}
-              · {metadata?.metrics?.length ?? 0} metrics
-            </span>
+            <span>Active dataset</span>
           </div>
+        </div>
+
+        <div className="explore-header-stats">
+          <span className="explore-stat-pill">
+            <Database size={11} />
+            <strong>{(metadata?.totalRows ?? 0).toLocaleString()}</strong> rows
+          </span>
+          <span className="explore-stat-pill">
+            <Layers size={11} />
+            <strong>{depthCtx.treeDepth}</strong> drill level{depthCtx.treeDepth !== 1 ? 's' : ''}
+          </span>
+          <span className="explore-stat-pill">
+            <BarChart3 size={11} />
+            <strong>{metadata?.metrics?.length ?? 0}</strong> metrics
+          </span>
         </div>
       </header>
 

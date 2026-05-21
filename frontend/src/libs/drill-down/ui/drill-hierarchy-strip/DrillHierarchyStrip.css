@@ -1,91 +1,75 @@
+/* ─── HIERARCHY STRIP ─ numbered step timeline ───────────────────────────── */
 .drill-hierarchy-strip {
-  padding: 12px 16px;
-  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
+  padding: 10px 20px;
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border);
 }
 
 .drill-hierarchy-track {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 4px;
+  position: relative;
 }
 
-.drill-hierarchy-chevron {
-  color: var(--text-light);
-  flex-shrink: 0;
-}
+.drill-hierarchy-chevron { color: var(--border-strong); flex-shrink: 0; }
 
+/* ─── STEP ───────────────────────────────────────────────────────────────── */
 .drill-hierarchy-step {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 6px 10px;
-  border-radius: 999px;
-  border: 1px solid var(--border-color);
-  background: white;
+  gap: 7px;
+  padding: 5px 12px 5px 6px;
+  border-radius: var(--radius-full);
+  border: 1.5px solid var(--border);
+  background: var(--bg-card);
   font-size: 12px;
+  font-weight: 600;
   color: var(--text-muted);
   cursor: default;
-  max-width: 200px;
-  transition: border-color 0.15s, box-shadow 0.15s;
+  max-width: 220px;
+  transition: all var(--transition);
+  font-family: inherit;
 }
 
+/* Completed — clickable */
 .drill-hierarchy-step--completed {
   cursor: pointer;
-  border-color: #93c5fd;
+  border-color: rgba(91,91,214,.3);
   background: var(--primary-soft);
   color: var(--primary);
 }
+.drill-hierarchy-step--completed:hover { border-color: var(--primary); background: rgba(91,91,214,.1); }
 
-.drill-hierarchy-step--completed:hover {
-  box-shadow: var(--shadow-sm);
-  border-color: var(--primary);
-}
-
+/* Current — filled solid */
 .drill-hierarchy-step--current {
   border-color: var(--primary);
-  background: white;
-  color: var(--text-main);
-  font-weight: 600;
-  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+  background: var(--primary);
+  color: #fff;
+  font-weight: 700;
 }
 
-.drill-hierarchy-step--upcoming {
-  opacity: 0.55;
-  border-style: dashed;
-}
+/* Upcoming — faded dashed */
+.drill-hierarchy-step--upcoming { opacity: 0.4; border-style: dashed; }
 
+/* ─── NUMBERED ICON ──────────────────────────────────────────────────────── */
 .drill-hierarchy-step-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  background: rgba(148, 163, 184, 0.2);
+  background: rgba(148,163,184,.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
+  font-size: 10px;
+  font-weight: 800;
 }
 
-.drill-hierarchy-step--completed .drill-hierarchy-step-icon {
-  background: var(--primary);
-  color: white;
-}
+.drill-hierarchy-step--completed .drill-hierarchy-step-icon { background: var(--primary); color: #fff; }
+.drill-hierarchy-step--current .drill-hierarchy-step-icon { background: rgba(255,255,255,.25); color: #fff; }
 
-.drill-hierarchy-step-label {
-  font-weight: 600;
-  text-transform: capitalize;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.drill-hierarchy-step-value {
-  font-weight: 500;
-  opacity: 0.9;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 100px;
-}
+/* ─── LABELS ─────────────────────────────────────────────────────────────── */
+.drill-hierarchy-step-label { font-weight: 700; text-transform: capitalize; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.drill-hierarchy-step-value { font-weight: 500; opacity: 0.85; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 90px; font-size: 11px; }

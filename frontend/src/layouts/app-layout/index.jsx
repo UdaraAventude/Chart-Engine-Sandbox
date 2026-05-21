@@ -6,21 +6,24 @@ const AppLayout = () => {
   return (
     <div className='app-root'>
       <header className='app-header'>
+        <NavLink to='/' className='app-header-brand' aria-label='ChartEngine home'>
+          <div className='app-header-logomark'>CE</div>
+          <div className='app-header-wordmark'>
+            Chart<span>Engine</span>
+          </div>
+        </NavLink>
+
         <nav className='header-nav'>
           <NavLink
             to='/'
             end
-            className={({ isActive }) =>
-              `nav-link-top${isActive ? ' active' : ''}`
-            }
+            className={({ isActive }) => `nav-link-top${isActive ? ' active' : ''}`}
           >
             Dashboard
           </NavLink>
           <NavLink
             to='/builder'
-            className={({ isActive }) =>
-              `nav-link-top${isActive ? ' active' : ''}`
-            }
+            className={({ isActive }) => `nav-link-top${isActive ? ' active' : ''}`}
           >
             Chart Builder
           </NavLink>
@@ -31,14 +34,9 @@ const AppLayout = () => {
         <Outlet />
       </main>
 
-      <footer className='app-footer'>
-      </footer>
-
+      <footer className='app-footer' />
     </div>
   );
 };
 
 export default AppLayout;
-
-
-

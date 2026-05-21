@@ -1,73 +1,101 @@
-.eval-container--workspace {
-  padding-top: 24px;
-}
+/* ─── EXPLORE PAGE ───────────────────────────────────────────────────────── */
+.eval-container--explore { gap: 16px; }
 
-.eval-container--explore {
-  max-width: 1400px;
-}
-
+/* ─── TOP DATASET BANNER ─────────────────────────────────────────────────── */
 .explore-header {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 16px;
-  margin-bottom: 24px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid var(--border-color);
+  gap: 12px;
+  padding: 14px 20px;
+  background: var(--bg-dark);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255,255,255,.07);
 }
 
 .explore-back-btn {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 8px 14px;
-  border: 1px solid var(--border-color);
+  padding: 7px 13px;
+  border: 1.5px solid rgba(255,255,255,.15);
   border-radius: var(--radius-md);
-  background: white;
-  font-size: 0.875rem;
+  background: rgba(255,255,255,.06);
+  font-size: 12px;
   font-weight: 600;
-  color: var(--text-muted);
+  color: rgba(255,255,255,.65);
   cursor: pointer;
+  transition: all var(--transition);
+  font-family: inherit;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
+.explore-back-btn:hover { border-color: rgba(255,255,255,.3); color: #fff; background: rgba(255,255,255,.1); }
 
-.explore-back-btn:hover {
-  border-color: var(--primary);
-  color: var(--primary);
-}
-
+/* Dataset chip — flat on dark bg */
 .explore-dataset-chip {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 10px 16px;
-  background: var(--primary-soft);
-  border: 1px solid #bfdbfe;
-  border-radius: var(--radius-md);
   flex: 1;
   min-width: 0;
 }
 
-.explore-dataset-chip svg {
-  color: var(--primary);
-  flex-shrink: 0;
-}
+.explore-dataset-chip svg { color: var(--primary); flex-shrink: 0; opacity: 0.8; }
 
 .explore-dataset-chip strong {
   display: block;
-  font-size: 0.95rem;
-  color: var(--text-main);
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
 }
 
 .explore-dataset-chip span {
-  font-size: 0.8rem;
-  color: var(--text-muted);
+  display: block;
+  font-size: 11.5px;
+  color: rgba(255,255,255,.45);
+  font-weight: 500;
+  margin-top: 2px;
+  font-variant-numeric: tabular-nums;
 }
 
+/* Stat pills on the right side of the header */
+.explore-header-stats {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+.explore-stat-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border-radius: var(--radius-full);
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.1);
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(255,255,255,.6);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.explore-stat-pill strong {
+  color: #fff;
+  font-weight: 700;
+}
+
+/* ─── MAIN LAYOUT ────────────────────────────────────────────────────────── */
 .explore-main {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 14px;
 }

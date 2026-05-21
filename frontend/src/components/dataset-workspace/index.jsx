@@ -61,17 +61,17 @@ function WorkspaceUpload({ onUploaded }) {
       <label className="workspace-upload-label">
         <div className="workspace-upload-icon">
           {isLoading ? (
-            <Loader2 size={32} className="spin" />
+            <Loader2 size={22} className="spin" />
           ) : (
-            <Upload size={32} />
+            <Upload size={22} />
           )}
         </div>
         <div>
           <p className="workspace-upload-title">
-            {isLoading ? 'Processing on server…' : 'Upload a new CSV'}
+            {isLoading ? 'Processing on server…' : 'Upload a CSV file'}
           </p>
           <p className="workspace-upload-sub">
-            Drag and drop or click to browse · up to 2GB
+            Drag &amp; drop or click to browse · up to 2 GB
           </p>
         </div>
         <input
