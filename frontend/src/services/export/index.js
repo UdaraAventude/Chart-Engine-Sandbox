@@ -299,8 +299,7 @@ export async function exportToExcel(
   const maxColumns = Math.max(...wsData.map((row) => row.length), 0);
   worksheet.columns = Array.from({ length: maxColumns }, (_, colIdx) => ({
     width:
-      Math.max(...wsData.map((row) => String(row[colIdx] ?? "").length), 0) +
-      4,
+      Math.max(...wsData.map((row) => String(row[colIdx] ?? "").length), 0) + 4,
   }));
 
   const headerRowIndex = headerText ? 2 : 0;
