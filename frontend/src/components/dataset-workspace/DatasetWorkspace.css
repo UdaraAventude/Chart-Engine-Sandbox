@@ -223,41 +223,59 @@
   box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
 }
 
-.workspace-dataset-card.disabled {
-  opacity: 0.55;
+.workspace-list-summary {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin: 0 0 10px;
+}
+
+.workspace-dataset-card.not-ready {
+  opacity: 1;
 }
 
 .workspace-dataset-card-main {
   flex: 1;
-  display: grid;
-  grid-template-columns: auto 1fr;
-  grid-template-rows: auto auto;
-  gap: 4px 12px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
   padding: 12px 14px;
   text-align: left;
   background: #f8fafc;
   border: none;
   cursor: pointer;
   font: inherit;
-  color: inherit;
+  color: var(--text-main);
+  min-width: 0;
 }
 
 .workspace-dataset-card-main:disabled {
   cursor: not-allowed;
+  background: #f1f5f9;
 }
 
-.workspace-dataset-card:not(.disabled) .workspace-dataset-card-main:hover {
+.workspace-dataset-card:not(.not-ready) .workspace-dataset-card-main:hover {
   background: var(--primary-soft);
 }
 
 .workspace-dataset-icon {
-  grid-row: 1 / 3;
+  flex-shrink: 0;
   color: var(--primary);
+  margin-top: 2px;
+}
+
+.workspace-dataset-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .workspace-dataset-name {
   font-weight: 600;
   font-size: 0.875rem;
+  color: var(--text-main);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -267,8 +285,15 @@
   font-size: 0.75rem;
   color: var(--text-muted);
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
   align-items: center;
+}
+
+.workspace-processing-hint {
+  font-size: 0.7rem;
+  color: #b45309;
+  font-weight: 500;
 }
 
 .workspace-status {
@@ -290,13 +315,22 @@
 }
 
 .workspace-selected-mark {
-  grid-column: 1 / -1;
   display: inline-flex;
   align-items: center;
   gap: 4px;
   font-size: 0.7rem;
   font-weight: 700;
   color: var(--primary);
+}
+
+.workspace-status--failed {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.workspace-status--pending {
+  background: #e2e8f0;
+  color: #475569;
 }
 
 .workspace-dataset-delete {

@@ -36,9 +36,16 @@ export async function apiRequest(path, options = {}) {
   const contentType = response.headers.get('content-type') || '';
 
   let data = null;
-  if (parseJson && contentType.includes('application/json')) {
-    data = await response.json().catch(() => null);
-  } else if (!parseJson) {
+  if (parseJson) {
+    const text = await response.text();
+    if (text) {
+      try {
+        data = JSON.parse(text);
+      } catch {
+        data = null;
+      }
+    }
+  } else {
     data = response;
   }
 

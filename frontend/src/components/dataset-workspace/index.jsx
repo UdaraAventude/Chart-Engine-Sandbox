@@ -103,6 +103,7 @@ export default function DatasetWorkspace({ onDatasetReady }) {
   const isLoading = useStore((s) => s.isLoading);
 
   const [items, setItems] = useState([]);
+  const [totalCount, setTotalCount] = useState(0);
   const [listLoading, setListLoading] = useState(false);
   const [listError, setListError] = useState(null);
   const [pendingId, setPendingId] = useState(activeDatasetId);
@@ -112,9 +113,12 @@ export default function DatasetWorkspace({ onDatasetReady }) {
     setListError(null);
     try {
       const result = await listDocuments({ page: 1, pageSize: 50 });
-      setItems(result.items ?? []);
+      setItems(result.items);
+      setTotalCount(result.totalCount);
     } catch (err) {
       setListError(err?.message || 'Could not load datasets');
+      setItems([]);
+      setTotalCount(0);
     } finally {
       setListLoading(false);
     }
@@ -163,9 +167,8 @@ export default function DatasetWorkspace({ onDatasetReady }) {
     }
   };
 
-  const readyItems = items.filter(
-    (i) => i.status === 'Ready' || String(i.status).toLowerCase() === 'ready',
-  );
+  const isReadyStatus = (status) => String(status).toLowerCase() === 'ready';
+  const readyCount = items.filter((i) => isReadyStatus(i.status)).length;
 
   const canContinue =
     Boolean(pendingId) &&
@@ -227,54 +230,74 @@ export default function DatasetWorkspace({ onDatasetReady }) {
 
           {listError && <p className="workspace-list-error">{listError}</p>}
 
+          {!listLoading && !listError && totalCount > 0 && (
+            <p className="workspace-list-summary">
+              {totalCount} dataset{totalCount !== 1 ? 's' : ''} found
+              {readyCount > 0 && readyCount < totalCount
+                ? ` · ${readyCount} ready to open`
+                : ''}
+            </p>
+          )}
+
           <div className="workspace-dataset-grid">
-            {listLoading && items.length === 0 && (
+            {listLoading && (
               <p className="workspace-empty">Loading datasets…</p>
             )}
-            {!listLoading && readyItems.length === 0 && (
-              <p className="workspace-empty">No ready datasets yet. Upload a CSV to get started.</p>
+            {!listLoading && items.length === 0 && !listError && (
+              <p className="workspace-empty">No datasets yet. Upload a CSV to get started.</p>
             )}
-            {items.map((item) => {
-              const isReady =
-                item.status === 'Ready' || String(item.status).toLowerCase() === 'ready';
-              const isSelected = pendingId === item.id;
-              return (
-                <div
-                  key={item.id}
-                  className={`workspace-dataset-card ${isSelected ? 'selected' : ''} ${!isReady ? 'disabled' : ''}`}
-                >
-                  <button
-                    type="button"
-                    className="workspace-dataset-card-main"
-                    disabled={!isReady}
-                    onClick={() => selectDataset(item.id)}
+            {!listLoading &&
+              items.map((item) => {
+                const isReady = isReadyStatus(item.status);
+                const isSelected = String(pendingId) === String(item.id);
+                const statusKey = String(item.status).toLowerCase();
+
+                return (
+                  <div
+                    key={item.id}
+                    className={`workspace-dataset-card ${isSelected ? 'selected' : ''} ${!isReady ? 'not-ready' : ''}`}
                   >
-                    <FileSpreadsheet size={22} className="workspace-dataset-icon" />
-                    <span className="workspace-dataset-name">{item.fileName}</span>
-                    <span className="workspace-dataset-meta">
-                      {(item.totalRows ?? 0).toLocaleString()} rows
-                      <span className={`workspace-status workspace-status--${String(item.status).toLowerCase()}`}>
-                        {item.status}
-                      </span>
-                    </span>
-                    {isSelected && (
-                      <span className="workspace-selected-mark">
-                        <CheckCircle2 size={16} />
-                        Selected
-                      </span>
-                    )}
-                  </button>
-                  <button
-                    type="button"
-                    className="workspace-dataset-delete"
-                    onClick={(e) => handleDelete(item.id, e)}
-                    title="Delete"
-                  >
-                    <Trash2 size={15} />
-                  </button>
-                </div>
-              );
-            })}
+                    <button
+                      type="button"
+                      className="workspace-dataset-card-main"
+                      disabled={!isReady}
+                      onClick={() => selectDataset(item.id)}
+                    >
+                      <FileSpreadsheet size={22} className="workspace-dataset-icon" />
+                      <div className="workspace-dataset-info">
+                        <span className="workspace-dataset-name">{item.fileName}</span>
+                        <span className="workspace-dataset-meta">
+                          <span>{item.totalRows.toLocaleString()} rows</span>
+                          <span className={`workspace-status workspace-status--${statusKey}`}>
+                            {item.status}
+                          </span>
+                        </span>
+                        {isSelected && (
+                          <span className="workspace-selected-mark">
+                            <CheckCircle2 size={14} />
+                            Selected
+                          </span>
+                        )}
+                        {!isReady && (
+                          <span className="workspace-processing-hint">
+                            {statusKey === 'processing'
+                              ? 'Still processing — refresh in a moment'
+                              : `Status: ${item.status}`}
+                          </span>
+                        )}
+                      </div>
+                    </button>
+                    <button
+                      type="button"
+                      className="workspace-dataset-delete"
+                      onClick={(e) => handleDelete(item.id, e)}
+                      title="Delete"
+                    >
+                      <Trash2 size={15} />
+                    </button>
+                  </div>
+                );
+              })}
           </div>
         </section>
       </div>
