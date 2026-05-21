@@ -74,7 +74,7 @@ VITE_API_BASE_URL=/api/v1
 - Chart components: [frontend/src/components](frontend/src/components#L1)
 - Drill-down renderer: [frontend/src/libs/drill-down/ui/drill-down-renderer/index.jsx](frontend/src/libs/drill-down/ui/drill-down-renderer/index.jsx#L1)
 - Chart builder / engine hooks: [frontend/src/libs/chart-builder](frontend/src/libs/chart-builder#L1)
-- CSV worker pipeline: [frontend/src/workers/csv-pipeline.worker.js](frontend/src/workers/csv-pipeline.worker.js#L1)
+- API services: [frontend/src/services/api](frontend/src/services/api)
 - Upload CSV UI: [frontend/src/components/upload-csv/index.jsx](frontend/src/components/upload-csv/index.jsx#L1)
 
 See the `src/` tree for additional modules and utilities.
@@ -94,8 +94,8 @@ Run these from the `frontend` folder:
 
 ## Development Notes
 
-- CSV parsing is offloaded to a Web Worker to keep the UI responsive; see the worker in `frontend/src/workers`.
-- The drill-down system provides small adapters and a breadcrumb UI. To experiment, open the drill-down demo pages under `libs/drill-down`.
-- Many UI controls are intentionally small, composable components (axis-selector, chart-type-selector, etc.). Reuse them when building new visualizations.
+- See [INTEGRATION.md](INTEGRATION.md) for full-stack setup and smoke tests.
+- Upload and chart data come from the Chart Engine API (SSE + REST). The local CSV worker is legacy and unused.
+- The drill-down UI fetches `GET /documents/visual` on path/chart/aggregation changes.
 
 ---

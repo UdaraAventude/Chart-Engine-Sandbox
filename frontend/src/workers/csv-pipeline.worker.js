@@ -1,3 +1,4 @@
+/** @deprecated Server-only upload; kept for reference. */
 import Papa from "papaparse";
 import { StreamFormatter } from "../services/global-formatter/index.js";
 

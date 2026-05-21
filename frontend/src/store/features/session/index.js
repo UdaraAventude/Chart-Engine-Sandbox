@@ -1,4 +1,4 @@
-export const createSessionSlice = (set) => ({
+export const createSessionSlice = (set, get) => ({
   activeDatasetId: null,
   metadata: null,
   serverChartData: null,
@@ -11,7 +11,8 @@ export const createSessionSlice = (set) => ({
   setChartLoading: (chartLoading) => set({ chartLoading }),
   setChartError: (chartError) => set({ chartError }),
 
-  clearSession: () =>
+  clearSession: () => {
+    get().resetDrill?.();
     set({
       activeDatasetId: null,
       metadata: null,
@@ -20,5 +21,6 @@ export const createSessionSlice = (set) => ({
       chartError: null,
       globalData: null,
       totalRows: 0,
-    }),
+    });
+  },
 });
