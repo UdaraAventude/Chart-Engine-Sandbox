@@ -1,5 +1,6 @@
 import React from 'react';
-import { ChevronRight, Home, CornerLeftUp } from 'lucide-react';
+import { ChevronRight, Home, CornerLeftUp, ListTree } from 'lucide-react';
+import { formatColumnLabel } from '../../utils/drillDepth';
 import '../../../../styles/DrillDown.css';
 
 const DrillDownBreadcrumb = ({
@@ -7,57 +8,64 @@ const DrillDownBreadcrumb = ({
   onNavigate,
   rowCount,
   totalRows,
+  onOpenPathModal,
 }) => {
   const atRoot = drillPath.length === 0;
 
   return (
-    <div className='breadcrumb-container'>
-      <div className='breadcrumb-trail'>
+    <div className="drill-path-bar">
+      <div className="drill-path-bar-trail">
         <button
+          type="button"
           onClick={() => onNavigate(0)}
-          className={`breadcrumb-btn ${atRoot ? 'active' : ''}`}
-          style={{ display: 'flex', alignItems: 'center', gap: '6px' }}
+          className={`drill-path-chip ${atRoot ? 'drill-path-chip--active' : ''}`}
         >
           <Home size={14} />
-          Overview
+          <span>Overview</span>
         </button>
 
         {drillPath.map((step, idx) => {
           const isLast = idx === drillPath.length - 1;
-          const colLabel = step.column.startsWith('__hist__')
-            ? step.column.slice('__hist__'.length).replace(/_/g, ' ') + ' range'
-            : step.column.replace(/_/g, ' ');
-            
           return (
-            <div key={idx} className="breadcrumb-item">
-              <ChevronRight size={14} className='breadcrumb-sep' />
+            <React.Fragment key={`${step.column}-${step.value}-${idx}`}>
+              <ChevronRight size={14} className="drill-path-sep" aria-hidden />
               <button
+                type="button"
                 onClick={() => onNavigate(idx + 1)}
-                className={`breadcrumb-btn ${isLast ? 'active' : ''}`}
+                className={`drill-path-chip ${isLast ? 'drill-path-chip--active' : ''}`}
               >
-                <span style={{ opacity: 0.7, marginRight: '4px' }}>{colLabel}:</span>
-                <span>{step.value}</span>
+                <span className="drill-path-chip-dim">{formatColumnLabel(step.column)}</span>
+                <span className="drill-path-chip-val">{step.value}</span>
               </button>
-            </div>
+            </React.Fragment>
           );
         })}
+      </div>
 
-        <div className={`rows-badge active`}>
-          <span>
-            {rowCount?.toLocaleString() || totalRows?.toLocaleString() || 0}{' '}
-            Records
-          </span>
-        </div>
-        
-        {!atRoot && (
-          <button 
-            className="export-btn" 
-            style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: '4px' }}
-            onClick={() => onNavigate(drillPath.length - 1)}
-          >
-            <CornerLeftUp size={12} />
-            Go Up
-          </button>
+      <div className="drill-path-bar-actions">
+        <span className="drill-record-badge" title="Records in current slice">
+          {(rowCount ?? totalRows ?? 0).toLocaleString()} records
+        </span>
+
+        {drillPath.length > 0 && (
+          <>
+            <button
+              type="button"
+              className="drill-path-action-btn"
+              onClick={() => onNavigate(drillPath.length - 1)}
+            >
+              <CornerLeftUp size={14} />
+              Up
+            </button>
+            <button
+              type="button"
+              className="drill-path-action-btn drill-path-action-btn--outline"
+              onClick={onOpenPathModal}
+            >
+              <ListTree size={14} />
+              Path
+            </button>
+          </>
         )}
       </div>
     </div>
@@ -65,4 +73,3 @@ const DrillDownBreadcrumb = ({
 };
 
 export default DrillDownBreadcrumb;
-

@@ -16,10 +16,12 @@
 
 .drill-toolbar {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
+  gap: 16px;
   padding-bottom: 16px;
   border-bottom: 1px solid var(--border-color);
+  flex-wrap: wrap;
 }
 
 .drill-engine-badge {
@@ -163,6 +165,160 @@
   background: #f1f5f9;
   color: var(--text-main);
 }
+/* Drill depth & path */
+.drill-toolbar-left {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+}
+
+.drill-depth-meter {
+  max-width: 320px;
+}
+
+.drill-depth-meter-labels {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.drill-depth-meter-dim {
+  color: var(--primary);
+  text-transform: capitalize;
+}
+
+.drill-depth-meter-track {
+  height: 6px;
+  background: #e2e8f0;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.drill-depth-meter-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #3b82f6, #2563eb);
+  border-radius: 999px;
+  transition: width 0.25s ease;
+}
+
+.drill-path-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  background: #f8fafc;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+}
+
+.drill-path-bar-trail {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+}
+
+.drill-path-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: white;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.drill-path-chip:hover {
+  border-color: #93c5fd;
+  color: var(--primary);
+}
+
+.drill-path-chip--active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+  font-weight: 600;
+}
+
+.drill-path-chip--active .drill-path-chip-dim {
+  opacity: 0.85;
+}
+
+.drill-path-chip-dim {
+  opacity: 0.75;
+  text-transform: capitalize;
+}
+
+.drill-path-chip-val {
+  font-weight: 600;
+}
+
+.drill-path-sep {
+  color: var(--text-light);
+  flex-shrink: 0;
+}
+
+.drill-path-bar-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.drill-record-badge {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  padding: 4px 10px;
+  background: white;
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+}
+
+.drill-path-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  border: none;
+  background: var(--primary);
+  color: white;
+  cursor: pointer;
+}
+
+.drill-path-action-btn:hover {
+  background: var(--primary-hover);
+}
+
+.drill-path-action-btn--outline {
+  background: white;
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+}
+
+.drill-path-action-btn--outline:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
 .breadcrumb-container {
   padding: 4px 0;
 }
@@ -256,24 +412,11 @@
 .chart-container-wrapper {
   background: white;
   border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
   position: relative;
-  overflow: visible !important; /* Allow tooltips to overflow if needed */
-}
-
-.floating-depth-badge {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(4px);
-  padding: 4px 12px;
-  border-radius: 6px 0 0 0;
-  border-top: 1px solid var(--border-color);
-  border-left: 1px solid var(--border-color);
-  font-size: 10px;
-  font-weight: 800;
-  color: var(--text-light);
-  letter-spacing: 0.1em;
+  overflow: visible !important;
+  min-height: 480px;
+  height: 520px;
 }
 
 /* Table Enhancements */
@@ -328,4 +471,4 @@
   color: var(--text-muted);
   font-size: 14px;
   max-width: 400px;
-}
+}

@@ -1,11 +1,9 @@
-import React, { useRef, useCallback, useEffect, useMemo } from "react";
+import React, { useRef, useCallback, useEffect, useMemo, useState } from "react";
 import {
   Activity,
   Download,
   Layers,
   Maximize2,
-  Share2,
-  ChevronRight,
 } from "lucide-react";
 import "../../../../styles/DrillDown.css";
 import useStore from "../../../../store";
@@ -18,6 +16,15 @@ import {
 import { useServerVisualization } from "../../hooks/useServerVisualization";
 import { DRILL_CHART_OPTIONS } from "../../constants/chartOptions";
 import DrillDownBreadcrumb from "../drill-down-breadcrumb";
+import DrillHierarchyStrip from "../drill-hierarchy-strip";
+import DrillPathModal from "../drill-path-modal";
+import {
+  ChartLoadingState,
+  ChartErrorState,
+  ChartEmptyState,
+  hasNormalizedChartData,
+} from "../chart-panel-state";
+import { getDepthContext } from "../../utils/drillDepth";
 import { AGGREGATION_OPTIONS } from "../../hooks/engine/aggregation";
 import {
   exportToPNG,
@@ -85,8 +92,10 @@ const DrillDownRenderer = ({ onRenderTime }) => {
 
   const t0 = useRef(0);
   const echartsRef = useRef(null);
+  const [pathModalOpen, setPathModalOpen] = useState(false);
+  const [chartRefreshKey, setChartRefreshKey] = useState(0);
 
-  const { chartType: serverChartType } = useServerVisualization();
+  const { chartType: serverChartType } = useServerVisualization(chartRefreshKey);
 
   const tree = globalData?.tree;
   const dimensions = metadata?.dimensions ?? globalData?.dimensions ?? [];
@@ -94,17 +103,24 @@ const DrillDownRenderer = ({ onRenderTime }) => {
   const rows = globalData?.rows ?? [];
 
   const currentNode = tree ? getNodeAtPath(tree, drillPath) : null;
-  const categoricalDepth = drillPath.filter(
-    (s) => !s.column.startsWith("__hist__"),
-  ).length;
-  const atLeaf = activeDatasetId
-    ? categoricalDepth >= dimensions.length
-    : isLeaf(currentNode);
+  const depthCtx = getDepthContext(drillPath, dimensions);
+  const {
+    categoricalDepth,
+    displayLevel,
+    maxDepth,
+    currentDimension,
+    nextDimension,
+    atMaxDepth,
+    canDrillFurther,
+    progressPct,
+  } = depthCtx;
+
+  const atLeaf = activeDatasetId ? atMaxDepth : isLeaf(currentNode);
 
   const currentColumn =
-    serverChartData?.meta?.groupedBy || dimensions[categoricalDepth] || "";
+    serverChartData?.meta?.groupedBy || currentDimension || "";
 
-  const availableDepth = dimensions.length - categoricalDepth;
+  const availableDepth = maxDepth - categoricalDepth;
 
   const chartType = chartTypeByDepth[drillPath.length] ?? serverChartType ?? "bar";
   const currentOption = DRILL_CHART_OPTIONS.find((o) => o.value === chartType);
@@ -366,19 +382,32 @@ const DrillDownRenderer = ({ onRenderTime }) => {
     }
 
     if (chartLoading) {
-      return (
-        <div className="empty-state">
-          <p>Loading chart from server...</p>
-        </div>
-      );
+      return <ChartLoadingState />;
     }
 
     if (chartError) {
       return (
-        <div className="empty-state">
-          <h3>Chart Error</h3>
-          <p className="empty-subtext">{chartError}</p>
-        </div>
+        <ChartErrorState
+          message={chartError}
+          onRetry={() => setChartRefreshKey((k) => k + 1)}
+        />
+      );
+    }
+
+    if (
+      activeDatasetId &&
+      !hasNormalizedChartData(chartType, serverChartData?.normalized)
+    ) {
+      return (
+        <ChartEmptyState
+          title="No data at this level"
+          hint={
+            atMaxDepth
+              ? "You reached the deepest hierarchy level. Switch to Table view or go up."
+              : `Try a different aggregation or go up. Next dimension: ${nextDimension ? nextDimension.replace(/_/g, ' ') : 'n/a'}.`
+          }
+          canDrill={canDrillFurther && currentOption?.canDrill}
+        />
       );
     }
 
@@ -425,15 +454,29 @@ const DrillDownRenderer = ({ onRenderTime }) => {
   return (
     <div className="drill-container" ref={containerRef}>
       <div className="drill-toolbar">
-        <div className="drill-engine-badge">
-          <Activity size={16} className="drill-engine-dot" />
-          <span className="drill-engine-text">
-            {chartType.charAt(0).toUpperCase() + chartType.slice(1)} Analytics
-          </span>
-          <div className="drill-engine-divider" />
-          <span className="drill-engine-levels">
-            Depth {categoricalDepth + 1}/{dimensions.length}
-          </span>
+        <div className="drill-toolbar-left">
+          <div className="drill-engine-badge">
+            <Activity size={16} className="drill-engine-dot" />
+            <span className="drill-engine-text">
+              {chartType.charAt(0).toUpperCase() + chartType.slice(1)} chart
+            </span>
+          </div>
+          <div className="drill-depth-meter" aria-label={`Hierarchy level ${displayLevel} of ${maxDepth}`}>
+            <div className="drill-depth-meter-labels">
+              <span>Level {displayLevel} of {maxDepth || '—'}</span>
+              {currentColumn && (
+                <span className="drill-depth-meter-dim">
+                  Grouped by {currentColumn.replace(/_/g, ' ')}
+                </span>
+              )}
+            </div>
+            <div className="drill-depth-meter-track">
+              <div
+                className="drill-depth-meter-fill"
+                style={{ width: `${Math.max(progressPct, displayLevel > 0 ? 8 : 0)}%` }}
+              />
+            </div>
+          </div>
         </div>
 
         <div className="drill-controls">
@@ -469,14 +512,30 @@ const DrillDownRenderer = ({ onRenderTime }) => {
         </div>
       </div>
 
-      <div className="breadcrumb-container">
-        <DrillDownBreadcrumb
-          drillPath={drillPath}
-          onNavigate={(depth) => drillBackTo(depth)}
-          rowCount={resolvedRowCount}
-          totalRows={totalRows}
-        />
-      </div>
+      <DrillHierarchyStrip
+        dimensions={dimensions}
+        drillPath={drillPath}
+        onJumpToDepth={(depth) => drillBackTo(depth)}
+      />
+
+      <DrillDownBreadcrumb
+        drillPath={drillPath}
+        onNavigate={(depth) => drillBackTo(depth)}
+        rowCount={resolvedRowCount}
+        totalRows={totalRows}
+        onOpenPathModal={() => setPathModalOpen(true)}
+      />
+
+      <DrillPathModal
+        open={pathModalOpen}
+        onClose={() => setPathModalOpen(false)}
+        drillPath={drillPath}
+        dimensions={dimensions}
+        totalRows={totalRows}
+        rowCount={resolvedRowCount}
+        onNavigate={(depth) => drillBackTo(depth)}
+        onGoUp={() => drillBackTo(Math.max(0, drillPath.length - 1))}
+      />
 
       {chartType !== "table" && (
         <div className="export-toolbar">
@@ -541,13 +600,8 @@ const DrillDownRenderer = ({ onRenderTime }) => {
         </div>
       )}
 
-      <div className="chart-container-wrapper" style={{ height: "520px" }}>
+      <div className="chart-container-wrapper">
         {renderChart()}
-        {drillPath.length > 0 && (
-          <div className="floating-depth-badge">
-            EXPLORER LVL {drillPath.length}
-          </div>
-        )}
       </div>
     </div>
   );

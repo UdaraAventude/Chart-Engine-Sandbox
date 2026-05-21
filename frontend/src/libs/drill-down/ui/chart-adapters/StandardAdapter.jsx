@@ -4,6 +4,7 @@ import PieChart from '../../../../components/pie-chart';
 import LineChart from '../../../../components/line-chart';
 import { formatForChart } from '../../hooks/engine';
 import { AGGREGATION_OPTIONS } from '../../hooks/engine/aggregation';
+import '../chart-panel-state/ChartPanelState.css';
 
 export default function StandardAdapter({
   chartType,
@@ -30,6 +31,14 @@ export default function StandardAdapter({
   const aggObj = AGGREGATION_OPTIONS.find(o => o.value === aggregation);
   const aggLabel = aggObj ? aggObj.label.toUpperCase() : aggregation.toUpperCase();
   const yLabel = `${aggLabel} OF ${(metrics[0] || '').replace(/_/g, ' ').toUpperCase()}`;
+
+  if (!data?.length) {
+    return (
+      <div className="chart-panel-state chart-panel-state--empty" style={{ minHeight: 360 }}>
+        <p>No values to display at this drill level.</p>
+      </div>
+    );
+  }
 
   if (chartType === 'pie') {
     return (

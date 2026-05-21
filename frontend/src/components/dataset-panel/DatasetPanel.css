@@ -1,13 +1,16 @@
 .dataset-panel {
-  width: 260px;
+  width: 280px;
   flex-shrink: 0;
   background: #fff;
   border: 1px solid #e2e8f0;
   border-radius: 12px;
-  padding: 12px;
-  max-height: 600px;
+  padding: 14px;
+  max-height: calc(100vh - 200px);
   display: flex;
   flex-direction: column;
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 16px;
 }
 
 .dataset-panel-header {

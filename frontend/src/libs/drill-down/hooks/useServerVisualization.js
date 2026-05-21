@@ -4,7 +4,7 @@ import { getVisualization } from '../../../services/api/documents';
 import { normalizeServerChartData } from '../../../services/api/normalizeChartData';
 import { ApiError } from '../../../services/api/httpClient';
 
-export function useServerVisualization() {
+export function useServerVisualization(refreshKey = 0) {
   const activeDatasetId = useStore((s) => s.activeDatasetId);
   const drillPath = useStore((s) => s.drillPath);
   const chartTypeByDepth = useStore((s) => s.chartTypeByDepth);
@@ -71,6 +71,7 @@ export function useServerVisualization() {
     setServerChart,
     setChartLoading,
     setChartError,
+    refreshKey,
   ]);
 
   return { chartType };
