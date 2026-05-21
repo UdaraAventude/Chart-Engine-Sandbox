@@ -14,6 +14,7 @@ import {
   filterRows,
 } from "../../hooks/engine";
 import { useServerVisualization } from "../../hooks/useServerVisualization";
+import { useRowSampleRows } from "../../hooks/useRowSampleRows";
 import { DRILL_CHART_OPTIONS } from "../../constants/chartOptions";
 import DrillDownBreadcrumb from "../drill-down-breadcrumb";
 import DrillHierarchyStrip from "../drill-hierarchy-strip";
@@ -24,7 +25,11 @@ import {
   ChartEmptyState,
   hasNormalizedChartData,
 } from "../chart-panel-state";
-import { getDepthContext } from "../../utils/drillDepth";
+import {
+  getDepthContext,
+  formatColumnLabel,
+  trimDrillPathToTreeDepth,
+} from "../../utils/drillDepth";
 import { AGGREGATION_OPTIONS } from "../../hooks/engine/aggregation";
 import {
   exportToPNG,
@@ -95,7 +100,7 @@ const DrillDownRenderer = ({ onRenderTime }) => {
   const [pathModalOpen, setPathModalOpen] = useState(false);
   const [chartRefreshKey, setChartRefreshKey] = useState(0);
 
-  const { chartType: serverChartType } = useServerVisualization(chartRefreshKey);
+  useServerVisualization(chartRefreshKey);
 
   const tree = globalData?.tree;
   const dimensions = metadata?.dimensions ?? globalData?.dimensions ?? [];
@@ -103,26 +108,63 @@ const DrillDownRenderer = ({ onRenderTime }) => {
   const rows = globalData?.rows ?? [];
 
   const currentNode = tree ? getNodeAtPath(tree, drillPath) : null;
-  const depthCtx = getDepthContext(drillPath, dimensions);
+  const maxHierarchyDepth = metadata?.maxHierarchyDepth ?? 0;
+  const depthCtx = getDepthContext(drillPath, dimensions, {
+    maxHierarchyDepth,
+    totalRows: metadata?.totalRows ?? totalRows ?? 0,
+  });
   const {
     categoricalDepth,
     displayLevel,
     maxDepth,
+    drillableDimensions,
     currentDimension,
     nextDimension,
     atMaxDepth,
+    atTreeLeaf,
     canDrillFurther,
     progressPct,
+    segmentLabel,
+    segmentColumn,
+    breakdownDimension,
   } = depthCtx;
+
+  const meta = serverChartData?.meta;
+  const canDrillDown = activeDatasetId
+    ? canDrillFurther &&
+      (meta?.canDrillDown ?? (meta?.nodesCount ?? 0) > 0)
+    : !isLeaf(currentNode);
 
   const atLeaf = activeDatasetId ? atMaxDepth : isLeaf(currentNode);
 
-  const currentColumn =
-    serverChartData?.meta?.groupedBy || currentDimension || "";
+  const chartType = chartTypeByDepth[drillPath.length] ?? "bar";
+  const tableWantsRawRows = Boolean(activeDatasetId) && atMaxDepth;
+  const {
+    rows: tableSampleRows,
+    loading: tableRowsLoading,
+    error: tableRowsError,
+  } = useRowSampleRows(drillPath, chartType === "table" && tableWantsRawRows);
+
+  const breakdownColumn =
+    depthCtx.breakdownDimension || meta?.groupedBy || "";
+
+  useEffect(() => {
+    if (!activeDatasetId || !maxHierarchyDepth) return;
+    const trimmed = trimDrillPathToTreeDepth(
+      drillPath,
+      maxHierarchyDepth,
+      dimensions,
+      metadata?.totalRows ?? totalRows ?? 0,
+    );
+    if (trimmed.length !== drillPath.length) {
+      drillToPath(trimmed);
+    }
+  }, [activeDatasetId, maxHierarchyDepth, metadata?.datasetId, dimensions, drillPath, drillToPath]);
+
+  const currentColumn = breakdownColumn || segmentColumn || "";
 
   const availableDepth = maxDepth - categoricalDepth;
 
-  const chartType = chartTypeByDepth[drillPath.length] ?? serverChartType ?? "bar";
   const currentOption = DRILL_CHART_OPTIONS.find((o) => o.value === chartType);
 
   const lastHistStep = useMemo(
@@ -195,10 +237,13 @@ const DrillDownRenderer = ({ onRenderTime }) => {
 
   const handleClick = useCallback(
     (name) => {
-      const column = serverChartData?.meta?.groupedBy || currentColumn;
-      if (!atLeaf && name && column) drillInto(name, column);
+      const column =
+        depthCtx.breakdownDimension ||
+        drillableDimensions[categoricalDepth] ||
+        meta?.groupedBy;
+      if (canDrillDown && name && column) drillInto(name, column);
     },
-    [atLeaf, currentColumn, drillInto, serverChartData],
+    [canDrillDown, categoricalDepth, depthCtx.breakdownDimension, drillableDimensions, meta, drillInto],
   );
 
   useEffect(() => {
@@ -277,12 +322,43 @@ const DrillDownRenderer = ({ onRenderTime }) => {
   }
 
   const renderTable = () => {
+    const serverAgg =
+      activeDatasetId &&
+      !tableWantsRawRows &&
+      serverChartData?.normalized?.length;
+
+    if (tableRowsLoading || (activeDatasetId && !tableWantsRawRows && chartLoading)) {
+      return <ChartLoadingState />;
+    }
+
+    if (tableRowsError) {
+      return (
+        <ChartErrorState
+          message={tableRowsError}
+          onRetry={() => setChartRefreshKey((k) => k + 1)}
+        />
+      );
+    }
+
+    if (activeDatasetId && !tableWantsRawRows && chartError) {
+      return (
+        <ChartErrorState
+          message={chartError}
+          onRetry={() => setChartRefreshKey((k) => k + 1)}
+        />
+      );
+    }
+
     let data;
     let isRaw = false;
-    if (atLeaf && rows.length) {
+
+    if (tableWantsRawRows && tableSampleRows.length) {
+      data = filterRows(tableSampleRows, drillPath).slice(0, 500);
+      isRaw = true;
+    } else if (atLeaf && rows.length) {
       data = filterRows(rows, drillPath).slice(0, 500);
       isRaw = true;
-    } else if (serverChartData?.normalized?.length) {
+    } else if (serverAgg) {
       data = serverChartData.normalized.map((d) => ({
         name: d.name,
         value: d.value,
@@ -303,10 +379,11 @@ const DrillDownRenderer = ({ onRenderTime }) => {
       data = [];
     }
 
-    if (!data || data.length === 0)
+    if (!data || data.length === 0) {
       return (
         <div className="empty-state">No data available for this selection.</div>
       );
+    }
 
     const cols = Object.keys(data[0]).filter((c) => c !== "aggs");
 
@@ -362,7 +439,12 @@ const DrillDownRenderer = ({ onRenderTime }) => {
       );
     }
 
-    if (currentOption && currentOption.minRemainingDepth > availableDepth) {
+    const needsMoreLevelsBelow =
+      !atTreeLeaf &&
+      currentOption &&
+      currentOption.minRemainingDepth > availableDepth;
+
+    if (needsMoreLevelsBelow) {
       return (
         <div className="empty-state">
           <Layers
@@ -371,21 +453,29 @@ const DrillDownRenderer = ({ onRenderTime }) => {
             color="var(--text-light)"
             style={{ marginBottom: "12px" }}
           />
-          <h3>Maximum Hierarchy Depth Reached</h3>
+          <h3>Not enough levels below</h3>
           <p className="empty-subtext">
-            This visualization cannot drill further.
-            <strong> Switch to Table view</strong> above to explore raw record
-            details.
+            {currentOption.label} needs at least {currentOption.minRemainingDepth}{' '}
+            more hierarchy level
+            {currentOption.minRemainingDepth !== 1 ? 's' : ''} under your current
+            position. Go up or pick another chart type.
+            {atTreeLeaf ? '' : ' At the deepest drill step, use Bar or Table for this segment.'}
           </p>
         </div>
       );
     }
 
-    if (chartLoading) {
+    const usesRowSample =
+      chartType === "sunburst" ||
+      chartType === "scatter" ||
+      chartType === "correlation" ||
+      chartType === "histogram";
+
+    if (!usesRowSample && chartLoading) {
       return <ChartLoadingState />;
     }
 
-    if (chartError) {
+    if (!usesRowSample && chartError) {
       return (
         <ChartErrorState
           message={chartError}
@@ -395,6 +485,7 @@ const DrillDownRenderer = ({ onRenderTime }) => {
     }
 
     if (
+      !usesRowSample &&
       activeDatasetId &&
       !hasNormalizedChartData(chartType, serverChartData?.normalized)
     ) {
@@ -402,9 +493,9 @@ const DrillDownRenderer = ({ onRenderTime }) => {
         <ChartEmptyState
           title="No data at this level"
           hint={
-            atMaxDepth
-              ? "You reached the deepest hierarchy level. Switch to Table view or go up."
-              : `Try a different aggregation or go up. Next dimension: ${nextDimension ? nextDimension.replace(/_/g, ' ') : 'n/a'}.`
+            atTreeLeaf
+              ? "You reached the deepest drill level for this dataset. The chart shows this segment's aggregate, or go up to explore siblings."
+              : `Try a different aggregation or go up. Next breakdown: ${nextDimension ? formatColumnLabel(nextDimension) : 'n/a'}.`
           }
           canDrill={canDrillFurther && currentOption?.canDrill}
         />
@@ -418,12 +509,20 @@ const DrillDownRenderer = ({ onRenderTime }) => {
         rows={rows}
         drillPath={drillPath}
         metrics={metrics}
-        dimensions={dimensions}
+        dimensions={depthCtx.drillableDimensions}
         currentColumn={currentColumn}
         categoricalDepth={categoricalDepth}
         atLeaf={atLeaf}
         title={title}
-        handleClick={currentOption?.canDrill ? handleClick : undefined}
+        handleClick={
+          currentOption?.canDrill && canDrillDown ? handleClick : undefined
+        }
+        canDrillDown={canDrillDown}
+        serverMode={
+          Boolean(activeDatasetId) &&
+          chartType !== "sunburst" &&
+          !usesRowSample
+        }
         onChartReady={onChartReady}
         drillInto={drillInto}
         drillIntoMany={drillIntoMany}
@@ -431,7 +530,9 @@ const DrillDownRenderer = ({ onRenderTime }) => {
         drillBackTo={drillBackTo}
         aggregation={aggregation}
         tree={tree}
-        serverNormalized={serverChartData?.normalized}
+        serverNormalized={
+          usesRowSample ? null : serverChartData?.normalized
+        }
       />
     );
   };
@@ -464,11 +565,16 @@ const DrillDownRenderer = ({ onRenderTime }) => {
           <div className="drill-depth-meter" aria-label={`Hierarchy level ${displayLevel} of ${maxDepth}`}>
             <div className="drill-depth-meter-labels">
               <span>Level {displayLevel} of {maxDepth || '—'}</span>
-              {currentColumn && (
+              {atTreeLeaf && segmentLabel ? (
                 <span className="drill-depth-meter-dim">
-                  Grouped by {currentColumn.replace(/_/g, ' ')}
+                  Segment: {segmentLabel}
+                  {segmentColumn ? ` (${formatColumnLabel(segmentColumn)})` : ''}
                 </span>
-              )}
+              ) : breakdownColumn ? (
+                <span className="drill-depth-meter-dim">
+                  Breakdown: {formatColumnLabel(breakdownColumn)}
+                </span>
+              ) : null}
             </div>
             <div className="drill-depth-meter-track">
               <div
@@ -513,10 +619,64 @@ const DrillDownRenderer = ({ onRenderTime }) => {
       </div>
 
       <DrillHierarchyStrip
-        dimensions={dimensions}
+        drillableDimensions={depthCtx.drillableDimensions}
         drillPath={drillPath}
         onJumpToDepth={(depth) => drillBackTo(depth)}
       />
+
+      {canDrillDown && breakdownDimension && !atTreeLeaf && (
+        <p className="drill-select-hint" role="status">
+          {chartType === "sunburst" ? (
+            <>
+              Click an arc to drill into{" "}
+              <strong>{formatColumnLabel(breakdownDimension)}</strong>
+              {categoricalDepth + 1 >= maxDepth
+                ? " (last drill step)."
+                : "."}
+            </>
+          ) : chartType === "pie" ? (
+            <>
+              Click a slice to drill into{" "}
+              <strong>{formatColumnLabel(breakdownDimension)}</strong>
+              {categoricalDepth + 1 >= maxDepth ? " (last drill step)." : "."}
+            </>
+          ) : chartType === "line" ? (
+            <>
+              Click a point to drill into{" "}
+              <strong>{formatColumnLabel(breakdownDimension)}</strong>
+              {categoricalDepth + 1 >= maxDepth ? " (last drill step)." : "."}
+            </>
+          ) : chartType === "scatter" ? (
+            <>
+              Plots up to 5,000 rows: X = <strong>{metrics[0]}</strong>, Y ={" "}
+              <strong>{metrics[1] ?? metrics[0]}</strong>
+              {currentColumn
+                ? `, coloured by ${formatColumnLabel(currentColumn)}`
+                : ""}
+              . View only — use Bar or Line to drill.
+            </>
+          ) : chartType === "correlation" ? (
+            <>
+              Pearson correlation between numeric metrics (up to 5,000 rows at this
+              drill level). View only — use Bar or Line to drill down.
+            </>
+          ) : chartType === "histogram" ? (
+            <>
+              Distribution of <strong>{metrics[0]}</strong> (up to 5,000 rows).
+              Click a bar to filter by that value range, then use Bar or Pie to
+              drill the hierarchy.
+            </>
+          ) : (
+            <>
+              Click a bar to select{" "}
+              <strong>{formatColumnLabel(breakdownDimension)}</strong>
+              {categoricalDepth + 1 >= maxDepth
+                ? " (last drill step — then one bar for that group)."
+                : "."}
+            </>
+          )}
+        </p>
+      )}
 
       <DrillDownBreadcrumb
         drillPath={drillPath}
@@ -530,7 +690,7 @@ const DrillDownRenderer = ({ onRenderTime }) => {
         open={pathModalOpen}
         onClose={() => setPathModalOpen(false)}
         drillPath={drillPath}
-        dimensions={dimensions}
+        dimensions={depthCtx.drillableDimensions}
         totalRows={totalRows}
         rowCount={resolvedRowCount}
         onNavigate={(depth) => drillBackTo(depth)}

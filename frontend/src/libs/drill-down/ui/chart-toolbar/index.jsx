@@ -7,7 +7,7 @@ import {
 } from '../../constants/chartOptions';
 import './ChartToolbar.css';
 
-const ChartToolbar = ({ activeChartType, onSelect, availableDepth = 99 }) => {
+const ChartToolbar = ({ activeChartType, onSelect }) => {
   return (
     <div className="chart-toolbar-panel">
       <div className="chart-toolbar-intro">
@@ -42,15 +42,11 @@ const ChartToolbar = ({ activeChartType, onSelect, availableDepth = 99 }) => {
             const tier = opt.drillSupport || 'none';
             const tierLabel = DRILL_TIER_LABELS[tier];
             const legend = DRILL_SUPPORT_LEGEND.find((l) => l.tier === tier);
-            const depthBlocked =
-              opt.minRemainingDepth > availableDepth && opt.value !== activeChartType;
-
             return (
               <button
                 key={opt.value}
                 type="button"
-                onClick={() => !depthBlocked && onSelect(opt.value)}
-                disabled={depthBlocked}
+                onClick={() => onSelect(opt.value)}
                 className={`pill-btn ${isActive ? 'active' : ''} pill-btn--${tier}`}
                 title={`${opt.detail}\n\nDrill-down: ${legend?.label ?? tierLabel}`}
               >
@@ -71,8 +67,8 @@ const ChartToolbar = ({ activeChartType, onSelect, availableDepth = 99 }) => {
       <p className="chart-toolbar-footnote">
         <Info size={14} />
         Recommended for exploration: <strong>Bar</strong>, <strong>Pie</strong>,{' '}
-        <strong>Sunburst</strong>, and <strong>Line</strong>. Use Table at the deepest level
-        for raw rows.
+        <strong>Sunburst</strong>, and <strong>Line</strong>. Choosing a chart type returns
+        you to <strong>Overview</strong> (level 1) so you can explore from the top.
       </p>
     </div>
   );

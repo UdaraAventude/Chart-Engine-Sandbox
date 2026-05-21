@@ -6,32 +6,6 @@
   max-width: 1400px;
 }
 
-.workspace-steps--compact {
-  margin-bottom: 20px;
-}
-
-.workspace-step--done {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  font: inherit;
-  color: var(--text-muted);
-}
-
-.workspace-step--done:hover {
-  color: var(--primary);
-}
-
-.workspace-step--done .workspace-step-num {
-  background: #059669;
-  color: white;
-}
-
-.workspace-step-connector--active {
-  background: linear-gradient(90deg, #059669, var(--primary));
-}
-
 .explore-header {
   display: flex;
   flex-wrap: wrap;

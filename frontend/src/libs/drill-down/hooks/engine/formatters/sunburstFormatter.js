@@ -24,7 +24,7 @@ export function formatSunburstData(
     };
 
     if (n.children && n.children.length > 0) {
-      result.children = n.children.map(c => buildNode(c, currentPath));
+      result.children = n.children.map((c) => buildNode(c, currentPath));
       if (limit !== null && result.children.length > limit) {
         result.children = result.children
           .sort((a, b) => b.value - a.value)
@@ -34,7 +34,6 @@ export function formatSunburstData(
     return result;
   }
 
-  // Build from the provided node (which could be the root or a sub-node)
   const formattedRoot = buildNode(node);
-  return formattedRoot.children || [];
+  return formattedRoot.children ?? [];
 }

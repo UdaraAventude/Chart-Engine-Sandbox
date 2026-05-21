@@ -19,14 +19,22 @@ export function parsePagedDocuments(result) {
     return { items: [], totalCount: 0, page: 1, pageSize: 10 };
   }
 
-  const rawList =
+  let rawList =
     result.items ??
     result.Items ??
+    result.data?.items ??
+    result.data?.Items ??
+    result.Data?.items ??
+    result.Data?.Items ??
     result.data ??
     result.Data ??
     (Array.isArray(result) ? result : []);
 
-  const items = rawList
+  if (rawList && typeof rawList === 'object' && !Array.isArray(rawList)) {
+    rawList = Object.values(rawList);
+  }
+
+  const items = (Array.isArray(rawList) ? rawList : [])
     .map(normalizeDatasetListItem)
     .filter(Boolean);
 
@@ -52,6 +60,14 @@ export function getMetadata(datasetId) {
 
 export function deleteDocument(datasetId) {
   return apiRequest(`/documents/${datasetId}`, { method: 'DELETE', parseJson: false });
+}
+
+export function getSampleRows({ id, drillPath = [], limit = 5000 }) {
+  const params = new URLSearchParams({ limit: String(limit) });
+  if (drillPath?.length > 0) {
+    params.set('drillPath', JSON.stringify(drillPath));
+  }
+  return apiRequest(`/documents/${id}/sample-rows?${params}`);
 }
 
 export function getVisualization({ id, chartType, drillPath = [], aggregation = 'count', drillDown = 0 }) {

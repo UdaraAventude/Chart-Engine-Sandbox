@@ -15,10 +15,9 @@ const SunburstChart = ({
   onChartReady,
 }) => {
   const echartsRef = useRef(null);
-
   const clickedInternally = useRef(false);
-
   const drillPathRef = useRef(drillPath);
+
   useEffect(() => {
     drillPathRef.current = drillPath;
   }, [drillPath]);
@@ -130,12 +129,6 @@ const SunburstChart = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [processedData, measureCol, aggregation]);
 
-  const dispatchZoom = (chart, path) => {
-    const targetNodeId =
-      path.length > 0 ? path.map((p) => p.value).join("/") : null;
-    chart.dispatchAction({ type: "sunburstRootToNode", targetNodeId });
-  };
-
   useEffect(() => {
     if (clickedInternally.current) {
       clickedInternally.current = false;
@@ -143,14 +136,21 @@ const SunburstChart = ({
     }
     if (!echartsRef.current) return;
     const chart = echartsRef.current.getEchartsInstance();
-    dispatchZoom(chart, drillPath);
+    const targetNodeId =
+      drillPath.length > 0 ? drillPath.map((p) => p.value).join("/") : null;
+    chart.dispatchAction({ type: "sunburstRootToNode", targetNodeId });
   }, [drillPath]);
 
   const handleChartReady = (chartInstance) => {
     const path = drillPathRef.current;
-    if (path.length > 0) {
-      setTimeout(() => dispatchZoom(chartInstance, path), 50);
-    }
+    const targetNodeId =
+      path.length > 0 ? path.map((p) => p.value).join("/") : null;
+    setTimeout(() => {
+      chartInstance.dispatchAction({
+        type: "sunburstRootToNode",
+        targetNodeId,
+      });
+    }, 50);
     if (onChartReady) onChartReady(chartInstance);
   };
 
@@ -211,7 +211,6 @@ const SunburstChart = ({
         notMerge={false}
       />
 
-      {/* ── Bottom hint ── */}
       <div
         style={{
           position: "absolute",

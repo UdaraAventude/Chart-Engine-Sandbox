@@ -11,6 +11,7 @@ export default function HeatmapAdapter({
   currentColumn,
   categoricalDepth,
   atLeaf,
+  canDrillDown,
   title,
   handleClick,
   onChartReady,
@@ -43,7 +44,11 @@ export default function HeatmapAdapter({
       measureCol={metrics[0]}
       title={title}
       height='100%'
-      onCellClick={!atLeaf ? (xIdx, cell) => handleClick(cell.xLabel) : undefined}
+      onCellClick={
+        (canDrillDown !== undefined ? canDrillDown : !atLeaf)
+          ? (xIdx, cell) => handleClick?.(cell.xLabel)
+          : undefined
+      }
       onChartReady={onChartReady}
       aggregation={aggregation}
     />

@@ -14,18 +14,20 @@ const DrillDownPage = () => {
     error,
     drillPath,
     chartTypeByDepth,
-    setChartTypeAtDepth,
     setRenderTime,
+    resetDrillAndSetChartType,
   } = useStore();
 
   const [showExplore, setShowExplore] = useState(Boolean(activeDatasetId));
 
   const activeChartType = chartTypeByDepth[drillPath.length] ?? 'bar';
-  const depthCtx = getDepthContext(drillPath, metadata?.dimensions ?? []);
-  const availableDepth = depthCtx.maxDepth - depthCtx.categoricalDepth;
-
+  const depthCtx = getDepthContext(drillPath, metadata?.dimensions ?? [], {
+    maxHierarchyDepth: metadata?.maxHierarchyDepth,
+    totalRows: metadata?.totalRows ?? 0,
+  });
+  /** Top toolbar: new chart type at overview (resets drill path). */
   const handleChartTypeSelect = (type) => {
-    setChartTypeAtDepth(drillPath.length, type);
+    resetDrillAndSetChartType(type);
   };
 
   const handleChangeDataset = () => {
@@ -53,18 +55,6 @@ const DrillDownPage = () => {
 
   return (
     <div className="eval-container eval-container--explore">
-      <div className="workspace-steps workspace-steps--compact">
-        <button type="button" className="workspace-step workspace-step--done" onClick={handleChangeDataset}>
-          <span className="workspace-step-num">✓</span>
-          <span>Dataset</span>
-        </button>
-        <div className="workspace-step-connector workspace-step-connector--active" />
-        <div className="workspace-step workspace-step--active">
-          <span className="workspace-step-num">2</span>
-          <span>Visualize & drill down</span>
-        </div>
-      </div>
-
       <header className="explore-header">
         <button type="button" className="explore-back-btn" onClick={handleChangeDataset}>
           <ArrowLeft size={18} />
@@ -76,8 +66,8 @@ const DrillDownPage = () => {
             <strong>{metadata?.fileName ?? 'Dataset'}</strong>
             <span>
               {(metadata?.totalRows ?? 0).toLocaleString()} rows ·{' '}
-              {metadata?.dimensions?.length ?? 0} hierarchy levels ·{' '}
-              {metadata?.metrics?.length ?? 0} metrics
+              {depthCtx.treeDepth} drill level{depthCtx.treeDepth !== 1 ? 's' : ''}{' '}
+              · {metadata?.metrics?.length ?? 0} metrics
             </span>
           </div>
         </div>
@@ -87,7 +77,6 @@ const DrillDownPage = () => {
         <ChartToolbar
           activeChartType={activeChartType}
           onSelect={handleChartTypeSelect}
-          availableDepth={availableDepth}
         />
         <DrillDownRenderer onRenderTime={setRenderTime} />
       </main>

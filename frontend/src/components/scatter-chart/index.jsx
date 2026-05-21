@@ -25,9 +25,10 @@ const ScatterChart = ({
     if (colorCol) {
       const groups = {};
       limited.forEach((r) => {
-        const k = String(r[colorCol]);
+        const k = String(r[colorCol] ?? '');
+        if (!k) return;
         if (!groups[k]) groups[k] = [];
-        groups[k].push([r[xCol], r[yCol]]);
+        groups[k].push([Number(r[xCol]), Number(r[yCol])]);
       });
       const keys = Object.keys(groups);
       if (keys.length > 0 && keys.length <= maxGroups) {
@@ -45,7 +46,7 @@ const ScatterChart = ({
     return [
       {
         type: 'scatter',
-        data: limited.map((r) => [r[xCol], r[yCol]]),
+        data: limited.map((r) => [Number(r[xCol]), Number(r[yCol])]),
         symbolSize,
         itemStyle: { color: palette[0], opacity },
         animation: false,
@@ -118,7 +119,8 @@ const ScatterChart = ({
   }, [series, title, xCol, yCol]);
 
   return (
-    <ReactECharts opts={{ renderer: 'svg' }}
+    <ReactECharts
+      opts={{ renderer: 'svg' }}
       option={option}
       className="echarts-wrapper"
       style={{ height }}

@@ -1,9 +1,22 @@
+import { getCategoricalDepth } from '../../../libs/drill-down/utils/drillDepth';
+import { resolveHierarchyModel } from '../../../libs/drill-down/utils/hierarchyModel';
+
 export const createDrillSlice = (set, get) => ({
   drillPath: [],
   chartTypeByDepth: {},
 
   drillInto: (childName, column) =>
     set((state) => {
+      const meta = state.metadata;
+      const dimensions = meta?.dimensions ?? [];
+      const maxDepth = meta?.maxHierarchyDepth ?? 0;
+      const { treeDepth } = resolveHierarchyModel(dimensions, maxDepth);
+      const catDepth = getCategoricalDepth(state.drillPath);
+
+      if (treeDepth > 0 && catDepth >= treeDepth) {
+        return state;
+      }
+
       const currentDepth = state.drillPath.length;
       const parentType = state.chartTypeByDepth[currentDepth] ?? "bar";
       return {
@@ -71,6 +84,10 @@ export const createDrillSlice = (set, get) => ({
     }),
 
   resetDrill: () => set({ drillPath: [], chartTypeByDepth: {} }),
+
+  /** Top toolbar: clear drill path and set chart type at overview. */
+  resetDrillAndSetChartType: (type) =>
+    set({ drillPath: [], chartTypeByDepth: { 0: type } }),
   aggregation: "avg",
   setAggregation: (aggregation) => set({ aggregation }),
 

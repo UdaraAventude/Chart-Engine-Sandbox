@@ -112,7 +112,7 @@ export default function DatasetWorkspace({ onDatasetReady }) {
     setListLoading(true);
     setListError(null);
     try {
-      const result = await listDocuments({ page: 1, pageSize: 50 });
+      const result = await listDocuments({ page: 1, pageSize: 100 });
       setItems(result.items);
       setTotalCount(result.totalCount);
     } catch (err) {
@@ -145,6 +145,7 @@ export default function DatasetWorkspace({ onDatasetReady }) {
         dimensions: meta.dimensions,
         metrics: meta.metrics,
         rejected: meta.rejected ?? [],
+        maxHierarchyDepth: meta.maxHierarchyDepth ?? meta.MaxHierarchyDepth,
       });
       setTotalRows(meta.totalRows);
       resetDrill();
@@ -176,18 +177,6 @@ export default function DatasetWorkspace({ onDatasetReady }) {
 
   return (
     <div className="dataset-workspace">
-      <div className="workspace-steps" aria-label="Workflow steps">
-        <div className="workspace-step workspace-step--active">
-          <span className="workspace-step-num">1</span>
-          <span>Choose dataset</span>
-        </div>
-        <div className="workspace-step-connector" />
-        <div className="workspace-step workspace-step--muted">
-          <span className="workspace-step-num">2</span>
-          <span>Visualize & drill down</span>
-        </div>
-      </div>
-
       <header className="workspace-header">
         <h1>Chart Engine Sandbox</h1>
         <p>Upload a file or open an existing dataset, then pick a chart type to explore your hierarchy.</p>
@@ -230,51 +219,60 @@ export default function DatasetWorkspace({ onDatasetReady }) {
 
           {listError && <p className="workspace-list-error">{listError}</p>}
 
-          {!listLoading && !listError && totalCount > 0 && (
+          {!listLoading && !listError && (totalCount > 0 || items.length > 0) && (
             <p className="workspace-list-summary">
-              {totalCount} dataset{totalCount !== 1 ? 's' : ''} found
-              {readyCount > 0 && readyCount < totalCount
+              {(items.length || totalCount)} dataset
+              {(items.length || totalCount) !== 1 ? 's' : ''} shown
+              {readyCount > 0 && readyCount < (items.length || totalCount)
                 ? ` · ${readyCount} ready to open`
                 : ''}
             </p>
           )}
+          {!listLoading && totalCount > 0 && items.length === 0 && !listError && (
+            <p className="workspace-list-error">
+              Could not display dataset list. Try refresh.
+            </p>
+          )}
 
-          <div className="workspace-dataset-grid">
+          <ul className="workspace-dataset-list" role="list">
             {listLoading && (
-              <p className="workspace-empty">Loading datasets…</p>
+              <li className="workspace-empty">Loading datasets…</li>
             )}
             {!listLoading && items.length === 0 && !listError && (
-              <p className="workspace-empty">No datasets yet. Upload a CSV to get started.</p>
+              <li className="workspace-empty">No datasets yet. Upload a CSV to get started.</li>
             )}
             {!listLoading &&
               items.map((item) => {
                 const isReady = isReadyStatus(item.status);
                 const isSelected = String(pendingId) === String(item.id);
                 const statusKey = String(item.status).toLowerCase();
+                const rowCount = Number(item.totalRows) || 0;
 
                 return (
-                  <div
+                  <li
                     key={item.id}
-                    className={`workspace-dataset-card ${isSelected ? 'selected' : ''} ${!isReady ? 'not-ready' : ''}`}
+                    className={`workspace-dataset-row ${isSelected ? 'selected' : ''} ${!isReady ? 'not-ready' : ''}`}
                   >
                     <button
                       type="button"
-                      className="workspace-dataset-card-main"
+                      className="workspace-dataset-row-select"
                       disabled={!isReady}
                       onClick={() => selectDataset(item.id)}
                     >
-                      <FileSpreadsheet size={22} className="workspace-dataset-icon" />
-                      <div className="workspace-dataset-info">
-                        <span className="workspace-dataset-name">{item.fileName}</span>
+                      <FileSpreadsheet size={20} aria-hidden />
+                      <div className="workspace-dataset-row-body">
+                        <span className="workspace-dataset-name" title={item.fileName}>
+                          {item.fileName}
+                        </span>
                         <span className="workspace-dataset-meta">
-                          <span>{item.totalRows.toLocaleString()} rows</span>
+                          {rowCount.toLocaleString()} rows
                           <span className={`workspace-status workspace-status--${statusKey}`}>
                             {item.status}
                           </span>
                         </span>
                         {isSelected && (
                           <span className="workspace-selected-mark">
-                            <CheckCircle2 size={14} />
+                            <CheckCircle2 size={14} aria-hidden />
                             Selected
                           </span>
                         )}
@@ -291,14 +289,15 @@ export default function DatasetWorkspace({ onDatasetReady }) {
                       type="button"
                       className="workspace-dataset-delete"
                       onClick={(e) => handleDelete(item.id, e)}
-                      title="Delete"
+                      title="Delete dataset"
+                      aria-label={`Delete ${item.fileName}`}
                     >
                       <Trash2 size={15} />
                     </button>
-                  </div>
+                  </li>
                 );
               })}
-          </div>
+          </ul>
         </section>
       </div>
 
@@ -308,8 +307,13 @@ export default function DatasetWorkspace({ onDatasetReady }) {
             <strong>{metadata.fileName}</strong>
             <span>
               {(metadata.totalRows ?? 0).toLocaleString()} rows ·{' '}
-              {metadata.dimensions?.length ?? 0} dimensions ·{' '}
-              {metadata.metrics?.length ?? 0} metrics
+              {metadata.maxHierarchyDepth ?? metadata.dimensions?.length ?? 0} drill
+              levels
+              {(metadata.maxHierarchyDepth ?? 0) > 0 &&
+              (metadata.dimensions?.length ?? 0) > metadata.maxHierarchyDepth
+                ? ` (${metadata.dimensions.length} columns in file)`
+                : ''}{' '}
+              · {metadata.metrics?.length ?? 0} metrics
             </span>
           </div>
         )}

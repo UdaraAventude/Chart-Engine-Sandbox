@@ -3,12 +3,15 @@ import { Check, Circle, ChevronRight } from 'lucide-react';
 import { buildHierarchySteps } from '../../utils/drillDepth';
 import './DrillHierarchyStrip.css';
 
+/** @param drillableDimensions - Only levels that exist in the server tree (no filter-only columns). */
 export default function DrillHierarchyStrip({
-  dimensions = [],
+  drillableDimensions = [],
   drillPath = [],
   onJumpToDepth,
 }) {
-  const steps = buildHierarchySteps(dimensions, drillPath);
+  const steps = buildHierarchySteps(drillableDimensions, drillPath, {
+    maxHierarchyDepth: drillableDimensions.length,
+  });
 
   if (!steps.length) return null;
 

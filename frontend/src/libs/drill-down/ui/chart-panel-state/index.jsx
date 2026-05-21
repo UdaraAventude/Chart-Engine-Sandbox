@@ -44,8 +44,14 @@ export function ChartEmptyState({ title, hint, canDrill }) {
 
 export function hasNormalizedChartData(chartType, normalized) {
   if (normalized == null) return false;
-  if (chartType === 'scatter' || chartType === 'bubble' || chartType === 'correlation') {
-    return Boolean(normalized.rawData?.length);
+  if (chartType === 'bubble') {
+    return Array.isArray(normalized) && normalized.length > 0;
+  }
+  if (chartType === 'correlation') {
+    return Boolean(normalized?.columns?.length >= 2 && normalized?.matrix?.length);
+  }
+  if (chartType === 'scatter') {
+    return Boolean(normalized?.rawData?.length);
   }
   if (chartType === 'heatmap') {
     return Boolean(normalized.cells?.length);
@@ -57,7 +63,15 @@ export function hasNormalizedChartData(chartType, normalized) {
     return Boolean(normalized.labels?.length);
   }
   if (chartType === 'sunburst') {
-    return Array.isArray(normalized) ? normalized.length > 0 : Boolean(normalized?.children);
+    if (!normalized) return false;
+    const nodes = Array.isArray(normalized) ? normalized : [normalized];
+    if (nodes.length === 0) return false;
+    const first = nodes[0];
+    const kids = first?.children ?? first?.Children;
+    if (first?.name === 'root' || first?.id === 'root') {
+      return (kids?.length ?? 0) > 0;
+    }
+    return nodes.length > 0;
   }
   return Array.isArray(normalized) && normalized.length > 0;
 }
