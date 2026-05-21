@@ -26,6 +26,7 @@ import {
   exportToCSV,
   exportToExcel,
 } from "../../../../services/export";
+import { runServerExport } from "../../../../services/export/serverExport";
 
 import {
   HistogramAdapter,
@@ -125,7 +126,26 @@ const DrillDownRenderer = ({ onRenderTime }) => {
     [onRenderTime, setRenderTime],
   );
 
+  const handleServerDataExport = async (format) => {
+    if (!activeDatasetId) return;
+    try {
+      await runServerExport(activeDatasetId, format, drillPath);
+    } catch (err) {
+      console.error("[DrillDown] Server export failed:", err);
+      useStore.getState().setError(err?.message || "Server export failed");
+    }
+  };
+
   const handleExport = async (format) => {
+    if (format === "server-csv") {
+      await handleServerDataExport("CSV");
+      return;
+    }
+    if (format === "server-excel") {
+      await handleServerDataExport("Excel");
+      return;
+    }
+
     if (!echartsRef.current) {
       console.warn("[DrillDown] Export called before chart was ready.");
       return;
@@ -483,19 +503,38 @@ const DrillDownRenderer = ({ onRenderTime }) => {
             PDF
           </button>
 
+          {activeDatasetId && (
+            <>
+              <button
+                className="export-btn"
+                onClick={() => handleExport("server-csv")}
+                title="Export filtered data via server"
+              >
+                Data CSV
+              </button>
+              <button
+                className="export-btn"
+                onClick={() => handleExport("server-excel")}
+                title="Export filtered data via server"
+              >
+                Data XLSX
+              </button>
+            </>
+          )}
+
           {chartType !== "scatter" && chartType !== "heatmap" && (
             <>
               <button
                 className="export-btn"
                 onClick={() => handleExport("csv")}
               >
-                CSV
+                Chart CSV
               </button>
               <button
                 className="export-btn"
                 onClick={() => handleExport("excel")}
               >
-                XLSX
+                Chart XLSX
               </button>
             </>
           )}
