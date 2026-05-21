@@ -1,62 +1,42 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Wand2 } from 'lucide-react';
 import useStore from '../../../../store';
 import { ConfigInput } from '../../ui/config-input';
 import { AxisSelector } from '../../ui/axis-selector';
 import { ChartTypeSelector } from '../../ui/chart-type-selector';
-import { UniversalChartRenderer } from '../../ui/universal-chart-renderer';
+import { ServerBuilderPreview } from '../../ui/server-builder-preview';
 
 const ChartBuilderPage = () => {
-  const { globalData, error } = useStore();
-  const dataset = globalData?.rows ?? null;
+  const { activeDatasetId, metadata, error } = useStore();
 
   const [config, setConfig] = useState({
     title: 'Custom Universal Chart',
     chartType: 'bar',
-    xAxis: 'department',
-    yAxis: 'monthly_salary',
+    xAxis: '',
+    yAxis: '',
   });
 
+  useEffect(() => {
+    if (!metadata) return;
+    setConfig((prev) => ({
+      ...prev,
+      xAxis: prev.xAxis || metadata.dimensions?.[0] || '',
+      yAxis: prev.yAxis || metadata.metrics?.[0] || '',
+    }));
+  }, [metadata]);
+
   const handleChange = (key, value) => {
-    setConfig((prev) => {
-      const newConfig = { ...prev, [key]: value };
-
-      // Update chartTypeByDepth when chartType changes
-      if (key === 'chartType') {
-        setChartTypeAtDepth(0, value);
-      }
-
-      return newConfig;
-    });
+    setConfig((prev) => ({ ...prev, [key]: value }));
   };
 
-  const availableColumns = useMemo(() => {
-    if (!dataset || dataset.length === 0)
-      return { dimensions: [], metrics: [] };
-    const firstRow = dataset[0] || {};
-    const cols = Object.keys(firstRow);
-
-    const metrics = cols.filter((col) => {
-      const val = parseFloat(firstRow[col]);
-      return !isNaN(val);
-    });
-
-    const dimensions = cols.filter((col) => !metrics.includes(col));
-
-    const forceDimensions = [
-      'seniority_level',
-      'education_level',
-      'overall_satisfaction',
-    ];
-    forceDimensions.forEach((fd) => {
-      if (cols.includes(fd) && !dimensions.includes(fd)) {
-        dimensions.push(fd);
-      }
-    });
-
-    return { dimensions, metrics };
-  }, [dataset]);
+  const availableColumns = useMemo(
+    () => ({
+      dimensions: metadata?.dimensions ?? [],
+      metrics: metadata?.metrics ?? [],
+    }),
+    [metadata],
+  );
 
   return (
     <div
@@ -77,7 +57,7 @@ const ChartBuilderPage = () => {
         }}
       >
         <Link
-          to='/'
+          to="/"
           style={{
             color: '#64748b',
             textDecoration: 'none',
@@ -98,20 +78,18 @@ const ChartBuilderPage = () => {
               gap: '8px',
             }}
           >
-            <Wand2 size={24} color='#2563eb' />
+            <Wand2 size={24} color="#2563eb" />
             Universal Chart Builder
           </h1>
-          <p
-            style={{ margin: '4px 0 0 0', color: '#64748b', fontSize: '14px' }}
-          >
-            Configure visualizations using the universal JSON dataset format.
+          <p style={{ margin: '4px 0 0 0', color: '#64748b', fontSize: '14px' }}>
+            Preview charts from the Chart Engine API using dataset metadata.
           </p>
         </div>
       </header>
 
-      {error && <div className='error-banner'>{error}</div>}
+      {error && <div className="error-banner">{error}</div>}
 
-      {!globalData ? (
+      {!activeDatasetId ? (
         <div
           style={{
             textAlign: 'center',
@@ -120,14 +98,12 @@ const ChartBuilderPage = () => {
             borderRadius: '12px',
           }}
         >
-          <h2 style={{ fontSize: '20px', color: '#1e293b' }}>
-            No Dataset Loaded
-          </h2>
+          <h2 style={{ fontSize: '20px', color: '#1e293b' }}>No Dataset Loaded</h2>
           <p style={{ color: '#64748b' }}>
-            Please go back to the home page and upload a dataset first.
+            Upload or select a dataset on the home page first.
           </p>
           <Link
-            to='/'
+            to="/"
             style={{
               display: 'inline-block',
               marginTop: '16px',
@@ -143,7 +119,6 @@ const ChartBuilderPage = () => {
         </div>
       ) : (
         <div style={{ display: 'flex', gap: '24px', flexWrap: 'wrap' }}>
-          {/* LEFT PANEL: The Builder Controls */}
           <div
             style={{
               flex: '1 1 300px',
@@ -164,12 +139,12 @@ const ChartBuilderPage = () => {
                 paddingBottom: '12px',
               }}
             >
-              Configuration Payload
+              Configuration
             </h3>
 
             <ConfigInput
-              name='title'
-              label='Chart Title'
+              name="title"
+              label="Chart Title"
               value={config.title}
               onChange={(val) => handleChange('title', val)}
             />
@@ -180,42 +155,38 @@ const ChartBuilderPage = () => {
             />
 
             <AxisSelector
-              name='xAxis'
-              label='X-Axis Dimension'
+              name="xAxis"
+              label="X-Axis Dimension"
               value={config.xAxis}
               onChange={(val) => handleChange('xAxis', val)}
               options={availableColumns.dimensions}
             />
 
             <AxisSelector
-              name='yAxis'
-              label='Y-Axis Metric'
+              name="yAxis"
+              label="Y-Axis Metric"
               value={config.yAxis}
               onChange={(val) => handleChange('yAxis', val)}
               options={availableColumns.metrics}
             />
 
-            <div
-              style={{
-                marginTop: '32px',
-                padding: '16px',
-                backgroundColor: '#f1f5f9',
-                borderRadius: '8px',
-                fontSize: '12px',
-                fontFamily: 'monospace',
-                color: '#334155',
-              }}
-            >
-              <strong>Current JSON Config:</strong>
-              <pre style={{ margin: '8px 0 0 0', overflowX: 'auto' }}>
-                {JSON.stringify(config, null, 2)}
-              </pre>
-            </div>
+            <p style={{ fontSize: '12px', color: '#64748b', marginTop: '16px' }}>
+              Charts are rendered via GET /documents/visual at the dataset root.
+              Custom axis pairs outside the tree order may differ from selection.
+            </p>
           </div>
 
-          {/* RIGHT PANEL: The Renderer */}
-          <div style={{ flex: '2 1 600px' }}>
-            <UniversalChartRenderer config={config} rawData={dataset} />
+          <div
+            style={{
+              flex: '2 1 600px',
+              backgroundColor: 'white',
+              borderRadius: '12px',
+              padding: '16px',
+              boxShadow: '0 4px 6px -1px rgba(0,0,0,0.05)',
+              minHeight: '500px',
+            }}
+          >
+            <ServerBuilderPreview config={config} />
           </div>
         </div>
       )}

@@ -13,6 +13,25 @@ body {
   overflow-x: hidden;
 }
 
+.builder-preview-status {
+  padding: 2rem;
+  text-align: center;
+  color: #64748b;
+}
+
+.builder-preview-error {
+  color: #dc2626;
+}
+
+.builder-preview-notice {
+  font-size: 0.8rem;
+  color: #b45309;
+  background: #fffbeb;
+  padding: 8px 12px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
 .eval-container {
   max-width: 1400px;
   margin: 0 auto;
