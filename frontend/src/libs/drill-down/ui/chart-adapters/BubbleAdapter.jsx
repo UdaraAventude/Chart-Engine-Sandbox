@@ -9,6 +9,7 @@ export default function BubbleAdapter({
   metrics,
   dimensions,
   atLeaf,
+  canDrillDown,
   title,
   handleClick,
   onChartReady,
@@ -27,7 +28,7 @@ export default function BubbleAdapter({
       yCol={metrics[1] ?? metrics[0] ?? ''}
       sizeCol={metrics[0] ?? ''}
       title={title}
-      isLeaf={atLeaf}
+      isLeaf={!(canDrillDown ?? !atLeaf)}
       height='100%'
       onBubbleClick={handleClick}
       onChartReady={onChartReady}

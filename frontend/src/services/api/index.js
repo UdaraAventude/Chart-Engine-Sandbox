@@ -13,6 +13,8 @@ export async function uploadCSV(file, onProgress) {
     dimensions: result.dimensions,
     metrics: result.metrics,
     rejected: result.rejected ?? [],
+    maxHierarchyDepth:
+      result.maxHierarchyDepth ?? result.MaxHierarchyDepth ?? result.dimensions?.length,
   };
 
   if (!metadata.dimensions?.length || !metadata.metrics?.length) {
@@ -26,6 +28,7 @@ export async function uploadCSV(file, onProgress) {
         dimensions: fromApi.dimensions,
         metrics: fromApi.metrics,
         rejected: fromApi.rejected ?? [],
+        maxHierarchyDepth: fromApi.maxHierarchyDepth ?? fromApi.MaxHierarchyDepth,
       };
     } catch {
       // use upload payload as fallback

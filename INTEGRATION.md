@@ -33,6 +33,13 @@ Open http://localhost:5173. Vite proxies `/api` and `/health` to port **5110**.
 - **Datasets:** `GET/DELETE /api/v1/documents`
 - **Export:** `POST /api/v1/datasets/{id}/export` → poll → download
 
+## Chart-type selection (drill-down)
+
+| Control | Behavior |
+|---------|----------|
+| **Top chart toolbar** | Resets drill path to overview and sets chart type at depth 0 |
+| **In-chart dropdown** | Changes chart type at current drill depth only (path unchanged) |
+
 ## Smoke checklist
 
 | Step | Action |
@@ -40,10 +47,13 @@ Open http://localhost:5173. Vite proxies `/api` and `/health` to port **5110**.
 | 1 | API health returns `{ status: "healthy" }` |
 | 2 | Upload CSV via UI; progress reaches 100% |
 | 3 | Bar chart renders; click segment to drill |
-| 4 | Switch chart type and aggregation |
-| 5 | Dataset panel lists files; select and delete work |
-| 6 | Data CSV / Data XLSX export completes |
-| 7 | Chart builder shows preview with active dataset |
+| 4 | Top toolbar: change type → returns to overview |
+| 5 | In-chart dropdown: change type at depth → path unchanged |
+| 6 | Heatmap / multiline / bubble render 2D or series shapes from API |
+| 7 | Correlation / scatter: view-only at server drill levels |
+| 8 | Dataset list select and delete; server export |
+| 9 | Aggregation changes bar/pie/line values |
+| 10 | Histogram: bins display; bin drill disabled in server mode |
 
 ## Production build
 

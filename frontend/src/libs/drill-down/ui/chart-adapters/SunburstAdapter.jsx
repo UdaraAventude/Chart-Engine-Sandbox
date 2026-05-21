@@ -1,25 +1,26 @@
-import React, { useMemo } from "react";
+import React from "react";
 import SunburstChart from "../../../../components/sunburst-chart";
-import { formatSunburstData } from "../../hooks/engine/formatters/sunburstFormatter";
+import { useSunburstTreeData } from "../../hooks/useSunburstTreeData";
+import { ChartLoadingState, ChartErrorState } from "../chart-panel-state";
 
 export default function SunburstAdapter({
-  rows,
   drillPath,
   metrics,
-  dimensions,
-  title,
+  dimensions = [],
   onChartReady,
   aggregation,
   drillBackTo,
   drillToPath,
-  tree,
-  serverNormalized,
 }) {
-  const data = useMemo(() => {
-    if (serverNormalized?.length) return serverNormalized;
-    if (!tree) return [];
-    return formatSunburstData(tree, 200, aggregation, metrics[0] ?? "");
-  }, [serverNormalized, tree, aggregation, metrics]);
+  const { data, loading, error } = useSunburstTreeData(aggregation, metrics);
+
+  if (loading) {
+    return <ChartLoadingState />;
+  }
+
+  if (error) {
+    return <ChartErrorState message={error} />;
+  }
 
   if (!data || data.length === 0) {
     return (
@@ -29,11 +30,11 @@ export default function SunburstAdapter({
     );
   }
 
-  const handleNodeClick = (name, clickedDepth, treePathInfo) => {
+  const handleNodeClick = (_name, clickedDepth, treePathInfo) => {
     const newSteps = [];
     for (let d = 1; d <= clickedDepth; d++) {
       const entry = treePathInfo[d];
-      if (!entry || !entry.name) break;
+      if (!entry?.name) break;
       const column = dimensions[d - 1];
       if (!column) break;
       newSteps.push({ column, value: entry.name });
@@ -51,7 +52,7 @@ export default function SunburstAdapter({
       height="100%"
       onNodeClick={handleNodeClick}
       onCenterClick={() => {
-        if (drillPath.length > 0) {
+        if (drillPath.length > 0 && drillBackTo) {
           drillBackTo(drillPath.length - 1);
         }
       }}

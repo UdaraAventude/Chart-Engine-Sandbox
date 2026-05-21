@@ -13,6 +13,42 @@ import {
   Table2,
 } from 'lucide-react';
 
+/** @typedef {'excellent' | 'good' | 'limited' | 'none'} DrillSupportTier */
+
+export const DRILL_SUPPORT_LEGEND = [
+  {
+    tier: 'excellent',
+    label: 'Best for deep drill-down',
+    hint: 'Click segments to walk every hierarchy level',
+    color: '#059669',
+  },
+  {
+    tier: 'good',
+    label: 'Good drill-down',
+    hint: 'Click to drill; works at most depth levels',
+    color: '#2563eb',
+  },
+  {
+    tier: 'limited',
+    label: 'Needs 2+ levels below',
+    hint: 'Use when enough dimensions remain under you',
+    color: '#d97706',
+  },
+  {
+    tier: 'none',
+    label: 'No drill-down',
+    hint: 'Snapshot / analysis only at current filter',
+    color: '#64748b',
+  },
+];
+
+export const DRILL_TIER_LABELS = {
+  excellent: 'Deep drill',
+  good: 'Drill',
+  limited: '2+ levels',
+  none: 'View only',
+};
+
 export const DRILL_CHART_OPTIONS = [
   {
     value: 'bar',
@@ -23,6 +59,7 @@ export const DRILL_CHART_OPTIONS = [
     detail: 'Best for hierarchical categorical data. Click a bar to drill into that group.',
     canDrill: true,
     minRemainingDepth: 1,
+    drillSupport: 'excellent',
   },
   {
     value: 'pie',
@@ -33,6 +70,7 @@ export const DRILL_CHART_OPTIONS = [
     detail: 'Shows proportional distribution of metrics. Click a slice to drill in.',
     canDrill: true,
     minRemainingDepth: 1,
+    drillSupport: 'excellent',
   },
   {
     value: 'sunburst',
@@ -43,6 +81,7 @@ export const DRILL_CHART_OPTIONS = [
     detail: 'Click a segment to drill into deeper groups.',
     canDrill: true,
     minRemainingDepth: 1,
+    drillSupport: 'excellent',
   },
   {
     value: 'line',
@@ -53,6 +92,7 @@ export const DRILL_CHART_OPTIONS = [
     detail: 'Displays metric values as a trend line. Click a point to drill.',
     canDrill: true,
     minRemainingDepth: 1,
+    drillSupport: 'excellent',
   },
   {
     value: 'scatter',
@@ -63,6 +103,7 @@ export const DRILL_CHART_OPTIONS = [
     detail: 'Plots raw rows using two numeric columns. Colour-coded by current group.',
     canDrill: false,
     minRemainingDepth: 1,
+    drillSupport: 'none',
   },
   {
     value: 'bubble',
@@ -73,6 +114,7 @@ export const DRILL_CHART_OPTIONS = [
     detail: 'X, Y, and Size each encode a different metric per group. Click a bubble to drill.',
     canDrill: true,
     minRemainingDepth: 1,
+    drillSupport: 'good',
   },
 
   {
@@ -84,6 +126,7 @@ export const DRILL_CHART_OPTIONS = [
     detail: 'Shows average metric across two dimension axes. Click a cell to drill on X axis.',
     canDrill: true,
     minRemainingDepth: 2,
+    drillSupport: 'limited',
   },
   {
     value: 'correlation',
@@ -94,6 +137,7 @@ export const DRILL_CHART_OPTIONS = [
     detail: 'Pearson correlation between all numeric columns. Read-only analytical view.',
     canDrill: false,
     minRemainingDepth: 1,
+    drillSupport: 'none',
   },
   {
     value: 'multiline',
@@ -104,6 +148,7 @@ export const DRILL_CHART_OPTIONS = [
     detail: 'One line per group plotted over a time/sequence column. Click a series to drill.',
     canDrill: true,
     minRemainingDepth: 2,
+    drillSupport: 'limited',
   },
   {
     value: 'histogram',
@@ -114,6 +159,7 @@ export const DRILL_CHART_OPTIONS = [
     detail: 'Distribution of a single numeric metric across equal-width bins. Click a bin to drill into the next dimension for rows within that range.',
     canDrill: true,
     minRemainingDepth: 1,
+    drillSupport: 'good',
   },
   {
     value: 'table',
@@ -124,6 +170,15 @@ export const DRILL_CHART_OPTIONS = [
     detail: 'Tabular view of aggregated data at the current drill level.',
     canDrill: false,
     minRemainingDepth: 0,
+    drillSupport: 'none',
   },
 ];
+
+export function getChartsByDrillSupport() {
+  const excellent = DRILL_CHART_OPTIONS.filter((o) => o.drillSupport === 'excellent');
+  const good = DRILL_CHART_OPTIONS.filter((o) => o.drillSupport === 'good');
+  const limited = DRILL_CHART_OPTIONS.filter((o) => o.drillSupport === 'limited');
+  const none = DRILL_CHART_OPTIONS.filter((o) => o.drillSupport === 'none');
+  return { excellent, good, limited, none };
+}
 

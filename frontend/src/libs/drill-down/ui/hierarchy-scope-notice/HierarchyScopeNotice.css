@@ -1,0 +1,32 @@
+.hierarchy-scope-notice {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 10px 14px;
+  background: var(--info-soft);
+  border: 1px solid #bae6fd;
+  border-radius: var(--radius-md);
+  font-size: 12.5px;
+  color: #0c4a6e;
+}
+
+.hierarchy-scope-notice svg {
+  flex-shrink: 0;
+  margin-top: 1px;
+  color: #0284c7;
+}
+
+.hierarchy-scope-notice strong {
+  display: block;
+  margin-bottom: 3px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.hierarchy-scope-notice p {
+  margin: 0;
+  line-height: 1.5;
+  color: #0369a1;
+}
+
+.hierarchy-scope-notice-extra { font-weight: 600; }

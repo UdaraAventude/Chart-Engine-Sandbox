@@ -15,10 +15,9 @@ const SunburstChart = ({
   onChartReady,
 }) => {
   const echartsRef = useRef(null);
-
   const clickedInternally = useRef(false);
-
   const drillPathRef = useRef(drillPath);
+
   useEffect(() => {
     drillPathRef.current = drillPath;
   }, [drillPath]);
@@ -52,9 +51,11 @@ const SunburstChart = ({
         ...CHART_THEME.tooltipBase,
         trigger: "item",
         formatter: (params) => {
-          const aggLabel =
-            aggregation.charAt(0).toUpperCase() + aggregation.slice(1);
-          return `<b>${params.name}</b><br/>${aggLabel}: ${params.value?.toLocaleString()}`;
+          const aggLabel = aggregation.charAt(0).toUpperCase() + aggregation.slice(1);
+          return `
+            <div style="font-weight:700;color:#111827;border-bottom:1px solid #f3f4f6;padding-bottom:5px;margin-bottom:5px;">${params.name}</div>
+            <div style="color:#374151">${aggLabel}: <span style="color:#5b5bd6;font-weight:700">${params.value?.toLocaleString()}</span></div>
+          `;
         },
       },
       series: [
@@ -69,7 +70,7 @@ const SunburstChart = ({
           label: { show: false },
           emphasis: {
             focus: "ancestor",
-            itemStyle: { shadowBlur: 10, shadowColor: "rgba(0,0,0,0.2)" },
+            itemStyle: { shadowBlur: 12, shadowColor: "rgba(91,91,214,0.25)" },
             label: { show: true },
           },
           levels: [
@@ -80,9 +81,9 @@ const SunburstChart = ({
                 show: true,
                 formatter: "◎",
                 fontSize: 16,
-                color: "#6b7280",
+                color: "#9ca3af",
               },
-              itemStyle: { color: "#ffffff", opacity: 0.8 },
+              itemStyle: { color: "#f3f4f6", opacity: 1 },
             },
             {
               r0: "15%",
@@ -91,7 +92,7 @@ const SunburstChart = ({
                 show: true,
                 rotate: "radial",
                 fontSize: 11,
-                fontWeight: "600",
+                fontWeight: "700",
                 color: "#111827",
                 minAngle: 8,
                 overflow: "truncate",
@@ -130,12 +131,6 @@ const SunburstChart = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [processedData, measureCol, aggregation]);
 
-  const dispatchZoom = (chart, path) => {
-    const targetNodeId =
-      path.length > 0 ? path.map((p) => p.value).join("/") : null;
-    chart.dispatchAction({ type: "sunburstRootToNode", targetNodeId });
-  };
-
   useEffect(() => {
     if (clickedInternally.current) {
       clickedInternally.current = false;
@@ -143,14 +138,18 @@ const SunburstChart = ({
     }
     if (!echartsRef.current) return;
     const chart = echartsRef.current.getEchartsInstance();
-    dispatchZoom(chart, drillPath);
+    const targetNodeId =
+      drillPath.length > 0 ? drillPath.map((p) => p.value).join("/") : null;
+    chart.dispatchAction({ type: "sunburstRootToNode", targetNodeId });
   }, [drillPath]);
 
   const handleChartReady = (chartInstance) => {
     const path = drillPathRef.current;
-    if (path.length > 0) {
-      setTimeout(() => dispatchZoom(chartInstance, path), 50);
-    }
+    const targetNodeId =
+      path.length > 0 ? path.map((p) => p.value).join("/") : null;
+    setTimeout(() => {
+      chartInstance.dispatchAction({ type: "sunburstRootToNode", targetNodeId });
+    }, 50);
     if (onChartReady) onChartReady(chartInstance);
   };
 
@@ -159,7 +158,7 @@ const SunburstChart = ({
       <div
         style={{
           position: "absolute",
-          top: 6,
+          top: 8,
           left: 0,
           right: 0,
           textAlign: "center",
@@ -167,20 +166,13 @@ const SunburstChart = ({
           pointerEvents: "none",
         }}
       >
-        <div
-          style={{
-            fontSize: 13,
-            fontWeight: 700,
-            color: "#1e293b",
-            letterSpacing: 0.2,
-          }}
-        >
+        <div style={{ fontSize: 13, fontWeight: 700, color: "#111827", letterSpacing: -0.2 }}>
           {drillPath.length === 0
             ? "Data Explorer"
             : "Data Explorer › " + drillPath.map((p) => p.value).join(" › ")}
         </div>
-        <div style={{ fontSize: 11, color: "#6b7280", marginTop: 1 }}>
-          {measureCol} ({aggregation}) • click arc to dive
+        <div style={{ fontSize: 11, color: "#9ca3af", marginTop: 2 }}>
+          {measureCol} ({aggregation}) · click arc to dive
         </div>
       </div>
 
@@ -194,24 +186,18 @@ const SunburstChart = ({
           click: (params) => {
             const treePathInfo = params.treePathInfo ?? [];
             const clickedDepth = treePathInfo.length - 1;
-
             if (clickedDepth <= 0 || params.dataIndex === undefined) {
               if (onCenterClick) onCenterClick();
               return;
             }
-
             clickedInternally.current = true;
-
-            if (onNodeClick) {
-              onNodeClick(params.name, clickedDepth, treePathInfo);
-            }
+            if (onNodeClick) onNodeClick(params.name, clickedDepth, treePathInfo);
           },
         }}
         onChartReady={handleChartReady}
         notMerge={false}
       />
 
-      {/* ── Bottom hint ── */}
       <div
         style={{
           position: "absolute",
@@ -220,11 +206,11 @@ const SunburstChart = ({
           right: 0,
           textAlign: "center",
           fontSize: 10,
-          color: "#9ca3af",
+          color: "#d1d5db",
           pointerEvents: "none",
         }}
       >
-        ◎ Click center to drill back • Click arcs to dive
+        ◎ Click center to drill back · Click arcs to dive deeper
       </div>
     </div>
   );

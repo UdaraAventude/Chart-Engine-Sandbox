@@ -1,55 +1,7 @@
-/* ─────────────────────────────────────────────
-   UploadCSV component styles
-   Extracted from inline styles in index.jsx.
-   NOTE: .upload-progress-fill width is kept
-         inline because it is set dynamically
-         via the uploadProgress state variable.
-───────────────────────────────────────────── */
-
-/* Root wrapper */
-.upload-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-/* Hidden native file input */
-.upload-file-input {
-  display: none;
-}
-
-/* Progress section container */
-.upload-progress-container {
-  padding: 0 4px;
-}
-
-/* Header row: "Parsing CSV…" label + percentage */
-.upload-progress-header {
-  display: flex;
-  justify-content: space-between;
-  font-size: 11px;
-  color: #64748b;
-  margin-bottom: 4px;
-}
-
-/* Progress bar track */
-.upload-progress-track {
-  height: 4px;
-  background: #e2e8f0;
-  border-radius: 2px;
-  overflow: hidden;
-}
-
-/* Progress bar fill  ─  width is set inline (dynamic) */
-.upload-progress-fill {
-  height: 100%;
-  background: #2563eb;
-  transition: width 0.3s ease;
-}
-
-/* Row-count label below the bar */
-.upload-row-count {
-  font-size: 10px;
-  color: #94a3b8;
-  margin-top: 4px;
-}
+.upload-wrapper { display: flex; flex-direction: column; gap: 8px; }
+.upload-file-input { display: none; }
+.upload-progress-container { padding: 0 2px; }
+.upload-progress-header { display: flex; justify-content: space-between; font-size: 11px; color: var(--text-muted); margin-bottom: 4px; }
+.upload-progress-track { height: 4px; background: var(--bg-inset); border-radius: var(--radius-full); overflow: hidden; }
+.upload-progress-fill { height: 100%; background: var(--primary); transition: width 0.3s var(--ease-out); }
+.upload-row-count { font-size: 10.5px; color: var(--text-light); margin-top: 3px; }

@@ -1,0 +1,49 @@
+.chart-panel-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 440px;
+  padding: 48px 32px;
+  text-align: center;
+  background: var(--bg-card);
+}
+
+.chart-panel-state h3 { margin: 14px 0 6px; font-size: 15px; font-weight: 700; color: var(--text-main); }
+.chart-panel-state p { margin: 0; color: var(--text-muted); font-size: 13px; max-width: 340px; line-height: 1.6; }
+
+.chart-panel-state--loading p { margin-top: 10px; }
+.chart-panel-state--loading svg { color: var(--primary); }
+.chart-panel-spin { animation: spinPanel 0.85s linear infinite; color: var(--primary); }
+@keyframes spinPanel { to { transform: rotate(360deg); } }
+
+.chart-panel-state--error svg { color: var(--error); }
+.chart-panel-retry {
+  margin-top: 18px;
+  padding: 8px 20px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background var(--transition);
+  font-family: inherit;
+}
+.chart-panel-retry:hover { background: var(--primary-hover); }
+
+.chart-panel-state--empty svg { color: var(--text-light); }
+.chart-panel-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 18px !important;
+  padding: 7px 14px;
+  background: var(--primary-soft);
+  color: var(--primary);
+  border-radius: var(--radius-full);
+  font-size: 12px !important;
+  font-weight: 600;
+  border: 1px solid rgba(91,91,214,.15);
+}

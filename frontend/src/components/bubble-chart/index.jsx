@@ -1,21 +1,21 @@
-import React, { useMemo } from 'react';
-import ReactECharts from 'echarts-for-react';
-import * as echarts from 'echarts';
-import { PALETTE, CHART_THEME } from '../_shared/chartTheme';
-import '../_shared/charts.css';
+import React, { useMemo } from "react";
+import ReactECharts from "echarts-for-react";
+import * as echarts from "echarts";
+import { PALETTE, CHART_THEME } from "../_shared/chartTheme";
+import "../_shared/charts.css";
 
 const BubbleChart = ({
   data = [],
-  xCol = '',
-  yCol = '',
-  sizeCol = '',
-  title = '',
+  xCol = "",
+  yCol = "",
+  sizeCol = "",
+  title = "",
   isLeaf = false,
   minBubbleSize = 12,
   maxBubbleSize = 80,
-  height = '420px',
+  height = "420px",
   palette = PALETTE,
-  aggregation = 'avg',
+  aggregation = "avg",
   onBubbleClick,
   onChartReady,
 }) => {
@@ -29,7 +29,7 @@ const BubbleChart = ({
 
     const series = data.map((d, i) => ({
       name: d.name,
-      type: 'scatter',
+      type: "scatter",
       data: [[d.x, d.y, d.size, d.count]],
       symbolSize: (val) =>
         Math.max(
@@ -37,53 +37,54 @@ const BubbleChart = ({
           Math.min(
             maxBubbleSize,
             (val[2] / maxSize) * (maxBubbleSize - minBubbleSize) +
-            minBubbleSize,
+              minBubbleSize,
           ),
         ),
       itemStyle: {
         color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [
           { offset: 0, color: palette[i % palette.length] },
-          { offset: 1, color: palette[i % palette.length] + '99' },
+          { offset: 1, color: palette[i % palette.length] + "99" },
         ]),
-        borderColor: isLeaf ? '#d97706' : palette[i % palette.length],
+        borderColor: isLeaf ? "#d97706" : palette[i % palette.length],
         borderWidth: isLeaf ? 2 : 1,
         opacity: 0.9,
       },
     }));
 
     return {
-      backgroundColor: 'transparent',
+      backgroundColor: "transparent",
       title: {
         ...CHART_THEME.titleStyle,
         text: title,
-        left: 'center',
+        left: "center",
         top: 12,
       },
       legend: {
         bottom: 10,
-        left: 'center',
-        textStyle: { color: '#374151' },
-        type: 'scroll',
+        left: "center",
+        textStyle: { color: "#374151" },
+        type: "scroll",
       },
       tooltip: {
         ...CHART_THEME.tooltipBase,
         formatter: (params) => {
           const d = data[params.seriesIndex];
-          const aggLabel = aggregation.charAt(0).toUpperCase() + aggregation.slice(1);
+          const aggLabel =
+            aggregation.charAt(0).toUpperCase() + aggregation.slice(1);
           return `
-            <div style="font-weight:bold;margin-bottom:4px;color:#111827;border-bottom:1px solid #e5e7eb;padding-bottom:4px;">${d.name}</div>
-            <div style="color:#374151">${aggLabel} ${xCol}: <span style="color:#185FA5">${d.x.toFixed(2)}</span></div>
-            <div style="color:#374151">${aggLabel} ${yCol}: <span style="color:#185FA5">${d.y.toFixed(2)}</span></div>
-            <div style="color:#374151">${aggLabel} ${sizeCol}: <span style="color:#059669;font-weight:bold;">${d.size.toLocaleString()}</span></div>
-            <div style="color:#374151">Records: <span style="color:#7c3aed">${d.count}</span></div>
+            <div style="font-weight:700;color:#111827;border-bottom:1px solid #f3f4f6;padding-bottom:5px;margin-bottom:5px;">${d.name}</div>
+            <div style="color:#374151">${aggLabel} ${xCol}: <span style="color:#5b5bd6;font-weight:600">${d.x.toFixed(2)}</span></div>
+            <div style="color:#374151">${aggLabel} ${yCol}: <span style="color:#5b5bd6;font-weight:600">${d.y.toFixed(2)}</span></div>
+            <div style="color:#374151">${aggLabel} ${sizeCol}: <span style="color:#10b981;font-weight:700">${d.size.toLocaleString()}</span></div>
+            <div style="color:#374151">Records: <span style="color:#8b5cf6;font-weight:600">${d.count}</span></div>
           `;
         },
       },
       grid: { top: 60, bottom: 60, left: 60, right: 40, containLabel: true },
       xAxis: {
-        type: 'value',
-        name: xCol.replace(/_/g, ' ').toUpperCase(),
-        nameLocation: 'middle',
+        type: "value",
+        name: xCol.replace(/_/g, " ").toUpperCase(),
+        nameLocation: "middle",
         nameGap: 35,
         nameTextStyle: CHART_THEME.axisNameStyle,
         axisLabel: CHART_THEME.axisLabel,
@@ -91,9 +92,9 @@ const BubbleChart = ({
         splitLine: CHART_THEME.splitLine,
       },
       yAxis: {
-        type: 'value',
-        name: yCol.replace(/_/g, ' ').toUpperCase(),
-        nameLocation: 'middle',
+        type: "value",
+        name: yCol.replace(/_/g, " ").toUpperCase(),
+        nameLocation: "middle",
         nameGap: 50,
         nameTextStyle: CHART_THEME.axisNameStyle,
         axisLabel: CHART_THEME.axisLabel,
@@ -117,7 +118,8 @@ const BubbleChart = ({
   ]);
 
   return (
-    <ReactECharts opts={{ renderer: 'svg' }}
+    <ReactECharts
+      opts={{ renderer: "svg" }}
       option={option}
       className="echarts-wrapper"
       style={{ height }}

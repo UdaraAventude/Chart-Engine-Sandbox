@@ -4,7 +4,7 @@ import { getVisualization } from '../../../services/api/documents';
 import { normalizeServerChartData } from '../../../services/api/normalizeChartData';
 import { ApiError } from '../../../services/api/httpClient';
 
-export function useServerVisualization() {
+export function useServerVisualization(refreshKey = 0) {
   const activeDatasetId = useStore((s) => s.activeDatasetId);
   const drillPath = useStore((s) => s.drillPath);
   const chartTypeByDepth = useStore((s) => s.chartTypeByDepth);
@@ -14,9 +14,17 @@ export function useServerVisualization() {
   const setChartError = useStore((s) => s.setChartError);
 
   const chartType = chartTypeByDepth[drillPath.length] ?? 'bar';
+  /** Table shows the same grouped breakdown as bar at this drill level. */
+  const apiChartType = chartType === 'table' ? 'bar' : chartType;
 
   useEffect(() => {
-    if (!activeDatasetId || chartType === 'table') {
+    if (
+      !activeDatasetId ||
+      chartType === 'sunburst' ||
+      chartType === 'scatter' ||
+      chartType === 'correlation' ||
+      chartType === 'histogram'
+    ) {
       setServerChart(null);
       return undefined;
     }
@@ -28,7 +36,7 @@ export function useServerVisualization() {
       try {
         const response = await getVisualization({
           id: activeDatasetId,
-          chartType,
+          chartType: apiChartType,
           drillPath,
           aggregation,
           drillDown: drillPath.filter((s) => !s.column.startsWith('__hist__')).length,
@@ -37,7 +45,7 @@ export function useServerVisualization() {
         if (cancelled) return;
 
         const normalized = normalizeServerChartData(
-          response.chartType || chartType,
+          response.chartType || apiChartType,
           response.data,
         );
 
@@ -67,10 +75,12 @@ export function useServerVisualization() {
     activeDatasetId,
     drillPath,
     chartType,
+    apiChartType,
     aggregation,
     setServerChart,
     setChartLoading,
     setChartError,
+    refreshKey,
   ]);
 
   return { chartType };

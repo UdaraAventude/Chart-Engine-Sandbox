@@ -243,7 +243,7 @@ export async function exportToExcel(
     return;
   }
 
-  const { utils, writeFile } = await import("xlsx");
+  const { Workbook } = await import("exceljs");
 
   const option = echartsInstance.getOption();
   const series = option.series || [];
@@ -289,21 +289,34 @@ export async function exportToExcel(
     });
   }
 
-  const ws = utils.aoa_to_sheet(wsData);
+  const workbook = new Workbook();
+  const worksheet = workbook.addWorksheet("Chart Data");
 
-  ws["!cols"] = wsData[wsData.length - 1].map((_, colIdx) => ({
-    wch: Math.max(...wsData.map((row) => String(row[colIdx] ?? "").length)) + 4,
+  wsData.forEach((row) => {
+    worksheet.addRow(row);
+  });
+
+  const maxColumns = Math.max(...wsData.map((row) => row.length), 0);
+  worksheet.columns = Array.from({ length: maxColumns }, (_, colIdx) => ({
+    width:
+      Math.max(...wsData.map((row) => String(row[colIdx] ?? "").length), 0) + 4,
   }));
 
   const headerRowIndex = headerText ? 2 : 0;
-  const headerRange = utils.decode_range(ws["!ref"]);
-  for (let col = headerRange.s.c; col <= headerRange.e.c; col++) {
-    const cellAddr = utils.encode_cell({ r: headerRowIndex, c: col });
-    if (!ws[cellAddr]) continue;
-    ws[cellAddr].s = { font: { bold: true } };
-  }
+  const headerRow = worksheet.getRow(headerRowIndex + 1);
+  headerRow.eachCell((cell) => {
+    cell.font = { ...(cell.font || {}), bold: true };
+  });
 
-  const wb = utils.book_new();
-  utils.book_append_sheet(wb, ws, "Chart Data");
-  writeFile(wb, filename);
+  const buffer = await workbook.xlsx.writeBuffer();
+  const blob = new Blob([buffer], {
+    type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+  });
+  const url = URL.createObjectURL(blob);
+
+  try {
+    triggerDownload(url, filename);
+  } finally {
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
 }
