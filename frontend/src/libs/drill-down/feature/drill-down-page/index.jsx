@@ -1,13 +1,16 @@
-import React from "react";
-import UploadCSV from "../../../../components/upload-csv";
-import DatasetPanel from "../../../../components/dataset-panel";
-import ChartToolbar from "../../ui/chart-toolbar";
-import DrillDownRenderer from "../../ui/drill-down-renderer";
-import useStore from "../../../../store";
+import React, { useState } from 'react';
+import { ArrowLeft, FileSpreadsheet } from 'lucide-react';
+import DatasetWorkspace from '../../../../components/dataset-workspace';
+import ChartToolbar from '../../ui/chart-toolbar';
+import DrillDownRenderer from '../../ui/drill-down-renderer';
+import useStore from '../../../../store';
+import { getDepthContext } from '../../utils/drillDepth';
+import '../../../../styles/ExploreView.css';
 
 const DrillDownPage = () => {
   const {
     activeDatasetId,
+    metadata,
     error,
     drillPath,
     chartTypeByDepth,
@@ -15,48 +18,78 @@ const DrillDownPage = () => {
     setRenderTime,
   } = useStore();
 
-  const activeChartType = chartTypeByDepth[drillPath.length] ?? "bar";
+  const [showExplore, setShowExplore] = useState(Boolean(activeDatasetId));
+
+  const activeChartType = chartTypeByDepth[drillPath.length] ?? 'bar';
+  const depthCtx = getDepthContext(drillPath, metadata?.dimensions ?? []);
+  const availableDepth = depthCtx.maxDepth - depthCtx.categoricalDepth;
 
   const handleChartTypeSelect = (type) => {
     setChartTypeAtDepth(drillPath.length, type);
   };
 
-  const hasWorkspace = Boolean(activeDatasetId);
+  const handleChangeDataset = () => {
+    setShowExplore(false);
+  };
+
+  const handleDatasetReady = () => {
+    if (useStore.getState().activeDatasetId) {
+      setShowExplore(true);
+    }
+  };
+
+  if (!showExplore || !activeDatasetId) {
+    return (
+      <div className="eval-container eval-container--workspace">
+        <DatasetWorkspace
+          onDatasetReady={() => {
+            handleDatasetReady();
+          }}
+        />
+        {error && <div className="error-banner">{error}</div>}
+      </div>
+    );
+  }
 
   return (
-    <div className="eval-container">
-      <header className="eval-header">
-        <div className="title-area">
-          <h1 className="page-title">Chart Engine Decision Matrix</h1>
-          <p className="subtitle">
-            Technical Evaluation & Performance Benchmarking
-          </p>
+    <div className="eval-container eval-container--explore">
+      <div className="workspace-steps workspace-steps--compact">
+        <button type="button" className="workspace-step workspace-step--done" onClick={handleChangeDataset}>
+          <span className="workspace-step-num">✓</span>
+          <span>Dataset</span>
+        </button>
+        <div className="workspace-step-connector workspace-step-connector--active" />
+        <div className="workspace-step workspace-step--active">
+          <span className="workspace-step-num">2</span>
+          <span>Visualize & drill down</span>
         </div>
+      </div>
 
-        <UploadCSV />
+      <header className="explore-header">
+        <button type="button" className="explore-back-btn" onClick={handleChangeDataset}>
+          <ArrowLeft size={18} />
+          Change dataset
+        </button>
+        <div className="explore-dataset-chip">
+          <FileSpreadsheet size={20} />
+          <div>
+            <strong>{metadata?.fileName ?? 'Dataset'}</strong>
+            <span>
+              {(metadata?.totalRows ?? 0).toLocaleString()} rows ·{' '}
+              {metadata?.dimensions?.length ?? 0} hierarchy levels ·{' '}
+              {metadata?.metrics?.length ?? 0} metrics
+            </span>
+          </div>
+        </div>
       </header>
 
-      <main className="eval-main">
-        <div className="eval-layout-with-panel">
-          <DatasetPanel />
-          {hasWorkspace ? (
-            <div className="dashboard-content">
-              <ChartToolbar
-                activeChartType={activeChartType}
-                onSelect={handleChartTypeSelect}
-              />
-              <DrillDownRenderer onRenderTime={setRenderTime} />
-            </div>
-          ) : (
-            <div className="awaiting-state">
-              <h2>Awaiting Dataset Ingestion</h2>
-              <p>
-                Upload a CSV or select a dataset from the panel to start
-                exploration.
-              </p>
-            </div>
-          )}
-        </div>
+      <main className="explore-main">
+        <ChartToolbar
+          activeChartType={activeChartType}
+          onSelect={handleChartTypeSelect}
+          availableDepth={availableDepth}
+        />
+        <DrillDownRenderer onRenderTime={setRenderTime} />
       </main>
 
       {error && <div className="error-banner">{error}</div>}

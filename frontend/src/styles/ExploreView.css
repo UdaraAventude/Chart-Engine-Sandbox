@@ -1,0 +1,99 @@
+.eval-container--workspace {
+  padding-top: 24px;
+}
+
+.eval-container--explore {
+  max-width: 1400px;
+}
+
+.workspace-steps--compact {
+  margin-bottom: 20px;
+}
+
+.workspace-step--done {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font: inherit;
+  color: var(--text-muted);
+}
+
+.workspace-step--done:hover {
+  color: var(--primary);
+}
+
+.workspace-step--done .workspace-step-num {
+  background: #059669;
+  color: white;
+}
+
+.workspace-step-connector--active {
+  background: linear-gradient(90deg, #059669, var(--primary));
+}
+
+.explore-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.explore-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background: white;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.explore-back-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.explore-dataset-chip {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  background: var(--primary-soft);
+  border: 1px solid #bfdbfe;
+  border-radius: var(--radius-md);
+  flex: 1;
+  min-width: 0;
+}
+
+.explore-dataset-chip svg {
+  color: var(--primary);
+  flex-shrink: 0;
+}
+
+.explore-dataset-chip strong {
+  display: block;
+  font-size: 0.95rem;
+  color: var(--text-main);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.explore-dataset-chip span {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.explore-main {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}

@@ -1,0 +1,371 @@
+.dataset-workspace {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.workspace-steps {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.workspace-step {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.workspace-step--muted {
+  color: var(--text-muted);
+}
+
+.workspace-step-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  background: var(--primary);
+  color: white;
+}
+
+.workspace-step--muted .workspace-step-num {
+  background: #e2e8f0;
+  color: var(--text-muted);
+}
+
+.workspace-step-connector {
+  flex: 1;
+  max-width: 80px;
+  height: 2px;
+  background: #e2e8f0;
+}
+
+.workspace-header {
+  margin-bottom: 28px;
+}
+
+.workspace-header h1 {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #002e5d;
+  margin: 0 0 8px;
+}
+
+.workspace-header p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 1rem;
+  max-width: 640px;
+}
+
+.workspace-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 24px;
+}
+
+@media (max-width: 900px) {
+  .workspace-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.workspace-card {
+  background: white;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.workspace-card h2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1rem;
+  margin: 0 0 16px;
+  color: var(--text-main);
+}
+
+.workspace-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.workspace-card-head h2 {
+  margin: 0;
+}
+
+.workspace-refresh {
+  background: none;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 6px;
+  cursor: pointer;
+  color: var(--text-muted);
+}
+
+.workspace-refresh:hover {
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+.workspace-upload-zone {
+  border: 2px dashed #cbd5e1;
+  border-radius: var(--radius-lg);
+  padding: 32px 20px;
+  text-align: center;
+  transition: border-color 0.2s, background 0.2s;
+  position: relative;
+}
+
+.workspace-upload-zone.dragging,
+.workspace-upload-zone:hover {
+  border-color: var(--primary);
+  background: var(--primary-soft);
+}
+
+.workspace-upload-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.workspace-upload-label input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.workspace-upload-icon {
+  color: var(--primary);
+}
+
+.workspace-upload-title {
+  font-weight: 700;
+  font-size: 1rem;
+  margin: 0;
+  color: var(--text-main);
+}
+
+.workspace-upload-sub {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.workspace-upload-progress {
+  margin-top: 16px;
+  height: 8px;
+  background: #e2e8f0;
+  border-radius: 999px;
+  overflow: hidden;
+  position: relative;
+}
+
+.workspace-upload-progress-fill {
+  height: 100%;
+  background: var(--primary);
+  transition: width 0.2s;
+}
+
+.workspace-upload-progress span {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.workspace-dataset-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 340px;
+  overflow-y: auto;
+}
+
+.workspace-empty,
+.workspace-list-error {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  text-align: center;
+  padding: 24px;
+}
+
+.workspace-list-error {
+  color: #dc2626;
+}
+
+.workspace-dataset-card {
+  display: flex;
+  align-items: stretch;
+  gap: 6px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.workspace-dataset-card.selected {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
+.workspace-dataset-card.disabled {
+  opacity: 0.55;
+}
+
+.workspace-dataset-card-main {
+  flex: 1;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  gap: 4px 12px;
+  padding: 12px 14px;
+  text-align: left;
+  background: #f8fafc;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+
+.workspace-dataset-card-main:disabled {
+  cursor: not-allowed;
+}
+
+.workspace-dataset-card:not(.disabled) .workspace-dataset-card-main:hover {
+  background: var(--primary-soft);
+}
+
+.workspace-dataset-icon {
+  grid-row: 1 / 3;
+  color: var(--primary);
+}
+
+.workspace-dataset-name {
+  font-weight: 600;
+  font-size: 0.875rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.workspace-dataset-meta {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.workspace-status {
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+}
+
+.workspace-status--ready {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.workspace-status--processing {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.workspace-selected-mark {
+  grid-column: 1 / -1;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.workspace-dataset-delete {
+  border: none;
+  background: white;
+  color: #dc2626;
+  padding: 0 12px;
+  cursor: pointer;
+  border-left: 1px solid var(--border-color);
+}
+
+.workspace-dataset-delete:hover {
+  background: #fef2f2;
+}
+
+.workspace-footer {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.workspace-selection-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.workspace-selection-summary strong {
+  color: var(--text-main);
+  font-size: 1rem;
+}
+
+.workspace-continue-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.workspace-continue-btn:hover:not(:disabled) {
+  background: var(--primary-hover);
+}
+
+.workspace-continue-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.spin {
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
