@@ -1,22 +1,26 @@
-import React, { useMemo } from 'react';
-import ReactECharts from 'echarts-for-react';
-import * as echarts from 'echarts';
-import { CHART_THEME, numFormatter } from '../_shared/chartTheme';
-import '../_shared/charts.css';
+import React, { useMemo } from "react";
+import ReactECharts from "echarts-for-react";
+import * as echarts from "echarts";
+import {
+  CHART_THEME,
+  numFormatter,
+  buildTooltip,
+} from "../_shared/chartTheme";
+import "../_shared/charts.css";
 
 const LineChart = ({
   data = [],
-  title = '',
-  xAxisLabel = '',
-  yAxisLabel = '',
+  title = "",
+  xAxisLabel = "",
+  yAxisLabel = "",
   isLeaf = false,
-  aggregation = 'avg',
+  aggregation = "avg",
   smooth = true,
-  color = '#185FA5',
+  color = "#5b5bd6",
   showArea = true,
-  symbolSize = 8,
-  lineWidth = 3,
-  height = '420px',
+  symbolSize = 7,
+  lineWidth = 2.5,
+  height = "420px",
   showDataZoom,
   onPointClick,
   onChartReady,
@@ -25,117 +29,93 @@ const LineChart = ({
     if (!data?.length) return {};
     const names = data.map((d) => d.name);
     const values = data.map((d) => d.value);
-    const autoZoom =
-      showDataZoom !== undefined ? showDataZoom : names.length > 15;
+    const autoZoom = showDataZoom !== undefined ? showDataZoom : names.length > 15;
 
     return {
-      backgroundColor: 'transparent',
+      backgroundColor: "transparent",
       title: {
         ...CHART_THEME.titleStyle,
         text: title,
-        left: 'center',
+        left: "center",
         top: 12,
       },
       tooltip: {
         ...CHART_THEME.tooltipBase,
-        trigger: 'axis',
+        trigger: "axis",
         formatter: (params) => {
           const d = data[params[0].dataIndex];
           const aggLabel = aggregation.charAt(0).toUpperCase() + aggregation.slice(1);
-          return `
-            <div style="font-weight:bold;margin-bottom:4px;color:#111827;border-bottom:1px solid #e5e7eb;padding-bottom:4px;">${d.name}</div>
-            <div style="color:#374151">${aggLabel}: <span style="color:${color};font-weight:bold;">${d.value.toLocaleString()}</span></div>
-            <div style="color:#374151">Records: <span style="color:#7c3aed">${d.count}</span></div>
-            ${!isLeaf ? '<div style="margin-top:8px;color:#059669;font-size:11px;font-style:italic;">▲ Click to drill</div>' : ''}
-          `;
+          return buildTooltip({ name: d.name, aggLabel, value: d.value, count: d.count, isLeaf });
         },
       },
-      grid: { top: 60, bottom: 80, left: 80, right: 40, containLabel: true },
+      grid: { top: 56, bottom: autoZoom ? 74 : 56, left: 72, right: 32, containLabel: true },
       xAxis: {
-        type: 'category',
+        type: "category",
         data: names,
         name: xAxisLabel,
-        nameLocation: 'middle',
-        nameGap: names.length > 8 ? 50 : 35,
+        nameLocation: "middle",
+        nameGap: names.length > 8 ? 50 : 34,
         nameTextStyle: CHART_THEME.axisNameStyle,
-        axisLabel: {
-          ...CHART_THEME.axisLabel,
-          rotate: names.length > 8 ? 30 : 0,
-        },
+        axisLabel: { ...CHART_THEME.axisLabel, rotate: names.length > 8 ? 30 : 0 },
         axisLine: CHART_THEME.axisLine,
+        axisTick: { show: false },
       },
       yAxis: {
-        type: 'value',
+        type: "value",
         name: yAxisLabel,
-        nameLocation: 'middle',
-        nameGap: 60,
+        nameLocation: "middle",
+        nameGap: 56,
         nameTextStyle: CHART_THEME.axisNameStyle,
         axisLabel: { ...CHART_THEME.axisLabel, formatter: numFormatter },
+        axisLine: { show: false },
         splitLine: CHART_THEME.splitLine,
       },
       series: [
         {
           name: yAxisLabel,
           data: values,
-          type: 'line',
+          type: "line",
           smooth,
           symbolSize,
+          symbol: "circle",
           itemStyle: {
             color,
-            borderColor: isLeaf ? '#d97706' : color,
-            borderWidth: isLeaf ? 2 : 0,
+            borderColor: "#fff",
+            borderWidth: 2,
           },
           lineStyle: { width: lineWidth, color },
           areaStyle: showArea
             ? {
                 color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                  { offset: 0, color: color + '4d' },
-                  { offset: 1, color: color + '00' },
+                  { offset: 0, color: color + "30" },
+                  { offset: 1, color: color + "00" },
                 ]),
               }
             : undefined,
+          emphasis: {
+            itemStyle: { borderWidth: 3, shadowBlur: 8, shadowColor: color + "60" },
+          },
           label: {
-            show: data.length <= 12,
-            position: 'top',
-            color: '#6b7280',
+            show: data.length <= 14,
+            position: "top",
+            color: "#9ca3af",
             fontSize: 10,
+            fontWeight: "600",
             formatter: (params) => numFormatter(params.value),
           },
         },
       ],
       dataZoom: autoZoom
-        ? [
-            {
-              type: 'slider',
-              bottom: 5,
-              height: 20,
-              backgroundColor: '#f9fafb',
-              borderColor: '#e5e7eb',
-              fillerColor: 'rgba(24,95,165,0.12)',
-              textStyle: { color: '#6b7280' },
-            },
-          ]
+        ? [{ ...CHART_THEME.dataZoomSlider }]
         : [],
-      animationDuration: 1000,
-      animationEasing: 'cubicOut',
+      animationDuration: 700,
+      animationEasing: "cubicOut",
     };
-  }, [
-    data,
-    title,
-    xAxisLabel,
-    yAxisLabel,
-    isLeaf,
-    aggregation,
-    smooth,
-    color,
-    showArea,
-    symbolSize,
-    lineWidth,
-    showDataZoom,
-  ]);
+  }, [data, title, xAxisLabel, yAxisLabel, isLeaf, aggregation, smooth, color, showArea, symbolSize, lineWidth, showDataZoom]);
 
   return (
-    <ReactECharts opts={{ renderer: 'svg' }}
+    <ReactECharts
+      opts={{ renderer: "svg" }}
       option={option}
       className="echarts-wrapper"
       style={{ height }}

@@ -1,7 +1,12 @@
 import React, { useMemo } from "react";
 import ReactECharts from "echarts-for-react";
 import * as echarts from "echarts";
-import { PALETTE, CHART_THEME, numFormatter } from "../_shared/chartTheme";
+import {
+  PALETTE,
+  CHART_THEME,
+  numFormatter,
+  buildTooltip,
+} from "../_shared/chartTheme";
 import "../_shared/charts.css";
 
 const BarChart = ({
@@ -14,7 +19,7 @@ const BarChart = ({
   height = "420px",
   palette = PALETTE,
   showDataZoom,
-  barBorderRadius = [4, 4, 0, 0],
+  barBorderRadius = [6, 6, 0, 0],
   onBarClick,
   onChartReady,
 }) => {
@@ -22,8 +27,12 @@ const BarChart = ({
     if (!data?.length) return {};
     const names = data.map((d) => d.name);
     const values = data.map((d) => d.value);
-    const autoZoom =
-      showDataZoom !== undefined ? showDataZoom : names.length > 15;
+    const autoZoom = showDataZoom !== undefined ? showDataZoom : names.length > 15;
+
+    const baseColor = palette[0]; // "#5b5bd6"
+
+    // Wider bars for fewer categories, narrower for many
+    const dynamicMaxWidth = Math.max(16, Math.min(120, Math.round(560 / names.length)));
 
     return {
       backgroundColor: "transparent",
@@ -39,35 +48,29 @@ const BarChart = ({
         formatter: (params) => {
           const d = data[params[0].dataIndex];
           const aggLabel = aggregation.charAt(0).toUpperCase() + aggregation.slice(1);
-          return `
-            <div style="font-weight:bold;margin-bottom:4px;color:#111827;border-bottom:1px solid #e5e7eb;padding-bottom:4px;">${d.name}</div>
-            <div style="color:#374151">${aggLabel}: <span style="color:#185FA5;font-weight:bold;">${d.value.toLocaleString()}</span></div>
-            <div style="color:#374151">Records: <span style="color:#7c3aed">${d.count}</span></div>
-            ${!isLeaf ? '<div style="margin-top:8px;color:#059669;font-size:11px;font-style:italic;">▲ Click to drill into that group</div>' : ""}
-          `;
+          return buildTooltip({ name: d.name, aggLabel, value: d.value, count: d.count, isLeaf });
         },
       },
-      grid: { top: 60, bottom: 80, left: 80, right: 40, containLabel: true },
+      grid: { top: 56, bottom: autoZoom ? 74 : 56, left: 72, right: 32, containLabel: true },
       xAxis: {
         type: "category",
         data: names,
         name: xAxisLabel,
         nameLocation: "middle",
-        nameGap: names.length > 8 ? 50 : 35,
+        nameGap: names.length > 8 ? 50 : 34,
         nameTextStyle: CHART_THEME.axisNameStyle,
-        axisLabel: {
-          ...CHART_THEME.axisLabel,
-          rotate: names.length > 8 ? 30 : 0,
-        },
+        axisLabel: { ...CHART_THEME.axisLabel, rotate: names.length > 8 ? 30 : 0 },
         axisLine: CHART_THEME.axisLine,
+        axisTick: { show: false },
       },
       yAxis: {
         type: "value",
         name: yAxisLabel,
         nameLocation: "middle",
-        nameGap: 60,
+        nameGap: 56,
         nameTextStyle: CHART_THEME.axisNameStyle,
         axisLabel: { ...CHART_THEME.axisLabel, formatter: numFormatter },
+        axisLine: { show: false },
         splitLine: CHART_THEME.splitLine,
       },
       series: [
@@ -75,51 +78,41 @@ const BarChart = ({
           name: yAxisLabel,
           data: values,
           type: "bar",
+          barMaxWidth: dynamicMaxWidth,
           itemStyle: {
             color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-              { offset: 0, color: palette[0] },
-              { offset: 1, color: palette[0] + "66" },
+              { offset: 0, color: baseColor },
+              { offset: 1, color: baseColor + "55" },
             ]),
             borderRadius: barBorderRadius,
-            borderColor: isLeaf ? "#d97706" : "transparent",
+            borderColor: isLeaf ? "#f59e0b" : "transparent",
             borderWidth: isLeaf ? 2 : 0,
           },
+          emphasis: {
+            itemStyle: {
+              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                { offset: 0, color: "#818cf8" },
+                { offset: 1, color: "#818cf855" },
+              ]),
+            },
+          },
           label: {
-            show: data.length <= 12,
+            show: data.length <= 14,
             position: "top",
-            color: "#6b7280",
+            color: "#9ca3af",
             fontSize: 10,
+            fontWeight: "600",
             formatter: (params) => numFormatter(params.value),
           },
         },
       ],
       dataZoom: autoZoom
-        ? [
-          {
-            type: "slider",
-            bottom: 5,
-            height: 20,
-            backgroundColor: "#f9fafb",
-            borderColor: "#e5e7eb",
-            fillerColor: "rgba(24,95,165,0.12)",
-            textStyle: { color: "#6b7280" },
-          },
-        ]
+        ? [{ ...CHART_THEME.dataZoomSlider }]
         : [],
-      animationDuration: 1000,
+      animationDuration: 700,
       animationEasing: "cubicOut",
     };
-  }, [
-    data,
-    title,
-    xAxisLabel,
-    yAxisLabel,
-    isLeaf,
-    aggregation,
-    palette,
-    showDataZoom,
-    barBorderRadius,
-  ]);
+  }, [data, title, xAxisLabel, yAxisLabel, isLeaf, aggregation, palette, showDataZoom, barBorderRadius]);
 
   return (
     <ReactECharts

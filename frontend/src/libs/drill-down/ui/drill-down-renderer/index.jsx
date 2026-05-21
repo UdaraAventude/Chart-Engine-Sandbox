@@ -736,7 +736,7 @@ const DrillDownRenderer = ({ onRenderTime }) => {
                 onClick={() => handleExport("server-excel")}
                 title="Export filtered data via server"
               >
-                Data XLSX
+                Data Excel
               </button>
             </>
           )}
@@ -753,7 +753,7 @@ const DrillDownRenderer = ({ onRenderTime }) => {
                 className="export-btn"
                 onClick={() => handleExport("excel")}
               >
-                Chart XLSX
+                Chart Excel
               </button>
             </>
           )}

@@ -1,65 +1,70 @@
-import React, { useMemo } from 'react';
-import ReactECharts from 'echarts-for-react';
-import { PALETTE, CHART_THEME } from '../_shared/chartTheme';
-import '../_shared/charts.css';
+import React, { useMemo } from "react";
+import ReactECharts from "echarts-for-react";
+import { PALETTE, CHART_THEME, buildTooltip } from "../_shared/chartTheme";
+import "../_shared/charts.css";
 
 const PieChart = ({
   data = [],
-  title = '',
-  innerRadius = '40%',
-  outerRadius = '70%',
+  title = "",
+  innerRadius = "40%",
+  outerRadius = "70%",
   showLegend = true,
-  legendOrient = 'vertical',
-  height = '420px',
+  legendOrient = "vertical",
+  height = "420px",
   palette = PALETTE,
-  aggregation = 'avg',
+  aggregation = "avg",
   isLeaf = false,
-  metricName = '',
+  metricName = "",
   onSliceClick,
   onChartReady,
 }) => {
   const option = useMemo(() => {
     if (!data?.length) return {};
     return {
-      backgroundColor: 'transparent',
+      backgroundColor: "transparent",
       title: {
         ...CHART_THEME.titleStyle,
         text: title,
-        left: 'center',
+        left: "center",
         top: 12,
       },
       tooltip: {
         ...CHART_THEME.tooltipBase,
-        trigger: 'item',
+        trigger: "item",
         formatter: (params) => {
           const d = data[params.dataIndex];
           const aggLabel = aggregation.charAt(0).toUpperCase() + aggregation.slice(1);
-          return `
-            <div style="font-weight:bold;margin-bottom:4px;color:#111827;border-bottom:1px solid #e5e7eb;padding-bottom:4px;">${d.name}</div>
-            <div style="color:#374151">${aggLabel}: <span style="color:#185FA5;font-weight:bold;">${d.value.toLocaleString()}</span></div>
-            <div style="color:#374151">Records: <span style="color:#7c3aed">${d.count ?? ''}</span></div>
-            ${!isLeaf ? '<div style="margin-top:8px;color:#059669;font-size:11px;font-style:italic;">▲ Click to drill</div>' : ''}
-          `;
+          return buildTooltip({ name: d.name, aggLabel, value: d.value, count: d.count ?? "", isLeaf });
         },
       },
       legend: showLegend
         ? {
-          orient: legendOrient,
-          left: 'left',
-          top: 'middle',
-          textStyle: { color: '#374151' },
-          type: 'scroll',
-        }
+            orient: legendOrient,
+            left: "left",
+            top: "middle",
+            type: "scroll",
+            textStyle: { color: "#374151", fontSize: 11.5, fontFamily: "'Inter', sans-serif" },
+            itemWidth: 10,
+            itemHeight: 10,
+            itemStyle: { borderRadius: 2 },
+          }
         : { show: false },
       series: [
         {
           name: metricName || title,
-          type: 'pie',
+          type: "pie",
           radius: [innerRadius, outerRadius],
-          avoidLabelOverlap: false,
-          itemStyle: { borderRadius: 10, borderColor: '#fff', borderWidth: 2 },
-          label: { show: false, position: 'center' },
-          emphasis: { label: { show: true, fontSize: 16, fontWeight: 'bold' } },
+          avoidLabelOverlap: true,
+          itemStyle: {
+            borderRadius: 8,
+            borderColor: "#fff",
+            borderWidth: 2,
+          },
+          label: { show: false, position: "center" },
+          emphasis: {
+            itemStyle: { shadowBlur: 14, shadowColor: "rgba(0,0,0,0.18)" },
+            label: { show: true, fontSize: 15, fontWeight: "700", color: "#111827" },
+          },
           labelLine: { show: false },
           data: data.map((d, i) => ({
             name: d.name,
@@ -68,22 +73,14 @@ const PieChart = ({
           })),
         },
       ],
+      animationDuration: 700,
+      animationEasing: "cubicOut",
     };
-  }, [
-    data,
-    title,
-    innerRadius,
-    outerRadius,
-    showLegend,
-    legendOrient,
-    palette,
-    aggregation,
-    isLeaf,
-    metricName,
-  ]);
+  }, [data, title, innerRadius, outerRadius, showLegend, legendOrient, palette, aggregation, isLeaf, metricName]);
 
   return (
-    <ReactECharts opts={{ renderer: 'svg' }}
+    <ReactECharts
+      opts={{ renderer: "svg" }}
       option={option}
       className="echarts-wrapper"
       style={{ height }}

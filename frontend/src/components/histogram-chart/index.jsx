@@ -1,86 +1,95 @@
-import React, { useMemo } from 'react';
-import ReactECharts from 'echarts-for-react';
-import * as echarts from 'echarts';
-import { CHART_THEME } from '../_shared/chartTheme';
-import '../_shared/charts.css';
+import React, { useMemo } from "react";
+import ReactECharts from "echarts-for-react";
+import * as echarts from "echarts";
+import { CHART_THEME } from "../_shared/chartTheme";
+import "../_shared/charts.css";
 
-/**
- * HistogramChart — ECharts distribution bar chart
- *
- * Props:
- *   labels       {string[]}  — bin labels, e.g. "0 – 10k"
- *   counts       {number[]}  — frequency per bin
- *   columnName   {string}    — column being distributed (used in axis label & subtitle)
- *   title        {string}
- *   color        {string}    — bar gradient base colour, default "#7c3aed"
- *   barWidth     {string}    — default "90%"
- *   height       {string}    — CSS height, default "420px"
- *   onBarClick   {(label:string)=>void}
- *   onChartReady {()=>void}
- */
 const HistogramChart = ({
   labels = [],
   counts = [],
-  columnName = '',
-  title = '',
-  color = '#7c3aed',
-  barWidth = '90%',
-  height = '420px',
+  columnName = "",
+  title = "",
+  color = "#5b5bd6",
+  barWidth = "90%",
+  height = "420px",
   onBarClick,
   onChartReady,
 }) => {
   const option = useMemo(() => {
     if (!labels.length) return {};
     return {
-      backgroundColor: 'transparent',
+      backgroundColor: "transparent",
       title: {
         ...CHART_THEME.titleStyle,
         text: title,
-        subtext: columnName ? `Distribution of ${columnName}` : '',
-        left: 'center',
+        subtext: columnName ? `Distribution of ${columnName}` : "",
+        left: "center",
         top: 12,
       },
-      tooltip: { ...CHART_THEME.tooltipBase, trigger: 'axis' },
-      grid: { top: 70, bottom: 60, left: 60, right: 40, containLabel: true },
+      tooltip: {
+        ...CHART_THEME.tooltipBase,
+        trigger: "axis",
+        formatter: (params) => {
+          const p = params[0];
+          return `
+            <div style="font-weight:700;color:#111827;border-bottom:1px solid #f3f4f6;padding-bottom:5px;margin-bottom:5px;">${p.name}</div>
+            <div style="color:#374151">Frequency: <span style="color:#5b5bd6;font-weight:700">${p.value.toLocaleString()}</span></div>
+          `;
+        },
+      },
+      grid: { top: 70, bottom: 56, left: 56, right: 32, containLabel: true },
       xAxis: {
-        type: 'category',
+        type: "category",
         data: labels,
-        name: columnName.replace(/_/g, ' ').toUpperCase(),
-        nameLocation: 'middle',
-        nameGap: 40,
+        name: columnName.replace(/_/g, " ").toUpperCase(),
+        nameLocation: "middle",
+        nameGap: 38,
         nameTextStyle: CHART_THEME.axisNameStyle,
         axisLabel: { ...CHART_THEME.axisLabel, rotate: 20 },
         axisLine: CHART_THEME.axisLine,
+        axisTick: { show: false },
       },
       yAxis: {
-        type: 'value',
-        name: 'FREQUENCY',
-        nameLocation: 'middle',
-        nameGap: 50,
+        type: "value",
+        name: "FREQUENCY",
+        nameLocation: "middle",
+        nameGap: 48,
         nameTextStyle: CHART_THEME.axisNameStyle,
         axisLabel: CHART_THEME.axisLabel,
+        axisLine: { show: false },
         splitLine: CHART_THEME.splitLine,
       },
       series: [
         {
-          name: 'FREQUENCY',
+          name: "Frequency",
           data: counts,
-          type: 'bar',
+          type: "bar",
           barWidth,
           itemStyle: {
             color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
               { offset: 0, color },
-              { offset: 1, color: color + '66' },
+              { offset: 1, color: color + "55" },
             ]),
-            borderRadius: [4, 4, 0, 0],
+            borderRadius: [5, 5, 0, 0],
+          },
+          emphasis: {
+            itemStyle: {
+              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                { offset: 0, color: "#818cf8" },
+                { offset: 1, color: "#818cf855" },
+              ]),
+            },
           },
         },
       ],
+      animationDuration: 700,
+      animationEasing: "cubicOut",
     };
   }, [labels, counts, columnName, title, color, barWidth]);
 
   return (
-    <ReactECharts opts={{ renderer: 'svg' }}
+    <ReactECharts
+      opts={{ renderer: "svg" }}
       option={option}
       className="echarts-wrapper"
       style={{ height }}
