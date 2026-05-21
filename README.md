@@ -1,6 +1,6 @@
 # Chart Engine Sandbox — Frontend
 
-Version: 0.1.0 | Architecture: React SPA (Vite) + Local state
+Version: 0.1.0 | Architecture: React SPA (Vite) + Chart Engine API
 
 ---
 
@@ -11,7 +11,7 @@ Chart Engine Sandbox is a frontend playground containing a collection of reusabl
 Key ideas:
 
 - Fast prototyping of chart UI and interactions
-- CSV upload + worker-based parsing pipeline
+- CSV upload to Chart Engine API (SSE progress)
 - Drill-down adapters and breadcrumb navigation
 - Pluggable rendering engine used by multiple chart components
 
@@ -20,7 +20,7 @@ Key ideas:
 ## Features
 
 - Multiple chart types: bar, line, pie, scatter, heatmap, histogram, bubble, correlation, multiline, sunburst
-- CSV upload UI with client-side parsing in a Web Worker
+- CSV upload UI backed by server-side processing
 - Drill-down & breadcrumb navigation for hierarchical charts
 - Chart type and axis selectors as reusable UI primitives
 - Mock AI output and rendering hooks for experimentation
@@ -32,6 +32,7 @@ Key ideas:
 Prerequisites:
 
 - Node.js (LTS recommended)
+- Chart Engine API running at `http://localhost:5110` (see `chart-engine-server`)
 
 Install and run development server:
 
@@ -57,8 +58,11 @@ npm run preview
 This project reads a small set of Vite environment variables for API integration and dev features. Example `.env` values (create in `frontend/` if needed):
 
 ```
-VITE_API_BASE_URL=http://localhost:5255/api
-VITE_ENABLE_DEV_TOOLS=true
+# Dev: Vite proxies /api to localhost:5110
+VITE_API_BASE_URL=/api/v1
+
+# Production build against API directly:
+# VITE_API_BASE_URL=http://localhost:5110/api/v1
 ```
 
 ---

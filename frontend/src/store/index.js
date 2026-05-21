@@ -2,11 +2,13 @@ import { create } from "zustand";
 import { createDataSlice } from "./features/data";
 import { createUISlice } from "./features/ui";
 import { createDrillSlice } from "./features/drill";
+import { createSessionSlice } from "./features/session";
 
 const useStore = create((set, get) => ({
   ...createDataSlice(set, get),
   ...createUISlice(set, get),
   ...createDrillSlice(set, get),
+  ...createSessionSlice(set),
 }));
 
 if (typeof window !== "undefined") {
