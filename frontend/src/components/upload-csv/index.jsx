@@ -28,7 +28,8 @@ const UploadCSV = () => {
     } catch (err) {
       setError(
         err?.message ||
-          err.response?.data?.detail ||
+          err?.body?.error ||
+          err?.body?.detail ||
           'System error during CSV processing.',
       );
     } finally {
@@ -95,7 +96,9 @@ const UploadCSV = () => {
         <div className='upload-progress-container'>
           <div className='upload-progress-header'>
             <span>
-              {uploadProgress < 60 ? 'Parsing CSV...' : 'Building data tree...'}
+              {uploadProgress < 30
+                ? 'Uploading to server...'
+                : 'Processing dataset on server...'}
             </span>
             <span>{uploadProgress}%</span>
           </div>
