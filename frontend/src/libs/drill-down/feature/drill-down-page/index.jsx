@@ -1,12 +1,13 @@
 import React from "react";
 import UploadCSV from "../../../../components/upload-csv";
+import DatasetPanel from "../../../../components/dataset-panel";
 import ChartToolbar from "../../ui/chart-toolbar";
 import DrillDownRenderer from "../../ui/drill-down-renderer";
 import useStore from "../../../../store";
 
 const DrillDownPage = () => {
   const {
-    globalData,
+    activeDatasetId,
     error,
     drillPath,
     chartTypeByDepth,
@@ -22,6 +23,8 @@ const DrillDownPage = () => {
     setChartTypeAtDepth(0, type);
   };
 
+  const hasWorkspace = Boolean(activeDatasetId);
+
   return (
     <div className="eval-container">
       <header className="eval-header">
@@ -36,20 +39,26 @@ const DrillDownPage = () => {
       </header>
 
       <main className="eval-main">
-        {globalData ? (
-          <div className="dashboard-content">
-            <ChartToolbar
-              activeChartType={activeChartType}
-              onSelect={handleChartTypeSelect}
-            />
-            <DrillDownRenderer onRenderTime={setRenderTime} />
-          </div>
-        ) : (
-          <div className="awaiting-state">
-            <h2>Awaiting Dataset Ingestion</h2>
-            <p>Please upload a CSV file to activate the hierarchical exploration engine.</p>
-          </div>
-        )}
+        <div className="eval-layout-with-panel">
+          <DatasetPanel />
+          {hasWorkspace ? (
+            <div className="dashboard-content">
+              <ChartToolbar
+                activeChartType={activeChartType}
+                onSelect={handleChartTypeSelect}
+              />
+              <DrillDownRenderer onRenderTime={setRenderTime} />
+            </div>
+          ) : (
+            <div className="awaiting-state">
+              <h2>Awaiting Dataset Ingestion</h2>
+              <p>
+                Upload a CSV or select a dataset from the panel to start
+                exploration.
+              </p>
+            </div>
+          )}
+        </div>
       </main>
 
       {error && <div className="error-banner">{error}</div>}
@@ -58,4 +67,3 @@ const DrillDownPage = () => {
 };
 
 export default DrillDownPage;
-
