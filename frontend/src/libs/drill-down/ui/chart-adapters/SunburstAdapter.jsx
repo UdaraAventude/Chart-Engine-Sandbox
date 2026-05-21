@@ -13,11 +13,13 @@ export default function SunburstAdapter({
   drillBackTo,
   drillToPath,
   tree,
+  serverNormalized,
 }) {
   const data = useMemo(() => {
+    if (serverNormalized?.length) return serverNormalized;
     if (!tree) return [];
     return formatSunburstData(tree, 200, aggregation, metrics[0] ?? "");
-  }, [tree, aggregation, metrics]);
+  }, [serverNormalized, tree, aggregation, metrics]);
 
   if (!data || data.length === 0) {
     return (

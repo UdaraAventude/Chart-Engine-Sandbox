@@ -17,11 +17,13 @@ export default function StandardAdapter({
   title,
   handleClick,
   onChartReady,
-  aggregation
+  aggregation,
+  serverNormalized,
 }) {
   const data = useMemo(() => {
+    if (serverNormalized) return serverNormalized;
     return formatForChart(currentNode, chartType, rows, drillPath, metrics, dimensions, undefined, aggregation);
-  }, [currentNode, chartType, rows, drillPath, metrics, dimensions, aggregation]);
+  }, [serverNormalized, currentNode, chartType, rows, drillPath, metrics, dimensions, aggregation]);
 
   const xLabel = (currentColumn || '').replace(/_/g, ' ').toUpperCase();
   

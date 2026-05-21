@@ -14,11 +14,13 @@ export default function HeatmapAdapter({
   title,
   handleClick,
   onChartReady,
-  aggregation
+  aggregation,
+  serverNormalized,
 }) {
   const heatData = useMemo(() => {
+    if (serverNormalized) return serverNormalized;
     return formatForChart(currentNode, 'heatmap', rows, drillPath, metrics, dimensions, 50, aggregation);
-  }, [currentNode, rows, drillPath, metrics, dimensions, aggregation]);
+  }, [serverNormalized, currentNode, rows, drillPath, metrics, dimensions, aggregation]);
 
   const nextDimension = dimensions[categoricalDepth + 1] ?? '';
 

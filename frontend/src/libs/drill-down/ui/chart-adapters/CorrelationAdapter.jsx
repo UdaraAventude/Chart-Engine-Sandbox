@@ -9,11 +9,16 @@ export default function CorrelationAdapter({
   metrics,
   dimensions,
   title,
-  onChartReady
+  onChartReady,
+  serverNormalized,
 }) {
   const correlationData = useMemo(() => {
+    if (serverNormalized?.columns) return serverNormalized;
+    if (serverNormalized?.rawData) {
+      return { columns: metrics?.slice(0, 2) ?? [], matrix: [[1, 0], [0, 1]] };
+    }
     return formatForChart(currentNode, 'correlation', rows, drillPath, metrics, dimensions);
-  }, [currentNode, rows, drillPath, metrics, dimensions]);
+  }, [serverNormalized, currentNode, rows, drillPath, metrics, dimensions]);
 
   if (!correlationData.columns || correlationData.columns.length < 2) {
     return (

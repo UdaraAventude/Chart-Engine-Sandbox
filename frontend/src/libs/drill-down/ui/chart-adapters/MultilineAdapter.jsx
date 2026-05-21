@@ -12,11 +12,13 @@ export default function MultilineAdapter({
   title,
   handleClick,
   onChartReady,
-  aggregation
+  aggregation,
+  serverNormalized,
 }) {
   const multiData = useMemo(() => {
+    if (serverNormalized) return serverNormalized;
     return formatForChart(currentNode, 'multiline', rows, drillPath, metrics, dimensions, 50, aggregation);
-  }, [currentNode, rows, drillPath, metrics, dimensions, aggregation]);
+  }, [serverNormalized, currentNode, rows, drillPath, metrics, dimensions, aggregation]);
 
   const nextDimension = dimensions[categoricalDepth + 1] ?? '';
 

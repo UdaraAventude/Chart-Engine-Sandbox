@@ -11,11 +11,13 @@ export default function ScatterAdapter({
   currentColumn,
   title,
   handleClick,
-  onChartReady
+  onChartReady,
+  serverNormalized,
 }) {
   const { rawData, xCol, yCol } = useMemo(() => {
+    if (serverNormalized) return serverNormalized;
     return formatForChart(currentNode, 'scatter', rows, drillPath, metrics, dimensions);
-  }, [currentNode, rows, drillPath, metrics, dimensions]);
+  }, [serverNormalized, currentNode, rows, drillPath, metrics, dimensions]);
 
   return (
     <ScatterChart

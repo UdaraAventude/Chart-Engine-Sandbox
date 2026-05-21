@@ -15,6 +15,7 @@ import {
   formatForChart,
   filterRows,
 } from "../../hooks/engine";
+import { useServerVisualization } from "../../hooks/useServerVisualization";
 import { DRILL_CHART_OPTIONS } from "../../constants/chartOptions";
 import DrillDownBreadcrumb from "../drill-down-breadcrumb";
 import { AGGREGATION_OPTIONS } from "../../hooks/engine/aggregation";
@@ -63,6 +64,11 @@ function parseHistBinRange(label) {
 }
 
 const DrillDownRenderer = ({ onRenderTime }) => {
+  const activeDatasetId = useStore((s) => s.activeDatasetId);
+  const metadata = useStore((s) => s.metadata);
+  const serverChartData = useStore((s) => s.serverChartData);
+  const chartLoading = useStore((s) => s.chartLoading);
+  const chartError = useStore((s) => s.chartError);
   const globalData = useStore((s) => s.globalData);
   const totalRows = useStore((s) => s.totalRows);
   const drillPath = useStore((s) => s.drillPath);
@@ -79,22 +85,27 @@ const DrillDownRenderer = ({ onRenderTime }) => {
   const t0 = useRef(0);
   const echartsRef = useRef(null);
 
+  const { chartType: serverChartType } = useServerVisualization();
+
   const tree = globalData?.tree;
-  const dimensions = globalData?.dimensions ?? [];
-  const metrics = globalData?.metrics ?? [];
+  const dimensions = metadata?.dimensions ?? globalData?.dimensions ?? [];
+  const metrics = metadata?.metrics ?? globalData?.metrics ?? [];
   const rows = globalData?.rows ?? [];
 
-  const currentNode = getNodeAtPath(tree, drillPath);
-  const atLeaf = isLeaf(currentNode);
-
+  const currentNode = tree ? getNodeAtPath(tree, drillPath) : null;
   const categoricalDepth = drillPath.filter(
     (s) => !s.column.startsWith("__hist__"),
   ).length;
-  const currentColumn = dimensions[categoricalDepth] ?? "";
+  const atLeaf = activeDatasetId
+    ? categoricalDepth >= dimensions.length
+    : isLeaf(currentNode);
+
+  const currentColumn =
+    serverChartData?.meta?.groupedBy || dimensions[categoricalDepth] || "";
 
   const availableDepth = dimensions.length - categoricalDepth;
 
-  const chartType = chartTypeByDepth[drillPath.length] ?? "bar";
+  const chartType = chartTypeByDepth[drillPath.length] ?? serverChartType ?? "bar";
   const currentOption = DRILL_CHART_OPTIONS.find((o) => o.value === chartType);
 
   const lastHistStep = useMemo(
@@ -148,9 +159,10 @@ const DrillDownRenderer = ({ onRenderTime }) => {
 
   const handleClick = useCallback(
     (name) => {
-      if (!atLeaf && name && currentColumn) drillInto(name, currentColumn);
+      const column = serverChartData?.meta?.groupedBy || currentColumn;
+      if (!atLeaf && name && column) drillInto(name, column);
     },
-    [atLeaf, currentColumn, drillInto],
+    [atLeaf, currentColumn, drillInto, serverChartData],
   );
 
   useEffect(() => {
@@ -177,7 +189,7 @@ const DrillDownRenderer = ({ onRenderTime }) => {
   const treeRowCount = currentNode?.count ?? totalRows;
   const resolvedRowCount = histDrilledRowCount ?? treeRowCount;
 
-  if (!globalData || !tree) {
+  if (!activeDatasetId && (!globalData || !tree)) {
     return (
       <div className="empty-state">
         <Layers
@@ -194,7 +206,7 @@ const DrillDownRenderer = ({ onRenderTime }) => {
     );
   }
 
-  const rejected = globalData?.rejected ?? [];
+  const rejected = metadata?.rejected ?? globalData?.rejected ?? [];
   const hasOnlyNumeric =
     metrics.length > 0 && rejected.every((r) => r.reason !== "too_few_unique");
 
@@ -231,10 +243,16 @@ const DrillDownRenderer = ({ onRenderTime }) => {
   const renderTable = () => {
     let data;
     let isRaw = false;
-    if (atLeaf) {
+    if (atLeaf && rows.length) {
       data = filterRows(rows, drillPath).slice(0, 500);
       isRaw = true;
-    } else {
+    } else if (serverChartData?.normalized?.length) {
+      data = serverChartData.normalized.map((d) => ({
+        name: d.name,
+        value: d.value,
+        count: d.count,
+      }));
+    } else if (currentNode) {
       data = formatForChart(
         currentNode,
         "bar",
@@ -245,6 +263,8 @@ const DrillDownRenderer = ({ onRenderTime }) => {
         null,
         aggregation,
       );
+    } else {
+      data = [];
     }
 
     if (!data || data.length === 0)
@@ -325,6 +345,23 @@ const DrillDownRenderer = ({ onRenderTime }) => {
       );
     }
 
+    if (chartLoading) {
+      return (
+        <div className="empty-state">
+          <p>Loading chart from server...</p>
+        </div>
+      );
+    }
+
+    if (chartError) {
+      return (
+        <div className="empty-state">
+          <h3>Chart Error</h3>
+          <p className="empty-subtext">{chartError}</p>
+        </div>
+      );
+    }
+
     return (
       <ChartAdapter
         chartType={chartType}
@@ -345,6 +382,7 @@ const DrillDownRenderer = ({ onRenderTime }) => {
         drillBackTo={drillBackTo}
         aggregation={aggregation}
         tree={tree}
+        serverNormalized={serverChartData?.normalized}
       />
     );
   };

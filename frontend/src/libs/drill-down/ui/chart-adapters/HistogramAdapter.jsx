@@ -12,6 +12,7 @@ export default function HistogramAdapter({
   onChartReady,
   drillInto,
   aggregation = 'count',
+  serverNormalized,
 }) {
   // Prevent recursive histogram drilling for the same metric
   const histMetric = metrics[0] ?? '';
@@ -23,9 +24,10 @@ export default function HistogramAdapter({
   const canDrillFurther = !atLeaf && !alreadyInHistBin && !!currentColumn;
 
   const histogramBins = useMemo(() => {
+    if (serverNormalized?.labels?.length) return serverNormalized;
     if (!rows.length || !metrics.length) return null;
     return computeHistogramBins(rows, drillPath, metrics[0], filterRows, 20, aggregation);
-  }, [rows, drillPath, metrics, aggregation]);
+  }, [serverNormalized, rows, drillPath, metrics, aggregation]);
 
   if (!histogramBins || !histogramBins.labels.length) {
     return <div className='empty-state'>No numeric data available for histogram.</div>;
