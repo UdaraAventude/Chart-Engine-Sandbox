@@ -35,7 +35,6 @@ chart-engine-client/
         │   ├── drill-down/     # Explore page, renderer, adapters
         │   └── chart-builder/  # Experimental builder preview
         ├── styles/             # Global tokens, DrillDown, ExploreView
-        └── workers/            # Legacy csv-pipeline.worker (unused)
 ```
 
 ### High-level flow
@@ -240,7 +239,7 @@ Run from `frontend/`:
 
 ## Key implementation notes
 
-- **No client-side tree build for uploads** — `workers/csv-pipeline.worker.js` is legacy; uploads go to the server only.
+- **No client-side CSV parsing** — uploads and analytics run on the server (CsvHelper); the client only streams files and consumes JSON.
 - **Unified chart theme** — `chartTheme.js` keeps colors and tooltips consistent across all ECharts types.
 - **Bar width** — scales with category count: `max(16, min(120, 560 / barCount))`.
 - **Export UX** — progress in export toolbar only (chart area is never blocked by an overlay).
