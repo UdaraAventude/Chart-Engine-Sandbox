@@ -60,7 +60,7 @@ function WorkspaceUpload({ onUploaded }) {
             {isLoading ? 'Uploading & indexing…' : 'Drop your file here'}
           </span>
           <span className="ws-drop-sub">
-            {isLoading ? 'Building drill-down hierarchy on the server' : 'or click to browse · CSV, DATA, TXT up to 2 GB'}
+            {isLoading ? 'Building drill-down hierarchy on the server' : 'or click to browse · CSV, DATA, TXT up to 2\u00a0GB'}
           </span>
         </div>
 

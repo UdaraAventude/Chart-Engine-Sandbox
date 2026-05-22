@@ -3,6 +3,7 @@ import {
   Activity,
   Download,
   Layers,
+  Loader2,
   Maximize2,
 } from "lucide-react";
 import "../../../../styles/DrillDown.css";
@@ -39,6 +40,7 @@ import {
   exportToExcel,
 } from "../../../../services/export";
 import { runServerExport } from "../../../../services/export/serverExport";
+import { exportStatusMessage } from "../../../../services/api/export";
 
 import {
   HistogramAdapter,
@@ -50,6 +52,16 @@ import {
   CorrelationAdapter,
   SunburstAdapter,
 } from "../chart-adapters";
+
+const EXPORT_LABELS = {
+  "server-csv": "Data CSV",
+  "server-excel": "Data Excel",
+  csv: "Chart CSV",
+  excel: "Chart Excel",
+  png: "PNG",
+  svg: "SVG",
+  pdf: "PDF",
+};
 
 const CHART_ADAPTERS = {
   histogram: HistogramAdapter,
@@ -99,6 +111,10 @@ const DrillDownRenderer = ({ onRenderTime }) => {
   const echartsRef = useRef(null);
   const [pathModalOpen, setPathModalOpen] = useState(false);
   const [chartRefreshKey, setChartRefreshKey] = useState(0);
+  const [exportBusy, setExportBusy] = useState(false);
+  const [exportMessage, setExportMessage] = useState("");
+  const [exportSuccess, setExportSuccess] = useState(null);
+  const exportSuccessTimer = useRef(null);
 
   useServerVisualization(chartRefreshKey);
 
@@ -184,29 +200,62 @@ const DrillDownRenderer = ({ onRenderTime }) => {
     [onRenderTime, setRenderTime],
   );
 
-  const handleServerDataExport = async (format) => {
-    if (!activeDatasetId) return;
+  useEffect(() => {
+    return () => {
+      if (exportSuccessTimer.current) clearTimeout(exportSuccessTimer.current);
+    };
+  }, []);
+
+  const showExportSuccess = (label) => {
+    setExportSuccess(`${label} ready — download started`);
+    if (exportSuccessTimer.current) clearTimeout(exportSuccessTimer.current);
+    exportSuccessTimer.current = setTimeout(() => setExportSuccess(null), 5000);
+  };
+
+  const handleServerDataExport = async (formatKey, apiFormat) => {
+    if (!activeDatasetId || exportBusy) return;
+    const label = EXPORT_LABELS[formatKey];
+    setExportBusy(true);
+    setExportSuccess(null);
+    useStore.getState().setError(null);
+    setExportMessage(`Starting ${label} export…`);
     try {
-      await runServerExport(activeDatasetId, format, drillPath);
+      await runServerExport(activeDatasetId, apiFormat, drillPath, {
+        onStatus: (status) => setExportMessage(exportStatusMessage(status)),
+      });
+      showExportSuccess(label);
     } catch (err) {
       console.error("[DrillDown] Server export failed:", err);
       useStore.getState().setError(err?.message || "Server export failed");
+    } finally {
+      setExportBusy(false);
+      setExportMessage("");
     }
   };
 
   const handleExport = async (format) => {
+    if (exportBusy) return;
+
     if (format === "server-csv") {
-      await handleServerDataExport("CSV");
+      await handleServerDataExport("server-csv", "CSV");
       return;
     }
     if (format === "server-excel") {
-      await handleServerDataExport("Excel");
+      await handleServerDataExport("server-excel", "Excel");
       return;
     }
 
     if (!echartsRef.current) {
       console.warn("[DrillDown] Export called before chart was ready.");
       return;
+    }
+
+    const label = EXPORT_LABELS[format] || format;
+    const needsWait = format === "pdf" || format === "excel";
+    if (needsWait) {
+      setExportBusy(true);
+      setExportSuccess(null);
+      setExportMessage(`Building ${label}…`);
     }
 
     const instance = echartsRef.current;
@@ -225,14 +274,29 @@ const DrillDownRenderer = ({ onRenderTime }) => {
         : "Overview";
     const headerText = `Chart Export: ${drillContext} | Aggregation: ${aggregation.toUpperCase()}`;
 
-    if (format === "png") exportToPNG(instance, `${filename}.png`);
-    if (format === "svg") exportToSVG(instance, `${filename}.svg`);
-    if (format === "pdf")
-      await exportToPDF(instance, `${filename}.pdf`, headerText);
-    if (format === "csv")
-      exportToCSV(instance, `${filename}.csv`, dimLabel, headerText);
-    if (format === "excel")
-      await exportToExcel(instance, `${filename}.xlsx`, dimLabel, headerText);
+    try {
+      if (format === "png") exportToPNG(instance, `${filename}.png`);
+      else if (format === "svg") exportToSVG(instance, `${filename}.svg`);
+      else if (format === "pdf")
+        await exportToPDF(instance, `${filename}.pdf`, headerText);
+      else if (format === "csv")
+        exportToCSV(instance, `${filename}.csv`, dimLabel, headerText);
+      else if (format === "excel")
+        await exportToExcel(instance, `${filename}.xlsx`, dimLabel, headerText);
+
+      if (needsWait) showExportSuccess(label);
+      else if (format === "png" || format === "svg" || format === "csv") {
+        showExportSuccess(label);
+      }
+    } catch (err) {
+      console.error("[DrillDown] Export failed:", err);
+      useStore.getState().setError(err?.message || `${label} export failed`);
+    } finally {
+      if (needsWait) {
+        setExportBusy(false);
+        setExportMessage("");
+      }
+    }
   };
 
   const handleClick = useCallback(
@@ -698,27 +762,39 @@ const DrillDownRenderer = ({ onRenderTime }) => {
       />
 
       {chartType !== "table" && (
-        <div className="export-toolbar">
-          <div style={{ marginRight: "auto", display: "flex", gap: "8px" }}>
+        <div className={`export-toolbar ${exportBusy ? "export-toolbar--busy" : ""}`}>
+          <div style={{ marginRight: "auto", display: "flex", gap: "8px", alignItems: "center" }}>
             <button
               className="export-btn"
               title="View in Fullscreen"
               onClick={handleFullscreen}
+              disabled={exportBusy}
             >
               <Maximize2 size={12} />
             </button>
+            {exportBusy && (
+              <span className="export-status export-status--loading" role="status" aria-live="polite">
+                <Loader2 size={13} className="export-status-spin" />
+                {exportMessage || "Preparing export…"}
+              </span>
+            )}
+            {!exportBusy && exportSuccess && (
+              <span className="export-status export-status--success" role="status" aria-live="polite">
+                {exportSuccess}
+              </span>
+            )}
           </div>
           <span className="export-label">
             <Download size={10} style={{ marginRight: "4px" }} /> Export
           </span>
 
-          <button className="export-btn" onClick={() => handleExport("png")}>
+          <button className="export-btn" disabled={exportBusy} onClick={() => handleExport("png")}>
             PNG
           </button>
-          <button className="export-btn" onClick={() => handleExport("svg")}>
+          <button className="export-btn" disabled={exportBusy} onClick={() => handleExport("svg")}>
             SVG
           </button>
-          <button className="export-btn" onClick={() => handleExport("pdf")}>
+          <button className="export-btn" disabled={exportBusy} onClick={() => handleExport("pdf")}>
             PDF
           </button>
 
@@ -726,6 +802,7 @@ const DrillDownRenderer = ({ onRenderTime }) => {
             <>
               <button
                 className="export-btn"
+                disabled={exportBusy}
                 onClick={() => handleExport("server-csv")}
                 title="Export filtered data via server"
               >
@@ -733,6 +810,7 @@ const DrillDownRenderer = ({ onRenderTime }) => {
               </button>
               <button
                 className="export-btn"
+                disabled={exportBusy}
                 onClick={() => handleExport("server-excel")}
                 title="Export filtered data via server"
               >
@@ -745,12 +823,14 @@ const DrillDownRenderer = ({ onRenderTime }) => {
             <>
               <button
                 className="export-btn"
+                disabled={exportBusy}
                 onClick={() => handleExport("csv")}
               >
                 Chart CSV
               </button>
               <button
                 className="export-btn"
+                disabled={exportBusy}
                 onClick={() => handleExport("excel")}
               >
                 Chart Excel
