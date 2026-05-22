@@ -16,16 +16,28 @@ export function getExportStatus(jobId) {
   return apiRequest(`/datasets/exports/${jobId}`);
 }
 
-export async function pollExportUntilDone(jobId, { intervalMs = 1000, maxAttempts = 120 } = {}) {
+export function exportStatusMessage(status) {
+  const s = String(status?.status ?? status ?? '').toLowerCase();
+  if (s === 'pending') return 'Export queued on server…';
+  if (s === 'processing') return 'Preparing export… large datasets may take a minute';
+  if (s === 'completed') return 'Finishing download…';
+  return 'Preparing export…';
+}
+
+export async function pollExportUntilDone(
+  jobId,
+  { intervalMs = 1000, maxAttempts = 120, onStatus } = {},
+) {
   for (let attempt = 0; attempt < maxAttempts; attempt += 1) {
     const status = await getExportStatus(jobId);
+    onStatus?.(status);
     if (status.status === 'Completed') return status;
     if (status.status === 'Failed') {
       throw new ApiError(status.errorMessage || 'Export job failed');
     }
     await new Promise((resolve) => setTimeout(resolve, intervalMs));
   }
-  throw new ApiError('Export timed out');
+  throw new ApiError('Export timed out — try again or narrow your drill path');
 }
 
 function buildDownloadUrl(jobId) {
@@ -55,9 +67,10 @@ export async function downloadExportFile(jobId, fileName = 'export.csv') {
   URL.revokeObjectURL(url);
 }
 
-export async function runServerExport(datasetId, format, drillPath) {
+export async function runServerExport(datasetId, format, drillPath, { onStatus } = {}) {
+  onStatus?.({ status: 'Pending' });
   const job = await startExport(datasetId, format, drillPath);
-  await pollExportUntilDone(job.jobId);
+  await pollExportUntilDone(job.jobId, { onStatus });
   const ext = format.toLowerCase() === 'excel' ? 'xlsx' : 'csv';
   await downloadExportFile(job.jobId, `export.${ext}`);
 }
