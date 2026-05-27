@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
 import useStore from '../../../store';
 import { getSampleRows } from '../../../services/api/documents';
+import { ROW_CHART_SAMPLE_LIMIT } from '../constants/dataLimits';
 
 /**
  * Row-level charts (scatter, correlation) need filtered CSV rows, not tree aggregates.
  * Uses local globalData.rows when present; otherwise fetches a server sample.
+ * @param {number} [limit] - max rows to request from sample-rows (table uses a smaller preview limit).
  */
-export function useRowSampleRows(drillPath, enabled = true) {
+export function useRowSampleRows(drillPath, enabled = true, limit = ROW_CHART_SAMPLE_LIMIT) {
   const activeDatasetId = useStore((s) => s.activeDatasetId);
   const localRows = useStore((s) => s.globalData?.rows ?? []);
 
@@ -33,7 +35,7 @@ export function useRowSampleRows(drillPath, enabled = true) {
         const res = await getSampleRows({
           id: activeDatasetId,
           drillPath,
-          limit: 5000,
+          limit,
         });
         if (cancelled) return;
         setRows(res?.rows ?? res?.Rows ?? []);
@@ -50,7 +52,7 @@ export function useRowSampleRows(drillPath, enabled = true) {
     return () => {
       cancelled = true;
     };
-  }, [enabled, activeDatasetId, localRows.length, drillKey]);
+  }, [enabled, activeDatasetId, localRows.length, drillKey, limit]);
 
   return {
     rows: localRows.length > 0 ? localRows : rows,

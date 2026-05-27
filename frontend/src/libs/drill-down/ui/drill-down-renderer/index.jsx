@@ -32,6 +32,8 @@ import {
   trimDrillPathToTreeDepth,
 } from "../../utils/drillDepth";
 import { AGGREGATION_OPTIONS } from "../../hooks/engine/aggregation";
+import { TABLE_PREVIEW_LIMIT } from "../../constants/dataLimits";
+import { formatTableRecordLabel } from "../../utils/formatTableRecordLabel";
 import {
   exportToPNG,
   exportToSVG,
@@ -159,7 +161,11 @@ const DrillDownRenderer = ({ onRenderTime }) => {
     rows: tableSampleRows,
     loading: tableRowsLoading,
     error: tableRowsError,
-  } = useRowSampleRows(drillPath, chartType === "table" && tableWantsRawRows);
+  } = useRowSampleRows(
+    drillPath,
+    chartType === "table" && tableWantsRawRows,
+    TABLE_PREVIEW_LIMIT,
+  );
 
   const breakdownColumn =
     depthCtx.breakdownDimension || meta?.groupedBy || "";
@@ -417,10 +423,10 @@ const DrillDownRenderer = ({ onRenderTime }) => {
     let isRaw = false;
 
     if (tableWantsRawRows && tableSampleRows.length) {
-      data = filterRows(tableSampleRows, drillPath).slice(0, 500);
+      data = filterRows(tableSampleRows, drillPath).slice(0, TABLE_PREVIEW_LIMIT);
       isRaw = true;
     } else if (atLeaf && rows.length) {
-      data = filterRows(rows, drillPath).slice(0, 500);
+      data = filterRows(rows, drillPath).slice(0, TABLE_PREVIEW_LIMIT);
       isRaw = true;
     } else if (serverAgg) {
       data = serverChartData.normalized.map((d) => ({
@@ -450,6 +456,9 @@ const DrillDownRenderer = ({ onRenderTime }) => {
     }
 
     const cols = Object.keys(data[0]).filter((c) => c !== "aggs");
+    const rowCountLabel = isRaw
+      ? formatTableRecordLabel(data.length, resolvedRowCount)
+      : `Showing ${data.length.toLocaleString()} group${data.length === 1 ? "" : "s"}`;
 
     return (
       <div className="table-view-container">
@@ -457,9 +466,15 @@ const DrillDownRenderer = ({ onRenderTime }) => {
           <span className="table-mode-badge">
             {isRaw ? "RAW RECORDS" : "AGGREGATED INSIGHTS"}
           </span>
-          <span className="table-row-count">
-            Showing {data.length.toLocaleString()}{" "}
-            {isRaw ? "total records" : "groups"}
+          <span
+            className="table-row-count"
+            title={
+              isRaw && resolvedRowCount > data.length
+                ? `Table preview is capped at ${TABLE_PREVIEW_LIMIT.toLocaleString()} rows. Export for the full slice.`
+                : undefined
+            }
+          >
+            {rowCountLabel}
           </span>
         </div>
         <div className="table-scroll-wrapper">
@@ -840,7 +855,9 @@ const DrillDownRenderer = ({ onRenderTime }) => {
         </div>
       )}
 
-      <div className="chart-container-wrapper">
+      <div
+        className={`chart-container-wrapper${chartType === "table" ? " chart-container-wrapper--table" : ""}`}
+      >
         {renderChart()}
       </div>
     </div>
