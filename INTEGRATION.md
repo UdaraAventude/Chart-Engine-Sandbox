@@ -59,6 +59,6 @@ Open http://localhost:5173. Vite proxies `/api` and `/health` to port **5110**.
 
 Set `VITE_API_BASE_URL=http://your-api-host:5110/api/v1` before `npm run build`.
 
-## Legacy client pipeline
+## CSV processing
 
-`frontend/src/workers/csv-pipeline.worker.js` is no longer used for uploads. All processing runs on the server.
+All CSV parsing runs on the server (**CsvHelper**). The client does not parse upload files locally.
