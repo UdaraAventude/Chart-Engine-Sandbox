@@ -9,7 +9,7 @@
 
 /* ─── HEADER ─────────────────────────────────────────────────────────────── */
 .app-header {
-  background: var(--bg-dark);
+  background: var(--bg-card);
   display: flex;
   align-items: center;
   padding: 0 24px;
@@ -18,7 +18,7 @@
   top: 0;
   z-index: 100;
   height: var(--header-h);
-  border-bottom: 1px solid rgba(255,255,255,.06);
+  border-bottom: 1px solid var(--border);
 }
 
 /* ─── LOGO ───────────────────────────────────────────────────────────────── */
@@ -49,11 +49,11 @@
 .app-header-wordmark {
   font-size: 13.5px;
   font-weight: 700;
-  color: rgba(255,255,255,.9);
+  color: var(--text-main);
   letter-spacing: -0.02em;
   line-height: 1;
 }
-.app-header-wordmark span { color: rgba(255,255,255,.35); font-weight: 400; }
+.app-header-wordmark span { color: var(--text-muted); font-weight: 400; }
 
 /* ─── NAV ────────────────────────────────────────────────────────────────── */
 .header-nav { display: flex; align-items: stretch; gap: 0; height: 100%; }
@@ -64,15 +64,15 @@
   padding: 0 14px;
   font-size: 13px;
   font-weight: 500;
-  color: rgba(255,255,255,.45);
+  color: var(--text-muted);
   transition: color var(--transition);
   height: 100%;
   position: relative;
   letter-spacing: 0.01em;
   white-space: nowrap;
 }
-.nav-link-top:hover { color: rgba(255,255,255,.8); }
-.nav-link-top.active { color: #fff; font-weight: 600; }
+.nav-link-top:hover { color: var(--text-main); }
+.nav-link-top.active { color: var(--text-main); font-weight: 600; }
 .nav-link-top.active::after {
   content: '';
   position: absolute;
