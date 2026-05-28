@@ -63,8 +63,8 @@ const SunburstChart = ({
           name: `${aggregation.toUpperCase()} OF ${measureCol.toUpperCase()}`,
           type: "sunburst",
           data: processedData,
-          radius: [0, "88%"],
-          center: ["50%", "52%"],
+          radius: [0, "78%"],
+          center: ["50%", "54%"],
           sort: "desc",
           nodeClick: "rootToNode",
           label: { show: false },
@@ -158,7 +158,7 @@ const SunburstChart = ({
       <div
         style={{
           position: "absolute",
-          top: 8,
+          top: 16,
           left: 0,
           right: 0,
           textAlign: "center",
@@ -201,7 +201,7 @@ const SunburstChart = ({
       <div
         style={{
           position: "absolute",
-          bottom: 4,
+          bottom: 10,
           left: 0,
           right: 0,
           textAlign: "center",

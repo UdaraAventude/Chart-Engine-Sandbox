@@ -19,9 +19,9 @@
   flex-wrap: wrap;
   gap: 16px;
   padding: 20px 24px;
-  background: var(--bg-dark);
+  background: var(--bg-card);
   border-radius: var(--radius-lg);
-  border: 1px solid rgba(255,255,255,.06);
+  border: 1px solid var(--border);
 }
 
 .ds-hero-left {
@@ -45,7 +45,7 @@
 .ds-hero-title {
   font-size: 20px;
   font-weight: 800;
-  color: #fff;
+  color: var(--text-main);
   letter-spacing: -0.025em;
   margin: 0 0 4px;
 }
@@ -53,7 +53,7 @@
 .ds-hero-sub {
   margin: 0;
   font-size: 12.5px;
-  color: rgba(255,255,255,.45);
+  color: var(--text-muted);
   max-width: 440px;
   line-height: 1.5;
 }
@@ -72,17 +72,17 @@
   gap: 7px;
   font-size: 12px;
   font-weight: 600;
-  color: rgba(255,255,255,.4);
+  color: var(--text-muted);
 }
 
-.ds-step--active { color: rgba(255,255,255,.9); }
-.ds-step--dim { color: rgba(255,255,255,.25); }
+.ds-step--active { color: var(--text-main); }
+.ds-step--dim { color: var(--text-light); }
 
 .ds-step-num {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: rgba(255,255,255,.12);
+  background: var(--bg-inset);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -97,6 +97,7 @@
 }
 
 .ds-step-arrow { color: rgba(255,255,255,.2); font-size: 18px; font-weight: 300; line-height: 1; }
+.ds-step-arrow { color: var(--text-light); font-size: 18px; font-weight: 300; line-height: 1; }
 
 /* ── MAIN GRID ───────────────────────────────────────────── */
 .ds-grid {
