@@ -5,6 +5,8 @@ import { normalizeServerChartData } from "../../../services/api/normalizeChartDa
 import { formatSunburstData } from "./engine/formatters/sunburstFormatter";
 import { serverNormalizedToSunburstChildren } from "../utils/sunburstTree";
 
+const SUNBURST_CHILD_LIMIT = 80;
+
 /**
  * Sunburst uses one stable hierarchy (client tree or one-time server fetch).
  * Drill only updates drillPath + ECharts rootToNode — no per-level API refetch.
@@ -20,7 +22,7 @@ export function useSunburstTreeData(aggregation, metrics) {
 
   useEffect(() => {
     if (tree) {
-      setData(formatSunburstData(tree, 200, aggregation, primaryMetric));
+      setData(formatSunburstData(tree, SUNBURST_CHILD_LIMIT, aggregation, primaryMetric));
       setLoading(false);
       setError(null);
       return undefined;
